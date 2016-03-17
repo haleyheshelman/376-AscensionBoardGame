@@ -1,0 +1,24 @@
+Contact Info
+Netta: gneezyn, 858-230-4980, Percopo 327
+Charlie: fenogljc 260-450-1646, Apts West 209
+Chase: bishopcc 502-526-7660, Lakeside 209
+
+Software Quality Assurance Features:
+
+Note: Player refers to both the User and the AI
+
++ All of the basic functionality of the rules outlined in the rulebook
++ Rule Book Link: http://ascensiongame.com/wp-content/blogs.dir/3/files/2013/04/CotG_Rulebook.pdf
++ A functional GUI that the user can interact with to play the game
++ A functional AI that plays against the player
++ (3) Different levels of difficulty for the AI
++ The software will be implemented in Java
++ Automated game handling
++ Points will be displayed as integers, for all players
++ The amount of points/gems available will also be displayed
++ Can have up to 4 players, user included
++ Decks are queues
++ Discard, Board, Player Constructs, Player Hand will be an Array
++ Card will be an interface, and each type of card will be a class
++ Abstract class for Hero & Construct (Playable)
++ Card -> Type (Playable & Monster) [interface] -> Different classes (Monster, Hero, Construct, Starting Cards) (Hero, Starting Cards, Construct will have Abstract Class Playable)
