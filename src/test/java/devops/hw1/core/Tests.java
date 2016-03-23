@@ -44,4 +44,17 @@ public class Tests {
 		newPlayer.addRunes(3);
 		assertTrue(newPlayer.getRunes() == 3);
 	}
+	
+	@Test
+	public void testPlayerAddRunes() {
+		Player newPlayer = Player.makePlayer();
+		assertTrue(newPlayer.getRunes() == 0);
+		newPlayer.addRunes(3);
+		assertTrue(newPlayer.getRunes() == 3);
+		newPlayer.addRunes(-1);
+		assertFalse(newPlayer.getRunes() == 3);
+		assertTrue(newPlayer.getRunes() == 2);
+		newPlayer.addRunes(-4);
+		assertTrue(newPlayer.getRunes() == 0);
+	}
 }
