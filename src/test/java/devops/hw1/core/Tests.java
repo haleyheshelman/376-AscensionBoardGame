@@ -69,5 +69,14 @@ public class Tests {
 		assertTrue(newPlayer.getDiscardSize() == 2);
 	}
 	
-
+	@Test
+	public void testDiscardingCards() {
+		Player newPlayer = Player.makePlayer();
+		Card newCard = Card.makeCard(4);
+		Card newCard2 = Card.makeCard(5);
+		Card newCard3 = Card.makeCard(4);
+		newPlayer.discard(newCard);
+		assertFalse(newPlayer.getDiscardPile().contains(newCard3));
+		assertTrue(newPlayer.getDiscardPile().contains(newCard));
+	}
 }
