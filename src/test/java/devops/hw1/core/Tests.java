@@ -57,4 +57,18 @@ public class Tests {
 		newPlayer.addRunes(-4);
 		assertTrue(newPlayer.getRunes() == 0);
 	}
+	
+	@Test
+	public void testPlayerBuyCard() {
+		Player newPlayer = Player.makePlayer();
+		newPlayer.addRunes(10);
+		assertTrue(newPlayer.getDiscardSize() == 0);
+		assertTrue(newPlayer.buyCard(Card.makeCard(6)));
+		assertTrue(newPlayer.getRunes() == 4);
+		assertFalse(newPlayer.getDiscardSize() == 0);
+		assertTrue(newPlayer.buyCard(Card.makeCard(3)));
+		assertTrue(newPlayer.getRunes() == 1);
+		assertTrue(newPlayer.getDiscardSize() == 2);
+		assertFalse(newPlayer.buyCard(Card.makeCard(9)));
+	}
 }
