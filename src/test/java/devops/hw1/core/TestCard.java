@@ -19,5 +19,11 @@ public class TestCard {
 		Card newCard = Card.makeCard();
 		assertTrue(newCard instanceof Card);
 	}
+	
+	@Test
+	public void testGetCardCost() {
+		Card newCard = Card.makeCard(2);
+		assertTrue(newCard.getCost() == 2);
+	}
 
 }
