@@ -31,5 +31,9 @@ public class TestCard {
 		Card newCard = Card.makeCard();
 		assertTrue(newCard.getCost() == 0);
 	}
-
+	
+	public void testMakePlayer() {
+		Player newPlayer = Player.makePlayer();
+		assertTrue(newPlayer instanceof Player);
+	}
 }
