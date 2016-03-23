@@ -37,4 +37,11 @@ public class Tests {
 		Player newPlayer = Player.makePlayer();
 		assertTrue(newPlayer instanceof Player);
 	}
+	
+	@Test
+	public void testPlayerHasRunes() {
+		Player newPlayer = Player.makePlayer();
+		newPlayer.addRunes(3);
+		assertTrue(newPlayer.getRunes() == 3);
+	}
 }
