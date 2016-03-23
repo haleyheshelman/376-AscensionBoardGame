@@ -12,7 +12,7 @@ import org.junit.Test;
  * @author fenogljc
  *
  */
-public class TestCard {
+public class Tests {
 
 	@Test
 	public void testMakeCard() {
@@ -32,6 +32,7 @@ public class TestCard {
 		assertTrue(newCard.getCost() == 0);
 	}
 	
+	@Test
 	public void testMakePlayer() {
 		Player newPlayer = Player.makePlayer();
 		assertTrue(newPlayer instanceof Player);
