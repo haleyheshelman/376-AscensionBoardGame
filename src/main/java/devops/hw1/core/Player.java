@@ -10,6 +10,7 @@ package devops.hw1.core;
 public class Player {
 
 	private int runes;
+	private int discardSize;
 
 	private Player() {
 		
@@ -43,6 +44,22 @@ public class Player {
 	public void setRunes(int runes) {
 		this.runes = runes;
 	}
+
+	/**
+	 * @return
+	 */
+	public int getDiscardSize() {
+		return this.discardSize;
+	}
+	
+	/**
+	 * @param size
+	 */
+	public void setDiscardSize(int size) {
+		this.discardSize = size;
+	}
+
+
 	
 	
 }
