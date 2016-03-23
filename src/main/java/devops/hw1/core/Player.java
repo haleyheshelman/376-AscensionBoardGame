@@ -27,7 +27,7 @@ public class Player {
 	 * @param i
 	 */
 	public void addRunes(int i) {
-		this.setRunes(this.getRunes() + i);
+		this.setRunes((i + this.getRunes() > 0) ? this.getRunes() + i : 0);
 	}
 
 	/**
