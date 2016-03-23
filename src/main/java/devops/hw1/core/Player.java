@@ -12,7 +12,6 @@ import java.util.ArrayList;
 public class Player {
 
 	private int runes;
-	private int discardSize;
 	private ArrayList<Card> discardPile;
 
 	private Player() {
@@ -52,18 +51,11 @@ public class Player {
 	 * @return
 	 */
 	public int getDiscardSize() {
-		return this.discardSize;
-	}
-	
-	/**
-	 * @param size
-	 */
-	public void setDiscardSize(int size) {
-		this.discardSize = size;
+		return this.discardPile.size();
 	}
 
 	/**
-	 * @param newCard
+	 * @param card
 	 */
 	public void discard(Card card) {
 		this.discardPile.add(card);
@@ -76,7 +68,17 @@ public class Player {
 		return this.discardPile;
 	}
 
+	/**
+	 * @param card
+	 * @return
+	 */
+	public boolean buyCard(Card card) {
+		if (card.getCost() <= this.runes) {
+			this.setRunes(this.runes - card.getCost());
+			this.discard(card);
+			return true;
+		}
+		return false;
+	}
 
-	
-	
 }

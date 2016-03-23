@@ -62,11 +62,11 @@ public class Tests {
 	public void testPlayerDiscard() {
 		Player newPlayer = Player.makePlayer();
 		assertTrue(newPlayer.getDiscardSize() == 0);
-		newPlayer.setDiscardSize(newPlayer.getDiscardSize() + 1);
+		newPlayer.discard(Card.makeCard());
 		assertTrue(newPlayer.getDiscardSize() == 1);
-		newPlayer.setDiscardSize(newPlayer.getDiscardSize() + 2);
-		newPlayer.setDiscardSize(newPlayer.getDiscardSize() - 1);
-		assertTrue(newPlayer.getDiscardSize() == 2);
+		newPlayer.discard(Card.makeCard());
+		newPlayer.discard(Card.makeCard());
+		assertTrue(newPlayer.getDiscardSize() == 3);
 	}
 	
 	@Test
