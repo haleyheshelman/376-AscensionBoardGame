@@ -59,16 +59,15 @@ public class Tests {
 	}
 	
 	@Test
-	public void testPlayerBuyCard() {
+	public void testPlayerDiscard() {
 		Player newPlayer = Player.makePlayer();
-		newPlayer.addRunes(10);
 		assertTrue(newPlayer.getDiscardSize() == 0);
-		assertTrue(newPlayer.buyCard(Card.makeCard(6)));
-		assertTrue(newPlayer.getRunes() == 4);
-		assertFalse(newPlayer.getDiscardSize() == 0);
-		assertTrue(newPlayer.buyCard(Card.makeCard(3)));
-		assertTrue(newPlayer.getRunes() == 1);
+		newPlayer.setDiscardSize(newPlayer.getDiscardSize() + 1);
+		assertTrue(newPlayer.getDiscardSize() == 1);
+		newPlayer.setDiscardSize(newPlayer.getDiscardSize() + 2);
+		newPlayer.setDiscardSize(newPlayer.getDiscardSize() - 1);
 		assertTrue(newPlayer.getDiscardSize() == 2);
-		assertFalse(newPlayer.buyCard(Card.makeCard(9)));
 	}
+	
+
 }
