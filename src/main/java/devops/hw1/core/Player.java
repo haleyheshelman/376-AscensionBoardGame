@@ -3,6 +3,8 @@
  */
 package devops.hw1.core;
 
+import java.util.ArrayList;
+
 /**
  * @author fenogljc
  *
@@ -11,9 +13,10 @@ public class Player {
 
 	private int runes;
 	private int discardSize;
+	private ArrayList<Card> discardPile;
 
 	private Player() {
-		
+		discardPile = new ArrayList<Card>(); 
 	}
 	
 	/**
@@ -57,6 +60,20 @@ public class Player {
 	 */
 	public void setDiscardSize(int size) {
 		this.discardSize = size;
+	}
+
+	/**
+	 * @param newCard
+	 */
+	public void discard(Card card) {
+		this.discardPile.add(card);
+	}
+
+	/**
+	 * @return
+	 */
+	public ArrayList<Card> getDiscardPile() {
+		return this.discardPile;
 	}
 
 
