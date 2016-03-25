@@ -73,7 +73,7 @@ public class Player {
 	 * @return
 	 */
 	public boolean buyCard(Card card) {
-		if (card.getCost() <= this.runes) {
+		if (card != null && card.getCost() <= this.runes) {
 			this.setRunes(this.runes - card.getCost());
 			this.discard(card);
 			return true;
