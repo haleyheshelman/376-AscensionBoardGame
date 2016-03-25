@@ -100,6 +100,18 @@ public class Tests {
 	assertTrue(newPlayer.getDiscardPile().contains(card6));
 	assertTrue(newPlayer.getDiscardPile().contains(card3));
 	assertFalse(newPlayer.getDiscardPile().contains(card9));
-}
 	
+	}
+	
+	@Test
+	public void testPlayerBuyCardInput() {
+		Player player1 = Player.makePlayer();
+		player1.addRunes(10);
+		Card card1 = Card.makeCard(1);
+		Card card3 = Card.makeCard(3);
+		Card card9 = Card.makeCard(9);
+		
+		assertFalse(player1.buyCard(null));
+		
+	}
 }
