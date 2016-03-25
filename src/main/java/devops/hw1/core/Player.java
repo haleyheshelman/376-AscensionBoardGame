@@ -19,6 +19,7 @@ public class Player {
 	}
 	
 	/**
+	 * This constructs and returns a player.
 	 * @return
 	 */
 	public static Player makePlayer() {
@@ -27,6 +28,7 @@ public class Player {
 	}
 
 	/**
+	 * This adds the given integer amount of runes to the players current total.
 	 * @param i
 	 */
 	public void addRunes(int i) {
@@ -34,6 +36,7 @@ public class Player {
 	}
 
 	/**
+	 * This returns the amount of runes the player currently has.
 	 * @return the runes
 	 */
 	public int getRunes() {
@@ -41,6 +44,7 @@ public class Player {
 	}
 
 	/**
+	 * Sets the amount of runs the player has to the given integer value.
 	 * @param runes the runes to set
 	 */
 	public void setRunes(int runes) {
@@ -48,6 +52,7 @@ public class Player {
 	}
 
 	/**
+	 * Returns the size of the player's discard pile.
 	 * @return
 	 */
 	public int getDiscardSize() {
@@ -55,6 +60,7 @@ public class Player {
 	}
 
 	/**
+	 * This puts the card given into the discard pile.
 	 * @param card
 	 */
 	public void discard(Card card) {
@@ -62,6 +68,7 @@ public class Player {
 	}
 
 	/**
+	 * Returns the player's discard pile.
 	 * @return
 	 */
 	public ArrayList<Card> getDiscardPile() {
@@ -69,6 +76,8 @@ public class Player {
 	}
 
 	/**
+	 * Places the given card into the player's discard pile as well as well as subtracts the amount of
+	 * runes the player has available. If you do not have enough runes, this returns false, otherwise true.
 	 * @param card
 	 * @return
 	 */

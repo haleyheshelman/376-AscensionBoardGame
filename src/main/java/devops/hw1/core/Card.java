@@ -19,6 +19,7 @@ public class Card {
 	}
 	
 	/**
+	 * Constructs a card with cost of the given integer.
 	 * @param i
 	 */
 	private Card(int i) {
@@ -35,14 +36,15 @@ public class Card {
 	}
 
 	/**
+	 * Returns that cost of the card.
 	 * @return
 	 */
 	public int getCost() {
-		// TODO Auto-generated method stub
 		return this.cost;
 	}
 
 	/**
+	 * Creates and returns a card with the given integer cost.
 	 * @param i
 	 * @return
 	 */
