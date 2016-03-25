@@ -107,11 +107,14 @@ public class Tests {
 	public void testPlayerBuyCardInput() {
 		Player player1 = Player.makePlayer();
 		player1.addRunes(10);
-		Card card1 = Card.makeCard(1);
-		Card card3 = Card.makeCard(3);
-		Card card9 = Card.makeCard(9);
 		
 		assertFalse(player1.buyCard(null));
 		
+	}
+	
+	@Test
+	public void testPlayerDiscardInput() {
+		Player player = Player.makePlayer();
+		player.discard(null);
 	}
 }
