@@ -100,4 +100,9 @@ public class Player {
 
 	}
 
+	public void drawCard() {
+		this.handSize = this.handSize + 1;
+
+	}
+
 }
