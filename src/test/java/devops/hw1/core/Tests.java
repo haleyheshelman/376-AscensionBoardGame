@@ -117,4 +117,17 @@ public class Tests {
 		Player player = Player.makePlayer();
 		player.discard(null);
 	}
+	
+	public void testPlayerHandSize(){
+		Player player = Player.makePlayer();
+		int i = player.getHandSize();
+		assertEqual(i,0);
+	}
+	
+//	public void testPlayerDrawCard(){
+//		Player player = Player.makePlayer();
+//		player.drawCard();
+////		assertEqual(player.getHandSize
+//	}
+	
 }
