@@ -90,4 +90,8 @@ public class Player {
 		return false;
 	}
 
+	public int getHandSize() {
+		return 0;
+	}
+
 }
