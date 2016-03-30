@@ -130,7 +130,7 @@ public class Tests {
 		Player player = Player.makePlayer();
 		player.setHandSize(5);
 		int i = player.getHandSize();
-		assertTrue(i == 0);
+		assertTrue(i == 5);
 	}
 	
 	// public void testPlayerDrawCard(){
