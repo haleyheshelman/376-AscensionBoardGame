@@ -3,9 +3,9 @@
  */
 package devops.hw1.core;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
-import org.hamcrest.core.IsInstanceOf;
 import org.junit.Test;
 
 /**
@@ -16,19 +16,19 @@ public class Tests {
 
 	@Test
 	public void testMakeCard() {
-		Card newCard = Card.makeCard();
-		assertTrue(newCard instanceof Card);
+		ACard newCard = ACard.makeCard();
+		assertTrue(newCard instanceof ACard);
 	}
 	
 	@Test
 	public void testGetCardCost() {
-		Card newCard = Card.makeCard(2);
+		ACard newCard = ACard.makeCard(2);
 		assertTrue(newCard.getCost() == 2);
 	}
 	
 	@Test
 	public void testGetDefaultCardCost() {
-		Card newCard = Card.makeCard();
+		ACard newCard = ACard.makeCard();
 		assertTrue(newCard.getCost() == 0);
 	}
 	
@@ -62,19 +62,19 @@ public class Tests {
 	public void testPlayerDiscard() {
 		Player newPlayer = Player.makePlayer();
 		assertTrue(newPlayer.getDiscardSize() == 0);
-		newPlayer.discard(Card.makeCard());
+		newPlayer.discard(ACard.makeCard());
 		assertTrue(newPlayer.getDiscardSize() == 1);
-		newPlayer.discard(Card.makeCard());
-		newPlayer.discard(Card.makeCard());
+		newPlayer.discard(ACard.makeCard());
+		newPlayer.discard(ACard.makeCard());
 		assertTrue(newPlayer.getDiscardSize() == 3);
 	}
 	
 	@Test
 	public void testDiscardingCards() {
 		Player newPlayer = Player.makePlayer();
-		Card newCard = Card.makeCard(4);
-		Card newCard2 = Card.makeCard(5);
-		Card newCard3 = Card.makeCard(4);
+		ACard newCard = ACard.makeCard(4);
+		ACard newCard2 = ACard.makeCard(5);
+		ACard newCard3 = ACard.makeCard(4);
 		newPlayer.discard(newCard);
 		assertFalse(newPlayer.getDiscardPile().contains(newCard3));
 		assertTrue(newPlayer.getDiscardPile().contains(newCard));
@@ -84,9 +84,9 @@ public class Tests {
 	public void testPlayerBuyCard() {
 	Player newPlayer = Player.makePlayer();
 	newPlayer.addRunes(10);
-	Card card6 = Card.makeCard(6);
-	Card card3 = Card.makeCard(3);
-	Card card9 = Card.makeCard(9);
+	ACard card6 = ACard.makeCard(6);
+	ACard card3 = ACard.makeCard(3);
+	ACard card9 = ACard.makeCard(9);
 	
 	assertTrue(newPlayer.buyCard(card6));
 	assertTrue(newPlayer.getRunes() == 4);

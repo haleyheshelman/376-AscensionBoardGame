@@ -10,6 +10,14 @@ package devops.hw1.core;
 public abstract class ACard {
 
 	protected int cost;
+	
+	public static ACard makeCard() {
+		return new DrawCard();
+	}
+	
+	public static ACard makeCard(int i) {
+		return new DrawCard(i);
+	}
 
 	/**
 	 * Returns that cost of the card.
@@ -29,7 +37,5 @@ public abstract class ACard {
 	}
 	
 	public abstract void effect();
-	public abstract ACard makeCard();
-	public abstract ACard makeCard(int i);
 }
 

@@ -12,10 +12,10 @@ import java.util.ArrayList;
 public class Player {
 
 	private int runes;
-	private ArrayList<Card> discardPile;
+	private ArrayList<ACard> discardPile;
 
 	private Player() {
-		discardPile = new ArrayList<Card>(); 
+		discardPile = new ArrayList<ACard>(); 
 	}
 	
 	/**
@@ -63,7 +63,7 @@ public class Player {
 	 * This puts the card given into the discard pile.
 	 * @param card
 	 */
-	public void discard(Card card) {
+	public void discard(ACard card) {
 		this.discardPile.add(card);
 	}
 
@@ -71,7 +71,7 @@ public class Player {
 	 * Returns the player's discard pile.
 	 * @return
 	 */
-	public ArrayList<Card> getDiscardPile() {
+	public ArrayList<ACard> getDiscardPile() {
 		return this.discardPile;
 	}
 
@@ -81,7 +81,7 @@ public class Player {
 	 * @param card
 	 * @return
 	 */
-	public boolean buyCard(Card card) {
+	public boolean buyCard(ACard card) {
 		if (card != null && card.getCost() <= this.runes) {
 			this.setRunes(this.runes - card.getCost());
 			this.discard(card);
