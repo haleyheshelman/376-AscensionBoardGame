@@ -133,10 +133,22 @@ public class Tests {
 		assertTrue(i == 5);
 	}
 	
+	 @Test
 	 public void testPlayerDrawCard(){
 	 Player player = Player.makePlayer();
 	 player.drawCard();
 	 assertTrue(player.getHandSize()== 1);
 	 }
+	 
+	 @Test
+	 public void testPlayerDrawCardwithCard(){
+		 Player player = Player.makePlayer();
+		 ACard card = ACard.makeCard();
+		 player.addCardToDeck(card);
+		 player.drawCard();
+		 assertTrue(player.getHand().contains(card));	 
+	 }
+	 
+	 
 
 }

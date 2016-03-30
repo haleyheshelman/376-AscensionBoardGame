@@ -4,6 +4,8 @@
 package devops.hw1.core;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.Queue;
 
 /**
  * @author fenogljc
@@ -14,9 +16,13 @@ public class Player {
 	private int runes;
 	private ArrayList<ACard> discardPile;
 	private int handSize;
+	private ArrayList<ACard> playerHand;
+	private Queue<ACard> playerDeck;
 
 	private Player() {
 		discardPile = new ArrayList<ACard>(); 
+		playerHand = new ArrayList<ACard>();
+		playerDeck = new LinkedList<ACard>();
 	}
 	
 	/**
@@ -101,8 +107,19 @@ public class Player {
 	}
 
 	public void drawCard() {
+		ACard fromDeck = playerDeck.poll();
+		playerHand.add(fromDeck);
 		this.handSize = this.handSize + 1;
 
 	}
-
+	
+	public void addCardToDeck(ACard card){
+		playerDeck.add(card);
+	}
+	
+	public ArrayList<ACard> getHand(){
+		return this.playerHand;
+	}
+	
+		
 }
