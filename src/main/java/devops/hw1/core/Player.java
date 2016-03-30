@@ -13,6 +13,7 @@ public class Player {
 
 	private int runes;
 	private ArrayList<ACard> discardPile;
+	private int handSize;
 
 	private Player() {
 		discardPile = new ArrayList<ACard>(); 
@@ -91,7 +92,12 @@ public class Player {
 	}
 
 	public int getHandSize() {
-		return 0;
+		return this.handSize;
+	}
+
+	public void setHandSize(int i) {
+		this.handSize = i;
+
 	}
 
 }

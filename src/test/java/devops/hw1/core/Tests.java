@@ -125,6 +125,14 @@ public class Tests {
 		assertTrue(i == 0);
 	}
 
+	@Test
+	public void testPlayerHandSizeWithInput(){
+		Player player = Player.makePlayer();
+		player.setHandSize(5);
+		int i = player.getHandSize();
+		assertTrue(i == 0);
+	}
+	
 	// public void testPlayerDrawCard(){
 	// Player player = Player.makePlayer();
 	// player.drawCard();
