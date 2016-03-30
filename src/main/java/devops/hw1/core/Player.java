@@ -121,5 +121,14 @@ public class Player {
 		return this.playerHand;
 	}
 	
+	/**
+	 * 
+	 * Input check card in hand
+	 *
+	 * @param card
+	 */
+	public void playCard(ACard card){
+		
+	}
 		
 }

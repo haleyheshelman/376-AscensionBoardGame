@@ -149,6 +149,11 @@ public class Tests {
 		 assertTrue(player.getHand().contains(card));	 
 	 }
 	 
-	 
+	 public void testGetEffects(){
+		 Player player = Player.makePlayer();
+		 ACard card = DrawCard.makeCard();
+		 assertTrue(card.getEffects.contains("draw"));
+		 
+	 }
 
 }

@@ -3,6 +3,8 @@
  */
 package devops.hw1.core;
 
+import java.util.HashMap;
+
 /**
  * @author fenogljc
  *
@@ -10,6 +12,7 @@ package devops.hw1.core;
 public abstract class ACard {
 
 	protected int cost;
+	protected HashMap<String,Integer> effects;
 	
 	public static ACard makeCard() {
 		return new DrawCard();
@@ -36,6 +39,9 @@ public abstract class ACard {
 		return true;
 	}
 	
-	public abstract void effect();
+	public HashMap<String,Integer> getEffects(){
+		return this.effects;
+	}
+	
 }
 
