@@ -133,10 +133,10 @@ public class Tests {
 		assertTrue(i == 5);
 	}
 	
-	// public void testPlayerDrawCard(){
-	// Player player = Player.makePlayer();
-	// player.drawCard();
-	//// assertEqual(player.getHandSize
-	// }
+	 public void testPlayerDrawCard(){
+	 Player player = Player.makePlayer();
+	 player.drawCard();
+	 assertTrue(player.getHandSize()== 1);
+	 }
 
 }
