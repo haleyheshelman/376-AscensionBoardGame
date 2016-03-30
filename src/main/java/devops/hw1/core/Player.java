@@ -97,15 +97,33 @@ public class Player {
 		return false;
 	}
 
+	/**
+	 * 
+	 *Returns the size of the player hand
+	 *
+	 * @return the size of the player hand
+	 */
 	public int getHandSize() {
 		return this.handSize;
 	}
 
+	/**
+	 * 
+	 * sets the size of a hand
+	 * for testing purposes only
+	 *
+	 * @param i
+	 */
 	public void setHandSize(int i) {
 		this.handSize = i;
 
 	}
 
+	/**
+	 * 
+	 * Draws a card from the player deck and adds it to the player hand
+	 *
+	 */
 	public void drawCard() {
 		ACard fromDeck = playerDeck.poll();
 		playerHand.add(fromDeck);
@@ -113,10 +131,22 @@ public class Player {
 
 	}
 	
+	/**
+	 * 
+	 * Adds a card to the player deck
+	 *
+	 * @param card to be added
+	 */
 	public void addCardToDeck(ACard card){
 		playerDeck.add(card);
 	}
 	
+	/**
+	 * 
+	 * Gets the current player hand
+	 *
+	 * @return the player hand
+	 */
 	public ArrayList<ACard> getHand(){
 		return this.playerHand;
 	}
