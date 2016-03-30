@@ -79,7 +79,7 @@ public class GameBoard extends JPanel {
 			
 			BufferedImage card = null;
 			try {
-				card = ImageIO.read(new File("card_images/Standard/Apprentice.png"));
+				card = ImageIO.read(new File("cardImages/Standard/Apprentice.png"));
 				
 			} catch (IOException e) {
 				System.out.println("Something went wrong with the Aprrentice.png file.");
