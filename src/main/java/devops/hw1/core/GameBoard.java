@@ -94,29 +94,7 @@ public class GameBoard extends JPanel {
 		this.type = type;
 	}
 	
-	public static void main(String[] args) {
-		Player player1 = Player.makePlayer();
-		player1.addRunes(5);
-		GameBoard ascension = new GameBoard();
-		ascension.setType("Rune");
-		JFrame frame = new JFrame("ASCENSION");
-		frame.setSize(WIDTH, HEIGHT);
-		
-		// code that might be used later
-//		MyComponent info = new MyComponent();
-//		info.setLayout(new GridLayout(3, 1));
-//		info.add(runesLeft);
-//		info.add(powerLeft);
-//		info.add(deckLeft);
-//		
-//		frame.setLayout(new BorderLayout());
-//		frame.add(info, BorderLayout.SOUTH);
-		frame.add(ascension, BorderLayout.CENTER);
-		
-		ascension.repaint();
-		
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setVisible(true);
-	}
+	// TO DO: add discard pile gui, use interface or class? what parameters?
+	// Brainstorm about how to move cards (when they are played, through game board or card listener?)
 	
 }
