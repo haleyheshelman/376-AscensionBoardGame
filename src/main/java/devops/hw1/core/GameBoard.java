@@ -30,9 +30,10 @@ public class GameBoard extends JPanel {
 	public JLabel runes;
 	public JLabel power;
 	public JLabel deck;
-	public Integer rune_count;
+	public int rune_count;
 	public int power_count;
 	public int deck_count;
+	public String type;
 	
 	public CardListener cardListener;
 	
@@ -89,17 +90,19 @@ public class GameBoard extends JPanel {
 		}
 	}
 	
+	public void setType(String type) {
+		this.type = type;
+	}
+	
 	public static void main(String[] args) {
-//		Player player1 = new Player();
-//		player1.addRunes(i);
+		Player player1 = Player.makePlayer();
+		player1.addRunes(5);
 		GameBoard ascension = new GameBoard();
+		ascension.setType("Rune");
 		JFrame frame = new JFrame("ASCENSION");
 		frame.setSize(WIDTH, HEIGHT);
 		
-		
-//		JLabel runesLeft = new JLabel("Runes: 5");
-//		JLabel powerLeft = new JLabel("Power: 0");
-//		JLabel deckLeft = new JLabel("Left in Deck: 5");
+		// code that might be used later
 //		MyComponent info = new MyComponent();
 //		info.setLayout(new GridLayout(3, 1));
 //		info.add(runesLeft);
@@ -109,8 +112,6 @@ public class GameBoard extends JPanel {
 //		frame.setLayout(new BorderLayout());
 //		frame.add(info, BorderLayout.SOUTH);
 		frame.add(ascension, BorderLayout.CENTER);
-		
-//		ascension.addMouseListener(new CardListener());
 		
 		ascension.repaint();
 		

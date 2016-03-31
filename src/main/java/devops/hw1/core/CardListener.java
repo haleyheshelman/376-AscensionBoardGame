@@ -10,9 +10,14 @@ import java.awt.event.MouseListener;
 public class CardListener implements MouseListener {
 
 	public void mouseClicked(MouseEvent e) {
-		GameBoard src = (GameBoard) e.getSource();
-//		System.out.println("IT WORKS!");
-		src.runes.setText("Runes: " + (String.valueOf(src.rune_count - 1)));
+		GameBoard board = (GameBoard) e.getSource();
+		if (board.type.equals("Rune")) {
+			board.rune_count--;
+			board.runes.setText("Runes: " + (String.valueOf(board.rune_count)));			
+		} else {
+			board.power_count--;
+			board.power.setText("Power: " + (String.valueOf(board.power_count)));
+		}
 	}
 
 	public void mouseEntered(MouseEvent arg0) {
