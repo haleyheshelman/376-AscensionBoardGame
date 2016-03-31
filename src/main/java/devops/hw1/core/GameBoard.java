@@ -35,12 +35,15 @@ public class GameBoard extends JPanel {
 	public int deck_count;
 	public String type;
 	
+	public Player player;
+	
 	public CardListener cardListener;
 	
 	/**
 	 * The default constructor for the Game Board.
 	 */
 	public GameBoard() {
+		super();
 		background = null;
 //		rune_count = player.getRunes();
 		rune_count = 5;
@@ -58,6 +61,14 @@ public class GameBoard extends JPanel {
 		
 		cardListener = new CardListener();
 		this.addMouseListener(cardListener);
+	}
+	
+	public GameBoard(Player player) {
+		// call the default constructor first
+		this();
+		
+		// then do additional stuff
+		this.player = player;
 	}
 
 	@Override
