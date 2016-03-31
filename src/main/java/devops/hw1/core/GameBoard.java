@@ -27,9 +27,9 @@ public class GameBoard extends JPanel {
 
 	private BufferedImage background;
 	public JPanel info;
-	public JLabel runes;
-	public JLabel power;
-	public JLabel deck;
+	public JLabel runes = new JLabel("Runes: 5");
+	public JLabel power = new JLabel("Power: 0");
+	public JLabel deck = new JLabel("Left in Deck: 5");
 	public int rune_count;
 	public int power_count;
 	public int deck_count;
@@ -44,23 +44,23 @@ public class GameBoard extends JPanel {
 	 */
 	public GameBoard() {
 		super();
-		background = null;
+//		background = null;
 //		rune_count = player.getRunes();
 		rune_count = 5;
 		power_count = 0;
 		deck_count = 5;
 		
-		JLabel runes = new JLabel("Runes: 5");
-		JLabel power = new JLabel("Power: 0");
-		JLabel deck = new JLabel("Left in Deck: 5");
+//		JLabel runes = new JLabel("Runes: 5");
+//		JLabel power = new JLabel("Power: 0");
+//		JLabel deck = new JLabel("Left in Deck: 5");
 		
 		this.setLayout(new GridLayout(3, 1));
 		this.add(runes);
 		this.add(power);
 		this.add(deck);
 		
-		cardListener = new CardListener();
-		this.addMouseListener(cardListener);
+//		cardListener = new CardListener();
+//		this.addMouseListener(cardListener);
 	}
 	
 	public GameBoard(Player player) {

@@ -12,10 +12,13 @@ public class MainGUI {
 	public static void main(String[] args) {
 		Player player1 = Player.makePlayer();
 		player1.addRunes(5);
-		GameBoard ascension = new GameBoard();
+		GameBoard ascension = new GameBoard(player1);
 		ascension.setType("Rune");
 		JFrame frame = new JFrame("ASCENSION");
 		frame.setSize(WIDTH, HEIGHT);
+		
+//		CardListener cardListener = new CardListener();
+		ascension.addMouseListener(new CardListener());
 		
 		// code that might be used later
 //		MyComponent info = new MyComponent();
