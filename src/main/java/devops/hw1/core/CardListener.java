@@ -2,12 +2,21 @@ package devops.hw1.core;
 
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.util.ArrayList;
 
 /**
  * @author gneezyn
  * 
  */
 public class CardListener implements MouseListener {
+	
+	private Player player;
+	private ArrayList<ACard> playerHand;
+	
+	public CardListener(Player player) {
+		this.player = player;
+		this.playerHand = player.getHand();
+	}
 
 	public void mouseClicked(MouseEvent e) {
 		GameBoard board = (GameBoard) e.getSource();
@@ -16,6 +25,7 @@ public class CardListener implements MouseListener {
 				System.out.println("You don't have enough Runes.");
 			} else {
 				board.rune_count--;
+				player.playCard(playerHand.get(0));
 				board.runes.setText("Runes: " + (String.valueOf(board.rune_count)));				
 			}
 		} else {

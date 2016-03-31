@@ -18,7 +18,7 @@ public class MainGUI {
 		frame.setSize(WIDTH, HEIGHT);
 		
 //		CardListener cardListener = new CardListener();
-		ascension.addMouseListener(new CardListener());
+		ascension.addMouseListener(new CardListener(player1));
 		
 		// code that might be used later
 //		MyComponent info = new MyComponent();

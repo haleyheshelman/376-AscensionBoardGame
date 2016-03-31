@@ -45,7 +45,6 @@ public class GameBoard extends JPanel {
 	public GameBoard() {
 		super();
 //		background = null;
-//		rune_count = player.getRunes();
 		rune_count = 5;
 		power_count = 0;
 		deck_count = 5;
@@ -69,6 +68,7 @@ public class GameBoard extends JPanel {
 		
 		// then do additional stuff
 		this.player = player;
+		rune_count = this.player.getRunes();
 	}
 
 	@Override
