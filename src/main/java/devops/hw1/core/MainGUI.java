@@ -17,18 +17,8 @@ public class MainGUI {
 		JFrame frame = new JFrame("ASCENSION");
 		frame.setSize(WIDTH, HEIGHT);
 		
-//		CardListener cardListener = new CardListener();
-		ascension.addMouseListener(new CardListener(player1));
+		ascension.addMouseListener(new CardListener(player1, ascension.playerList, ascension.centerList));
 		
-		// code that might be used later
-//		MyComponent info = new MyComponent();
-//		info.setLayout(new GridLayout(3, 1));
-//		info.add(runesLeft);
-//		info.add(powerLeft);
-//		info.add(deckLeft);
-//		
-//		frame.setLayout(new BorderLayout());
-//		frame.add(info, BorderLayout.SOUTH);
 		frame.add(ascension, BorderLayout.CENTER);
 		
 		ascension.repaint();
@@ -38,3 +28,13 @@ public class MainGUI {
 	}
 
 }
+
+// code that might be used later
+//		MyComponent info = new MyComponent();
+//		info.setLayout(new GridLayout(3, 1));
+//		info.add(runesLeft);
+//		info.add(powerLeft);
+//		info.add(deckLeft);
+//		
+//		frame.setLayout(new BorderLayout());
+//		frame.add(info, BorderLayout.SOUTH);
