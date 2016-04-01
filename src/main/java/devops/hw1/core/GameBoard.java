@@ -1,7 +1,6 @@
 package devops.hw1.core;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -62,7 +61,6 @@ public class GameBoard extends JPanel {
 		super();
 		
 		// then initialize value
-//		background = null;
 		rune_count = 5;
 		power_count = 0;
 		deck_count = 5;
@@ -90,13 +88,8 @@ public class GameBoard extends JPanel {
 		labels.setLayout(new BorderLayout());
 		labels.add(leftInfo, BorderLayout.WEST);
 		labels.add(discard_pile, BorderLayout.EAST);
-		
 		labels.setBorder(new EmptyBorder(10, 10, 10, 10));
-		
 		this.add(labels, BorderLayout.SOUTH);
-		
-//		cardListener = new CardListener();
-//		this.addMouseListener(cardListener);
 	}
 	
 	public GameBoard(Player player) {
@@ -114,13 +107,6 @@ public class GameBoard extends JPanel {
 		super.paint(g);
 		Graphics2D g2 = (Graphics2D) g;
 		
-//		BufferedImage img = null;
-//		try {
-//			img = ImageIO.read(new File("Game-BoardSmall.png"));
-//		} catch (IOException e) {
-//			System.out.println("Something went wrong with the Game-BoardSmall.png file.");
-//		}
-//		g2.drawImage(img, 0, 0, null);
 		
 		// the center field
 		for (int i = 1; i <= 6; i++) {
@@ -161,7 +147,13 @@ public class GameBoard extends JPanel {
 		this.type = type;
 	}
 	
-	// TO DO: add discard pile gui, use interface or class? what parameters?
-	// Brainstorm about how to move cards (when they are played, through game board or card listener?)
-	
 }
+
+// background image code, might use later
+//		BufferedImage img = null;
+//		try {
+//			img = ImageIO.read(new File("Game-BoardSmall.png"));
+//		} catch (IOException e) {
+//			System.out.println("Something went wrong with the Game-BoardSmall.png file.");
+//		}
+//		g2.drawImage(img, 0, 0, null);

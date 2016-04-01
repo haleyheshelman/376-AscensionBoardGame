@@ -17,4 +17,4 @@ The project was setup using Eclipse (Mars 1 - Java Developer). It can be downloa
 
 To build the project in Eclipse, right-click on the project -> Run As -> Gradle Build ... -> Under Gradle task box, enter **build** -> Apply -> Run. Your build should start. Note that you must **install JDK 8 (not JRE)** for all of these to work. 
 
-Netta - Test Engineer: Added images to the GUI and introduced new constructor (in addition to the default one).
+Netta - Test Engineer: Added images to the GUI and introduced new constructor (in addition to the default one). Also got counters and CardListener to work properly.
