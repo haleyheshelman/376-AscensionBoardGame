@@ -246,10 +246,19 @@ public class Tests {
 		assertTrue(player.getRunes() == 3);
 	}
 	
+	// We do not want to allow input of null to the setEffect()
+	
 	@Test
 	public void testSetEffectInput() {
 		ACard card = ACard.makeCard();
 		card.setEffect(null, 1);
+	}
+	
+	@Test
+	public void testPlayCardInput() {
+		Player p = Player.makePlayer();
+		ACard card = null;
+		p.playCard(card);
 	}
 
 }
