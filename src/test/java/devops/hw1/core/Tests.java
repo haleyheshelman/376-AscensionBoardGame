@@ -86,6 +86,19 @@ public class Tests {
 		newPlayer.discard(ACard.makeCard());
 		assertTrue(newPlayer.getDiscardSize() == 3);
 	}
+	
+	@Test
+	public void testDiscardingCardsMock() {
+		Player newPlayer = Player.makePlayer();
+		ACard card1 = EasyMock.niceMock(ACard.class);
+		ACard card2 = EasyMock.niceMock(ACard.class);
+		ACard card3 = EasyMock.niceMock(ACard.class);
+		
+		newPlayer.discard(card1);
+		assertFalse(newPlayer.getDiscardPile().contains(card2));
+		assertFalse(newPlayer.getDiscardPile().contains(card3));
+		assertTrue(newPlayer.getDiscardPile().contains(card1));
+	}
 
 	@Test
 	public void testDiscardingCards() {
