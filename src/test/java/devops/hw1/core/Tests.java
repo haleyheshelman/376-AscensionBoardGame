@@ -6,6 +6,7 @@ package devops.hw1.core;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
+import org.easymock.EasyMock;
 import org.junit.Test;
 
 /**
@@ -38,7 +39,7 @@ public class Tests {
 		assertTrue(newPlayer instanceof Player);
 	}
 
-	@Test
+	@Test	
 	public void testPlayerHasRunes() {
 		Player newPlayer = Player.makePlayer();
 		newPlayer.addRunes(3);
@@ -58,6 +59,23 @@ public class Tests {
 		assertTrue(newPlayer.getRunes() == 0);
 	}
 
+	@Test
+	public void testPlayerDiscardMock() {
+		Player newPlayer = Player.makePlayer();
+		
+		ACard card1 = EasyMock.niceMock(ACard.class);
+		ACard card2 = EasyMock.niceMock(ACard.class);
+		ACard card3 = EasyMock.niceMock(ACard.class);
+		
+		assertTrue(newPlayer.getDiscardSize() == 0);
+		newPlayer.discard(card1);
+		assertTrue(newPlayer.getDiscardSize() == 1);
+		newPlayer.discard(card2);
+		newPlayer.discard(card3);
+		assertTrue(newPlayer.getDiscardSize() == 3);
+		
+	}
+	
 	@Test
 	public void testPlayerDiscard() {
 		Player newPlayer = Player.makePlayer();
