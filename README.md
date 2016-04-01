@@ -21,3 +21,4 @@ Netta - Test Engineer: Added images to the GUI and introduced new constructor (i
 
 Haley - Software Engineer: Refactored the Card class to create a ACard (abstract class) and a DrawCard.  Created methods using TDD that allowed a player to add a card to a deck and draw a card.  This also required creating methods for getting and setting (setting for the sake of test purposes) a hand size.   
 
+Chase - I produced the test code that checks input on various methods in the player and card class. I added Mocking tests so that we can test certain methods using UnitTesting. Also, helped with some of the ideas on how to implement some of the logic.
