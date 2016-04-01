@@ -43,6 +43,9 @@ public abstract class ACard {
 	}
 	
 	public void setEffect(String effect, int value){
+		if (effect == null) {
+			return;
+		}
 		this.effects.put(effect, value);
 	}
 	

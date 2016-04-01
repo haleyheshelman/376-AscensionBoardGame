@@ -245,6 +245,12 @@ public class Tests {
 		player.playCard(card);
 		assertTrue(player.getRunes() == 3);
 	}
+	
+	@Test
+	public void testSetEffectInput() {
+		ACard card = ACard.makeCard();
+		card.setEffect(null, 1);
+	}
 
 }
 
