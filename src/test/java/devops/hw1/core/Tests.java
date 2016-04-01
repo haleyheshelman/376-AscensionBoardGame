@@ -131,7 +131,7 @@ public class Tests {
 		assertTrue(newPlayer.getDiscardPile().contains(card6));
 		assertTrue(newPlayer.getDiscardPile().contains(card3));
 		assertFalse(newPlayer.getDiscardPile().contains(card9));
-
+		
 	}
 
 	@Test
@@ -169,6 +169,16 @@ public class Tests {
 	 Player player = Player.makePlayer();
 	 player.drawCard();
 	 assertTrue(player.getHandSize()== 1);
+	 }
+	 
+	 @Test
+	 public void testPlayerDrawCardWithCardMock() {
+		 Player player = Player.makePlayer();
+		 
+		 ACard card = EasyMock.niceMock(ACard.class);
+		 player.addCardToDeck(card);
+		 player.drawCard();
+		 assertTrue(player.getHand().contains(card));
 	 }
 	 
 	 @Test
