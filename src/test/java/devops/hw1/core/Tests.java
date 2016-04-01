@@ -149,13 +149,29 @@ public class Tests {
 		 assertTrue(player.getHand().contains(card));	 
 	 }
 	 
+	 @Test
 	 public void testGetEffects(){
 		 Player player = Player.makePlayer();
 		 ACard card = DrawCard.makeCard(1);
 		 player.addCardToDeck(card);
 		 player.drawCard();
-		 assertTrue(card.getEffects().containsKey("draw"));
-		 
+		 assertTrue(card.getEffects().containsKey("draw"));		 
 	 }
-
+	 
+	 @Test
+	 public void testDrawACardAfterPlayingCard(){
+		 Player player = Player.makePlayer();
+		 player.addRunes(5);
+		 ACard cardInHand = DrawCard.makeCard(3);
+		 ACard cardInDeck = DrawCard.makeCard(3);
+		 player.addCardToDeck(cardInHand);
+		 player.addCardToDeck(cardInDeck);
+		 player.drawCard();
+		 assertTrue(player.getHandSize() == 1);
+		 assertFalse(player.getHand().contains(cardInDeck));
+		 player.playCard(cardInHand);
+		 assertTrue(player.getHandSize() == 2);
+		 assertTrue(player.getHand().contains(cardInDeck));
+	 }
+	 
 }
