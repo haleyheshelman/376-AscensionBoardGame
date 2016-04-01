@@ -139,6 +139,11 @@ public class Player {
 	 * @param card to be added
 	 */
 	public void addCardToDeck(ACard card){
+		
+		if (card == null) {
+			return;
+		}
+		
 		this.playerDeck.add(card);
 	}
 	

@@ -257,8 +257,15 @@ public class Tests {
 	@Test
 	public void testPlayCardInput() {
 		Player p = Player.makePlayer();
-		ACard card = null;
-		p.playCard(card);
+		p.playCard(null);
+	}
+	
+	// We do not want to allow input of null to the addCardToDeck()
+	
+	@Test
+	public void testAddCardToDeckInput() {
+		Player p = Player.makePlayer();
+		p.addCardToDeck(null);
 	}
 
 }
