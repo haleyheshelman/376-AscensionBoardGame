@@ -193,7 +193,7 @@ public class Tests {
 	@Test
 	public void testSetAndGetEffects() {
 		Player player = Player.makePlayer();
-		ACard card = DrawCard.makeCard(1);
+		ACard card = HeroCard.makeCard(1);
 		card.setEffect("draw", 1);
 		player.addCardToDeck(card);
 		player.drawCard();
@@ -203,9 +203,9 @@ public class Tests {
 	@Test
 	public void testDrawACardAfterPlayingCard() {
 		Player player = Player.makePlayer();
-		ACard cardInHand = DrawCard.makeCard(3);
+		ACard cardInHand = HeroCard.makeCard(3);
 		cardInHand.setEffect("draw", 1);
-		ACard cardInDeck = DrawCard.makeCard(3);
+		ACard cardInDeck = HeroCard.makeCard(3);
 		player.addCardToDeck(cardInHand);
 		player.addCardToDeck(cardInDeck);
 		player.drawCard();
@@ -219,7 +219,7 @@ public class Tests {
 	@Test
 	public void testCardGoesToDiscardAfterPlaying() {
 		Player player = Player.makePlayer();
-		ACard card = DrawCard.makeCard();
+		ACard card = HeroCard.makeCard();
 		player.addCardToDeck(card);
 		player.drawCard();
 		player.playCard(card);
@@ -228,7 +228,7 @@ public class Tests {
 
 	@Test
 	public void testSetEffects() {
-		ACard card = DrawCard.makeCard();
+		ACard card = HeroCard.makeCard();
 		card.setEffect("draw", 2);
 		card.setEffect("runes", 1);
 		assertTrue(card.getEffects().get("draw") == 2);
@@ -238,7 +238,7 @@ public class Tests {
 	@Test
 	public void testPlayCardAddingRunes() {
 		Player player = Player.makePlayer();
-		ACard card = DrawCard.makeCard();
+		ACard card = HeroCard.makeCard();
 		card.setEffect("runes", 3);
 		player.addCardToDeck(card);
 		player.drawCard();

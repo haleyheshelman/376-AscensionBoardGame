@@ -15,11 +15,11 @@ public abstract class ACard {
 	protected HashMap<String,Integer> effects = new HashMap<String, Integer>();
 	
 	public static ACard makeCard() {
-		return new DrawCard();
+		return new HeroCard();
 	}
 	
 	public static ACard makeCard(int i) {
-		return new DrawCard(i);
+		return new HeroCard(i);
 	}
 
 	/**
