@@ -17,4 +17,7 @@ The project was setup using Eclipse (Mars 1 - Java Developer). It can be downloa
 
 To build the project in Eclipse, right-click on the project -> Run As -> Gradle Build ... -> Under Gradle task box, enter **build** -> Apply -> Run. Your build should start. Note that you must **install JDK 8 (not JRE)** for all of these to work. 
 
-Netta - Test Engineer: Added images to the GUI and introduced new constructor (in addition to the default one).
+Netta - Test Engineer: Added images to the GUI and introduced new constructor (in addition to the default one). Also got counters and CardListener to work properly.
+
+Haley - Software Engineer: Refactored the Card class to create a ACard (abstract class) and a DrawCard.  Created methods using TDD that allowed a player to add a card to a deck and draw a card.  This also required creating methods for getting and setting (setting for the sake of test purposes) a hand size.   
+

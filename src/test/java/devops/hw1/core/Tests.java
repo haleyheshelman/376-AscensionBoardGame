@@ -6,11 +6,12 @@ package devops.hw1.core;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
+import org.easymock.EasyMock;
 import org.junit.Test;
 
 /**
  * @author fenogljc
- * 
+ *
  */
 public class Tests {
 
@@ -38,7 +39,7 @@ public class Tests {
 		assertTrue(newPlayer instanceof Player);
 	}
 
-	@Test
+	@Test	
 	public void testPlayerHasRunes() {
 		Player newPlayer = Player.makePlayer();
 		newPlayer.addRunes(3);
@@ -59,6 +60,23 @@ public class Tests {
 	}
 
 	@Test
+	public void testPlayerDiscardMock() {
+		Player newPlayer = Player.makePlayer();
+		
+		ACard card1 = EasyMock.niceMock(ACard.class);
+		ACard card2 = EasyMock.niceMock(ACard.class);
+		ACard card3 = EasyMock.niceMock(ACard.class);
+		
+		assertTrue(newPlayer.getDiscardSize() == 0);
+		newPlayer.discard(card1);
+		assertTrue(newPlayer.getDiscardSize() == 1);
+		newPlayer.discard(card2);
+		newPlayer.discard(card3);
+		assertTrue(newPlayer.getDiscardSize() == 3);
+		
+	}
+	
+	@Test
 	public void testPlayerDiscard() {
 		Player newPlayer = Player.makePlayer();
 		assertTrue(newPlayer.getDiscardSize() == 0);
@@ -67,6 +85,19 @@ public class Tests {
 		newPlayer.discard(ACard.makeCard());
 		newPlayer.discard(ACard.makeCard());
 		assertTrue(newPlayer.getDiscardSize() == 3);
+	}
+	
+	@Test
+	public void testDiscardingCardsMock() {
+		Player newPlayer = Player.makePlayer();
+		ACard card1 = EasyMock.niceMock(ACard.class);
+		ACard card2 = EasyMock.niceMock(ACard.class);
+		ACard card3 = EasyMock.niceMock(ACard.class);
+		
+		newPlayer.discard(card1);
+		assertFalse(newPlayer.getDiscardPile().contains(card2));
+		assertFalse(newPlayer.getDiscardPile().contains(card3));
+		assertTrue(newPlayer.getDiscardPile().contains(card1));
 	}
 
 	@Test
@@ -100,7 +131,7 @@ public class Tests {
 		assertTrue(newPlayer.getDiscardPile().contains(card6));
 		assertTrue(newPlayer.getDiscardPile().contains(card3));
 		assertFalse(newPlayer.getDiscardPile().contains(card9));
-
+		
 	}
 
 	@Test
@@ -126,29 +157,39 @@ public class Tests {
 	}
 
 	@Test
-	public void testPlayerHandSizeWithInput() {
+	public void testPlayerHandSizeWithInput(){
 		Player player = Player.makePlayer();
 		player.setHandSize(5);
 		int i = player.getHandSize();
 		assertTrue(i == 5);
 	}
-
-	@Test
-	public void testPlayerDrawCard() {
-		Player player = Player.makePlayer();
-		player.drawCard();
-		assertTrue(player.getHandSize() == 1);
-	}
-
-	@Test
-	public void testPlayerDrawCardwithCard() {
-		Player player = Player.makePlayer();
-		ACard card = ACard.makeCard();
-		player.addCardToDeck(card);
-		player.drawCard();
-		assertTrue(player.getHand().contains(card));
-	}
-
+	
+	 @Test
+	 public void testPlayerDrawCard(){
+	 Player player = Player.makePlayer();
+	 player.drawCard();
+	 assertTrue(player.getHandSize()== 1);
+	 }
+	 
+	 @Test
+	 public void testPlayerDrawCardWithCardMock() {
+		 Player player = Player.makePlayer();
+		 
+		 ACard card = EasyMock.niceMock(ACard.class);
+		 player.addCardToDeck(card);
+		 player.drawCard();
+		 assertTrue(player.getHand().contains(card));
+	 }
+	 
+	 @Test
+	 public void testPlayerDrawCardwithCard(){
+		 Player player = Player.makePlayer();
+		 ACard card = ACard.makeCard();
+		 player.addCardToDeck(card);
+		 player.drawCard();
+		 assertTrue(player.getHand().contains(card));	 
+	 }
+	 
 	@Test
 	public void testSetAndGetEffects() {
 		Player player = Player.makePlayer();
@@ -204,7 +245,6 @@ public class Tests {
 		player.playCard(card);
 		assertTrue(player.getRunes() == 3);
 	}
-	
-	
 
 }
+
