@@ -150,9 +150,10 @@ public class Tests {
 	 }
 	 
 	 @Test
-	 public void testGetEffects(){
+	 public void testSetAndGetEffects(){
 		 Player player = Player.makePlayer();
 		 ACard card = DrawCard.makeCard(1);
+		 card.setEffect("draw", 1);
 		 player.addCardToDeck(card);
 		 player.drawCard();
 		 assertTrue(card.getEffects().containsKey("draw"));		 
@@ -162,6 +163,7 @@ public class Tests {
 	 public void testDrawACardAfterPlayingCard(){
 		 Player player = Player.makePlayer();
 		 ACard cardInHand = DrawCard.makeCard(3);
+		 cardInHand.setEffect("draw", 1);
 		 ACard cardInDeck = DrawCard.makeCard(3);
 		 player.addCardToDeck(cardInHand);
 		 player.addCardToDeck(cardInDeck);
@@ -182,5 +184,20 @@ public class Tests {
 		 player.playCard(card);
 		 assertTrue(player.getDiscardPile().contains(card));
 	 }
+	 
+	 @Test
+	 public void testSetEffects (){
+		 ACard card = DrawCard.makeCard();
+		 card.setEffect("draw", 2);
+		 card.setEffect("runes", 1);
+		 assertTrue(card.getEffects().get("draw") == 2);
+		 assertTrue(card.getEffects().get("runes") == 1);
+	 }
+	 
+//	 @Test
+//	 public void testPlayCardAddingRunes(){
+//		 Player player = Player.makePlayer();
+//		 
+//	 }
 	 
 }
