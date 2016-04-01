@@ -61,33 +61,33 @@ public class GameBoard extends JPanel {
 		super();
 		
 		// then initialize value
-		rune_count = 5;
-		power_count = 0;
-		deck_count = 5;
-		discard_count = 0;
+		this.rune_count = 5;
+		this.power_count = 0;
+		this.deck_count = 5;
+		this.discard_count = 0;
 		
 		this.centerList = new ArrayList<Shape>();
 		this.playerList = new ArrayList<Shape>();
 		
 		// Setting the fonts of the labels
-		runes.setFont(LABEL_FONT);
-		power.setFont(LABEL_FONT);
-		deck.setFont(LABEL_FONT);
-		discard_pile.setFont(LABEL_FONT);
+		this.runes.setFont(LABEL_FONT);
+		this.power.setFont(LABEL_FONT);
+		this.deck.setFont(LABEL_FONT);
+		this.discard_pile.setFont(LABEL_FONT);
 		
 		this.setLayout(new BorderLayout());
 		
 		JPanel leftInfo = new JPanel();
 		leftInfo.setLayout(new GridLayout(3, 1));
-		leftInfo.add(runes);
-		leftInfo.add(power);
-		leftInfo.add(deck);
+		leftInfo.add(this.runes);
+		leftInfo.add(this.power);
+		leftInfo.add(this.deck);
 		
 		
 		JPanel labels = new JPanel();
 		labels.setLayout(new BorderLayout());
 		labels.add(leftInfo, BorderLayout.WEST);
-		labels.add(discard_pile, BorderLayout.EAST);
+		labels.add(this.discard_pile, BorderLayout.EAST);
 		labels.setBorder(new EmptyBorder(10, 10, 10, 10));
 		this.add(labels, BorderLayout.SOUTH);
 	}
@@ -98,8 +98,8 @@ public class GameBoard extends JPanel {
 		
 		// then do additional stuff
 		this.player = player;
-		rune_count = this.player.getRunes();
-		discard_count = this.player.getDiscardSize();
+		this.rune_count = this.player.getRunes();
+		this.discard_count = this.player.getDiscardSize();
 	}
 
 	@Override
