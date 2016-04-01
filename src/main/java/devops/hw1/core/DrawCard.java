@@ -4,12 +4,12 @@ public class DrawCard extends ACard {
 	
 	public DrawCard(){
 		this.effects.put("draw", 1);
-		this.setCost(0);
+		this.cost = 0;
 	}
 	
 	public DrawCard(int i){
 		this.effects.put("draw", 1);
-		this.setCost(i);
+		this.cost = i;
 	}
 
 }

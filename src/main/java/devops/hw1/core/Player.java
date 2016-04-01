@@ -20,9 +20,9 @@ public class Player {
 	private Queue<ACard> playerDeck;
 
 	private Player() {
-		discardPile = new ArrayList<ACard>(); 
-		playerHand = new ArrayList<ACard>();
-		playerDeck = new LinkedList<ACard>();
+		this.discardPile = new ArrayList<ACard>(); 
+		this.playerHand = new ArrayList<ACard>();
+		this.playerDeck = new LinkedList<ACard>();
 	}
 	
 	/**
@@ -125,8 +125,8 @@ public class Player {
 	 *
 	 */
 	public void drawCard() {
-		ACard fromDeck = playerDeck.poll();
-		playerHand.add(fromDeck);
+		ACard fromDeck = this.playerDeck.poll();
+		this.playerHand.add(fromDeck);
 		this.handSize = this.handSize + 1;
 
 	}
@@ -138,7 +138,7 @@ public class Player {
 	 * @param card to be added
 	 */
 	public void addCardToDeck(ACard card){
-		playerDeck.add(card);
+		this.playerDeck.add(card);
 	}
 	
 	/**
@@ -158,7 +158,21 @@ public class Player {
 	 * @param card
 	 */
 	public void playCard(ACard card){
+		this.playerHand.remove(card);
+		this.discardPile.add(card);
+		if (card.getEffects().containsKey("draw")){
+			this.drawCard(card.getEffects().get("draw"));
+		}
 		
+	}
+
+	/**
+	 * @param integer
+	 */
+	public void drawCard(int cards) {
+		for(int i = 0; i < cards; i++){
+			this.drawCard();
+		}
 	}
 		
 }
