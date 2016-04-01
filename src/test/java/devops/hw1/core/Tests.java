@@ -192,11 +192,8 @@ public class Tests {
 	 
 	@Test
 	public void testSetAndGetEffects() {
-		Player player = Player.makePlayer();
 		ACard card = HeroCard.makeCard(1);
 		card.setEffect("draw", 1);
-		player.addCardToDeck(card);
-		player.drawCard();
 		assertTrue(card.getEffects().containsKey("draw"));
 	}
 
