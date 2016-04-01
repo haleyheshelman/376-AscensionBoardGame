@@ -191,10 +191,7 @@ public class Tests {
 	 }
 	 
 	 public void testGetEffects(){
-		 Player player = Player.makePlayer();
 		 ACard card = DrawCard.makeCard(1);
-		 player.addCardToDeck(card);
-		 player.drawCard();
 		 assertTrue(card.getEffects().containsKey("draw"));
 		 
 	 }

@@ -12,7 +12,7 @@ import java.util.HashMap;
 public abstract class ACard {
 
 	protected int cost;
-	protected HashMap<String,Integer> effects;
+	protected HashMap<String,Integer> effects = new HashMap<String, Integer>();
 	
 	public static ACard makeCard() {
 		return new DrawCard();
