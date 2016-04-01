@@ -4,6 +4,7 @@
 package devops.hw1.core;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Queue;
 
@@ -158,10 +159,14 @@ public class Player {
 	 * @param card
 	 */
 	public void playCard(ACard card){
+		HashMap<String, Integer> effects = card.getEffects();
 		this.playerHand.remove(card);
 		this.discardPile.add(card);
-		if (card.getEffects().containsKey("draw")){
-			this.drawCard(card.getEffects().get("draw"));
+		if (effects.containsKey("draw")){
+			this.drawCard(effects.get("draw"));
+		}
+		if (effects.containsKey("runes")){
+			this.addRunes(effects.get("runes"));
 		}
 		
 	}
