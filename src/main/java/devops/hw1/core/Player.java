@@ -159,6 +159,11 @@ public class Player {
 	 * @param card
 	 */
 	public void playCard(ACard card){
+		
+		if (card == null) {
+			return;
+		}
+		
 		HashMap<String, Integer> effects = card.getEffects();
 		this.playerHand.remove(card);
 		this.discardPile.add(card);
