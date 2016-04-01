@@ -161,7 +161,6 @@ public class Tests {
 	 @Test
 	 public void testDrawACardAfterPlayingCard(){
 		 Player player = Player.makePlayer();
-		 player.addRunes(5);
 		 ACard cardInHand = DrawCard.makeCard(3);
 		 ACard cardInDeck = DrawCard.makeCard(3);
 		 player.addCardToDeck(cardInHand);
@@ -172,6 +171,16 @@ public class Tests {
 		 player.playCard(cardInHand);
 		 assertTrue(player.getHandSize() == 2);
 		 assertTrue(player.getHand().contains(cardInDeck));
+	 }
+	 
+	 @Test
+	 public void testCardGoesToDiscardAfterPlaying(){
+		 Player player = Player.makePlayer();
+		 ACard card = DrawCard.makeCard();
+		 player.addCardToDeck(card);
+		 player.drawCard();
+		 player.playCard(card);
+		 assertTrue(player.getDiscardPile().contains(card));
 	 }
 	 
 }
