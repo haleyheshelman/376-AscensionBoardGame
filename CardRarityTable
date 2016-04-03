@@ -1,0 +1,52 @@
+// Table that contains the rarity (number of occurrences) of each card in the game (Standard Cards not included)
+// example: rarity of 2 means that the card can appear up to 2 times in the game 
+
+// Name							// Type		// Rarity
+Arbiter of the Precipice		Hero			2
+Arha Initiate					Hero			3
+Arha Templar					Hero			2
+Ascetic of the Lidless			Hero			2
+Avatar Golem					Hero			2
+Avatar of the Fallen			Monster			1
+Burrower Mark II				Construct		2
+Cetra, Weaver of the Stars		Hero			1
+Corrosive Widow					Monster			4
+Demon Slayer					Hero			2
+Druids of the Stone Circle		Hero			2
+Earth Tyrant					Monster			2
+Emri, One with the Void			Hero			1
+Flytrap Witch					Hero			2
+Hedron Cannon					Construct		1
+Hedron Link Device				Construct		1
+Kor, the Ferromancer			Hero			1
+Landtalker						Hero			1
+Lifebound Initiate				Hero			3
+Master Dhartha					Hero			1
+Mechana Initiate				Hero			3
+Mephit							Monster			3
+Mistake of Creation				Monster			4
+Muramasa						Construct		1
+Oziah the Peerless				Hero			1
+Reactor Monk					Hero			2
+Rocket Courier X-99				Construct		2
+Runic Lycanthrope				Hero			2
+Samael's Trickster				Monster			4
+Sea Tyrant						Monster			3
+Seer of the Forked Path			Hero			3
+Shade of the Black Watch		Hero			3
+Shadow Star						Construct		2
+Snapdragon						Construct		2
+Spike Vixen						Hero			2
+Tablet of Time's Dawn			Construct		1
+Temple Librarian				Hero			3
+The All-Seeing Eye				Construct		1
+The Grand Design				Construct		2
+Tormented Soul					Monster			3
+Twofold Askara					Hero			1
+Void Initiate					Hero			3
+Voidthirster					Construct		2
+Watchmaker's Altar				Construct		2
+Wind Tyrant						Monster			3
+Wolf Shaman						Hero			3
+Xeron, Duke of Lies				Monster			1
+Yggdrasil Staff					Construct		2
