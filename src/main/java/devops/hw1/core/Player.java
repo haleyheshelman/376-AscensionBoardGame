@@ -171,7 +171,7 @@ public class Player {
 		
 		HashMap<String, Integer> effects = card.getEffects();
 		this.playerHand.remove(card);
-		this.discardPile.add(card);
+		this.discard(card);
 		if (effects.containsKey("draw")){
 			this.drawCard(effects.get("draw"));
 		}
