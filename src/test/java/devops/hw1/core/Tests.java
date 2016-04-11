@@ -284,4 +284,19 @@ public class Tests {
 		assertFalse(newBored.getCenDeck().isEmpty());
 		assertEquals(newBored.getCenDeck().size(), 100);
 	}
+	
+	@Test
+	public void testStandardCards() {
+		// initialize the game board
+		Board newBored = Board.makeBoard();
+		
+		// check that cultist is not null
+		assertFalse(newBored.getCultist() == null);
+		
+		// check that heavy infantry is not null
+		assertFalse(newBored.getHeavyInf() == null);
+		
+		// check that mystic is not null
+		assertFalse(newBored.getMystic() == null);
+	}
 }
