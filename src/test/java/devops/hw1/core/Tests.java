@@ -3,8 +3,7 @@
  */
 package devops.hw1.core;
 
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 import java.util.ArrayList;
 
@@ -282,7 +281,7 @@ public class Tests {
 	@Test
 	public void testIsDeckCreated(){
 		Board newBored = Board.makeBoard();
-		assertTrue(newBored.getCenDeck().isEmpty());
+		assertFalse(newBored.getCenDeck().isEmpty());
 		assertEquals(newBored.getCenDeck().size(), 100);
 	}
 }
