@@ -278,5 +278,12 @@ public class Tests {
 		Board newBored = Board.makeBoard();
 		assertTrue(newBored.getVoid().isEmpty());
 	}
+	
+	@Test
+	public void testIsDeckCreated(){
+		Board newBored = Board.makeBoard();
+		assertTrue(newBored.getCenDeck().isEmpty());
+		assertEquals(newBored.getCenDeck().size(), 100);
+	}
 }
 
