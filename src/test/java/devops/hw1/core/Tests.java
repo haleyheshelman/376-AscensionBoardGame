@@ -290,7 +290,7 @@ public class Tests {
 		// initialize the game board
 		Board newBored = Board.makeBoard();
 		
-		// check that cultist is not null
+		// check that cultist is not null 
 		assertFalse(newBored.getCultist() == null);
 		
 		// check that heavy infantry is not null
@@ -298,5 +298,24 @@ public class Tests {
 		
 		// check that mystic is not null
 		assertFalse(newBored.getMystic() == null);
+	}
+	
+	@Test
+	public void testPlayerDeckAndHand() {
+		// initialize the Player Objects
+		Player newPlayer1 = Player.makePlayer();
+		Player newPlayer2 = Player.makePlayer();
+		
+		// check that player deck has five cards (and is not null) and player hand has five cards (do for each player)
+		assertFalse(newPlayer1.getDeck() == null);
+		assertEquals(5, newPlayer1.getHandSize());
+		assertEquals(5, newPlayer1.getDeckSize());
+		
+		assertFalse(newPlayer2.getDeck() == null);
+		assertEquals(5, newPlayer2.getHandSize());
+		assertEquals(5, newPlayer2.getDeckSize());
+		
+		// check that player1 is not equal to player 2 (object-wise)
+		assertFalse(newPlayer1.equals(newPlayer2));
 	}
 }
