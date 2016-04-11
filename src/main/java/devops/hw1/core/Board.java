@@ -21,12 +21,12 @@ public class Board {
 		this.theVoid = new ArrayList<ACard>();
 		this.cenDeck = new LinkedList<ACard>();
 		ACard dumCard = ACard.makeCard();
-		for (int i = 0; i< 100; i++){
+		for (int i = 0; i < 100; i++) {
 			this.cenDeck.add(dumCard);
 		}
 	}
-	
-	public static Board makeBoard(){
+
+	public static Board makeBoard() {
 		return new Board();
 	}
 
