@@ -264,6 +264,11 @@ public class Tests {
 		Player p = Player.makePlayer();
 		p.addCardToDeck(null);
 	}
-
+	
+	@Test
+	public void testConstructBoard() {
+		Board newBored = Board.makeBoard();
+		assertFalse(newBored == null);
+	}
 }
 
