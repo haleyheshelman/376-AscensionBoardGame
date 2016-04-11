@@ -189,5 +189,20 @@ public class Player {
 			this.drawCard();
 		}
 	}
+
+	/**
+	 * @return the Player's Deck
+	 */
+	public Queue<ACard> getDeck() {
+		return this.playerDeck;
+	}
+
+	/**
+	 * @return the size of the Player's Deck
+	 * for unit testing
+	 */
+	public int getDeckSize() {
+		return this.playerDeck.size();
+	}
 		
 }

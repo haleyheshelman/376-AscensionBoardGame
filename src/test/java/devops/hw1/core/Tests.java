@@ -306,6 +306,13 @@ public class Tests {
 		Player newPlayer1 = Player.makePlayer();
 		Player newPlayer2 = Player.makePlayer();
 		
+		// populate each player's deck and hand (in that order)
+		
+		
+		// set the initial size of each player's hand
+		newPlayer1.setHandSize(5);
+		newPlayer2.setHandSize(5);
+
 		// check that player deck has five cards (and is not null) and player hand has five cards (do for each player)
 		assertFalse(newPlayer1.getDeck() == null);
 		assertEquals(5, newPlayer1.getHandSize());
