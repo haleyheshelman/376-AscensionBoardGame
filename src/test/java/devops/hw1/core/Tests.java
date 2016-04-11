@@ -6,6 +6,8 @@ package devops.hw1.core;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
+import java.util.ArrayList;
+
 import org.easymock.EasyMock;
 import org.junit.Test;
 
@@ -269,6 +271,12 @@ public class Tests {
 	public void testConstructBoard() {
 		Board newBored = Board.makeBoard();
 		assertFalse(newBored == null);
+	}
+	
+	@Test
+	public void testIsVoidEmpty() {
+		Board newBored = Board.makeBoard();
+		assertTrue(newBored.getVoid().isEmpty());
 	}
 }
 
