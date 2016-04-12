@@ -339,14 +339,18 @@ public class Tests {
 		assertFalse(newPlayer.getHand() == null);
 		assertEquals(0, newPlayer.getHandSize());
 		
-		// check that adding the card doesn't return anything
-		assertNull(newPlayer.addCardToHand(card1));
+		// check that adding null card does not increase the hand size
+		newPlayer.addCardToHand(null);
+		assertEquals(0, newPlayer.getHandSize());
+		
+		// adding single card to hand
+		newPlayer.addCardToHand(card1);
 		
 		// check that the size of the hand is now equal to one
 		assertEquals(1, newPlayer.getHandSize());
 		
 		// check that adding more cards is possible (test up to five) and that the hand size is correct
-		for (int i = newPlayer.getHandSize(); i <= 5; i++) {
+		for (int i = newPlayer.getHandSize(); i < 5; i++) {
 			newPlayer.addCardToHand(card1);
 		}
 		// check hand size

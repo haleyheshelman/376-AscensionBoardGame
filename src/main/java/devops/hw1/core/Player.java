@@ -148,6 +148,19 @@ public class Player {
 	}
 	
 	/**
+	 * Adds the given card to the player's hand
+	 * 
+	 * @param card to be added
+	 */
+	public void addCardToHand(ACard card) {
+		
+		if (card == null) return;
+		
+		this.playerHand.add(card);
+		this.handSize++;
+	}
+	
+	/**
 	 * 
 	 * Gets the current player hand
 	 *
