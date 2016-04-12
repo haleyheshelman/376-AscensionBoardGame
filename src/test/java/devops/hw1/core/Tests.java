@@ -311,7 +311,9 @@ public class Tests {
 		ACard mockCardHand = EasyMock.niceMock(ACard.class);	// the "fake" card that is being added to each player's hand
 		for (int i = 0; i < 5; i++) {	
 			newPlayer1.addCardToDeck(mockCardDeck);
+			newPlayer1.addCardToHand(mockCardHand);
 			newPlayer2.addCardToDeck(mockCardDeck);
+			newPlayer2.addCardToHand(mockCardHand);
 		}
 
 		// check that player deck has five cards (and is not null) and player hand has five cards (do for each player)
