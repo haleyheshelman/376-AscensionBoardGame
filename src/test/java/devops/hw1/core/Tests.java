@@ -301,17 +301,18 @@ public class Tests {
 	}
 	
 	@Test
-	public void testPlayerDeckAndHand() {
+	public void testPlayerDeckAndHandWithMock() {
 		// initialize the Player Objects
 		Player newPlayer1 = Player.makePlayer();
 		Player newPlayer2 = Player.makePlayer();
 		
-		// populate each player's deck and hand (in that order)
-		
-		
-		// set the initial size of each player's hand
-		newPlayer1.setHandSize(5);
-		newPlayer2.setHandSize(5);
+		// populate each player's deck and hand (in that order) using Mocking
+		ACard mockCardDeck = EasyMock.niceMock(ACard.class);	// the "fake" card that is being added to each player's deck
+		ACard mockCardHand = EasyMock.niceMock(ACard.class);	// the "fake" card that is being added to each player's hand
+		for (int i = 0; i < 5; i++) {	
+			newPlayer1.addCardToDeck(mockCardDeck);
+			newPlayer2.addCardToDeck(mockCardDeck);
+		}
 
 		// check that player deck has five cards (and is not null) and player hand has five cards (do for each player)
 		assertFalse(newPlayer1.getDeck() == null);
@@ -324,5 +325,32 @@ public class Tests {
 		
 		// check that player1 is not equal to player 2 (object-wise)
 		assertFalse(newPlayer1.equals(newPlayer2));
+	}
+	
+	@Test
+	public void testAddCardToHand() {
+		// initialize the Player Object
+		Player newPlayer = Player.makePlayer();
+		
+		// using mock to create a "fake" card
+		ACard card1 = EasyMock.niceMock(ACard.class);
+		
+		// check that the player has no cards in their hand and that the Hand is not null
+		assertFalse(newPlayer.getHand() == null);
+		assertEquals(0, newPlayer.getHandSize());
+		
+		// check that adding the card doesn't return anything
+		assertNull(newPlayer.addCardToHand(card1));
+		
+		// check that the size of the hand is now equal to one
+		assertEquals(1, newPlayer.getHandSize());
+		
+		// check that adding more cards is possible (test up to five) and that the hand size is correct
+		for (int i = newPlayer.getHandSize(); i <= 5; i++) {
+			newPlayer.addCardToHand(card1);
+		}
+		// check hand size
+		assertEquals(5, newPlayer.getHandSize());
+		
 	}
 }
