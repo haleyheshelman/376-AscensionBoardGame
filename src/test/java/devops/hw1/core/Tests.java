@@ -359,4 +359,16 @@ public class Tests {
 		assertEquals(5, newPlayer.getHandSize());
 		
 	}
+	
+	@Test
+	public void testCenterDeckToField() {
+		Board newBored = Board.makeBoard();
+		
+		// cards should be added to the Center Field based on indexes [0-5] (6 positions)
+		for (int i = 0; i < 6; i++) {
+			ACard cenCard = newBored.getCenDeck().remove();
+			newBored.centerDeckToField(cenCard, i);
+			assertEquals(100 - (i + 1), newBored.getCenDeck().size());
+		}
+	}
 }

@@ -24,6 +24,10 @@ public class Player {
 		this.discardPile = new ArrayList<ACard>(); 
 		this.playerHand = new ArrayList<ACard>();
 		this.playerDeck = new LinkedList<ACard>();
+		for (int i = 0; i < 5; i++) {	// adds 5 cards to the player's hand and deck (at start of game)
+			this.addCardToHand(ACard.makeCard());
+			this.addCardToDeck(ACard.makeCard());
+		}
 	}
 	
 	/**
