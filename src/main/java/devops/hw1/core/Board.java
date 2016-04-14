@@ -16,6 +16,7 @@ public class Board {
 
 	private ArrayList<ACard> theVoid;
 	private LinkedList<ACard> cenDeck;
+	private ACard[] cenField;
 	private ACard cultist;
 	private ACard heavyInf;
 	private ACard mystic;
@@ -23,6 +24,7 @@ public class Board {
 	private Board() {
 		this.theVoid = new ArrayList<ACard>();
 		this.cenDeck = new LinkedList<ACard>();
+		this.cenField = new ACard[6];
 		ACard dumCard = ACard.makeCard();
 		for (int i = 0; i < 100; i++) {
 			this.cenDeck.add(dumCard);
@@ -70,5 +72,14 @@ public class Board {
 	 */
 	public ACard getMystic() {
 		return this.mystic;
+	}
+
+	/**
+	 * @param cenCard the card to move
+	 * @param index the index on the Center Field that the card is moving to
+	 */
+	public void centerDeckToField(int index) {
+		ACard card = this.cenDeck.remove();
+		this.cenField[index] = card;
 	}
 }

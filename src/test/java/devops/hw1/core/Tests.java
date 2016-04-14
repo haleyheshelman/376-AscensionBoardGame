@@ -366,8 +366,7 @@ public class Tests {
 		
 		// cards should be added to the Center Field based on indexes [0-5] (6 positions)
 		for (int i = 0; i < 6; i++) {
-			ACard cenCard = newBored.getCenDeck().remove();
-			newBored.centerDeckToField(cenCard, i);
+			newBored.centerDeckToField(i);
 			assertEquals(100 - (i + 1), newBored.getCenDeck().size());
 		}
 	}
