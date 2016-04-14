@@ -300,4 +300,5 @@ public class Tests {
 		assertTrue(testCard.getHonor() == 1);
 		assertTrue(testCard.getRarity() == 3);
 	}
+
 }

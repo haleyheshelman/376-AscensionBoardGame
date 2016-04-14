@@ -5,6 +5,7 @@ package devops.hw1.core;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.LinkedList;
 
 /**
@@ -20,9 +21,13 @@ public class Board {
 	private Board() {
 		this.theVoid = new ArrayList<ACard>();
 		this.cenDeck = new LinkedList<ACard>();
-		ACard dumCard = ACard.makeCard();
+		HashMap<String, Integer> tempMap = new HashMap<String, Integer>();
+		tempMap.put("draw", 1);
+		HeroCard initiateCard = (HeroCard) ACard.makeCard(
+				"Heroes/Arha-Initiate.png", "Arha Initiate", "Enlightened",
+				"Hero", 1, 1, 3, tempMap);
 		for (int i = 0; i < 100; i++) {
-			this.cenDeck.add(dumCard);
+			this.cenDeck.add(initiateCard);
 		}
 	}
 
