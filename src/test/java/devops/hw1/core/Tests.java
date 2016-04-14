@@ -6,6 +6,7 @@ package devops.hw1.core;
 import static org.junit.Assert.*;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import org.easymock.EasyMock;
 import org.junit.Test;
@@ -283,5 +284,20 @@ public class Tests {
 		Board newBored = Board.makeBoard();
 		assertFalse(newBored.getCenDeck().isEmpty());
 		assertEquals(newBored.getCenDeck().size(), 100);
+	}
+
+	@Test
+	public void testCompleteCardMaker() {
+		HashMap<String, Integer> tempMap = new HashMap<String, Integer>();
+		tempMap.put("draw", 1);
+		HeroCard testCard = (HeroCard) ACard.makeCard(
+				"Heroes/Arha-Initiate.png",
+				"Arha Initiate", "Enlightened", "Hero", 1, 1, 3, tempMap);
+		assertTrue(testCard.getFaction() == "Enlightened");
+		assertTrue(testCard.getEffects().containsKey("draw"));
+		assertTrue(testCard.getEffects().get("draw") == 1);
+		assertTrue(testCard.getName() == "Arha Initiate");
+		assertTrue(testCard.getHonor() == 1);
+		assertTrue(testCard.getRarity() == 3);
 	}
 }
