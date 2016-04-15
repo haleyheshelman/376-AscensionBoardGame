@@ -61,7 +61,7 @@ public class GameBoard extends JPanel {
 		super();
 		
 		// then initialize value
-		this.rune_count = 5;
+		this.rune_count = 0;
 		this.power_count = 0;
 		this.deck_count = 5;
 		this.discard_count = 0;

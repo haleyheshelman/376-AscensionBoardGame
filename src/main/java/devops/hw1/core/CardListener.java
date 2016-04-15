@@ -13,14 +13,15 @@ import java.util.ArrayList;
 public class CardListener implements MouseListener {
 	
 //	private Player player;
-	private ArrayList<Shape> playerHand;
-	private ArrayList<Shape> centerHand;
+	private ArrayList<Shape> playerHandImages;
+	private ArrayList<Shape> centerHandImages;
 	private GameBoard board;
+	private Player player;
 	
-	public CardListener(Player player, ArrayList<Shape> playerHand, ArrayList<Shape> centerHand) {
-		this.playerHand = playerHand;
-		this.centerHand = centerHand;
-//		this.player = player;
+	public CardListener(Player player, ArrayList<Shape> playerHandImages, ArrayList<Shape> centerHandImages) {
+		this.playerHandImages = playerHandImages;
+		this.centerHandImages = centerHandImages;
+		this.player = player;
 //		this.playerHand = player.getHand();
 	}
 
@@ -28,17 +29,31 @@ public class CardListener implements MouseListener {
 		board = (GameBoard) e.getSource();
 		Point currentPos = board.getMousePosition();
 		
-		for (int i = 0; i < playerHand.size(); i++) {
-			if (playerHand.get(i).contains(currentPos)) {
-				checkType("add");
+		for (int i = 0; i < playerHandImages.size(); i++) {
+			if (playerHandImages.get(i).contains(currentPos)) {
+				player.playCard(player.getHand().get(i));
+				board.rune_count = player.getRunes();
+//				board.power_count = player.getPower();    					Function player.getPower() needed.
+				board.discard_count = player.getDiscardSize();
+				board.deck_count = player.getDeckSize();
+				updateGUI();
 			}
 		}
 		
-		for (int i = 0; i < centerHand.size(); i++) {
-			if (centerHand.get(i).contains(currentPos)) {
+		for (int i = 0; i < centerHandImages.size(); i++) {
+			if (centerHandImages.get(i).contains(currentPos)) {
+				
 				checkType("spend");
 			}
 		}
+		
+	}
+	
+	public void updateGUI() {
+		board.runes.setText("Runes: " + (String.valueOf(board.rune_count)));
+		board.power.setText("Power: " + (String.valueOf(board.power_count)));				
+		board.discard_pile.setText("Discard: " + (String.valueOf(board.discard_count)));
+
 		
 	}
 	

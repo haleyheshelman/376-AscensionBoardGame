@@ -12,6 +12,7 @@ public class MainGUI {
 	public static void main(String[] args) {
 		Player player1 = Player.makePlayer();
 		player1.addRunes(5);
+		player1.drawCard(5);
 		GameBoard ascension = new GameBoard(player1);
 		ascension.setType("Rune");
 		JFrame frame = new JFrame("ASCENSION");
