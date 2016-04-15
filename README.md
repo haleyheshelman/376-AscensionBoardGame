@@ -29,12 +29,10 @@ Question: How large are our methods/how well are they documented?
 Proxy measure: For each method created for the project:
         1) all methods should be documented as to their function
         2) methods should be kept at or under 15 lines.  
-            *if addition lines are completely necessary then                        
-            the documentation must more or less provide 
+            *if addition lines are completely necessary thenthe documentation must more or less provide 
             a walkthrough of every detail in that method
-Data collection: use Eclipse metrics plug in to check the number of lines of code per method.  Overages will be ignored if the above (*) condition is met.       
-            
-            
+            ** tests that go over 15 lines of code are allowed as long as they are also well documented
+Data collection: use Eclipse metrics plug in to check the number of lines of code per method.  Overages will be ignored if the above (*) condition is met.      
 
 
 Milestone: Initial Game State
