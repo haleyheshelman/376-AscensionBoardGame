@@ -42,18 +42,15 @@ public class CardListener implements MouseListener {
 		
 		for (int i = 0; i < centerHandImages.size(); i++) {
 			if (centerHandImages.get(i).contains(currentPos)) {
-				
 				checkType("spend");
 			}
 		}
-		
 	}
 	
 	public void updateGUI() {
 		board.runes.setText("Runes: " + (String.valueOf(board.rune_count)));
 		board.power.setText("Power: " + (String.valueOf(board.power_count)));				
 		board.discard_pile.setText("Discard: " + (String.valueOf(board.discard_count)));
-
 		
 	}
 	
@@ -90,7 +87,6 @@ public class CardListener implements MouseListener {
 			board.discard_count++;
 			board.discard_pile.setText("Discard: " + (String.valueOf(board.discard_count)));
 		} else System.out.println("Something went wrong (in case it wasn't obvious).");
-		
 	}
 	
 

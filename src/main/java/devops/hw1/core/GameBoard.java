@@ -50,7 +50,6 @@ public class GameBoard extends JPanel {
 	public ArrayList<Shape> playerList;
 	
 	public String type;
-	
 	public Player player;
 	
 	/**
@@ -83,7 +82,6 @@ public class GameBoard extends JPanel {
 		leftInfo.add(this.power);
 		leftInfo.add(this.deck);
 		
-		
 		JPanel labels = new JPanel();
 		labels.setLayout(new BorderLayout());
 		labels.add(leftInfo, BorderLayout.WEST);
@@ -113,7 +111,7 @@ public class GameBoard extends JPanel {
 			
 			BufferedImage card = null;
 			try {
-				card = ImageIO.read(new File("cardImages/Heroes/Arha-Templar.png"));
+				card = ImageIO.read(new File("cardImages/Heroes/Arha-Initiate.png"));
 				
 			} catch (IOException e) {
 				System.out.println("Something went wrong with the Arha-Templar.png file.");
