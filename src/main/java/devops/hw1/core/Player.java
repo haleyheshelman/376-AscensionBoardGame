@@ -76,6 +76,7 @@ public class Player {
 	 * @param card
 	 */
 	public void discard(ACard card) {
+		if (card == null){};
 		this.discardPile.add(card);
 	}
 

@@ -19,11 +19,28 @@ To build the project in Eclipse, right-click on the project -> Run As -> Gradle 
 
 Netta - Test Engineer: Added images to the GUI and introduced new constructor (in addition to the default one). Also got counters and CardListener to work properly.
 
-Haley - Software Engineer: Refactored the Card class to create a ACard (abstract class) and a DrawCard.  Created methods using TDD that allowed a player to add a card to a deck and draw a card.  This also required creating methods for getting and setting (setting for the sake of test purposes) a hand size.   
-
+Haley - Went through the code and checked for possible input issues with the new code.  Also developed a metric for the rest of our project to use. (See section below)
 Chase - I produced the test code that checks input on various methods in the player and card class. I added Mocking tests so that we can test certain methods using UnitTesting. Also, helped with some of the ideas on how to implement some of the logic.
 
 
+Metric:
+Goal: ensure that code is easily understandable so that when roles change in depth explaination is not required
+Question: How large are our methods/how well are they documented?
+Proxy measure: For each method created for the project:
+        1) all methods should be documented as to their function
+        2) methods should be kept at or under 15 lines.  
+            *if addition lines are completely necessary then                        
+            the documentation must more or less provide 
+            a walkthrough of every detail in that method
+Data collection: use Eclipse metrics plug in to check the number of lines of code per method.  Overages will be ignored if the above (*) condition is met.       
+            
+            
+
+
 Milestone: Initial Game State
+<<<<<<< HEAD
 Netta - Software Engineer: Used TDD to add cards to each player's hand and deck. Also added code to move cards from the center deck to the center field. Worked with Charlie (pair programming) to create the Board Class. 
 Chase - I changed some of the GUI code so that it uses back end logic. I could not do much this milestone due to time-managment issues. I also noticed that we need logic for drawing cards with no deck as well as a getPower for the player. The GUI will need major refactoring due to the lack of integration between logic and GUI but rather a different set of logic. Also added some support for the board to be later used in the Card listener to better utilize the back end logic.
+=======
+Netta - Software Engineer: Used TDD to add cards to each player's hand and deck. Also added code to move cards from the center deck to the center field. Worked with Charlie (pair programming) to create the Board Class. Chase - I changed some of the GUI code so that it uses back end logic. I could not do much this milestone due to time-managment issues. I also noticed that we need logic for drawing cards with no deck as well as a getPower for the player. The GUI will need major refactoring due to the lack of integration between logic and GUI but rather a different set of logic.
+>>>>>>> origin/master
