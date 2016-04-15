@@ -26,4 +26,4 @@ Chase - I produced the test code that checks input on various methods in the pla
 
 Milestone: Initial Game State
 Netta - Software Engineer: Used TDD to add cards to each player's hand and deck. Also added code to move cards from the center deck to the center field. Worked with Charlie (pair programming) to create the Board Class. 
-Chase - I changed some of the GUI code so that it uses back end logic. I could not do much this milestone due to time-managment issues. I also noticed that we need logic for drawing cards with no deck as well as a getPower for the player. The GUI will need major refactoring due to the lack of integration between logic and GUI but rather a different set of logic.
+Chase - I changed some of the GUI code so that it uses back end logic. I could not do much this milestone due to time-managment issues. I also noticed that we need logic for drawing cards with no deck as well as a getPower for the player. The GUI will need major refactoring due to the lack of integration between logic and GUI but rather a different set of logic. Also added some support for the board to be later used in the Card listener to better utilize the back end logic.

@@ -51,6 +51,7 @@ public class GameBoard extends JPanel {
 	
 	public String type;
 	public Player player;
+	public Board board;
 	
 	/**
 	 * The default constructor for the Game Board.
@@ -90,7 +91,7 @@ public class GameBoard extends JPanel {
 		this.add(labels, BorderLayout.SOUTH);
 	}
 	
-	public GameBoard(Player player) {
+	public GameBoard(Player player, Board board) {
 		// call the default constructor first
 		this();
 		
@@ -98,6 +99,7 @@ public class GameBoard extends JPanel {
 		this.player = player;
 		this.rune_count = this.player.getRunes();
 		this.discard_count = this.player.getDiscardSize();
+		this.board = board;
 	}
 
 	@Override
