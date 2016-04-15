@@ -284,6 +284,7 @@ public class Tests {
 		Board newBored = Board.makeBoard();
 		assertFalse(newBored.getCenDeck().isEmpty());
 		assertEquals(newBored.getCenDeck().size(), 100);
+		assertFalse(newBored.getCenDeck().size() == 101);
 	}
 
 	@Test
