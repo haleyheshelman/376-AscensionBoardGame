@@ -301,4 +301,90 @@ public class Tests {
 		assertTrue(testCard.getRarity() == 3);
 	}
 
+	
+	@Test
+	public void testStandardCards() {
+		// initialize the game board
+		Board newBored = Board.makeBoard();
+		
+		// check that cultist is not null 
+		assertFalse(newBored.getCultist() == null);
+		
+		// check that heavy infantry is not null
+		assertFalse(newBored.getHeavyInf() == null);
+		
+		// check that mystic is not null
+		assertFalse(newBored.getMystic() == null);
+	}
+	
+	@Test
+	public void testPlayerDeckAndHandWithMock() {
+		// initialize the Player Objects
+		Player newPlayer1 = Player.makePlayer();
+		Player newPlayer2 = Player.makePlayer();
+		
+		// populate each player's deck and hand (in that order) using Mocking
+		ACard mockCardDeck = EasyMock.niceMock(ACard.class);	// the "fake" card that is being added to each player's deck
+		ACard mockCardHand = EasyMock.niceMock(ACard.class);	// the "fake" card that is being added to each player's hand
+		for (int i = 0; i < 5; i++) {	
+			newPlayer1.addCardToDeck(mockCardDeck);
+			newPlayer1.addCardToHand(mockCardHand);
+			newPlayer2.addCardToDeck(mockCardDeck);
+			newPlayer2.addCardToHand(mockCardHand);
+		}
+
+		// check that player deck has five cards (and is not null) and player hand has five cards (do for each player)
+		assertFalse(newPlayer1.getDeck() == null);
+		assertEquals(5, newPlayer1.getHandSize());
+		assertEquals(5, newPlayer1.getDeckSize());
+		
+		assertFalse(newPlayer2.getDeck() == null);
+		assertEquals(5, newPlayer2.getHandSize());
+		assertEquals(5, newPlayer2.getDeckSize());
+		
+		// check that player1 is not equal to player 2 (object-wise)
+		assertFalse(newPlayer1.equals(newPlayer2));
+	}
+	
+	@Test
+	public void testAddCardToHand() {
+		// initialize the Player Object
+		Player newPlayer = Player.makePlayer();
+		
+		// using mock to create a "fake" card
+		ACard card1 = EasyMock.niceMock(ACard.class);
+		
+		// check that the player has no cards in their hand and that the Hand is not null
+		assertFalse(newPlayer.getHand() == null);
+		assertEquals(0, newPlayer.getHandSize());
+		
+		// check that adding null card does not increase the hand size
+		newPlayer.addCardToHand(null);
+		assertEquals(0, newPlayer.getHandSize());
+		
+		// adding single card to hand
+		newPlayer.addCardToHand(card1);
+		
+		// check that the size of the hand is now equal to one
+		assertEquals(1, newPlayer.getHandSize());
+		
+		// check that adding more cards is possible (test up to five) and that the hand size is correct
+		for (int i = newPlayer.getHandSize(); i < 5; i++) {
+			newPlayer.addCardToHand(card1);
+		}
+		// check hand size
+		assertEquals(5, newPlayer.getHandSize());
+		
+	}
+	
+	@Test
+	public void testCenterDeckToField() {
+		Board newBored = Board.makeBoard();
+		
+		// cards should be added to the Center Field based on indexes [0-5] (6 positions)
+		for (int i = 0; i < 6; i++) {
+			newBored.centerDeckToField(i);
+			assertEquals(100 - (i + 1), newBored.getCenDeck().size());
+		}
+	}
 }

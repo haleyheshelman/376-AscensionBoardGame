@@ -24,6 +24,10 @@ public class Player {
 		this.discardPile = new ArrayList<ACard>(); 
 		this.playerHand = new ArrayList<ACard>();
 		this.playerDeck = new LinkedList<ACard>();
+		for (int i = 0; i < 5; i++) {	// adds 5 cards to the player's hand and deck (at start of game)
+			this.addCardToHand(ACard.makeCard());
+			this.addCardToDeck(ACard.makeCard());
+		}
 	}
 	
 	/**
@@ -148,6 +152,19 @@ public class Player {
 	}
 	
 	/**
+	 * Adds the given card to the player's hand
+	 * 
+	 * @param card to be added
+	 */
+	public void addCardToHand(ACard card) {
+		
+		if (card == null) return;
+		
+		this.playerHand.add(card);
+		this.handSize++;
+	}
+	
+	/**
 	 * 
 	 * Gets the current player hand
 	 *
@@ -188,6 +205,21 @@ public class Player {
 		for(int i = 0; i < cards; i++){
 			this.drawCard();
 		}
+	}
+
+	/**
+	 * @return the Player's Deck
+	 */
+	public Queue<ACard> getDeck() {
+		return this.playerDeck;
+	}
+
+	/**
+	 * @return the size of the Player's Deck
+	 * for unit testing
+	 */
+	public int getDeckSize() {
+		return this.playerDeck.size();
 	}
 		
 }
