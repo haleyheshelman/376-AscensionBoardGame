@@ -45,14 +45,14 @@ public class Board {
 	}
 
 	/**
-	 * @return
+	 * @return the Void field (where banished cards and defeated Monsters go)
 	 */
 	public ArrayList<ACard> getVoid() {
 		return this.theVoid;
 	}
 
 	/**
-	 * @return
+	 * @return the Center Deck 
 	 */
 	public LinkedList<ACard> getCenDeck() {
 		return this.cenDeck;
@@ -80,8 +80,9 @@ public class Board {
 	}
 
 	/**
+	 * Moves the card from the Center Deck to the Center Field
 	 * @param cenCard the card to move
-	 * @param index the index on the Center Field that the card is moving to
+	 * @param index the index on the Center Field that the card is moving to (base zero)
 	 */
 	public void centerDeckToField(int index) {
 		ACard card = this.cenDeck.remove();
