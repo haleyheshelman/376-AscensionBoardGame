@@ -139,7 +139,7 @@ public class Player {
 	
 	/**
 	 * 
-	 * Adds a card to the player deck
+	 * Adds a card to the player's deck
 	 *
 	 * @param card to be added
 	 */

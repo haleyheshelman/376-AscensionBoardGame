@@ -158,7 +158,7 @@ public class Tests {
 	public void testPlayerHandSize() {
 		Player player = Player.makePlayer();
 		int i = player.getHandSize();
-		assertTrue(i == 0);
+		assertTrue(i == 5);
 	}
 
 	@Test
@@ -170,17 +170,31 @@ public class Tests {
 	}
 
 	/**
-	 * Tests that a player can have a card added to their hand.
+	 * Tests that a player can draw a card from their deck.
 	 */
 	@Test
 	public void testPlayerDrawCard() {
-		Player player = Player.makePlayer();
-		player.drawCard();
-		assertTrue(player.getHandSize() == 1);
+		Player player1 = Player.makePlayer();
+		Player player2 = Player.makePlayer();
+		
+		// checking that the player starts with five cards in their deck and hand (individually)
+		assertEquals(5, player1.getHandSize());
+		assertEquals(5, player1.getDeckSize());
+		assertEquals(5, player2.getHandSize());
+		assertEquals(5, player2.getDeckSize());
+		
+		player1.drawCard();
+		
+		// checking that the hand size has increased by 1 and the deck size has decreased by 1
+		assertTrue(player1.getHandSize() == 6);
+		assertEquals(4, player1.getDeckSize());
+		
+		// checking that player1 is not the same as player2
+		assertFalse(player1.equals(player2));
 	}
 
 	/**
-	 * Tests that the player can draw a card from their deck.
+	 * Tests (with Mocking) that the player can draw a card from their deck.
 	 */
 	@Test
 	public void testPlayerDrawCardWithCardMock() {
@@ -330,35 +344,28 @@ public class Tests {
 		assertFalse(newBored.getMystic() == null);
 	}
 	
-	@Test
-	public void testPlayerDeckAndHandWithMock() {
-		// initialize the Player Objects
-		Player newPlayer1 = Player.makePlayer();
-		Player newPlayer2 = Player.makePlayer();
-		
-		// populate each player's deck and hand (in that order) using Mocking
-		ACard mockCardDeck = EasyMock.niceMock(ACard.class);	// the "fake" card that is being added to each player's deck
-		ACard mockCardHand = EasyMock.niceMock(ACard.class);	// the "fake" card that is being added to each player's hand
-		for (int i = 0; i < 5; i++) {	
-			newPlayer1.addCardToDeck(mockCardDeck);
-			newPlayer1.addCardToHand(mockCardHand);
-			newPlayer2.addCardToDeck(mockCardDeck);
-			newPlayer2.addCardToHand(mockCardHand);
-		}
-
-		// check that player deck has five cards (and is not null) and player hand has five cards (do for each player)
-		assertFalse(newPlayer1.getDeck() == null);
-		assertEquals(5, newPlayer1.getHandSize());
-		assertEquals(5, newPlayer1.getDeckSize());
-		
-		assertFalse(newPlayer2.getDeck() == null);
-		assertEquals(5, newPlayer2.getHandSize());
-		assertEquals(5, newPlayer2.getDeckSize());
-		
-		// check that player1 is not equal to player 2 (object-wise)
-		assertFalse(newPlayer1.equals(newPlayer2));
-	}
+//	@Test
+//	public void testPlayerDeckAndHandWithMock() {
+//		// initialize the Player Objects
+//		Player newPlayer1 = Player.makePlayer();
+//		Player newPlayer2 = Player.makePlayer();
+//
+//		// check that player deck has five cards (and is not null) and player hand has five cards (do for each player)
+//		assertFalse(newPlayer1.getDeck() == null);
+//		assertEquals(5, newPlayer1.getHandSize());
+//		assertEquals(5, newPlayer1.getDeckSize());
+//		
+//		assertFalse(newPlayer2.getDeck() == null);
+//		assertEquals(5, newPlayer2.getHandSize());
+//		assertEquals(5, newPlayer2.getDeckSize());
+//		
+//		// check that player1 is not equal to player 2 (object-wise)
+//		assertFalse(newPlayer1.equals(newPlayer2));
+//	}
 	
+	/**
+	 * Tests that cards can be added to the player's hand
+	 */
 	@Test
 	public void testAddCardToHand() {
 		// initialize the Player Object
@@ -367,26 +374,22 @@ public class Tests {
 		// using mock to create a "fake" card
 		ACard card1 = EasyMock.niceMock(ACard.class);
 		
-		// check that the player has no cards in their hand and that the Hand is not null
-		assertFalse(newPlayer.getHand() == null);
-		assertEquals(0, newPlayer.getHandSize());
-		
 		// check that adding null card does not increase the hand size
 		newPlayer.addCardToHand(null);
-		assertEquals(0, newPlayer.getHandSize());
+		assertEquals(5, newPlayer.getHandSize());
 		
 		// adding single card to hand
 		newPlayer.addCardToHand(card1);
 		
 		// check that the size of the hand is now equal to one
-		assertEquals(1, newPlayer.getHandSize());
+		assertEquals(6, newPlayer.getHandSize());
 		
-		// check that adding more cards is possible (test up to five) and that the hand size is correct
-		for (int i = newPlayer.getHandSize(); i < 5; i++) {
-			newPlayer.addCardToHand(card1);
-		}
+		// no limit to number of cards in hand, so checking that adding several cards in a row works
+		newPlayer.addCardToHand(card1);
+		newPlayer.addCardToHand(card1);
+		newPlayer.addCardToHand(card1);
 		// check hand size
-		assertEquals(5, newPlayer.getHandSize());
+		assertEquals(9, newPlayer.getHandSize());
 		
 	}
 	
