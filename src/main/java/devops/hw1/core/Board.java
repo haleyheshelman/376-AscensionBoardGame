@@ -26,7 +26,7 @@ public class Board {
 	 * The default constructor for the Board Class.
 	 * 
 	 */
-	private Board() {
+	public Board() {
 		this.theVoid = new ArrayList<ACard>();
 		this.cenDeck = new LinkedList<ACard>();
 		HashMap<String, Integer> tempMap = new HashMap<String, Integer>();
@@ -42,10 +42,6 @@ public class Board {
 		this.cultist = ACard.makeCard();
 		this.heavyInf = ACard.makeCard();
 		this.mystic = ACard.makeCard();
-	}
-
-	public static Board makeBoard() {
-		return new Board();
 	}
 
 	/**

@@ -161,14 +161,6 @@ public class Tests {
 		assertTrue(i == 5);
 	}
 
-	@Test
-	public void testPlayerHandSizeWithInput() {
-		Player player = Player.makePlayer();
-		player.setHandSize(5);
-		int i = player.getHandSize();
-		assertTrue(i == 5);
-	}
-
 	/**
 	 * Tests that a player can draw a card from their deck.
 	 */
@@ -202,7 +194,7 @@ public class Tests {
 
 		ACard card = EasyMock.niceMock(ACard.class);
 		player.addCardToDeck(card);
-		player.drawCard();
+		player.drawCard(6);
 		assertTrue(player.getHand().contains(card));
 	}
 
@@ -211,7 +203,7 @@ public class Tests {
 		Player player = Player.makePlayer();
 		ACard card = ACard.makeCard();
 		player.addCardToDeck(card);
-		player.drawCard();
+		player.drawCard(6);
 		assertTrue(player.getHand().contains(card));
 	}
 
@@ -230,11 +222,11 @@ public class Tests {
 		ACard cardInDeck = HeroCard.makeCard(3);
 		player.addCardToDeck(cardInHand);
 		player.addCardToDeck(cardInDeck);
-		player.drawCard();
-		assertTrue(player.getHandSize() == 1);
+		player.drawCard(6);
+		assertTrue(player.getHandSize() == 11);
 		assertFalse(player.getHand().contains(cardInDeck));
 		player.playCard(cardInHand);
-		assertTrue(player.getHandSize() == 2);
+		assertTrue(player.getHandSize() == 11);
 		assertTrue(player.getHand().contains(cardInDeck));
 	}
 
@@ -292,7 +284,7 @@ public class Tests {
 
 	@Test
 	public void testConstructBoard() {
-		Board newBored = Board.makeBoard();
+		Board newBored = new Board();
 		assertFalse(newBored == null);
 	}
 
@@ -301,13 +293,13 @@ public class Tests {
 	 */
 	@Test
 	public void testIsVoidEmpty() {
-		Board newBored = Board.makeBoard();
+		Board newBored = new Board();
 		assertTrue(newBored.getVoid().isEmpty());
 	}
 
 	@Test
 	public void testIsDeckCreated() {
-		Board newBored = Board.makeBoard();
+		Board newBored = new Board();
 		assertFalse(newBored.getCenDeck().isEmpty());
 		assertEquals(newBored.getCenDeck().size(), 100);
 		assertFalse(newBored.getCenDeck().size() == 101);
@@ -332,7 +324,7 @@ public class Tests {
 	@Test
 	public void testStandardCards() {
 		// initialize the game board
-		Board newBored = Board.makeBoard();
+		Board newBored = new Board();
 		
 		// check that cultist is not null 
 		assertFalse(newBored.getCultist() == null);
@@ -376,7 +368,7 @@ public class Tests {
 	
 	@Test
 	public void testCenterDeckToField() {
-		Board newBored = Board.makeBoard();
+		Board newBored = new Board();
 		
 		// cards should be added to the Center Field based on indexes [0-5] (6 positions)
 		for (int i = 0; i < 6; i++) {

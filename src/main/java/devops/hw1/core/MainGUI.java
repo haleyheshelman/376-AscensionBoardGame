@@ -11,7 +11,7 @@ public class MainGUI {
 
 	public static void main(String[] args) {
 		Player player1 = Player.makePlayer();
-		Board board = Board.makeBoard();
+		Board board = new Board();
 		player1.addRunes(0);
 		player1.drawCard(5);
 		GameBoard ascension = new GameBoard(player1, board);

@@ -16,7 +16,7 @@ public class Player {
 
 	private int runes;
 	private ArrayList<ACard> discardPile;
-	private int handSize;
+//	private int handSize;
 	private ArrayList<ACard> playerHand;
 	private Queue<ACard> playerDeck;
 
@@ -110,20 +110,20 @@ public class Player {
 	 * @return the size of the player hand
 	 */
 	public int getHandSize() {
-		return this.handSize;
+		return this.playerHand.size();
 	}
 
-	/**
-	 * 
-	 * sets the size of a hand
-	 * for testing purposes only
-	 *
-	 * @param i
-	 */
-	public void setHandSize(int i) {
-		this.handSize = i;
-
-	}
+//	/**
+//	 * 
+//	 * sets the size of a hand
+//	 * for testing purposes only
+//	 *
+//	 * @param i
+//	 */
+//	public void setHandSize(int i) {
+//		this.handSize = i;
+//
+//	}
 
 	/**
 	 * 
@@ -131,9 +131,9 @@ public class Player {
 	 *
 	 */
 	public void drawCard() {
-		ACard fromDeck = this.playerDeck.poll();
+		ACard fromDeck = this.playerDeck.remove();
 		this.playerHand.add(fromDeck);
-		this.handSize = this.handSize + 1;
+//		this.handSize = this.handSize + 1;
 
 	}
 	
@@ -160,9 +160,8 @@ public class Player {
 	public void addCardToHand(ACard card) {
 		
 		if (card == null) return;
-		
 		this.playerHand.add(card);
-		this.handSize++;
+//		this.handSize++;
 	}
 	
 	/**

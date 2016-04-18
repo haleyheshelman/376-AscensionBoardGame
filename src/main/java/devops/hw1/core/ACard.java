@@ -147,5 +147,9 @@ public abstract class ACard {
 		}
 		this.effects.put(effect, value);
 	}
+	
+//	public String toString(){
+//		return this.name;
+//	}
 
 }
