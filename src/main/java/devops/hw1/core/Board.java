@@ -22,6 +22,10 @@ public class Board {
 	private ACard heavyInf;
 	private ACard mystic;
 
+	/**
+	 * The default constructor for the Board Class.
+	 * 
+	 */
 	private Board() {
 		this.theVoid = new ArrayList<ACard>();
 		this.cenDeck = new LinkedList<ACard>();

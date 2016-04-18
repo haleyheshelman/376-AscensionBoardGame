@@ -35,6 +35,9 @@ public class Tests {
 		assertTrue(newCard.getCost() == 0);
 	}
 
+	/**
+	 * Tests that a player is properly initialized.
+	 */
 	@Test
 	public void testMakePlayer() {
 		Player newPlayer = Player.makePlayer();
@@ -166,6 +169,9 @@ public class Tests {
 		assertTrue(i == 5);
 	}
 
+	/**
+	 * Tests that a player can have a card added to their hand.
+	 */
 	@Test
 	public void testPlayerDrawCard() {
 		Player player = Player.makePlayer();
@@ -173,6 +179,9 @@ public class Tests {
 		assertTrue(player.getHandSize() == 1);
 	}
 
+	/**
+	 * Tests that the player can draw a card from their deck.
+	 */
 	@Test
 	public void testPlayerDrawCardWithCardMock() {
 		Player player = Player.makePlayer();
@@ -273,6 +282,9 @@ public class Tests {
 		assertFalse(newBored == null);
 	}
 
+	/**
+	 * Tests whether the void is properly initialized when a new Board is made.
+	 */
 	@Test
 	public void testIsVoidEmpty() {
 		Board newBored = Board.makeBoard();
