@@ -15,6 +15,7 @@ import java.util.Queue;
 public class Player {
 
 	private int runes;
+	private int power;
 	private ArrayList<ACard> discardPile;
 //	private int handSize;
 	private ArrayList<ACard> playerHand;
@@ -220,6 +221,14 @@ public class Player {
 	 */
 	public int getDeckSize() {
 		return this.playerDeck.size();
+	}
+
+	public int getPower() {
+		return this.power;
+	}
+
+	public void addPower(int i) {
+		this.power += i;
 	}
 		
 }
