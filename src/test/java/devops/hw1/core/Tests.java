@@ -397,4 +397,20 @@ public class Tests {
 		player.addPower(-2);
 		assertEquals(0, player.getPower());
 	}
+	
+	@Test
+	public void testApplyEffects() {
+		Player player = Player.makePlayer();
+		HashMap<String, Integer> map = new HashMap<String, Integer>();
+		map.put("rune", 1);
+		ACard runeCard = EasyMock.niceMock(HeroCard.class);
+		EasyMock.expect(runeCard.getEffects()).andReturn(map);
+		EasyMock.replay(runeCard);
+		
+		assertEquals(0, player.getRunes());
+		player.applyEffects(runeCard);
+		assertEquals(1, player.getRunes());
+		EasyMock.verify(runeCard);
+		
+	}
 }
