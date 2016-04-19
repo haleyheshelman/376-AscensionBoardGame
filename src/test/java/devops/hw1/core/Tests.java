@@ -6,10 +6,15 @@ package devops.hw1.core;
 import static org.junit.Assert.*;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
 import java.util.HashMap;
 
 import org.easymock.EasyMock;
+import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.junit.runners.Parameterized;
 
 /**
  * @author fenogljc
@@ -375,5 +380,21 @@ public class Tests {
 			newBored.centerDeckToField(i);
 			assertEquals(100 - (i + 1), newBored.getCenDeck().size());
 		}
+	}
+	
+	/**
+	 * This tests the getPower function for the player.
+	 */
+	@Test
+	public void testGetPlayerPower() {
+		Player player = Player.makePlayer();
+		assertEquals(0, player.getPower());
+		player.addPower(2);
+		assertEquals(2, player.getPower());
+		
+		// Tests negative inputs.
+		
+		player.addPower(-2);
+		assertEquals(0, player.getPower());
 	}
 }
