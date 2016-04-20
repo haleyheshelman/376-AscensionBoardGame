@@ -451,7 +451,22 @@ public class Tests {
 		Player player = Player.makePlayer();
 		assertEquals(0, player.getHonor());
 		player.addHonor(5);
-		assertEquals(5, player.getHonor());
-		
+		assertEquals(5, player.getHonor());	
 	}
+	
+	@Test
+	public void testApplyEffectsHonor() {
+		Player player = Player.makePlayer();
+		HashMap<String, Integer> map = new HashMap<String, Integer>();
+		map.put("honor", 5);
+		ACard honorCard = EasyMock.niceMock(HeroCard.class);
+		EasyMock.expect(honorCard.getEffects()).andReturn(map);
+		EasyMock.replay(honorCard);
+		
+		assertEquals(0, player.getHonor());
+		player.applyEffects(honorCard);
+		assertEquals(5, player.getHonor());
+		EasyMock.verify(honorCard);
+	}
+	
 }
