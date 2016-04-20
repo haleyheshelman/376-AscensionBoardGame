@@ -433,18 +433,25 @@ public class Tests {
 		Player player = Player.makePlayer();
 		HashMap<String, Integer> map = new HashMap<String, Integer>();
 		map.put("draw", 1);
-		ACard dummyCard = EasyMock.niceMock(ACard.class);
-		
+				
 		ACard drawCard = EasyMock.niceMock(HeroCard.class);
 		EasyMock.expect(drawCard.getEffects()).andReturn(map);
 		EasyMock.replay(drawCard);
 		
-		player.addCardToDeck(dummyCard);
-		assertEquals(0, player.getHandSize());
-		assertEquals(1, player.getDeckSize());
+		assertEquals(5, player.getHandSize());
+		assertEquals(5, player.getDeckSize());
 		player.applyEffects(drawCard);
-		assertEquals(1, player.getHandSize());
-		assertEquals(0, player.getDeckSize());
+		assertEquals(6, player.getHandSize());
+		assertEquals(4, player.getDeckSize());
 		EasyMock.verify(drawCard);
+	}
+	
+	@Test
+	public void testGetAddHonor() {
+		Player player = Player.makePlayer();
+		assertEquals(0, player.getHonor());
+		player.addHonor(5);
+		assertEquals(5, player.getHonor());
+		
 	}
 }

@@ -255,6 +255,8 @@ public class Player {
 				break;
 			case "power":
 				this.addPower(map.get(k));
+			case "draw":
+				this.drawCard(map.get(k));
 			}
 		}
 	}
