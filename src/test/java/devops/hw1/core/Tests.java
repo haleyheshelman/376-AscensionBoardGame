@@ -114,7 +114,6 @@ public class Tests {
 	public void testDiscardingCards() {
 		Player newPlayer = Player.makePlayer();
 		ACard newCard = ACard.makeCard(4);
-		ACard newCard2 = ACard.makeCard(5);
 		ACard newCard3 = ACard.makeCard(4);
 		newPlayer.discard(newCard);
 		assertFalse(newPlayer.getDiscardPile().contains(newCard3));
