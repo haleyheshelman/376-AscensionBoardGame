@@ -427,4 +427,19 @@ public class Tests {
 		assertEquals(1, player.getPower());
 		EasyMock.verify(powerCard);
 	}
+	
+	@Test
+	public void testApplyEffectsDraw() {
+		Player player = Player.makePlayer();
+		HashMap<String, Integer> map = new HashMap<String, Integer>();
+		map.put("draw", 1);
+		ACard drawCard = EasyMock.niceMock(HeroCard.class);
+		EasyMock.expect(drawCard.getEffects()).andReturn(map);
+		EasyMock.replay(drawCard);
+		
+		assertEquals(0, player.getHandSize());
+		player.applyEffects(drawCard);
+		assertEquals(1, player.getHandSize());
+		EasyMock.verify(drawCard);
+	}
 }
