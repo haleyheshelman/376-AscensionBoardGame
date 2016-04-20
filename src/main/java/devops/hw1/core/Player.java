@@ -266,6 +266,8 @@ public class Player {
 				this.addPower(map.get(k));
 			case "draw":
 				this.drawCard(map.get(k));
+			case "honor":
+				this.addHonor(map.get(k));
 			}
 		}
 	}
