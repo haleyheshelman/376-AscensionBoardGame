@@ -433,13 +433,18 @@ public class Tests {
 		Player player = Player.makePlayer();
 		HashMap<String, Integer> map = new HashMap<String, Integer>();
 		map.put("draw", 1);
+		ACard dummyCard = EasyMock.niceMock(ACard.class);
+		
 		ACard drawCard = EasyMock.niceMock(HeroCard.class);
 		EasyMock.expect(drawCard.getEffects()).andReturn(map);
 		EasyMock.replay(drawCard);
 		
+		player.addCardToDeck(dummyCard);
 		assertEquals(0, player.getHandSize());
+		assertEquals(1, player.getDeckSize());
 		player.applyEffects(drawCard);
 		assertEquals(1, player.getHandSize());
+		assertEquals(0, player.getDeckSize());
 		EasyMock.verify(drawCard);
 	}
 }
