@@ -13,6 +13,11 @@ import java.util.Queue;
  *
  */
 public class Player {
+	
+	private static final String RUNES = "runes";
+	private static final String POWER = "power";
+	private static final String DRAW = "draw";
+	private static final String HONOR = "honor";
 
 	private int runes;
 	private int power;
@@ -143,8 +148,6 @@ public class Player {
 	public void drawCard() {
 		ACard fromDeck = this.playerDeck.remove();
 		this.playerHand.add(fromDeck);
-		// this.handSize = this.handSize + 1;
-
 	}
 
 	/**
@@ -173,8 +176,8 @@ public class Player {
 
 		if (card == null)
 			return;
+		
 		this.playerHand.add(card);
-		// this.handSize++;
 	}
 
 	/**
@@ -204,8 +207,6 @@ public class Player {
 		this.playerHand.remove(card);
 		this.applyEffects(card);
 		this.discard(card);
-		
-
 	}
 
 	/**
@@ -247,20 +248,24 @@ public class Player {
 		this.power += i;
 	}
 
+	/**
+	 * Applies the effects of the given card to the player.
+	 * @param card
+	 */
 	public void applyEffects(ACard card) {
 		HashMap<String, Integer> map = card.getEffects();
 		for (String k : map.keySet()) {
 			switch (k) {
-			case "runes":
+			case RUNES:
 				this.addRunes(map.get(k));
 				break;
-			case "power":
+			case POWER:
 				this.addPower(map.get(k));
 				break;
-			case "draw":
+			case DRAW:
 				this.drawCard(map.get(k));
 				break;
-			case "honor":
+			case HONOR:
 				this.addHonor(map.get(k));
 				break;
 			}
