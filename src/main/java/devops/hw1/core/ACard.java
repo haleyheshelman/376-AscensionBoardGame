@@ -18,18 +18,45 @@ public abstract class ACard {
 	protected int honor;
 	protected int rarity;
 	protected String image;
+	
+	/**
+	 * This returns a card with zero cost and no other special attributes.
+	 * @return
+	 */
 
 	public static ACard makeCard() {
 		return new HeroCard();
 	}
 
+	/**
+	 * This returns a card with cost equal to the input with no other special attributes.
+	 * @param i
+	 * @return
+	 */
+	
 	public static ACard makeCard(int i) {
 		return new HeroCard(i);
 	}
+	
+	/**
+	 * This returns a card with the given information.
+	 * @param image
+	 * @param name
+	 * @param faction
+	 * @param type
+	 * @param cost
+	 * @param honor
+	 * @param rarity
+	 * @param effects
+	 * @return
+	 */
 
 	public static ACard makeCard(String image, String name, String faction,
 			String type, int cost, int honor, int rarity,
 			HashMap<String, Integer> effects) {
+		
+		// TODO: Make this not only be able to return hero cards
+		
 		if (type == "Hero"){
 			return new HeroCard(image, name, faction, cost, honor, rarity, effects);
 		}
@@ -137,10 +164,19 @@ public abstract class ACard {
 		this.cost = i;
 	}
 
+	/**
+	 * Returns the hashmap of effects the card has.
+	 * @return
+	 */
 	public HashMap<String, Integer> getEffects() {
 		return this.effects;
 	}
 
+	/**
+	 * Puts an effect string and integer value pair into the hashmap of effects for the card.
+	 * @param effect
+	 * @param value
+	 */
 	public void setEffect(String effect, int value) {
 		if (effect == null) {
 			return;
@@ -148,8 +184,4 @@ public abstract class ACard {
 		this.effects.put(effect, value);
 	}
 	
-//	public String toString(){
-//		return this.name;
-//	}
-
 }

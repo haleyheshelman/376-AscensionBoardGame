@@ -22,7 +22,14 @@ public class Player {
 	private ArrayList<ACard> playerHand;
 	private Queue<ACard> playerDeck;
 
+	/**
+	 * The constructor creates a player with a hand of five cards and a deck of five cards.
+	 */
+	
 	private Player() {
+		
+		// TODO: Re-factor this constructor to simply draw five cards from a shuffled ten card deck to start out.
+		
 		this.discardPile = new ArrayList<ACard>();
 		this.playerHand = new ArrayList<ACard>();
 		this.playerDeck = new LinkedList<ACard>();
@@ -127,18 +134,6 @@ public class Player {
 	public int getHandSize() {
 		return this.playerHand.size();
 	}
-
-	// /**
-	// *
-	// * sets the size of a hand
-	// * for testing purposes only
-	// *
-	// * @param i
-	// */
-	// public void setHandSize(int i) {
-	// this.handSize = i;
-	//
-	// }
 
 	/**
 	 * 
