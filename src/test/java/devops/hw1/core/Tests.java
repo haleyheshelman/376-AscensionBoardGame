@@ -469,4 +469,31 @@ public class Tests {
 		EasyMock.verify(honorCard);
 	}
 	
+	@Test
+	public void testApplyEffectsAllBasic() {
+		Player player = Player.makePlayer();
+		HashMap<String, Integer> map = new HashMap<String, Integer>();
+		map.put("honor", 5);
+		map.put("rune", 3);
+		map.put("draw", 2);
+		map.put("power", 4);
+		ACard allCard = EasyMock.niceMock(HeroCard.class);
+		EasyMock.expect(allCard.getEffects()).andReturn(map);
+		EasyMock.replay(allCard);
+		
+		assertEquals(0, player.getHonor());
+		assertEquals(0, player.getPower());
+		assertEquals(0, player.getRunes());
+		assertEquals(5, player.getHandSize());
+		assertEquals(5, player.getDeckSize());
+		
+		player.applyEffects(allCard);
+		assertEquals(5, player.getHonor());
+		assertEquals(4, player.getPower());
+		assertEquals(3, player.getRunes());
+		assertEquals(3, player.getDeckSize());
+		assertEquals(7, player.getHandSize());
+		EasyMock.verify(allCard);
+	}
+	
 }

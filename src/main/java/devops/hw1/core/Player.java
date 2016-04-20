@@ -264,10 +264,13 @@ public class Player {
 				break;
 			case "power":
 				this.addPower(map.get(k));
+				break;
 			case "draw":
 				this.drawCard(map.get(k));
+				break;
 			case "honor":
 				this.addHonor(map.get(k));
+				break;
 			}
 		}
 	}
