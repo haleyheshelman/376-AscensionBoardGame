@@ -13,6 +13,7 @@ public class HeroCard extends ACard {
 	}
 
 	/**
+	 * Constructs a hero card that has the given information.
 	 * @param image
 	 * @param name
 	 * @param faction

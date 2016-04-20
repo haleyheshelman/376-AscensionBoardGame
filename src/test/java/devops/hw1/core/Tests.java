@@ -6,10 +6,15 @@ package devops.hw1.core;
 import static org.junit.Assert.*;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
 import java.util.HashMap;
 
 import org.easymock.EasyMock;
+import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.junit.runners.Parameterized;
 
 /**
  * @author fenogljc
@@ -109,7 +114,6 @@ public class Tests {
 	public void testDiscardingCards() {
 		Player newPlayer = Player.makePlayer();
 		ACard newCard = ACard.makeCard(4);
-		ACard newCard2 = ACard.makeCard(5);
 		ACard newCard3 = ACard.makeCard(4);
 		newPlayer.discard(newCard);
 		assertFalse(newPlayer.getDiscardPile().contains(newCard3));
@@ -376,4 +380,119 @@ public class Tests {
 			assertEquals(100 - (i + 1), newBored.getCenDeck().size());
 		}
 	}
+	
+	/**
+	 * This tests the getPower function for the player.
+	 */
+	@Test
+	public void testGetPlayerPower() {
+		Player player = Player.makePlayer();
+		assertEquals(0, player.getPower());
+		player.addPower(2);
+		assertEquals(2, player.getPower());
+		
+		// Tests negative inputs.
+		
+		player.addPower(-2);
+		assertEquals(0, player.getPower());
+	}
+	
+	@Test
+	public void testApplyEffectsRunes() {
+		Player player = Player.makePlayer();
+		HashMap<String, Integer> map = new HashMap<String, Integer>();
+		map.put("runes", 1);
+		ACard runeCard = EasyMock.niceMock(HeroCard.class);
+		EasyMock.expect(runeCard.getEffects()).andReturn(map);
+		EasyMock.replay(runeCard);
+		
+		assertEquals(0, player.getRunes());
+		player.applyEffects(runeCard);
+		assertEquals(1, player.getRunes());
+		EasyMock.verify(runeCard);
+	}
+	
+	@Test
+	public void testApplyEffectsPower() {
+		Player player = Player.makePlayer();
+		HashMap<String, Integer> map = new HashMap<String, Integer>();
+		map.put("power", 1);
+		ACard powerCard = EasyMock.niceMock(HeroCard.class);
+		EasyMock.expect(powerCard.getEffects()).andReturn(map);
+		EasyMock.replay(powerCard);
+		
+		assertEquals(0, player.getPower());
+		player.applyEffects(powerCard);
+		assertEquals(1, player.getPower());
+		EasyMock.verify(powerCard);
+	}
+	
+	@Test
+	public void testApplyEffectsDraw() {
+		Player player = Player.makePlayer();
+		HashMap<String, Integer> map = new HashMap<String, Integer>();
+		map.put("draw", 1);
+				
+		ACard drawCard = EasyMock.niceMock(HeroCard.class);
+		EasyMock.expect(drawCard.getEffects()).andReturn(map);
+		EasyMock.replay(drawCard);
+		
+		assertEquals(5, player.getHandSize());
+		assertEquals(5, player.getDeckSize());
+		player.applyEffects(drawCard);
+		assertEquals(6, player.getHandSize());
+		assertEquals(4, player.getDeckSize());
+		EasyMock.verify(drawCard);
+	}
+	
+	@Test
+	public void testGetAddHonor() {
+		Player player = Player.makePlayer();
+		assertEquals(0, player.getHonor());
+		player.addHonor(5);
+		assertEquals(5, player.getHonor());	
+	}
+	
+	@Test
+	public void testApplyEffectsHonor() {
+		Player player = Player.makePlayer();
+		HashMap<String, Integer> map = new HashMap<String, Integer>();
+		map.put("honor", 5);
+		ACard honorCard = EasyMock.niceMock(HeroCard.class);
+		EasyMock.expect(honorCard.getEffects()).andReturn(map);
+		EasyMock.replay(honorCard);
+		
+		assertEquals(0, player.getHonor());
+		player.applyEffects(honorCard);
+		assertEquals(5, player.getHonor());
+		EasyMock.verify(honorCard);
+	}
+	
+	@Test
+	public void testApplyEffectsAllBasic() {
+		Player player = Player.makePlayer();
+		HashMap<String, Integer> map = new HashMap<String, Integer>();
+		map.put("honor", 5);
+		map.put("runes", 3);
+		map.put("draw", 2);
+		map.put("power", 4);
+		ACard allCard = EasyMock.niceMock(HeroCard.class);
+		EasyMock.expect(allCard.getEffects()).andReturn(map);
+		EasyMock.replay(allCard);
+		
+		assertEquals(0, player.getHonor());
+		assertEquals(0, player.getPower());
+		assertEquals(0, player.getRunes());
+		assertEquals(5, player.getHandSize());
+		assertEquals(5, player.getDeckSize());
+		
+		player.applyEffects(allCard);
+		assertEquals(5, player.getHonor());
+		assertEquals(4, player.getPower());
+		assertEquals(3, player.getRunes());
+		assertEquals(3, player.getDeckSize());
+		assertEquals(7, player.getHandSize());
+		EasyMock.verify(allCard);
+	}
+	
 }

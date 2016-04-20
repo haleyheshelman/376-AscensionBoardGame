@@ -13,25 +13,41 @@ import java.util.Queue;
  *
  */
 public class Player {
+	
+	private static final String RUNES = "runes";
+	private static final String POWER = "power";
+	private static final String DRAW = "draw";
+	private static final String HONOR = "honor";
 
 	private int runes;
+	private int power;
+	private int honor;
 	private ArrayList<ACard> discardPile;
-//	private int handSize;
+	// private int handSize;
 	private ArrayList<ACard> playerHand;
 	private Queue<ACard> playerDeck;
 
+	/**
+	 * The constructor creates a player with a hand of five cards and a deck of five cards.
+	 */
+	
 	private Player() {
-		this.discardPile = new ArrayList<ACard>(); 
+		
+		// TODO: Re-factor this constructor to simply draw five cards from a shuffled ten card deck to start out.
+		
+		this.discardPile = new ArrayList<ACard>();
 		this.playerHand = new ArrayList<ACard>();
 		this.playerDeck = new LinkedList<ACard>();
-		for (int i = 0; i < 5; i++) {	// adds 5 cards to the player's hand and deck (at start of game)
+		for (int i = 0; i < 5; i++) { // adds 5 cards to the player's hand and
+										// deck (at start of game)
 			this.addCardToHand(ACard.makeCard());
 			this.addCardToDeck(ACard.makeCard());
 		}
 	}
-	
+
 	/**
 	 * This constructs and returns a player.
+	 * 
 	 * @return
 	 */
 	public static Player makePlayer() {
@@ -41,6 +57,7 @@ public class Player {
 
 	/**
 	 * This adds the given integer amount of runes to the players current total.
+	 * 
 	 * @param i
 	 */
 	public void addRunes(int i) {
@@ -49,6 +66,7 @@ public class Player {
 
 	/**
 	 * This returns the amount of runes the player currently has.
+	 * 
 	 * @return the runes
 	 */
 	public int getRunes() {
@@ -57,7 +75,9 @@ public class Player {
 
 	/**
 	 * Sets the amount of runs the player has to the given integer value.
-	 * @param runes the runes to set
+	 * 
+	 * @param runes
+	 *            the runes to set
 	 */
 	public void setRunes(int runes) {
 		this.runes = runes;
@@ -65,6 +85,7 @@ public class Player {
 
 	/**
 	 * Returns the size of the player's discard pile.
+	 * 
 	 * @return
 	 */
 	public int getDiscardSize() {
@@ -73,15 +94,19 @@ public class Player {
 
 	/**
 	 * This puts the card given into the discard pile.
+	 * 
 	 * @param card
 	 */
 	public void discard(ACard card) {
-		if (card == null){};
+		if (card == null) {
+		}
+		;
 		this.discardPile.add(card);
 	}
 
 	/**
 	 * Returns the player's discard pile.
+	 * 
 	 * @return
 	 */
 	public ArrayList<ACard> getDiscardPile() {
@@ -89,8 +114,10 @@ public class Player {
 	}
 
 	/**
-	 * Places the given card into the player's discard pile as well as well as subtracts the amount of
-	 * runes the player has available. If you do not have enough runes, this returns false, otherwise true.
+	 * Places the given card into the player's discard pile as well as well as
+	 * subtracts the amount of runes the player has available. If you do not
+	 * have enough runes, this returns false, otherwise true.
+	 * 
 	 * @param card
 	 * @return
 	 */
@@ -105,25 +132,13 @@ public class Player {
 
 	/**
 	 * 
-	 *Returns the size of the player hand
+	 * Returns the size of the player hand
 	 *
 	 * @return the size of the player hand
 	 */
 	public int getHandSize() {
 		return this.playerHand.size();
 	}
-
-//	/**
-//	 * 
-//	 * sets the size of a hand
-//	 * for testing purposes only
-//	 *
-//	 * @param i
-//	 */
-//	public void setHandSize(int i) {
-//		this.handSize = i;
-//
-//	}
 
 	/**
 	 * 
@@ -133,76 +148,72 @@ public class Player {
 	public void drawCard() {
 		ACard fromDeck = this.playerDeck.remove();
 		this.playerHand.add(fromDeck);
-//		this.handSize = this.handSize + 1;
-
 	}
-	
+
 	/**
 	 * 
 	 * Adds a card to the player's deck
 	 *
-	 * @param card to be added
+	 * @param card
+	 *            to be added
 	 */
-	public void addCardToDeck(ACard card){
-		
+	public void addCardToDeck(ACard card) {
+
 		if (card == null) {
 			return;
 		}
-		
+
 		this.playerDeck.add(card);
 	}
-	
+
 	/**
 	 * Adds the given card to the player's hand
 	 * 
-	 * @param card to be added
+	 * @param card
+	 *            to be added
 	 */
 	public void addCardToHand(ACard card) {
+
+		if (card == null)
+			return;
 		
-		if (card == null) return;
 		this.playerHand.add(card);
-//		this.handSize++;
 	}
-	
+
 	/**
 	 * 
 	 * Gets the current player hand
 	 *
 	 * @return the player hand
 	 */
-	public ArrayList<ACard> getHand(){
+	public ArrayList<ACard> getHand() {
 		return this.playerHand;
 	}
-	
+
 	/**
 	 * 
 	 * Input check card in hand
 	 *
 	 * @param card
 	 */
-	public void playCard(ACard card){
+	public void playCard(ACard card) {
+
+		// TODO: Have the program through an exception that prints a helpful message to the screen instead of eating the error.
 		
 		if (card == null) {
 			return;
 		}
-		
-		HashMap<String, Integer> effects = card.getEffects();
+
 		this.playerHand.remove(card);
+		this.applyEffects(card);
 		this.discard(card);
-		if (effects.containsKey("draw")){
-			this.drawCard(effects.get("draw"));
-		}
-		if (effects.containsKey("runes")){
-			this.addRunes(effects.get("runes"));
-		}
-		
 	}
 
 	/**
 	 * @param integer
 	 */
 	public void drawCard(int cards) {
-		for(int i = 0; i < cards; i++){
+		for (int i = 0; i < cards; i++) {
 			this.drawCard();
 		}
 	}
@@ -215,11 +226,65 @@ public class Player {
 	}
 
 	/**
-	 * @return the size of the Player's Deck
-	 * for unit testing
+	 * @return the size of the Player's Deck for unit testing
 	 */
 	public int getDeckSize() {
 		return this.playerDeck.size();
 	}
-		
+
+	/**
+	 * This method returns the amount of power the player currently has.
+	 * @return how much power the player has
+	 */
+	public int getPower() {
+		return this.power;
+	}
+
+	/**
+	 * This method adds power to the total amount of power the player has.
+	 * @param i
+	 */
+	public void addPower(int i) {
+		this.power += i;
+	}
+
+	/**
+	 * Applies the effects of the given card to the player.
+	 * @param card
+	 */
+	public void applyEffects(ACard card) {
+		HashMap<String, Integer> map = card.getEffects();
+		for (String k : map.keySet()) {
+			switch (k) {
+			case RUNES:
+				this.addRunes(map.get(k));
+				break;
+			case POWER:
+				this.addPower(map.get(k));
+				break;
+			case DRAW:
+				this.drawCard(map.get(k));
+				break;
+			case HONOR:
+				this.addHonor(map.get(k));
+				break;
+			}
+		}
+	}
+	
+	/**
+	 * This method returns the amount of honor the player has.
+	 * @return amount of honor
+	 */
+	public int getHonor() {
+		return this.honor;
+	}
+
+	/**
+	 * This method adds the amount given to the total amount of honor that the player has.
+	 * @param i
+	 */
+	public void addHonor(int i) {
+		this.honor += i;
+	}
 }
