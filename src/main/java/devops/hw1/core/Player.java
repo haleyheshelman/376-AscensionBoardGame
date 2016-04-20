@@ -16,6 +16,7 @@ public class Player {
 
 	private int runes;
 	private int power;
+	private int honor;
 	private ArrayList<ACard> discardPile;
 	// private int handSize;
 	private ArrayList<ACard> playerHand;
@@ -238,10 +239,18 @@ public class Player {
 		return this.playerDeck.size();
 	}
 
+	/**
+	 * This method returns the amount of power the player currently has.
+	 * @return how much power the player has
+	 */
 	public int getPower() {
 		return this.power;
 	}
 
+	/**
+	 * This method adds power to the total amount of power the player has.
+	 * @param i
+	 */
 	public void addPower(int i) {
 		this.power += i;
 	}
@@ -260,5 +269,20 @@ public class Player {
 			}
 		}
 	}
+	
+	/**
+	 * This method returns the amount of honor the player has.
+	 * @return amount of honor
+	 */
+	public int getHonor() {
+		return this.honor;
+	}
 
+	/**
+	 * This method adds the amount given to the total amount of honor that the player has.
+	 * @param i
+	 */
+	public void addHonor(int i) {
+		this.honor += i;
+	}
 }
