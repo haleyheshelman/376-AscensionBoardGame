@@ -399,7 +399,7 @@ public class Tests {
 	}
 	
 	@Test
-	public void testApplyEffects() {
+	public void testApplyEffectsRunes() {
 		Player player = Player.makePlayer();
 		HashMap<String, Integer> map = new HashMap<String, Integer>();
 		map.put("rune", 1);
@@ -411,6 +411,20 @@ public class Tests {
 		player.applyEffects(runeCard);
 		assertEquals(1, player.getRunes());
 		EasyMock.verify(runeCard);
+	}
+	
+	@Test
+	public void testApplyEffectsPower() {
+		Player player = Player.makePlayer();
+		HashMap<String, Integer> map = new HashMap<String, Integer>();
+		map.put("power", 1);
+		ACard powerCard = EasyMock.niceMock(HeroCard.class);
+		EasyMock.expect(powerCard.getEffects()).andReturn(map);
+		EasyMock.replay(powerCard);
 		
+		assertEquals(0, player.getPower());
+		player.applyEffects(powerCard);
+		assertEquals(1, player.getPower());
+		EasyMock.verify(powerCard);
 	}
 }
