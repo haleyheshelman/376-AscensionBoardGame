@@ -253,6 +253,8 @@ public class Player {
 			case "rune":
 				this.addRunes(map.get(k));
 				break;
+			case "power":
+				this.addPower(map.get(k));
 			}
 		}
 	}
