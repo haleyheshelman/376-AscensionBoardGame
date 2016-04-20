@@ -402,7 +402,7 @@ public class Tests {
 	public void testApplyEffectsRunes() {
 		Player player = Player.makePlayer();
 		HashMap<String, Integer> map = new HashMap<String, Integer>();
-		map.put("rune", 1);
+		map.put("runes", 1);
 		ACard runeCard = EasyMock.niceMock(HeroCard.class);
 		EasyMock.expect(runeCard.getEffects()).andReturn(map);
 		EasyMock.replay(runeCard);
@@ -474,7 +474,7 @@ public class Tests {
 		Player player = Player.makePlayer();
 		HashMap<String, Integer> map = new HashMap<String, Integer>();
 		map.put("honor", 5);
-		map.put("rune", 3);
+		map.put("runes", 3);
 		map.put("draw", 2);
 		map.put("power", 4);
 		ACard allCard = EasyMock.niceMock(HeroCard.class);

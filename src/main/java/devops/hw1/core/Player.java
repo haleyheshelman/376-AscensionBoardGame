@@ -195,19 +195,16 @@ public class Player {
 	 */
 	public void playCard(ACard card) {
 
+		// TODO: Have the program through an exception that prints a helpful message to the screen instead of eating the error.
+		
 		if (card == null) {
 			return;
 		}
 
-		HashMap<String, Integer> effects = card.getEffects();
 		this.playerHand.remove(card);
+		this.applyEffects(card);
 		this.discard(card);
-		if (effects.containsKey("draw")) {
-			this.drawCard(effects.get("draw"));
-		}
-		if (effects.containsKey("runes")) {
-			this.addRunes(effects.get("runes"));
-		}
+		
 
 	}
 
@@ -254,7 +251,7 @@ public class Player {
 		HashMap<String, Integer> map = card.getEffects();
 		for (String k : map.keySet()) {
 			switch (k) {
-			case "rune":
+			case "runes":
 				this.addRunes(map.get(k));
 				break;
 			case "power":
