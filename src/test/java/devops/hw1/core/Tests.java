@@ -413,6 +413,17 @@ public class Tests {
 	}
 	
 	@Test
+	public void testApplyEffectsRunesMockless(){
+		Player player = Player.makePlayer();
+		HashMap<String, Integer> map = new HashMap<String, Integer>();
+		map.put("runes", 1);
+		ACard runeCard = ACard.makeCard("", "", "", "Hero", 0, 0, 0, map);
+		assertEquals(0, player.getRunes());
+		player.applyEffects(runeCard);
+		assertEquals(1, player.getRunes());
+	}
+	
+	@Test
 	public void testApplyEffectsPower() {
 		Player player = Player.makePlayer();
 		HashMap<String, Integer> map = new HashMap<String, Integer>();
@@ -425,6 +436,20 @@ public class Tests {
 		player.applyEffects(powerCard);
 		assertEquals(1, player.getPower());
 		EasyMock.verify(powerCard);
+	}
+	
+	/**
+	 * same as above, without mocking
+	 */
+	@Test
+	public void testApplyEffectsPowerMockless() {
+		Player player = Player.makePlayer();
+		HashMap<String, Integer> map = new HashMap<String, Integer>();
+		map.put("power", 1);
+		ACard powerCard = ACard.makeCard("", "", "", "Hero", 0, 0, 0, map);		
+		assertEquals(0, player.getPower());
+		player.applyEffects(powerCard);
+		assertEquals(1, player.getPower());
 	}
 	
 	@Test
@@ -443,6 +468,22 @@ public class Tests {
 		assertEquals(6, player.getHandSize());
 		assertEquals(4, player.getDeckSize());
 		EasyMock.verify(drawCard);
+	}
+	
+	/**
+	 * same as above, without mocking
+	 */
+	@Test
+	public void testApplyEffectsDrawMockless() {
+		Player player = Player.makePlayer();
+		HashMap<String, Integer> map = new HashMap<String, Integer>();
+		map.put("draw", 1);
+		ACard drawCard = ACard.makeCard("", "", "", "Hero", 0, 0, 0, map);
+		assertEquals(5, player.getHandSize());
+		assertEquals(5, player.getDeckSize());
+		player.applyEffects(drawCard);
+		assertEquals(6, player.getHandSize());
+		assertEquals(4, player.getDeckSize());
 	}
 	
 	@Test
@@ -466,6 +507,20 @@ public class Tests {
 		player.applyEffects(honorCard);
 		assertEquals(5, player.getHonor());
 		EasyMock.verify(honorCard);
+	}
+	
+	/**
+	 * same as above, without mocking
+	 */
+	@Test
+	public void testApplyEffectsHonorMockless() {
+		Player player = Player.makePlayer();
+		HashMap<String, Integer> map = new HashMap<String, Integer>();
+		map.put("honor", 5);
+		ACard honorCard = ACard.makeCard("", "", "", "Hero", 0, 0, 0, map);
+		assertEquals(0, player.getHonor());
+		player.applyEffects(honorCard);
+		assertEquals(5, player.getHonor());
 	}
 	
 	@Test
@@ -493,6 +548,31 @@ public class Tests {
 		assertEquals(3, player.getDeckSize());
 		assertEquals(7, player.getHandSize());
 		EasyMock.verify(allCard);
+	}
+	
+	/**
+	 * same as above, without mocking
+	 */
+	@Test
+	public void testApplyEffectsAllBasicMockless() {
+		Player player = Player.makePlayer();
+		HashMap<String, Integer> map = new HashMap<String, Integer>();
+		map.put("honor", 5);
+		map.put("runes", 3);
+		map.put("draw", 2);
+		map.put("power", 4);
+		ACard allCard = ACard.makeCard("", "", "", "Hero", 0, 0, 0, map);
+		assertEquals(0, player.getHonor());
+		assertEquals(0, player.getPower());
+		assertEquals(0, player.getRunes());
+		assertEquals(5, player.getHandSize());
+		assertEquals(5, player.getDeckSize());
+		player.applyEffects(allCard);
+		assertEquals(5, player.getHonor());
+		assertEquals(4, player.getPower());
+		assertEquals(3, player.getRunes());
+		assertEquals(3, player.getDeckSize());
+		assertEquals(7, player.getHandSize());
 	}
 	
 }
