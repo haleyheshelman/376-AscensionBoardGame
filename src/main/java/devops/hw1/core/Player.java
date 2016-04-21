@@ -113,8 +113,9 @@ public class Player {
 	 */
 	public void discard(ACard card) {
 		if (card == null) {
+			System.out.println("attempted to discard null card");
+			return;
 		}
-		;
 		this.discardPile.add(card);
 	}
 
@@ -174,6 +175,7 @@ public class Player {
 	public void addCardToDeck(ACard card) {
 
 		if (card == null) {
+			System.out.println("attempted to add a null card to deck");
 			return;
 		}
 
@@ -188,9 +190,10 @@ public class Player {
 	 */
 	public void addCardToHand(ACard card) {
 
-		if (card == null)
+		if (card == null){
+			System.out.println("attempted to add a null card to hand");
 			return;
-		
+		}
 		this.playerHand.add(card);
 	}
 
@@ -215,6 +218,7 @@ public class Player {
 		// TODO: Have the program through an exception that prints a helpful message to the screen instead of eating the error.
 		
 		if (card == null) {
+			System.out.println("attempted to play a null card");
 			return;
 		}
 
