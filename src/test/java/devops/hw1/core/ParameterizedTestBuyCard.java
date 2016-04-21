@@ -17,7 +17,7 @@ import static org.junit.Assert.*;
  *
  */
 @RunWith(Parameterized.class)
-public class ParameterizedTests {
+public class ParameterizedTestBuyCard {
 	
 //	private ACard fakeCard = EasyMock.niceMock(ACard.class);
 	private Integer cardCost;
@@ -41,7 +41,7 @@ public class ParameterizedTests {
 	 * @param expectedDiscardSize the expected size of the player's discard pile after calling buyCard
 	 * @param bool indicates whether testing for true or false (as result of calling buyCard)
 	 */
-	public ParameterizedTests(Integer cardCost, 
+	public ParameterizedTestBuyCard(Integer cardCost, 
       Integer expectedRunes, Integer expectedDiscardSize, Boolean bool) {
       this.cardCost = cardCost;
       this.expectedRunes = expectedRunes;
