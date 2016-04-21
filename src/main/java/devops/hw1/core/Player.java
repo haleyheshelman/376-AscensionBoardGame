@@ -4,6 +4,7 @@
 package devops.hw1.core;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Queue;
@@ -25,24 +26,30 @@ public class Player {
 	private ArrayList<ACard> discardPile;
 	// private int handSize;
 	private ArrayList<ACard> playerHand;
-	private Queue<ACard> playerDeck;
+	private LinkedList<ACard> playerDeck;
 
 	/**
 	 * The constructor creates a player with a hand of five cards and a deck of five cards.
 	 */
 	
-	private Player() {
-		
-		// TODO: Re-factor this constructor to simply draw five cards from a shuffled ten card deck to start out.
-		
+	private Player() {		
 		this.discardPile = new ArrayList<ACard>();
 		this.playerHand = new ArrayList<ACard>();
 		this.playerDeck = new LinkedList<ACard>();
-		for (int i = 0; i < 5; i++) { // adds 5 cards to the player's hand and
-										// deck (at start of game)
-			this.addCardToHand(ACard.makeCard());
-			this.addCardToDeck(ACard.makeCard());
+		HashMap<String, Integer> tempMapRune = new HashMap<>();
+		tempMapRune.put("runes", 1);
+		ACard apprenticeCard = ACard.makeCard("", "Apprentice", null, "Hero", 0, 0, 0, tempMapRune);
+		HashMap<String, Integer> tempMapPower = new HashMap<>();
+		tempMapPower.put("power", 1);
+		ACard militiaCard = ACard.makeCard("", "Milita", null, "Hero", 0, 0, 0, tempMapPower);
+		for (int i = 0; i < 8; i++) { 
+			this.addCardToDeck(apprenticeCard);
 		}
+		for (int j = 0; j < 2; j++) {
+			this.addCardToDeck(militiaCard);
+		}
+		Collections.shuffle(this.playerDeck);
+		this.drawCard(5);
 	}
 
 	/**
