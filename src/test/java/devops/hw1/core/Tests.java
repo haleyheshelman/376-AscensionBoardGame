@@ -202,6 +202,9 @@ public class Tests {
 		assertTrue(player.getHand().contains(card));
 	}
 
+	/**
+	 * Tests (without Mocking) that the player can draw a card from their deck.
+	 */
 	@Test
 	public void testPlayerDrawCardwithCard() {
 		Player player = Player.makePlayer();
