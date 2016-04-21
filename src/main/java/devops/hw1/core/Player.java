@@ -36,6 +36,15 @@ public class Player {
 		this.discardPile = new ArrayList<ACard>();
 		this.playerHand = new ArrayList<ACard>();
 		this.playerDeck = new LinkedList<ACard>();
+		this.initialiseDeck();
+		Collections.shuffle(this.playerDeck);
+		this.drawCard(5);
+	}
+
+	/**
+	 * 
+	 */
+	public void initialiseDeck() {
 		HashMap<String, Integer> tempMapRune = new HashMap<>();
 		tempMapRune.put("runes", 1);
 		ACard apprenticeCard = ACard.makeCard("", "Apprentice", null, "Hero", 0, 0, 0, tempMapRune);
@@ -47,9 +56,7 @@ public class Player {
 		}
 		for (int j = 0; j < 2; j++) {
 			this.addCardToDeck(militiaCard);
-		}
-		Collections.shuffle(this.playerDeck);
-		this.drawCard(5);
+		}		
 	}
 
 	/**
