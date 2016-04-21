@@ -50,7 +50,7 @@ public class Player {
 		ACard apprenticeCard = ACard.makeCard("", "Apprentice", null, "Hero", 0, 0, 0, tempMapRune);
 		HashMap<String, Integer> tempMapPower = new HashMap<>();
 		tempMapPower.put("power", 1);
-		ACard militiaCard = ACard.makeCard("", "Milita", null, "Hero", 0, 0, 0, tempMapPower);
+		ACard militiaCard = ACard.makeCard("", "Militia", null, "Hero", 0, 0, 0, tempMapPower);
 		for (int i = 0; i < 8; i++) { 
 			this.addCardToDeck(apprenticeCard);
 		}
@@ -214,8 +214,6 @@ public class Player {
 	 * @param card
 	 */
 	public void playCard(ACard card) {
-
-		// TODO: Have the program through an exception that prints a helpful message to the screen instead of eating the error.
 		
 		if (card == null) {
 			System.out.println("attempted to play a null card");

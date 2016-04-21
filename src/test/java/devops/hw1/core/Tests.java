@@ -575,4 +575,35 @@ public class Tests {
 		assertEquals(7, player.getHandSize());
 	}
 	
+	@Test
+	public void testPlayingRealCardsWithRealEffects() {
+		//initialise player
+		Player player = Player.makePlayer();
+		//check that player has 5 cards 
+		assertEquals(5, player.getHandSize());
+		//keep track of runes and power 
+		int runesExpected = 0;
+		int powerExpected = 0;
+		for (int i = 0; i < 5; i++){
+			//get the first card in hand
+			ACard card = player.getHand().get(0);
+			//do stuff based on the name of the card
+			System.out.println(card.getName());
+			if (card.getName().equals("Apprentice")){
+				runesExpected++;
+				player.playCard(card);
+				assertEquals(runesExpected, player.getRunes());
+			}
+			else if (card.getName().equals("Militia")){
+				powerExpected++;
+				player.playCard(card);
+				assertEquals(powerExpected, player.getPower());
+			}
+			else{
+				fail();
+			}
+			assertEquals(4-i, player.getHandSize());
+		}
+	}
+	
 }
