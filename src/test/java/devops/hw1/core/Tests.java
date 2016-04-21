@@ -172,19 +172,21 @@ public class Tests {
 	public void testPlayerDrawCard() {
 		Player player1 = Player.makePlayer();
 		Player player2 = Player.makePlayer();
-		
-		// checking that the player starts with five cards in their deck and hand (individually)
+
+		// checking that the player starts with five cards in their deck and
+		// hand (individually)
 		assertEquals(5, player1.getHandSize());
 		assertEquals(5, player1.getDeckSize());
 		assertEquals(5, player2.getHandSize());
 		assertEquals(5, player2.getDeckSize());
-		
+
 		player1.drawCard();
-		
-		// checking that the hand size has increased by 1 and the deck size has decreased by 1
+
+		// checking that the hand size has increased by 1 and the deck size has
+		// decreased by 1
 		assertTrue(player1.getHandSize() == 6);
 		assertEquals(4, player1.getDeckSize());
-		
+
 		// checking that player1 is not the same as player2
 		assertFalse(player1.equals(player2));
 	}
@@ -317,8 +319,8 @@ public class Tests {
 		HashMap<String, Integer> tempMap = new HashMap<String, Integer>();
 		tempMap.put("draw", 1);
 		HeroCard testCard = (HeroCard) ACard.makeCard(
-				"Heroes/Arha-Initiate.png",
-				"Arha Initiate", "Enlightened", "Hero", 1, 1, 3, tempMap);
+				"Heroes/Arha-Initiate.png", "Arha Initiate", "Enlightened",
+				"Hero", 1, 1, 3, tempMap);
 		assertTrue(testCard.getFaction() == "Enlightened");
 		assertTrue(testCard.getEffects().containsKey("draw"));
 		assertTrue(testCard.getEffects().get("draw") == 1);
@@ -327,22 +329,21 @@ public class Tests {
 		assertTrue(testCard.getRarity() == 3);
 	}
 
-	
 	@Test
 	public void testStandardCards() {
 		// initialize the game board
 		Board newBored = new Board();
-		
-		// check that cultist is not null 
+
+		// check that cultist is not null
 		assertFalse(newBored.getCultist() == null);
-		
+
 		// check that heavy infantry is not null
 		assertFalse(newBored.getHeavyInf() == null);
-		
+
 		// check that mystic is not null
 		assertFalse(newBored.getMystic() == null);
 	}
-	
+
 	/**
 	 * Tests that cards can be added to the player's hand
 	 */
@@ -350,40 +351,42 @@ public class Tests {
 	public void testAddCardToHand() {
 		// initialize the Player Object
 		Player newPlayer = Player.makePlayer();
-		
+
 		// using mock to create a "fake" card
 		ACard card1 = EasyMock.niceMock(ACard.class);
-		
+
 		// check that adding null card does not increase the hand size
 		newPlayer.addCardToHand(null);
 		assertEquals(5, newPlayer.getHandSize());
-		
+
 		// adding single card to hand
 		newPlayer.addCardToHand(card1);
-		
+
 		// check that the size of the hand is now equal to one
 		assertEquals(6, newPlayer.getHandSize());
-		
-		// no limit to number of cards in hand, so checking that adding several cards in a row works
+
+		// no limit to number of cards in hand, so checking that adding several
+		// cards in a row works
 		newPlayer.addCardToHand(card1);
 		newPlayer.addCardToHand(card1);
 		newPlayer.addCardToHand(card1);
 		// check hand size
 		assertEquals(9, newPlayer.getHandSize());
-		
+
 	}
-	
+
 	@Test
 	public void testCenterDeckToField() {
 		Board newBored = new Board();
-		
-		// cards should be added to the Center Field based on indexes [0-5] (6 positions)
+
+		// cards should be added to the Center Field based on indexes [0-5] (6
+		// positions)
 		for (int i = 0; i < 6; i++) {
 			newBored.centerDeckToField(i);
 			assertEquals(100 - (i + 1), newBored.getCenDeck().size());
 		}
 	}
-	
+
 	/**
 	 * This tests the getPower function for the player.
 	 */
@@ -393,13 +396,13 @@ public class Tests {
 		assertEquals(0, player.getPower());
 		player.addPower(2);
 		assertEquals(2, player.getPower());
-		
+
 		// Tests negative inputs.
-		
+
 		player.addPower(-2);
 		assertEquals(0, player.getPower());
 	}
-	
+
 	@Test
 	public void testApplyEffectsRunes() {
 		Player player = Player.makePlayer();
@@ -408,13 +411,24 @@ public class Tests {
 		ACard runeCard = EasyMock.niceMock(HeroCard.class);
 		EasyMock.expect(runeCard.getEffects()).andReturn(map);
 		EasyMock.replay(runeCard);
-		
+
 		assertEquals(0, player.getRunes());
 		player.applyEffects(runeCard);
 		assertEquals(1, player.getRunes());
 		EasyMock.verify(runeCard);
 	}
-	
+
+	@Test
+	public void testApplyEffectsRunesMockless() {
+		Player player = Player.makePlayer();
+		HashMap<String, Integer> map = new HashMap<String, Integer>();
+		map.put("runes", 1);
+		ACard runeCard = ACard.makeCard("", "", "", "Hero", 0, 0, 0, map);
+		assertEquals(0, player.getRunes());
+		player.applyEffects(runeCard);
+		assertEquals(1, player.getRunes());
+	}
+
 	@Test
 	public void testApplyEffectsPower() {
 		Player player = Player.makePlayer();
@@ -423,23 +437,37 @@ public class Tests {
 		ACard powerCard = EasyMock.niceMock(HeroCard.class);
 		EasyMock.expect(powerCard.getEffects()).andReturn(map);
 		EasyMock.replay(powerCard);
-		
+
 		assertEquals(0, player.getPower());
 		player.applyEffects(powerCard);
 		assertEquals(1, player.getPower());
 		EasyMock.verify(powerCard);
 	}
-	
+
+	/**
+	 * same as above, without mocking
+	 */
+	@Test
+	public void testApplyEffectsPowerMockless() {
+		Player player = Player.makePlayer();
+		HashMap<String, Integer> map = new HashMap<String, Integer>();
+		map.put("power", 1);
+		ACard powerCard = ACard.makeCard("", "", "", "Hero", 0, 0, 0, map);
+		assertEquals(0, player.getPower());
+		player.applyEffects(powerCard);
+		assertEquals(1, player.getPower());
+	}
+
 	@Test
 	public void testApplyEffectsDraw() {
 		Player player = Player.makePlayer();
 		HashMap<String, Integer> map = new HashMap<String, Integer>();
 		map.put("draw", 1);
-				
+
 		ACard drawCard = EasyMock.niceMock(HeroCard.class);
 		EasyMock.expect(drawCard.getEffects()).andReturn(map);
 		EasyMock.replay(drawCard);
-		
+
 		assertEquals(5, player.getHandSize());
 		assertEquals(5, player.getDeckSize());
 		player.applyEffects(drawCard);
@@ -447,15 +475,31 @@ public class Tests {
 		assertEquals(4, player.getDeckSize());
 		EasyMock.verify(drawCard);
 	}
-	
+
+	/**
+	 * same as above, without mocking
+	 */
+	@Test
+	public void testApplyEffectsDrawMockless() {
+		Player player = Player.makePlayer();
+		HashMap<String, Integer> map = new HashMap<String, Integer>();
+		map.put("draw", 1);
+		ACard drawCard = ACard.makeCard("", "", "", "Hero", 0, 0, 0, map);
+		assertEquals(5, player.getHandSize());
+		assertEquals(5, player.getDeckSize());
+		player.applyEffects(drawCard);
+		assertEquals(6, player.getHandSize());
+		assertEquals(4, player.getDeckSize());
+	}
+
 	@Test
 	public void testGetAddHonor() {
 		Player player = Player.makePlayer();
 		assertEquals(0, player.getHonor());
 		player.addHonor(5);
-		assertEquals(5, player.getHonor());	
+		assertEquals(5, player.getHonor());
 	}
-	
+
 	@Test
 	public void testApplyEffectsHonor() {
 		Player player = Player.makePlayer();
@@ -464,13 +508,27 @@ public class Tests {
 		ACard honorCard = EasyMock.niceMock(HeroCard.class);
 		EasyMock.expect(honorCard.getEffects()).andReturn(map);
 		EasyMock.replay(honorCard);
-		
+
 		assertEquals(0, player.getHonor());
 		player.applyEffects(honorCard);
 		assertEquals(5, player.getHonor());
 		EasyMock.verify(honorCard);
 	}
-	
+
+	/**
+	 * same as above, without mocking
+	 */
+	@Test
+	public void testApplyEffectsHonorMockless() {
+		Player player = Player.makePlayer();
+		HashMap<String, Integer> map = new HashMap<String, Integer>();
+		map.put("honor", 5);
+		ACard honorCard = ACard.makeCard("", "", "", "Hero", 0, 0, 0, map);
+		assertEquals(0, player.getHonor());
+		player.applyEffects(honorCard);
+		assertEquals(5, player.getHonor());
+	}
+
 	@Test
 	public void testApplyEffectsAllBasic() {
 		Player player = Player.makePlayer();
@@ -482,13 +540,13 @@ public class Tests {
 		ACard allCard = EasyMock.niceMock(HeroCard.class);
 		EasyMock.expect(allCard.getEffects()).andReturn(map);
 		EasyMock.replay(allCard);
-		
+
 		assertEquals(0, player.getHonor());
 		assertEquals(0, player.getPower());
 		assertEquals(0, player.getRunes());
 		assertEquals(5, player.getHandSize());
 		assertEquals(5, player.getDeckSize());
-		
+
 		player.applyEffects(allCard);
 		assertEquals(5, player.getHonor());
 		assertEquals(4, player.getPower());
@@ -497,5 +555,76 @@ public class Tests {
 		assertEquals(7, player.getHandSize());
 		EasyMock.verify(allCard);
 	}
-	
+
+	/**
+	 * same as above, without mocking
+	 */
+	@Test
+	public void testApplyEffectsAllBasicMockless() {
+		Player player = Player.makePlayer();
+		HashMap<String, Integer> map = new HashMap<String, Integer>();
+		map.put("honor", 5);
+		map.put("runes", 3);
+		map.put("draw", 2);
+		map.put("power", 4);
+		ACard allCard = ACard.makeCard("", "", "", "Hero", 0, 0, 0, map);
+		assertEquals(0, player.getHonor());
+		assertEquals(0, player.getPower());
+		assertEquals(0, player.getRunes());
+		assertEquals(5, player.getHandSize());
+		assertEquals(5, player.getDeckSize());
+		player.applyEffects(allCard);
+		assertEquals(5, player.getHonor());
+		assertEquals(4, player.getPower());
+		assertEquals(3, player.getRunes());
+		assertEquals(3, player.getDeckSize());
+		assertEquals(7, player.getHandSize());
+	}
+
+	@Test
+	public void testPlayingRealCardsWithRealEffects() {
+		// initialise player
+		Player player = Player.makePlayer();
+		// check that player has 5 cards
+		assertEquals(5, player.getHandSize());
+		// keep track of runes and power
+		int runesExpected = 0;
+		int powerExpected = 0;
+		for (int i = 0; i < 5; i++) {
+			// get the first card in hand
+			ACard card = player.getHand().get(0);
+			// do stuff based on the name of the card
+			System.out.println(card.getName());
+			if (card.getName().equals("Apprentice")) {
+				runesExpected++;
+				player.playCard(card);
+				assertEquals(runesExpected, player.getRunes());
+			} else if (card.getName().equals("Militia")) {
+				powerExpected++;
+				player.playCard(card);
+				assertEquals(powerExpected, player.getPower());
+			} else {
+				fail();
+			}
+			assertEquals(4 - i, player.getHandSize());
+		}
+	}
+
+	@Test
+	public void testDrawingCardsWithZeroCardsInDeck() {
+		Player player = Player.makePlayer();
+		player.drawCard(5);
+		assertTrue(player.getDeck().isEmpty());
+		assertEquals(10, player.getHandSize());
+		for (int i = 0; i < 7; i++) {
+			player.playCard(player.getHand().get(0));
+		}
+		assertEquals(7, player.getDiscardSize());
+		assertEquals(3, player.getHandSize());
+		player.drawCard();
+		assertEquals(0, player.getDiscardSize());
+		assertEquals(6, player.getDeckSize());
+		assertEquals(4, player.getHandSize());
+	}
+
 }
