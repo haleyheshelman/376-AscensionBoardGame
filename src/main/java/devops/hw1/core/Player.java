@@ -161,6 +161,11 @@ public class Player {
 	 *
 	 */
 	public void drawCard() {
+		if (this.playerDeck.isEmpty()){
+			this.playerDeck.addAll(this.discardPile);
+			this.discardPile.clear();
+			Collections.shuffle(this.playerDeck);
+		}
 		ACard fromDeck = this.playerDeck.remove();
 		this.playerHand.add(fromDeck);
 	}
