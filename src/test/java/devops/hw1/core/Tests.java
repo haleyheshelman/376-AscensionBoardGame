@@ -5,16 +5,10 @@ package devops.hw1.core;
 
 import static org.junit.Assert.*;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
 import java.util.HashMap;
 
 import org.easymock.EasyMock;
-import org.junit.Before;
 import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.junit.runners.Parameterized;
 
 /**
  * @author fenogljc
@@ -318,8 +312,9 @@ public class Tests {
 	public void testCompleteCardMaker() {
 		HashMap<String, Integer> tempMap = new HashMap<String, Integer>();
 		tempMap.put("draw", 1);
+			
 		HeroCard testCard = (HeroCard) ACard.makeCard(
-				"Heroes/Arha-Initiate.png", "Arha Initiate", "Enlightened",
+				null, "Arha Initiate", "Enlightened",
 				"Hero", 1, 1, 3, tempMap);
 		assertTrue(testCard.getFaction() == "Enlightened");
 		assertTrue(testCard.getEffects().containsKey("draw"));
@@ -423,7 +418,7 @@ public class Tests {
 		Player player = Player.makePlayer();
 		HashMap<String, Integer> map = new HashMap<String, Integer>();
 		map.put("runes", 1);
-		ACard runeCard = ACard.makeCard("", "", "", "Hero", 0, 0, 0, map);
+		ACard runeCard = ACard.makeCard(null, "", "", "Hero", 0, 0, 0, map);
 		assertEquals(0, player.getRunes());
 		player.applyEffects(runeCard);
 		assertEquals(1, player.getRunes());
@@ -452,7 +447,7 @@ public class Tests {
 		Player player = Player.makePlayer();
 		HashMap<String, Integer> map = new HashMap<String, Integer>();
 		map.put("power", 1);
-		ACard powerCard = ACard.makeCard("", "", "", "Hero", 0, 0, 0, map);
+		ACard powerCard = ACard.makeCard(null, "", "", "Hero", 0, 0, 0, map);
 		assertEquals(0, player.getPower());
 		player.applyEffects(powerCard);
 		assertEquals(1, player.getPower());
@@ -484,7 +479,7 @@ public class Tests {
 		Player player = Player.makePlayer();
 		HashMap<String, Integer> map = new HashMap<String, Integer>();
 		map.put("draw", 1);
-		ACard drawCard = ACard.makeCard("", "", "", "Hero", 0, 0, 0, map);
+		ACard drawCard = ACard.makeCard(null, "", "", "Hero", 0, 0, 0, map);
 		assertEquals(5, player.getHandSize());
 		assertEquals(5, player.getDeckSize());
 		player.applyEffects(drawCard);
@@ -523,7 +518,7 @@ public class Tests {
 		Player player = Player.makePlayer();
 		HashMap<String, Integer> map = new HashMap<String, Integer>();
 		map.put("honor", 5);
-		ACard honorCard = ACard.makeCard("", "", "", "Hero", 0, 0, 0, map);
+		ACard honorCard = ACard.makeCard(null, "", "", "Hero", 0, 0, 0, map);
 		assertEquals(0, player.getHonor());
 		player.applyEffects(honorCard);
 		assertEquals(5, player.getHonor());
@@ -567,7 +562,7 @@ public class Tests {
 		map.put("runes", 3);
 		map.put("draw", 2);
 		map.put("power", 4);
-		ACard allCard = ACard.makeCard("", "", "", "Hero", 0, 0, 0, map);
+		ACard allCard = ACard.makeCard(null, "", "", "Hero", 0, 0, 0, map);
 		assertEquals(0, player.getHonor());
 		assertEquals(0, player.getPower());
 		assertEquals(0, player.getRunes());
@@ -585,6 +580,7 @@ public class Tests {
 	public void testPlayingRealCardsWithRealEffects() {
 		// initialise player
 		Player player = Player.makePlayer();
+		System.out.println(player.getHand().get(0).name);
 		// check that player has 5 cards
 		assertEquals(5, player.getHandSize());
 		// keep track of runes and power
@@ -594,7 +590,6 @@ public class Tests {
 			// get the first card in hand
 			ACard card = player.getHand().get(0);
 			// do stuff based on the name of the card
-			System.out.println(card.getName());
 			if (card.getName().equals("Apprentice")) {
 				runesExpected++;
 				player.playCard(card);

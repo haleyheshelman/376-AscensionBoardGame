@@ -21,50 +21,52 @@ public class CardCollection {
 	public static final String DRAW = "draw";
 	public static final String HONOR = "honor";
 	
-	public void makeCard() throws IOException{
-		HashMap<String,Integer> map = new HashMap<>();
+	public CardCollection() throws IOException{
+		HashMap<String,Integer> map = new HashMap<String, Integer>();
+		HashMap<String,Integer> map1 = new HashMap<String, Integer>();
+		HashMap<String,Integer> map2 = new HashMap<String, Integer>();
+		HashMap<String,Integer> map3 = new HashMap<String, Integer>();
+		HashMap<String,Integer> map4 = new HashMap<String, Integer>();
+		HashMap<String,Integer> map5 = new HashMap<String, Integer>();
+
 		BufferedImage image = null;
 		
 		image = ImageIO.read(new File ("cardImages/Standard/Apprentice.png"));
-		
-		map.put("rune", 1);
+				
+		map.put(RUNES, 1);
 		apprentice = ACard.makeCard(image, "Apprentice", "none", "Hero", 0, 0, -1, map);
 		
-		map.clear();
 		image = ImageIO.read(new File ("cardImages/Standard/Militia1.png"));
 
-		map.put("power", 1);
-		militia = ACard.makeCard(image, "Militia", "none", "Hero", 0, 0, -1, map);
+		map1.put(POWER, 1);
+		militia = ACard.makeCard(image, "Militia", "none", "Hero", 0, 0, -1, map1);
 		
-		map.clear();
 		image = ImageIO.read(new File ("cardImages/Heroes/Arha-Initiate.png"));
 
 		
-		map.put("draw", 1);
-		arhaInitiate = ACard.makeCard(image, "Arha Initiate", "Enlightened","Hero",1,1,3,map);
+		map2.put(DRAW, 1);
+		arhaInitiate = ACard.makeCard(image, "Arha Initiate", "Enlightened","Hero",1,1,3,map2);
 		
-		map.clear();
 		image = ImageIO.read(new File ("cardImages/Heroes/Demon-Slayer.png"));
 
 		
-		map.put("power", 3);
-		demonSlayer = ACard.makeCard(image, "Demon Slayer", "Void","Hero",4,2,2,map);
+		map3.put(POWER, 3);
+		demonSlayer = ACard.makeCard(image, "Demon Slayer", "Void","Hero",4,2,2,map3);
 		
-		map.clear();
 		image = ImageIO.read(new File ("cardImages/Heroes/Wolf-Shaman.png"));
 
 		
-		map.put("rune", 1);
-		map.put("draw", 1);
-		wolfShaman = ACard.makeCard(image, "Wolf Shaman", "Lifebound","Hero",3,1,3,map);
+		map4.put(RUNES, 1);
+		map4.put(DRAW, 1);
+		wolfShaman = ACard.makeCard(image, "Wolf Shaman", "Lifebound","Hero",3,1,3,map4);
 		
-		map.clear();
+		
 		image = ImageIO.read(new File ("cardImages/Heroes/Flytrap-Witch.png"));
 
 		
-		map.put("honor", 2);
-		map.put("draw", 1);
-		flyTrapWitch = ACard.makeCard(image, "Fly Trap Witch", "Lifebound","Hero",5,2,2,map);
+		map5.put(HONOR, 2);
+		map5.put(DRAW, 1);
+		flyTrapWitch = ACard.makeCard(image, "Fly Trap Witch", "Lifebound","Hero",5,2,2,map5);
 		
 	}
 

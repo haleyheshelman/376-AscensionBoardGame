@@ -3,6 +3,7 @@
  */
 package devops.hw1.core;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -27,7 +28,12 @@ public class Player {
 	 * The constructor creates a player with a hand of five cards and a deck of five cards.
 	 */
 	
-	private Player() {		
+	private Player() {	
+		try {
+			new CardCollection();
+		} catch (IOException e) {
+			System.out.println("Could not find file");
+		}
 		this.discardPile = new ArrayList<ACard>();
 		this.playerHand = new ArrayList<ACard>();
 		this.playerDeck = new LinkedList<ACard>();
@@ -213,6 +219,7 @@ public class Player {
 			System.out.println("attempted to play a null card");
 			return;
 		}
+		System.out.println(card.getEffects().get("runes"));
 
 		this.playerHand.remove(card);
 		this.applyEffects(card);
