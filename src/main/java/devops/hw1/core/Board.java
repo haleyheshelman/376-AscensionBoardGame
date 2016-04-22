@@ -3,13 +3,16 @@
  */
 package devops.hw1.core;
 
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.LinkedList;
 
 /**
  * @author fenogljc
  * @author gneezyn
- * 
+ * @author heshelhj
+ * @author bishopcc
  */
 public class Board {
 
@@ -25,19 +28,25 @@ public class Board {
 	 * 
 	 */
 	public Board() {
+		try {
+			new CardCollection();
+		} catch (IOException exception) {
+			System.out.println("File not found");
+		}
 		this.theVoid = new ArrayList<ACard>();
 		this.cenDeck = new LinkedList<ACard>();
 		this.cenField = new ACard[6];
-		for (int i = 0; i < CardCollection.arhaInitiate.rarity; i++) {
+		for (int i = 0; i < CardCollection.arhaInitiate.rarity+3; i++) {
 			this.cenDeck.add(CardCollection.arhaInitiate);
 		}
-		for (int j = 0; j < CardCollection.demonSlayer.rarity; j++) {
+		for (int j = 0; j < CardCollection.demonSlayer.rarity+3; j++) {
 			this.cenDeck.add(CardCollection.demonSlayer);
 		}
-		for (int k = 0; k < CardCollection.flyTrapWitch.rarity; k++) {
+		for (int k = 0; k < CardCollection.flyTrapWitch.rarity+3; k++) {
 			this.cenDeck.add(CardCollection.flyTrapWitch);
 		}
-		for (int m = 0; m < 5; m++) {
+		Collections.shuffle(this.cenDeck);
+		for (int m = 0; m < 6; m++) {
 			centerDeckToField(m);
 		}
 		this.cultist = ACard.makeCard();
@@ -52,6 +61,8 @@ public class Board {
 		return this.theVoid;
 	}
 
+	
+	
 	/**
 	 * @return the Center Deck 
 	 */
@@ -88,5 +99,9 @@ public class Board {
 	public void centerDeckToField(int index) {
 		ACard card = this.cenDeck.remove();
 		this.cenField[index] = card;
+	}
+
+	public ACard[] getCenField() {
+		return this.cenField;
 	}
 }

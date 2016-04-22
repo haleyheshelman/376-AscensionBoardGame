@@ -49,7 +49,7 @@ public class Player {
 			this.addCardToDeck(CardCollection.apprentice);
 		}
 		for (int j = 0; j < 2; j++) {
-			this.addCardToDeck(CardCollection.flyTrapWitch);
+			this.addCardToDeck(CardCollection.militia);
 		}		
 	}
 

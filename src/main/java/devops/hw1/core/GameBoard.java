@@ -124,6 +124,11 @@ public class GameBoard extends JPanel {
 				
 			}
 		}
+		for(int j = 0; j < board.getCenField().length; j++){
+			BufferedImage card = board.getCenField()[j].getImage();
+			g2.drawImage(card, card1X+(100 * j), cardY, null);
+			
+		}
 		
 		
 		if(player.getDiscardSize()!=0){

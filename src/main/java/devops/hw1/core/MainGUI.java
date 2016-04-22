@@ -17,7 +17,7 @@ public class MainGUI {
 		JFrame frame = new JFrame("ASCENSION");
 		frame.setSize(WIDTH, HEIGHT);
 		
-		ascension.addMouseListener(new CardListener(player1, ascension.playerList, ascension.centerList));
+		ascension.addMouseListener(new CardListener(player1, ascension.playerList, ascension.centerList, board));
 		
 		frame.add(ascension, BorderLayout.CENTER);
 		
