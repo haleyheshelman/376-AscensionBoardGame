@@ -28,68 +28,34 @@ public class CardListener implements MouseListener {
 	public void mouseClicked(MouseEvent e) {
 		board = (GameBoard) e.getSource();
 		Point currentPos = board.getMousePosition();
-		
-		for (int i = 0; i < playerHandImages.size(); i++) {
-			if (playerHandImages.get(i).contains(currentPos)) {
+		int upperBound = 695;
+		int lowerBound = 850;
+
+		int factor = (1220-600) / player.getHandSize();
+
+		for (int i = 0; i < player.getHandSize(); i++) {
+			int leftBound = (factor * i) + 300;
+			int rightBound = (factor * i) + 390;
+			if ((currentPos.getX() < rightBound && currentPos.getX() > leftBound)
+					&& (currentPos.getY() < lowerBound && currentPos.getY() > upperBound)) {
 				player.playCard(player.getHand().get(i));
-				board.runeCount = player.getRunes();
-//				board.power_count = player.getPower();    					Function player.getPower() needed.
-				board.discardCount = player.getDiscardSize();
-				board.deckCount = player.getDeckSize();
-				updateGUI();
+				break;
 			}
+
 		}
-		
-		for (int i = 0; i < centerHandImages.size(); i++) {
-			if (centerHandImages.get(i).contains(currentPos)) {
-				checkType("spend");
-			}
-		}
+		updateGUI();
+
 	}
 	
 	public void updateGUI() {
-		board.runes.setText("Runes: " + (String.valueOf(board.runeCount)));
-		board.power.setText("Power: " + (String.valueOf(board.powerCount)));				
-		board.discard_pile.setText("Discard: " + (String.valueOf(board.discardCount)));
+		board.runesLabel.setText("Runes: " + player.getRunes());
+		board.powerLabel.setText("Power: " + player.getPower());				
+		board.discard_pileLabel.setText("Discard: " + player.getDiscardSize());
+		board.repaint();
 		
 	}
 	
-	/**
-	 * @param action a String that specifies whether the runes/power is being spent (spend) or added (add)
-	 */
-	public void checkType(String action) {
-		if (action.toLowerCase().equals("spend")) {
-			if (board.type.equals("Rune")) {
-				if (board.runeCount == 0) {
-					System.out.println("You don't have enough Runes.");
-				} else {
-					board.runeCount--;
-//				player.playCard(playerHand.get(0));
-					board.runes.setText("Runes: " + (String.valueOf(board.runeCount)));				
-				}
-			} else {
-				if (board.powerCount == 0) {
-					System.out.println("You don't have enough Power.");
-				} else {
-					board.powerCount--;
-					board.power.setText("Power: " + (String.valueOf(board.powerCount)));				
-				}
-			}			
-		} else if (action.toLowerCase().equals("add")) {
-			if (board.type.equals("Rune")) {
-				board.runeCount++;
-//				player.playCard(playerHand.get(0));
-				board.runes.setText("Runes: " + (String.valueOf(board.runeCount)));				
-			} else {
-				board.powerCount++;
-				board.power.setText("Power: " + (String.valueOf(board.powerCount)));				
-			}
-			board.discardCount++;
-			board.discard_pile.setText("Discard: " + (String.valueOf(board.discardCount)));
-		} else System.out.println("Something went wrong (in case it wasn't obvious).");
-	}
 	
-
 	public void mouseEntered(MouseEvent arg0) {
 		// not implemented
 	}
@@ -105,5 +71,6 @@ public class CardListener implements MouseListener {
 	public void mouseReleased(MouseEvent arg0) {
 		// not implemented
 	}
+
 
 }

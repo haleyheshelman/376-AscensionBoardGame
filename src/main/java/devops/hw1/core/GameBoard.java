@@ -6,6 +6,7 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.GridLayout;
 import java.awt.Shape;
+import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
 import javax.swing.JLabel;
@@ -45,6 +46,11 @@ public class GameBoard extends JPanel {
 	
 	public Player player;
 	public Board board;
+	
+	//sets bounds for player hand
+	public int playerHandLeft = 300; 
+	public int playerHandRight = WIDTH-300;
+	public int playerHandY = HEIGHT - 200;
 	
 	/**
 	 * The default constructor for the Game Board.
@@ -100,6 +106,18 @@ public class GameBoard extends JPanel {
 		super.paint(g);
 		Graphics2D g2 = (Graphics2D) g;
 		
+		int numCards = player.getHandSize();
+		if(numCards!=0){
+			int factor = (playerHandRight - playerHandLeft)/numCards;
+			for(int i = 0; i < numCards; i++){
+				BufferedImage card = player.getHand().get(i).getImage();
+				g2.drawImage(card, 300+(factor*i), playerHandY, null);
+				
+			}
+		}
+		if(player.getDiscardSize()!=0){
+			g2.drawImage(player.getDiscardPile().get(player.getDiscardSize()-1).getImage(), 20, 600, null);
+		}
 		
 	
 	}

@@ -20,7 +20,6 @@ public class Player {
 	private int power;
 	private int honor;
 	private ArrayList<ACard> discardPile;
-	// private int handSize;
 	private ArrayList<ACard> playerHand;
 	private LinkedList<ACard> playerDeck;
 
@@ -219,8 +218,6 @@ public class Player {
 			System.out.println("attempted to play a null card");
 			return;
 		}
-		System.out.println(card.getEffects().get("runes"));
-
 		this.playerHand.remove(card);
 		this.applyEffects(card);
 		this.discard(card);
