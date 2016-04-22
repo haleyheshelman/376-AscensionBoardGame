@@ -7,8 +7,11 @@ import java.awt.event.MouseListener;
 import java.util.ArrayList;
 
 /**
- * @author gneezyn
  * 
+ * Handles mouse clicks on cards and on the board
+ *
+ * @author heshelhj.
+ *         Created Apr 22, 2016.
  */
 public class CardListener implements MouseListener {
 	
@@ -26,13 +29,16 @@ public class CardListener implements MouseListener {
 		this.board = board;
 //		this.playerHand = player.getHand();
 	}
-
+	/**
+	 * Determines if a card has been clicked and takes the appropriate action
+	 */
 	public void mouseClicked(MouseEvent e) {
 		gameboard = (GameBoard) e.getSource();
 		Point currentPos = gameboard.getMousePosition();
 		int upperBound = 695;
 		int lowerBound = 850;
 		
+		//if the card clicked is in the player hand
 		if (player.getHandSize() != 0) {
 			int factor = (1220-600) / player.getHandSize();
 			
@@ -51,6 +57,7 @@ public class CardListener implements MouseListener {
 		int centerUpperBound = 400; //board height - 400
 		int centerLowerBound = 530; //upperbound + card height	
 		
+		//if the card click is in the center row
 		for (int j = 0; j < 6; j++) {
 			int leftBound = (100 * j) + 300;
 			int rightBound = (100 * j) + 390;
@@ -67,6 +74,11 @@ public class CardListener implements MouseListener {
 
 	}
 	
+	/**
+	 * 
+	 * updates the labels on the GUI and repaints 
+	 *
+	 */
 	public void updateGUI() {
 		gameboard.runesLabel.setText("Runes: " + player.getRunes());
 		gameboard.powerLabel.setText("Power: " + player.getPower());				

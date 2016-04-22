@@ -6,7 +6,13 @@ import java.io.IOException;
 import java.util.HashMap;
 
 import javax.imageio.ImageIO;
-
+/**
+ * 
+ * Creates the cards and attaches their images to that card
+ *
+ * @author heshelhj.
+ *         Created Apr 22, 2016.
+ */
 public class CardCollection {
 	
 	public static ACard apprentice;

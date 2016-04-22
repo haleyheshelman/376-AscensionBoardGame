@@ -100,7 +100,12 @@ public class Board {
 		ACard card = this.cenDeck.remove();
 		this.cenField[index] = card;
 	}
-
+	/**
+	 * 
+	 * gets the center row
+	 *
+	 * @return the center cards 
+	 */
 	public ACard[] getCenField() {
 		return this.cenField;
 	}

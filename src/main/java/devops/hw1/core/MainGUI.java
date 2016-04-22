@@ -4,6 +4,14 @@ import java.awt.BorderLayout;
 
 import javax.swing.JFrame;
 
+/**
+ * 
+ *Starts the GUI for Ascension
+ *
+ * @author heshelhj.
+ *         Created Apr 22, 2016.
+ */
+
 public class MainGUI {
 	
 	private static final int WIDTH = 1220;

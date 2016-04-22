@@ -54,13 +54,7 @@ public class GameBoard extends JPanel {
 	
 	//sets positions for the center cards
 	public int cardY = HEIGHT-500;
-
-	public int card1X = 300;
-	public int card2X = 400;
-	public int card3X = 500;
-	public int card4X = 600;
-	
-	
+	public int card1X = 300;	
 	/**
 	 * The default constructor for the Game Board.
 	 */
@@ -109,7 +103,9 @@ public class GameBoard extends JPanel {
 		this.discardCount = this.player.getDiscardSize();
 		this.board = board;
 	}
-
+	/**
+	 * Paints the cards onto the game baord
+	 */
 	@Override
 	public void paint(Graphics g) {
 		super.paint(g);
