@@ -1,5 +1,6 @@
 package devops.hw1.core;
 
+import java.awt.image.BufferedImage;
 import java.util.HashMap;
 
 public class HeroCard extends ACard {
@@ -22,7 +23,7 @@ public class HeroCard extends ACard {
 	 * @param rarity
 	 * @param effects
 	 */
-	public HeroCard(String image, String name, String faction, int cost,
+	public HeroCard(BufferedImage image, String name, String faction, int cost,
 			int honor, int rarity, HashMap<String, Integer> effects) {
 		this.image = image;
 		this.name = name;

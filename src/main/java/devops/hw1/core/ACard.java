@@ -3,6 +3,7 @@
  */
 package devops.hw1.core;
 
+import java.awt.image.BufferedImage;
 import java.util.HashMap;
 
 /**
@@ -17,7 +18,7 @@ public abstract class ACard {
 	protected String name;
 	protected int honor;
 	protected int rarity;
-	protected String image;
+	protected BufferedImage image;
 	
 	/**
 	 * This returns a card with zero cost and no other special attributes.
@@ -51,7 +52,7 @@ public abstract class ACard {
 	 * @return
 	 */
 
-	public static ACard makeCard(String image, String name, String faction,
+	public static ACard makeCard(BufferedImage image, String name, String faction,
 			String type, int cost, int honor, int rarity,
 			HashMap<String, Integer> effects) {
 		
@@ -126,7 +127,7 @@ public abstract class ACard {
 	/**
 	 * @return the image
 	 */
-	public String getImage() {
+	public BufferedImage getImage() {
 		return image;
 	}
 
@@ -134,7 +135,7 @@ public abstract class ACard {
 	 * @param image
 	 *            the image to set
 	 */
-	public void setImage(String image) {
+	public void setImage(BufferedImage image) {
 		this.image = image;
 	}
 

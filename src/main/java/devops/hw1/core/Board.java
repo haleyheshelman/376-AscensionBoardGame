@@ -32,9 +32,7 @@ public class Board {
 		HashMap<String, Integer> tempMap = new HashMap<String, Integer>();
 		this.cenField = new ACard[6];
 		tempMap.put("draw", 1);
-		HeroCard initiateCard = (HeroCard) ACard.makeCard(
-				"Heroes/Arha-Initiate.png", "Arha Initiate", "Enlightened",
-				"Hero", 1, 1, 3, tempMap);
+		HeroCard initiateCard = (HeroCard) CardCollection.arhaInitiate;
 		for (int i = 0; i < 100; i++) {
 			this.cenDeck.add(initiateCard);
 		}

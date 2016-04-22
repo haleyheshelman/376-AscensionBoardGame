@@ -40,17 +40,11 @@ public class Player {
 	 * 
 	 */
 	public void initialiseDeck() {
-		HashMap<String, Integer> tempMapRune = new HashMap<>();
-		tempMapRune.put("runes", 1);
-		ACard apprenticeCard = ACard.makeCard("", "Apprentice", null, "Hero", 0, 0, 0, tempMapRune);
-		HashMap<String, Integer> tempMapPower = new HashMap<>();
-		tempMapPower.put("power", 1);
-		ACard militiaCard = ACard.makeCard("", "Militia", null, "Hero", 0, 0, 0, tempMapPower);
-		for (int i = 0; i < 8; i++) { 
-			this.addCardToDeck(apprenticeCard);
+			for (int i = 0; i < 8; i++) { 
+			this.addCardToDeck(CardCollection.apprentice);
 		}
 		for (int j = 0; j < 2; j++) {
-			this.addCardToDeck(militiaCard);
+			this.addCardToDeck(CardCollection.militia);
 		}		
 	}
 
