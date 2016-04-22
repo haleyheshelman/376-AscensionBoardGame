@@ -6,15 +6,8 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.GridLayout;
 import java.awt.Shape;
-import java.awt.geom.Rectangle2D;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
 
-import javax.imageio.ImageIO;
-import javax.swing.JComponent;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -34,22 +27,22 @@ public class GameBoard extends JPanel {
 //	private BufferedImage background; currently not used
 
 	// labels that display
-	public JLabel runes = new JLabel("Runes: 5");
-	public JLabel power = new JLabel("Power: 0");
-	public JLabel deck = new JLabel("Left in Deck: 5");
-	public JLabel discard_pile = new JLabel("Discard: 0");
+	public JLabel runesLabel = new JLabel("Runes: 0");
+	public JLabel powerLabel = new JLabel("Power: 0");
+	public JLabel deckLabel = new JLabel("Left in Deck: 5");
+	public JLabel discard_pileLabel = new JLabel("Discard: 0");
 
 	// counters for keeping track of the various information, will be replaced as project progresses
-	public int rune_count;
-	public int power_count;
-	public int deck_count;
-	public int discard_count;
+	public int runeCount;
+	public int powerCount;
+	public int deckCount;
+	public int discardCount;
+	public int honorCount;
 	
 	// tracking positions of cards based on rectangle objects drawn beneath them
 	public ArrayList<Shape> centerList;
 	public ArrayList<Shape> playerList;
 	
-	public String type;
 	public Player player;
 	public Board board;
 	
@@ -61,32 +54,32 @@ public class GameBoard extends JPanel {
 		super();
 		
 		// then initialize value
-		this.rune_count = 0;
-		this.power_count = 0;
-		this.deck_count = 5;
-		this.discard_count = 0;
+		this.runeCount = 0;
+		this.powerCount = 0;
+		this.deckCount = 5;
+		this.discardCount = 0;
 		
 		this.centerList = new ArrayList<Shape>();
 		this.playerList = new ArrayList<Shape>();
 		
 		// Setting the fonts of the labels
-		this.runes.setFont(LABEL_FONT);
-		this.power.setFont(LABEL_FONT);
-		this.deck.setFont(LABEL_FONT);
-		this.discard_pile.setFont(LABEL_FONT);
+		this.runesLabel.setFont(LABEL_FONT);
+		this.powerLabel.setFont(LABEL_FONT);
+		this.deckLabel.setFont(LABEL_FONT);
+		this.discard_pileLabel.setFont(LABEL_FONT);
 		
 		this.setLayout(new BorderLayout());
 		
 		JPanel leftInfo = new JPanel();
 		leftInfo.setLayout(new GridLayout(3, 1));
-		leftInfo.add(this.runes);
-		leftInfo.add(this.power);
-		leftInfo.add(this.deck);
+		leftInfo.add(this.runesLabel);
+		leftInfo.add(this.powerLabel);
+		leftInfo.add(this.deckLabel);
 		
 		JPanel labels = new JPanel();
 		labels.setLayout(new BorderLayout());
 		labels.add(leftInfo, BorderLayout.WEST);
-		labels.add(this.discard_pile, BorderLayout.EAST);
+		labels.add(this.discard_pileLabel, BorderLayout.EAST);
 		labels.setBorder(new EmptyBorder(10, 10, 10, 10));
 		this.add(labels, BorderLayout.SOUTH);
 	}
@@ -97,8 +90,8 @@ public class GameBoard extends JPanel {
 		
 		// then do additional stuff
 		this.player = player;
-		this.rune_count = this.player.getRunes();
-		this.discard_count = this.player.getDiscardSize();
+		this.runeCount = this.player.getRunes();
+		this.discardCount = this.player.getDiscardSize();
 		this.board = board;
 	}
 
@@ -108,52 +101,8 @@ public class GameBoard extends JPanel {
 		Graphics2D g2 = (Graphics2D) g;
 		
 		
-		// the center field
-		for (int i = 1; i <= 6; i++) {
-			
-			BufferedImage card = null;
-			try {
-				card = ImageIO.read(new File("cardImages/Heroes/Arha-Initiate.png"));
-				
-			} catch (IOException e) {
-				System.out.println("Something went wrong with the Arha-Templar.png file.");
-			}
-			
-			Rectangle2D.Double cardPos = new Rectangle2D.Double(150 + 100*i, HEIGHT - 475, 90, 125);
-			this.centerList.add(cardPos);
-			
-			g2.drawImage(card, 150 + 100*i, HEIGHT - 475, null);
-		}
-		
-		// the player hand
-		for (int i = 1; i <= 5; i++) {
-			
-			BufferedImage card = null;
-			try {
-				card = ImageIO.read(new File("cardImages/Standard/Apprentice.png"));
-				
-			} catch (IOException e) {
-				System.out.println("Something went wrong with the Aprrentice.png file.");
-			}
-			
-			Rectangle2D.Double cardPos = new Rectangle2D.Double(200 + 100*i, HEIGHT - 300, 90, 125);
-			this.playerList.add(cardPos);
-			
-			g2.drawImage(card, 200 + 100*i, HEIGHT - 300, null);
-		}
+	
 	}
 	
-	public void setType(String type) {
-		this.type = type;
-	}
 	
 }
-
-// background image code, might use later
-//		BufferedImage img = null;
-//		try {
-//			img = ImageIO.read(new File("Game-BoardSmall.png"));
-//		} catch (IOException e) {
-//			System.out.println("Something went wrong with the Game-BoardSmall.png file.");
-//		}
-//		g2.drawImage(img, 0, 0, null);

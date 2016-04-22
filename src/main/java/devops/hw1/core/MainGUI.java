@@ -15,7 +15,6 @@ public class MainGUI {
 		player1.addRunes(0);
 		player1.drawCard(5);
 		GameBoard ascension = new GameBoard(player1, board);
-		ascension.setType("Rune");
 		JFrame frame = new JFrame("ASCENSION");
 		frame.setSize(WIDTH, HEIGHT);
 		
@@ -29,13 +28,3 @@ public class MainGUI {
 		frame.setVisible(true);
 	}
 }
-
-// code that might be used later
-//		MyComponent info = new MyComponent();
-//		info.setLayout(new GridLayout(3, 1));
-//		info.add(runesLeft);
-//		info.add(powerLeft);
-//		info.add(deckLeft);
-//		
-//		frame.setLayout(new BorderLayout());
-//		frame.add(info, BorderLayout.SOUTH);

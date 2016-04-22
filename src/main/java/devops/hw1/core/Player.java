@@ -14,11 +14,6 @@ import java.util.Queue;
  *
  */
 public class Player {
-	
-	private static final String RUNES = "runes";
-	private static final String POWER = "power";
-	private static final String DRAW = "draw";
-	private static final String HONOR = "honor";
 
 	private int runes;
 	private int power;
@@ -277,16 +272,16 @@ public class Player {
 		HashMap<String, Integer> map = card.getEffects();
 		for (String k : map.keySet()) {
 			switch (k) {
-			case RUNES:
+			case CardCollection.RUNES:
 				this.addRunes(map.get(k));
 				break;
-			case POWER:
+			case CardCollection.POWER:
 				this.addPower(map.get(k));
 				break;
-			case DRAW:
+			case CardCollection.DRAW:
 				this.drawCard(map.get(k));
 				break;
-			case HONOR:
+			case CardCollection.HONOR:
 				this.addHonor(map.get(k));
 				break;
 			}
