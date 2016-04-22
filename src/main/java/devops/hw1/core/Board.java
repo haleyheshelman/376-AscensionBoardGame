@@ -4,8 +4,6 @@
 package devops.hw1.core;
 
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
 import java.util.LinkedList;
 
 /**
@@ -29,14 +27,19 @@ public class Board {
 	public Board() {
 		this.theVoid = new ArrayList<ACard>();
 		this.cenDeck = new LinkedList<ACard>();
-		HashMap<String, Integer> tempMap = new HashMap<String, Integer>();
 		this.cenField = new ACard[6];
-		tempMap.put("draw", 1);
-		HeroCard initiateCard = (HeroCard) CardCollection.arhaInitiate;
-		for (int i = 0; i < 100; i++) {
-			this.cenDeck.add(initiateCard);
+		for (int i = 0; i < CardCollection.arhaInitiate.rarity; i++) {
+			this.cenDeck.add(CardCollection.arhaInitiate);
 		}
-		
+		for (int j = 0; j < CardCollection.demonSlayer.rarity; j++) {
+			this.cenDeck.add(CardCollection.demonSlayer);
+		}
+		for (int k = 0; k < CardCollection.flyTrapWitch.rarity; k++) {
+			this.cenDeck.add(CardCollection.flyTrapWitch);
+		}
+		for (int m = 0; m < 5; m++) {
+			centerDeckToField(m);
+		}
 		this.cultist = ACard.makeCard();
 		this.heavyInf = ACard.makeCard();
 		this.mystic = ACard.makeCard();

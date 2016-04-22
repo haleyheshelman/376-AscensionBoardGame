@@ -52,6 +52,15 @@ public class GameBoard extends JPanel {
 	public int playerHandRight = WIDTH-300;
 	public int playerHandY = HEIGHT - 200;
 	
+	//sets positions for the center cards
+	public int cardY = HEIGHT-500;
+
+	public int card1X = 300;
+	public int card2X = 400;
+	public int card3X = 500;
+	public int card4X = 600;
+	
+	
 	/**
 	 * The default constructor for the Game Board.
 	 */
@@ -115,6 +124,8 @@ public class GameBoard extends JPanel {
 				
 			}
 		}
+		
+		
 		if(player.getDiscardSize()!=0){
 			g2.drawImage(player.getDiscardPile().get(player.getDiscardSize()-1).getImage(), 20, 600, null);
 		}

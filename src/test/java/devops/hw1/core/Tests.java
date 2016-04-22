@@ -3,7 +3,10 @@
  */
 package devops.hw1.core;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
 
 import java.util.HashMap;
 
@@ -620,6 +623,12 @@ public class Tests {
 		assertEquals(0, player.getDiscardSize());
 		assertEquals(6, player.getDeckSize());
 		assertEquals(4, player.getHandSize());
+	}
+	
+	@Test
+	public void testGetCen() {
+		Board board = new Board();
+		assertFalse(board.getCenField() == null);
 	}
 
 }
