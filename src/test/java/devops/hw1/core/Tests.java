@@ -83,6 +83,9 @@ public class Tests {
 
 	}
 
+	/**
+	 * Checking that discard size works.
+	 */
 	@Test
 	public void testPlayerDiscard() {
 		Player newPlayer = Player.makePlayer();
@@ -107,6 +110,9 @@ public class Tests {
 		assertTrue(newPlayer.getDiscardPile().contains(card1));
 	}
 
+	/**
+	 * Checking that discard actually puts the cards in the discard pile and that the hand doesn't have the card
+	 */
 	@Test
 	public void testDiscardingCards() {
 		Player newPlayer = Player.makePlayer();
