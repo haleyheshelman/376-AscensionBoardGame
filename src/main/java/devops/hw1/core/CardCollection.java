@@ -23,6 +23,7 @@ public class CardCollection {
 	public static ACard flyTrapWitch; 
 	public static ACard asceticOfTheLidlessEye;
 	public static ACard emriOneWithTheVoid;
+	public static ACard[] cards;
 	
 	public static final String RUNES = "runes";
 	public static final String POWER = "power";
@@ -87,7 +88,7 @@ public class CardCollection {
 		map7.put(POWER, 4);
 		emriOneWithTheVoid = ACard.makeCard(image, "Emri, One with the Void", "Void","Hero",6,3,1,map7);
 		
-		
+		cards = new ACard[] {arhaInitiate, demonSlayer, wolfShaman, flyTrapWitch, asceticOfTheLidlessEye, emriOneWithTheVoid};
 	}
 
 }
