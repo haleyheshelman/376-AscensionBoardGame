@@ -57,13 +57,22 @@ public class Tests {
 		assertTrue(newPlayer instanceof Player);
 	}
 
-	@Test
-	public void testPlayerHasRunes() {
-		Player newPlayer = Player.makePlayer();
-		newPlayer.addRunes(3);
-		assertTrue(newPlayer.getRunes() == 3);
-	}
+	//This test is unnecessary since a more thorough one already exists (see tesPlayerAddRunes()). 
+//	/**
+//	 * Tests that the player can have runes added (addRunes method).
+//	 */
+//	@Test
+//	public void testPlayerHasRunes() {
+//		Player newPlayer = Player.makePlayer();
+//		newPlayer.addRunes(3);
+//		assertTrue(newPlayer.getRunes() == 3);
+//	}
 
+	/**
+	 * Tests that the player can have runes added by calling 
+	 * the addRunes method. Also checks that the player starts
+	 * with no runes.
+	 */
 	@Test
 	public void testPlayerAddRunes() {
 		Player newPlayer = Player.makePlayer();
@@ -77,6 +86,11 @@ public class Tests {
 		assertTrue(newPlayer.getRunes() == 0);
 	}
 
+	/**
+	 * Integration test equivalent of testPlayerDiscard.
+	 * Tests that the discard method works through the 
+	 * use of Mocking.
+	 */
 	@Test
 	public void testPlayerDiscardMock() {
 		Player newPlayer = Player.makePlayer();
@@ -95,7 +109,10 @@ public class Tests {
 	}
 
 	/**
-	 * Checking that discard size works.
+	 * Tests that the player can discard pile works appropriately.
+	 * This includes checking that cards can be added to the 
+	 * discard pile and making sure that the size of the discard
+	 * pile is actually increasing.
 	 */
 	@Test
 	public void testPlayerDiscard() {
@@ -108,6 +125,11 @@ public class Tests {
 		assertTrue(newPlayer.getDiscardSize() == 3);
 	}
 
+	/**
+	 * Integration test equivalent of testDiscardingCards().
+	 * Tests that the discard method actually puts the card(s)
+	 * in the discard pile through the use of Mocking.
+	 */
 	@Test
 	public void testDiscardingCardsMock() {
 		Player newPlayer = Player.makePlayer();
@@ -122,7 +144,8 @@ public class Tests {
 	}
 
 	/**
-	 * Checking that discard actually puts the cards in the discard pile and that the hand doesn't have the card
+	 * Tests that discard actually puts the cards in the 
+	 * discard pile and that the hand doesn't have the card.
 	 */
 	@Test
 	public void testDiscardingCards() {
@@ -134,6 +157,10 @@ public class Tests {
 		assertTrue(newPlayer.getDiscardPile().contains(newCard));
 	}
 
+	/**
+	 * Tests that a player can "buy" a card from the center
+	 * field, if the player has enough runes.
+	 */
 	@Test
 	public void testPlayerBuyCard() {
 		Player newPlayer = Player.makePlayer();
@@ -157,6 +184,9 @@ public class Tests {
 
 	}
 
+	/**
+	 * Testing the buyCard method with null input.
+	 */
 	@Test
 	public void testPlayerBuyCardInput() {
 		Player player1 = Player.makePlayer();
@@ -166,12 +196,19 @@ public class Tests {
 
 	}
 
+	/**
+	 * Testing the discard method with null input.
+	 */
 	@Test
 	public void testPlayerDiscardInput() {
 		Player player = Player.makePlayer();
 		player.discard(null);
 	}
 
+	/**
+	 * Testing that the player starts out with 
+	 * five cards in their hand.
+	 */
 	@Test
 	public void testPlayerHandSize() {
 		Player player = Player.makePlayer();
@@ -181,6 +218,10 @@ public class Tests {
 
 	/**
 	 * Tests that a player can draw a card from their deck.
+	 * Checks that the player's hand and deck both start
+	 * with five cards. Also checks that drawing a card
+	 * both increases the size of the player's hand and 
+	 * decreases the size of their deck (by one).
 	 */
 	@Test
 	public void testPlayerDrawCard() {
@@ -206,7 +247,9 @@ public class Tests {
 	}
 
 	/**
-	 * Tests (with Mocking) that the player can draw a card from their deck.
+	 * Integration test equivalent of testPlayerDrawCardWithCard().
+	 * Tests that the player can draw a card from their deck and 
+	 * that the card is in the player's hand through the use of Mocking.
 	 */
 	@Test
 	public void testPlayerDrawCardWithCardMock() {
@@ -219,10 +262,12 @@ public class Tests {
 	}
 
 	/**
-	 * Tests (without Mocking) that the player can draw a card from their deck.
+	 * Tests that the player can draw a card from their deck.
+	 * And checks that the player's hand actually contains
+	 * the card that was added.
 	 */
 	@Test
-	public void testPlayerDrawCardwithCard() {
+	public void testPlayerDrawCardWithCard() {
 		Player player = Player.makePlayer();
 		ACard card = ACard.makeCard();
 		player.addCardToDeck(card);
