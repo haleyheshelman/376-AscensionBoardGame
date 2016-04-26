@@ -313,7 +313,7 @@ public class Tests {
 	public void testIsDeckCreated() {
 		Board newBored = new Board();
 		assertFalse(newBored.getCenDeck().isEmpty());
-		assertEquals(newBored.getCenDeck().size(), 100);
+		assertEquals(100, newBored.getCenDeck().size());
 		assertFalse(newBored.getCenDeck().size() == 101);
 	}
 
