@@ -14,17 +14,23 @@ import org.easymock.EasyMock;
 import org.junit.Test;
 
 /**
- * @author fenogljc
+ * @author fenogljc, gneezyn, bishopcc, heshelhj
  * 
  */
 public class Tests {
 
+	/**
+	 * Tests that a card can be made.
+	 */
 	@Test
 	public void testMakeCard() {
 		ACard newCard = ACard.makeCard();
 		assertTrue(newCard instanceof ACard);
 	}
 
+	/**
+	 * Tests that you can get a card's cost.
+	 */
 	@Test
 	public void testGetCardCost() {
 		ACard newCard = ACard.makeCard(2);
