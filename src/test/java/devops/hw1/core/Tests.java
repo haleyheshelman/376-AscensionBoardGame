@@ -185,7 +185,7 @@ public class Tests {
 	}
 
 	/**
-	 * Testing the buyCard method with null input.
+	 * Error checking for buyCard (method of Player).
 	 */
 	@Test
 	public void testPlayerBuyCardInput() {
@@ -197,7 +197,7 @@ public class Tests {
 	}
 
 	/**
-	 * Testing the discard method with null input.
+	 * Error checking for discard (method of Player).
 	 */
 	@Test
 	public void testPlayerDiscardInput() {
@@ -275,6 +275,10 @@ public class Tests {
 		assertTrue(player.getHand().contains(card));
 	}
 
+	/**
+	 * Tests that you can set and get the effects of 
+	 * different cards (only checks Hero Cards).
+	 */
 	@Test
 	public void testSetAndGetEffects() {
 		ACard card = HeroCard.makeCard(1);
@@ -282,6 +286,10 @@ public class Tests {
 		assertTrue(card.getEffects().containsKey("draw"));
 	}
 
+	/**
+	 * Tests that the player can draw a card due to the 
+	 * effect of a card that the player used.
+	 */
 	@Test
 	public void testDrawACardAfterPlayingCard() {
 		Player player = Player.makePlayer();
@@ -298,6 +306,11 @@ public class Tests {
 		assertTrue(player.getHand().contains(cardInDeck));
 	}
 
+	/**
+	 * Tests that after a card is played, it goes to that
+	 * player's discard pile (exception: Constructs aren't
+	 * implemented yet and will be tested later).
+	 */
 	@Test
 	public void testCardGoesToDiscardAfterPlaying() {
 		Player player = Player.makePlayer();
@@ -308,6 +321,9 @@ public class Tests {
 		assertTrue(player.getDiscardPile().contains(card));
 	}
 
+	/**
+	 * Tests that a card can have more than one effect.
+	 */
 	@Test
 	public void testSetEffects() {
 		ACard card = HeroCard.makeCard();
@@ -317,6 +333,10 @@ public class Tests {
 		assertTrue(card.getEffects().get("runes") == 1);
 	}
 
+	/**
+	 * Tests that when a card is played, it's effect(s)
+	 * take place.
+	 */
 	@Test
 	public void testPlayCardAddingRunes() {
 		Player player = Player.makePlayer();
@@ -330,12 +350,18 @@ public class Tests {
 
 	// We do not want to allow input of null to the setEffect()
 
+	/**
+	 * Error checking for setEffect (method of ACard).
+	 */
 	@Test
 	public void testSetEffectInput() {
 		ACard card = ACard.makeCard();
 		card.setEffect(null, 1);
 	}
 
+	/**
+	 * Error checking for playCard (method of ACard).
+	 */
 	@Test
 	public void testPlayCardInput() {
 		Player p = Player.makePlayer();
@@ -344,12 +370,19 @@ public class Tests {
 
 	// We do not want to allow input of null to the addCardToDeck()
 
+	/**
+	 * Error checking for addCardToDeck (method of Player).
+	 */
 	@Test
 	public void testAddCardToDeckInput() {
 		Player p = Player.makePlayer();
 		p.addCardToDeck(null);
 	}
 
+	/**
+	 * Tests the Board's (class) default constructor. Checks
+	 * that the Board is not null.
+	 */
 	@Test
 	public void testConstructBoard() {
 		Board newBored = new Board();
@@ -357,7 +390,8 @@ public class Tests {
 	}
 
 	/**
-	 * Tests whether the void is properly initialized when a new Board is made.
+	 * Tests that the Void is properly initialized (starts empty) 
+	 * when a new Board is made.
 	 */
 	@Test
 	public void testIsVoidEmpty() {
@@ -365,6 +399,10 @@ public class Tests {
 		assertTrue(newBored.getVoid().isEmpty());
 	}
 
+	/**
+	 * Tests that the Center Deck is properly initialized (starts 
+	 * with 100 cards).
+	 */
 	@Test
 	public void testIsDeckCreated() {
 		Board newBored = new Board();
@@ -373,6 +411,10 @@ public class Tests {
 		assertFalse(newBored.getCenDeck().size() == 101);
 	}
 
+	/**
+	 * Tests that distinct cards can be made and that the cards
+	 * have the correct information.
+	 */
 	@Test
 	public void testCompleteCardMaker() {
 		HashMap<String, Integer> tempMap = new HashMap<String, Integer>();
@@ -389,6 +431,10 @@ public class Tests {
 		assertTrue(testCard.getRarity() == 3);
 	}
 
+	/**
+	 * Tests that Standard Cards. Checks that the standard cards
+	 * are properly initialized when the Board is created.
+	 */
 	@Test
 	public void testStandardCards() {
 		// initialize the game board
@@ -405,7 +451,8 @@ public class Tests {
 	}
 
 	/**
-	 * Tests that cards can be added to the player's hand
+	 * Tests that cards can be added to the player's hand (doesn't
+	 * worry about where the cards are coming from).
 	 */
 	@Test
 	public void testAddCardToHand() {
@@ -435,6 +482,10 @@ public class Tests {
 
 	}
 
+	/**
+	 * Tests that cards can be moved from the Center Deck to the 
+	 * field.
+	 */
 	@Test
 	public void testCenterDeckToField() {
 		Board newBored = new Board();
@@ -448,7 +499,9 @@ public class Tests {
 	}
 
 	/**
-	 * This tests the getPower function for the player.
+	 * Tests that the player can have power added by calling 
+	 * the getPower method. Also checks that the player starts
+	 * with no power and that the player never has negative power.
 	 */
 	@Test
 	public void testGetPlayerPower() {
@@ -463,6 +516,11 @@ public class Tests {
 		assertEquals(0, player.getPower());
 	}
 
+	/**
+	 * Integration test equivalent of testApplyEffectsRunesMockless().
+	 * Tests that applyEffects method (from Player) works for "runes" 
+	 * through the use of Mocking.
+	 */
 	@Test
 	public void testApplyEffectsRunes() {
 		Player player = Player.makePlayer();
@@ -478,6 +536,10 @@ public class Tests {
 		EasyMock.verify(runeCard);
 	}
 
+	/**
+	 * Tests that applying the effect of a card leads to the 
+	 * effect taking place (only tested with "runes" effect).
+	 */
 	@Test
 	public void testApplyEffectsRunesMockless() {
 		Player player = Player.makePlayer();
@@ -489,6 +551,11 @@ public class Tests {
 		assertEquals(1, player.getRunes());
 	}
 
+	/**
+	 * Integration test equivalent of testApplyEffectsRunesMockless().
+	 * Tests that applyEffects method (from Player) works for "power" 
+	 * through the use of Mocking.
+	 */
 	@Test
 	public void testApplyEffectsPower() {
 		Player player = Player.makePlayer();
@@ -505,7 +572,8 @@ public class Tests {
 	}
 
 	/**
-	 * same as above, without mocking
+	 * Tests that applying the effect of a card leads to the 
+	 * effect taking place (only tested with "power" effect).
 	 */
 	@Test
 	public void testApplyEffectsPowerMockless() {
@@ -518,6 +586,11 @@ public class Tests {
 		assertEquals(1, player.getPower());
 	}
 
+	/**
+	 * Integration test equivalent of testApplyEffectsRunesMockless().
+	 * Tests that applyEffects method (from Player) works for "draw" 
+	 * through the use of Mocking.
+	 */
 	@Test
 	public void testApplyEffectsDraw() {
 		Player player = Player.makePlayer();
@@ -537,7 +610,8 @@ public class Tests {
 	}
 
 	/**
-	 * same as above, without mocking
+	 * Tests that applying the effect of a card leads to the 
+	 * effect taking place (only tested with "draw" effect).
 	 */
 	@Test
 	public void testApplyEffectsDrawMockless() {
@@ -552,6 +626,11 @@ public class Tests {
 		assertEquals(4, player.getDeckSize());
 	}
 
+	/**
+	 * Tests the addHonor method (of Player). Checks that the
+	 * player can have honor added to his/her honor pile and that
+	 * the player starts out with no honor.
+	 */
 	@Test
 	public void testGetAddHonor() {
 		Player player = Player.makePlayer();
@@ -560,6 +639,11 @@ public class Tests {
 		assertEquals(5, player.getHonor());
 	}
 
+	/**
+	 * Integration test equivalent of testApplyEffectsRunesMockless().
+	 * Tests that applyEffects method (from Player) works for "honor" 
+	 * through the use of Mocking.
+	 */
 	@Test
 	public void testApplyEffectsHonor() {
 		Player player = Player.makePlayer();
@@ -576,7 +660,8 @@ public class Tests {
 	}
 
 	/**
-	 * same as above, without mocking
+	 * Tests that applying the effect of a card leads to the 
+	 * effect taking place (only tested with "honor" effect).
 	 */
 	@Test
 	public void testApplyEffectsHonorMockless() {
@@ -589,6 +674,11 @@ public class Tests {
 		assertEquals(5, player.getHonor());
 	}
 
+	/**
+	 * Integration test equivalent of testApplyEffectsAllBasicMockless().
+	 * Tests that when a card has more than one effect, all of the 
+	 * effects are applied properly.
+	 */
 	@Test
 	public void testApplyEffectsAllBasic() {
 		Player player = Player.makePlayer();
@@ -617,7 +707,9 @@ public class Tests {
 	}
 
 	/**
-	 * same as above, without mocking
+	 * Tests (for all of the basic effects) that a card can have
+	 * more than one effect and that when the card's effect(s) 
+	 * are applied, they produce the correct results.
 	 */
 	@Test
 	public void testApplyEffectsAllBasicMockless() {
@@ -641,6 +733,10 @@ public class Tests {
 		assertEquals(7, player.getHandSize());
 	}
 
+	/**
+	 * Tests that the proper effects take place when a card 
+	 * is played. Uses real cards (i.e. "Apprentice").
+	 */
 	@Test
 	public void testPlayingRealCardsWithRealEffects() {
 		// initialise player
@@ -670,6 +766,12 @@ public class Tests {
 		}
 	}
 
+	/**
+	 * Tests that when a player tries to draw from their 
+	 * deck when it is empty, the player's discard pile is
+	 * shuffled and becomes the new deck. Also makes sure 
+	 * that the size of the deck never becomes negative.
+	 */
 	@Test
 	public void testDrawingCardsWithZeroCardsInDeck() {
 		Player player = Player.makePlayer();
@@ -687,6 +789,10 @@ public class Tests {
 		assertEquals(4, player.getHandSize());
 	}
 	
+	/**
+	 * Tests that the Center Field properly initializes when
+	 * a Board is made.
+	 */
 	@Test
 	public void testGetCen() {
 		Board board = new Board();
