@@ -29,7 +29,8 @@ public class Tests {
 	}
 
 	/**
-	 * Tests that you can get a card's cost.
+	 * Tests that you can get a card's cost 
+	 * (when it is specified by the constructor).
 	 */
 	@Test
 	public void testGetCardCost() {
@@ -37,6 +38,10 @@ public class Tests {
 		assertTrue(newCard.getCost() == 2);
 	}
 
+	/**
+	 * Tests that when the default constructor
+	 * is used, the card's default cost is zero.
+	 */
 	@Test
 	public void testGetDefaultCardCost() {
 		ACard newCard = ACard.makeCard();
