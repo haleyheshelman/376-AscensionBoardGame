@@ -827,18 +827,11 @@ public class Tests {
 	public void testSendToVoid(){
 		Player p = Player.makePlayer();
 		Board b = new Board();
+		ACard card = ACard.makeCard();
 		assertTrue(b.getVoid().size()==0);
+		b.sendToVoid(card);
+		assertTrue(b.getVoid().size()==1);
 		
 	}
-	
-	public void testPlayerDiscard() {
-		Player newPlayer = Player.makePlayer();
-		assertTrue(newPlayer.getDiscardSize() == 0);
-		newPlayer.discard(ACard.makeCard());
-		assertTrue(newPlayer.getDiscardSize() == 1);
-		newPlayer.discard(ACard.makeCard());
-		newPlayer.discard(ACard.makeCard());
-		assertTrue(newPlayer.getDiscardSize() == 3);
-	}
-	
+		
 }
