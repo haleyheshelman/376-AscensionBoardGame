@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><TestSessionContainer xmlns="http://www.codecover.org/xml/testsession-container" Date="1461795878651" TestSessionContainerId="61b7de41-8c56-4fbe-bfd6-4f255da52b18" version="1.0">
+<?xml version="1.0" encoding="UTF-8"?><TestSessionContainer xmlns="http://www.codecover.org/xml/testsession-container" Date="1461798923452" TestSessionContainerId="9be220fb-b121-48d2-bc30-90e5b817bf21" version="1.0">
 <SrcFileList>
 <SrcFile Content="/**&#13;&#10; * &#13;&#10; */&#13;&#10;package devops.hw1.core;&#13;&#10;&#13;&#10;import java.io.IOException;&#13;&#10;import java.util.ArrayList;&#13;&#10;import java.util.Collections;&#13;&#10;import java.util.HashMap;&#13;&#10;import java.util.LinkedList;&#13;&#10;import java.util.Queue;&#13;&#10;&#13;&#10;/**&#13;&#10; * @author fenogljc&#13;&#10; *&#13;&#10; */&#13;&#10;public class Player {&#13;&#10;&#13;&#10;&#9;private int runes;&#13;&#10;&#9;private int power;&#13;&#10;&#9;private int honor;&#13;&#10;&#9;private ArrayList&lt;ACard&gt; discardPile;&#13;&#10;&#9;private ArrayList&lt;ACard&gt; playerHand;&#13;&#10;&#9;private LinkedList&lt;ACard&gt; playerDeck;&#13;&#10;&#13;&#10;&#9;/**&#13;&#10;&#9; * The constructor creates a player with a hand of five cards and a deck of five cards.&#13;&#10;&#9; */&#13;&#10;&#9;&#13;&#10;&#9;private Player() {&#9;&#13;&#10;&#9;&#9;try {&#13;&#10;&#9;&#9;&#9;new CardCollection();&#13;&#10;&#9;&#9;} catch (IOException e) {&#13;&#10;&#9;&#9;&#9;System.out.println(&quot;Could not find file&quot;);&#13;&#10;&#9;&#9;}&#13;&#10;&#9;&#9;this.discardPile = new ArrayList&lt;ACard&gt;();&#13;&#10;&#9;&#9;this.playerHand = new ArrayList&lt;ACard&gt;();&#13;&#10;&#9;&#9;this.playerDeck = new LinkedList&lt;ACard&gt;();&#13;&#10;&#9;&#9;this.initialiseDeck();&#13;&#10;&#9;&#9;Collections.shuffle(this.playerDeck);&#13;&#10;&#9;&#9;this.drawCard(5);&#13;&#10;&#9;}&#13;&#10;&#13;&#10;&#9;/**&#13;&#10;&#9; * &#13;&#10;&#9; */&#13;&#10;&#9;public void initialiseDeck() {&#13;&#10;&#9;&#9;&#9;for (int i = 0; i &lt; 8; i++) { &#13;&#10;&#9;&#9;&#9;this.addCardToDeck(CardCollection.apprentice);&#13;&#10;&#9;&#9;}&#13;&#10;&#9;&#9;for (int j = 0; j &lt; 2; j++) {&#13;&#10;&#9;&#9;&#9;this.addCardToDeck(CardCollection.militia);&#13;&#10;&#9;&#9;}&#9;&#9;&#13;&#10;&#9;}&#13;&#10;&#9;&#13;&#10;&#9;/**&#13;&#10;&#9; * &#13;&#10;&#9; * Puts all of the players cards into the discard pile and draws &#13;&#10;&#9; * 5 pcards for a new hand&#13;&#10;&#9; *&#13;&#10;&#9; */&#13;&#10;&#9;public void endTurn(){&#13;&#10;&#9;&#9;this.discardPile.addAll(this.getHand());&#13;&#10;&#9;&#9;this.getHand().clear();&#13;&#10;&#9;&#9;this.setRunes(0);&#13;&#10;&#9;&#9;this.addPower(0-this.power);&#13;&#10;&#9;&#9;this.drawCard(5);&#9;&#13;&#10;&#9;}&#13;&#10;&#13;&#10;&#9;/**&#13;&#10;&#9; * This constructs and returns a player.&#13;&#10;&#9; * &#13;&#10;&#9; * @return&#13;&#10;&#9; */&#13;&#10;&#9;public static Player makePlayer() {&#13;&#10;&#9;&#9;Player newPlayer = new Player();&#13;&#10;&#9;&#9;return newPlayer;&#13;&#10;&#9;}&#13;&#10;&#13;&#10;&#9;/**&#13;&#10;&#9; * This adds the given integer amount of runes to the players current total.&#13;&#10;&#9; * &#13;&#10;&#9; * @param i&#13;&#10;&#9; */&#13;&#10;&#9;public void addRunes(int i) {&#13;&#10;&#9;&#9;this.setRunes((i + this.getRunes() &gt; 0) ? this.getRunes() + i : 0);&#13;&#10;&#9;}&#13;&#10;&#13;&#10;&#9;/**&#13;&#10;&#9; * This returns the amount of runes the player currently has.&#13;&#10;&#9; * &#13;&#10;&#9; * @return the runes&#13;&#10;&#9; */&#13;&#10;&#9;public int getRunes() {&#13;&#10;&#9;&#9;return this.runes;&#13;&#10;&#9;}&#13;&#10;&#13;&#10;&#9;/**&#13;&#10;&#9; * Sets the amount of runs the player has to the given integer value.&#13;&#10;&#9; * &#13;&#10;&#9; * @param runes&#13;&#10;&#9; *            the runes to set&#13;&#10;&#9; */&#13;&#10;&#9;public void setRunes(int runes) {&#13;&#10;&#9;&#9;this.runes = runes;&#13;&#10;&#9;}&#13;&#10;&#13;&#10;&#9;/**&#13;&#10;&#9; * Returns the size of the player's discard pile.&#13;&#10;&#9; * &#13;&#10;&#9; * @return&#13;&#10;&#9; */&#13;&#10;&#9;public int getDiscardSize() {&#13;&#10;&#9;&#9;return this.discardPile.size();&#13;&#10;&#9;}&#13;&#10;&#13;&#10;&#9;/**&#13;&#10;&#9; * This puts the card given into the discard pile.&#13;&#10;&#9; * &#13;&#10;&#9; * @param card&#13;&#10;&#9; */&#13;&#10;&#9;public void discard(ACard card) {&#13;&#10;&#9;&#9;if (card == null) {&#13;&#10;&#9;&#9;&#9;System.out.println(&quot;attempted to discard null card&quot;);&#13;&#10;&#9;&#9;&#9;return;&#13;&#10;&#9;&#9;}&#13;&#10;&#9;&#9;this.discardPile.add(card);&#13;&#10;&#9;}&#13;&#10;&#13;&#10;&#9;/**&#13;&#10;&#9; * Returns the player's discard pile.&#13;&#10;&#9; * &#13;&#10;&#9; * @return&#13;&#10;&#9; */&#13;&#10;&#9;public ArrayList&lt;ACard&gt; getDiscardPile() {&#13;&#10;&#9;&#9;return this.discardPile;&#13;&#10;&#9;}&#13;&#10;&#13;&#10;&#9;/**&#13;&#10;&#9; * Places the given card into the player's discard pile as well as well as&#13;&#10;&#9; * subtracts the amount of runes the player has available. If you do not&#13;&#10;&#9; * have enough runes, this returns false, otherwise true.&#13;&#10;&#9; * &#13;&#10;&#9; * @param card&#13;&#10;&#9; * @return&#13;&#10;&#9; */&#13;&#10;&#9;public boolean buyCard(ACard card) {&#13;&#10;&#9;&#9;if (card != null &amp;&amp; card.getCost() &lt;= this.runes) {&#13;&#10;&#9;&#9;&#9;this.setRunes(this.runes - card.getCost());&#13;&#10;&#9;&#9;&#9;this.discard(card);&#13;&#10;&#9;&#9;&#9;return true;&#13;&#10;&#9;&#9;}&#13;&#10;&#9;&#9;return false;&#13;&#10;&#9;}&#13;&#10;&#13;&#10;&#9;/**&#13;&#10;&#9; * Attack card will take a card and the board.  &#13;&#10;&#9; * If the player has enough power it will place the card in&#13;&#10;&#9; * the void discard pile&#13;&#10;&#9; * &#13;&#10;&#9; * @param card to be attacked&#13;&#10;&#9; * @return true if attacked and sent to void and false&#13;&#10;&#9; * otherwise&#13;&#10;&#9; */&#13;&#10;&#9;&#13;&#10;&#9;public boolean attackCard(ACard card, Board board) {&#13;&#10;&#9;&#9;if (card != null &amp;&amp; card.getStrength() &lt;= this.power) {&#13;&#10;&#9;&#9;&#9;this.addPower(0 - card.getStrength());&#13;&#10;&#9;&#9;&#9;board.sendToVoid(card);&#13;&#10;&#9;&#9;&#9;return true;&#13;&#10;&#9;&#9;}&#13;&#10;&#9;&#9;return false;&#13;&#10;&#9;}&#13;&#10;&#9;&#13;&#10;&#9;/**&#13;&#10;&#9; * &#13;&#10;&#9; * Returns the size of the player hand&#13;&#10;&#9; *&#13;&#10;&#9; * @return the size of the player hand&#13;&#10;&#9; */&#13;&#10;&#9;public int getHandSize() {&#13;&#10;&#9;&#9;return this.playerHand.size();&#13;&#10;&#9;}&#13;&#10;&#13;&#10;&#9;/**&#13;&#10;&#9; * &#13;&#10;&#9; * Draws a card from the player deck and adds it to the player hand&#13;&#10;&#9; *&#13;&#10;&#9; */&#13;&#10;&#9;public void drawCard() {&#13;&#10;&#9;&#9;if (this.playerDeck.isEmpty()){&#13;&#10;&#9;&#9;&#9;this.playerDeck.addAll(this.discardPile);&#13;&#10;&#9;&#9;&#9;this.discardPile.clear();&#13;&#10;&#9;&#9;&#9;Collections.shuffle(this.playerDeck);&#13;&#10;&#9;&#9;}&#13;&#10;&#9;&#9;ACard fromDeck = this.playerDeck.remove();&#13;&#10;&#9;&#9;this.playerHand.add(fromDeck);&#13;&#10;&#9;}&#13;&#10;&#13;&#10;&#9;/**&#13;&#10;&#9; * &#13;&#10;&#9; * Adds a card to the player's deck&#13;&#10;&#9; *&#13;&#10;&#9; * @param card&#13;&#10;&#9; *            to be added&#13;&#10;&#9; */&#13;&#10;&#9;public void addCardToDeck(ACard card) {&#13;&#10;&#13;&#10;&#9;&#9;if (card == null) {&#13;&#10;&#9;&#9;&#9;System.out.println(&quot;attempted to add a null card to deck&quot;);&#13;&#10;&#9;&#9;&#9;return;&#13;&#10;&#9;&#9;}&#13;&#10;&#13;&#10;&#9;&#9;this.playerDeck.add(card);&#13;&#10;&#9;}&#13;&#10;&#13;&#10;&#9;/**&#13;&#10;&#9; * Adds the given card to the player's hand&#13;&#10;&#9; * &#13;&#10;&#9; * @param card&#13;&#10;&#9; *            to be added&#13;&#10;&#9; */&#13;&#10;&#9;public void addCardToHand(ACard card) {&#13;&#10;&#13;&#10;&#9;&#9;if (card == null){&#13;&#10;&#9;&#9;&#9;System.out.println(&quot;attempted to add a null card to hand&quot;);&#13;&#10;&#9;&#9;&#9;return;&#13;&#10;&#9;&#9;}&#13;&#10;&#9;&#9;this.playerHand.add(card);&#13;&#10;&#9;}&#13;&#10;&#13;&#10;&#9;/**&#13;&#10;&#9; * &#13;&#10;&#9; * Gets the current player hand&#13;&#10;&#9; *&#13;&#10;&#9; * @return the player hand&#13;&#10;&#9; */&#13;&#10;&#9;public ArrayList&lt;ACard&gt; getHand() {&#13;&#10;&#9;&#9;return this.playerHand;&#13;&#10;&#9;}&#13;&#10;&#13;&#10;&#9;/**&#13;&#10;&#9; * &#13;&#10;&#9; * Input check card in hand&#13;&#10;&#9; *&#13;&#10;&#9; * @param card&#13;&#10;&#9; */&#13;&#10;&#9;public void playCard(ACard card) {&#13;&#10;&#9;&#9;&#13;&#10;&#9;&#9;if (card == null) {&#13;&#10;&#9;&#9;&#9;System.out.println(&quot;attempted to play a null card&quot;);&#13;&#10;&#9;&#9;&#9;return;&#13;&#10;&#9;&#9;}&#13;&#10;&#9;&#9;this.playerHand.remove(card);&#13;&#10;&#9;&#9;this.applyEffects(card);&#13;&#10;&#9;&#9;this.discard(card);&#13;&#10;&#9;}&#13;&#10;&#13;&#10;&#9;/**&#13;&#10;&#9; * @param integer&#13;&#10;&#9; */&#13;&#10;&#9;public void drawCard(int cards) {&#13;&#10;&#9;&#9;for (int i = 0; i &lt; cards; i++) {&#13;&#10;&#9;&#9;&#9;this.drawCard();&#13;&#10;&#9;&#9;}&#13;&#10;&#9;}&#13;&#10;&#13;&#10;&#9;/**&#13;&#10;&#9; * @return the Player's Deck&#13;&#10;&#9; */&#13;&#10;&#9;public Queue&lt;ACard&gt; getDeck() {&#13;&#10;&#9;&#9;return this.playerDeck;&#13;&#10;&#9;}&#13;&#10;&#13;&#10;&#9;/**&#13;&#10;&#9; * @return the size of the Player's Deck for unit testing&#13;&#10;&#9; */&#13;&#10;&#9;public int getDeckSize() {&#13;&#10;&#9;&#9;return this.playerDeck.size();&#13;&#10;&#9;}&#13;&#10;&#13;&#10;&#9;/**&#13;&#10;&#9; * This method returns the amount of power the player currently has.&#13;&#10;&#9; * @return how much power the player has&#13;&#10;&#9; */&#13;&#10;&#9;public int getPower() {&#13;&#10;&#9;&#9;return this.power;&#13;&#10;&#9;}&#13;&#10;&#13;&#10;&#9;/**&#13;&#10;&#9; * This method adds power to the total amount of power the player has.&#13;&#10;&#9; * @param i&#13;&#10;&#9; */&#13;&#10;&#9;public void addPower(int i) {&#13;&#10;&#9;&#9;this.power += i;&#13;&#10;&#9;}&#13;&#10;&#13;&#10;&#9;/**&#13;&#10;&#9; * Applies the effects of the given card to the player.&#13;&#10;&#9; * @param card&#13;&#10;&#9; */&#13;&#10;&#9;@SuppressWarnings(&quot;boxing&quot;)&#13;&#10;&#9;public void applyEffects(ACard card) {&#13;&#10;&#9;&#9;HashMap&lt;String, Integer&gt; map = card.getEffects();&#13;&#10;&#9;&#9;for (String k : map.keySet()) {&#13;&#10;&#9;&#9;&#9;switch (k) {&#13;&#10;&#9;&#9;&#9;case CardCollection.RUNES:&#13;&#10;&#9;&#9;&#9;&#9;this.addRunes(map.get(k));&#13;&#10;&#9;&#9;&#9;&#9;break;&#13;&#10;&#9;&#9;&#9;case CardCollection.POWER:&#13;&#10;&#9;&#9;&#9;&#9;this.addPower(map.get(k));&#13;&#10;&#9;&#9;&#9;&#9;break;&#13;&#10;&#9;&#9;&#9;case CardCollection.DRAW:&#13;&#10;&#9;&#9;&#9;&#9;this.drawCard(map.get(k));&#13;&#10;&#9;&#9;&#9;&#9;break;&#13;&#10;&#9;&#9;&#9;case CardCollection.HONOR:&#13;&#10;&#9;&#9;&#9;&#9;this.addHonor(map.get(k));&#13;&#10;&#9;&#9;&#9;&#9;break;&#13;&#10;&#9;&#9;&#9;}&#13;&#10;&#9;&#9;}&#13;&#10;&#9;}&#13;&#10;&#9;&#13;&#10;&#9;/**&#13;&#10;&#9; * This method returns the amount of honor the player has.&#13;&#10;&#9; * @return amount of honor&#13;&#10;&#9; */&#13;&#10;&#9;public int getHonor() {&#13;&#10;&#9;&#9;return this.honor;&#13;&#10;&#9;}&#13;&#10;&#13;&#10;&#9;/**&#13;&#10;&#9; * This method adds the amount given to the total amount of honor that the player has.&#13;&#10;&#9; * @param i&#13;&#10;&#9; */&#13;&#10;&#9;public void addHonor(int i) {&#13;&#10;&#9;&#9;this.honor += i;&#13;&#10;&#9;}&#13;&#10;&#9;&#13;&#10;&#9;&#13;&#10;}&#13;&#10;" Filename="Player.java" Intrnl_Id="1"/>
 <SrcFile Content="package devops.hw1.core;&#13;&#10;&#13;&#10;public class NumericData extends AbstractData&lt;Long&gt; {&#13;&#10;&#13;&#10;&#9;public NumericData(long id, Long value) {&#13;&#10;&#9;&#9;super(id, value);&#13;&#10;&#9;}&#13;&#10;&#13;&#10;&#9;@Override&#13;&#10;&#9;public int compareTo(IData&lt;Long&gt; other) {&#13;&#10;&#9;&#9;if(this.equals(other))&#13;&#10;&#9;&#9;&#9;return 0;&#13;&#10;&#9;&#9;&#13;&#10;&#9;&#9;Long myValue = this.getValue();&#13;&#10;&#9;&#9;Long otherValue = other.getValue();&#13;&#10;&#9;&#9;&#13;&#10;&#9;&#9;if(myValue &gt; otherValue)&#13;&#10;&#9;&#9;&#9;return 1;&#13;&#10;&#9;&#9;&#13;&#10;&#9;&#9;return -1;&#13;&#10;&#9;}&#13;&#10;}&#13;&#10;" Filename="NumericData.java" Intrnl_Id="2"/>
@@ -10,7 +10,7 @@
 <SrcFile Content="package devops.hw1.core;&#13;&#10;&#13;&#10;import java.awt.image.BufferedImage;&#13;&#10;import java.io.File;&#13;&#10;import java.io.IOException;&#13;&#10;import java.util.HashMap;&#13;&#10;&#13;&#10;import javax.imageio.ImageIO;&#13;&#10;/**&#13;&#10; * &#13;&#10; * Creates the cards and attaches their images to that card&#13;&#10; *&#13;&#10; * @author heshelhj.&#13;&#10; *         Created Apr 22, 2016.&#13;&#10; */&#13;&#10;public class CardCollection {&#13;&#10;&#9;&#13;&#10;&#9;public static ACard apprentice;&#13;&#10;&#9;public static ACard militia;&#13;&#10;&#9;public static ACard arhaInitiate;&#13;&#10;&#9;public static ACard demonSlayer; &#13;&#10;&#9;public static ACard wolfShaman; &#13;&#10;&#9;public static ACard flyTrapWitch; &#13;&#10;&#9;public static ACard asceticOfTheLidlessEye;&#13;&#10;&#9;public static ACard emriOneWithTheVoid;&#13;&#10;&#9;public static ACard arbiterOfThePrecipice;&#13;&#10;&#9;public static ACard arhaTemplar;&#13;&#10;&#9;public static ACard avatarGolem;&#13;&#10;&#9;public static ACard avatarOfTheFallen;&#13;&#10;&#9;public static ACard burrowerMarkII;&#13;&#10;&#9;public static ACard cetraWeaverOfStars;&#13;&#10;&#9;public static ACard corrosiveWidow;&#13;&#10;&#9;public static ACard druidsOfTheStoneCircle;&#13;&#10;&#9;public static ACard earthTyrant;&#13;&#10;&#9;public static ACard hedronCannon;&#13;&#10;&#9;public static ACard hedronLinkDevice;&#13;&#10;&#9;public static ACard korTheFerromancer;&#13;&#10;&#9;public static ACard landtalker;&#13;&#10;&#9;public static ACard lifeboundInitiate;&#13;&#10;&#9;public static ACard masterDhartha;&#13;&#10;&#9;public static ACard mechanaInitiate;&#13;&#10;&#9;public static ACard mephit;&#13;&#10;&#9;public static ACard mistakeOfCreation;&#13;&#10;&#9;public static ACard muramasa;&#13;&#10;&#9;public static ACard oziahThePeerless;&#13;&#10;&#9;public static ACard reactorMonk;&#13;&#10;&#9;public static ACard rocketCourierX99;&#13;&#10;&#9;public static ACard runicLycanthrope;&#13;&#10;&#9;public static ACard samaelsTrickster;&#13;&#10;&#9;public static ACard seaTyrant;&#13;&#10;&#9;public static ACard seerOfTheForkedPath;&#13;&#10;&#9;public static ACard shadeOfTheBlackWatch;&#13;&#10;&#9;public static ACard shadowStar;&#13;&#10;&#9;public static ACard snapdragon;&#13;&#10;&#9;public static ACard spikeVixen;&#13;&#10;&#9;public static ACard tabletOfTimesDawn;&#13;&#10;&#9;public static ACard templeLibrarian;&#13;&#10;&#9;public static ACard theAllSeeingEye;&#13;&#10;&#9;public static ACard theGrandDesign;&#13;&#10;&#9;public static ACard tormentedSoul;&#13;&#10;&#9;public static ACard twofoldAskara;&#13;&#10;&#9;public static ACard voidInitiate;&#13;&#10;&#9;public static ACard voidthirster;&#13;&#10;&#9;public static ACard watchmakersAltar;&#13;&#10;&#9;public static ACard windTyrant;&#13;&#10;&#9;public static ACard xeronDukeOfLies;&#13;&#10;&#9;public static ACard yggdrasilStaff;&#13;&#10;&#9;public static ACard[] cards;&#13;&#10;&#9;&#13;&#10;&#9;public static final String RUNES = &quot;runes&quot;;&#13;&#10;&#9;public static final String POWER = &quot;power&quot;;&#13;&#10;&#9;public static final String DRAW = &quot;draw&quot;;&#13;&#10;&#9;public static final String HONOR = &quot;honor&quot;;&#13;&#10;&#9;&#13;&#10;&#9;public CardCollection() throws IOException{&#13;&#10;&#9;&#9;HashMap&lt;String,Integer&gt; map = new HashMap&lt;String, Integer&gt;();&#13;&#10;&#9;&#9;HashMap&lt;String,Integer&gt; map1 = new HashMap&lt;String, Integer&gt;();&#13;&#10;&#9;&#9;HashMap&lt;String,Integer&gt; map2 = new HashMap&lt;String, Integer&gt;();&#13;&#10;&#9;&#9;HashMap&lt;String,Integer&gt; map3 = new HashMap&lt;String, Integer&gt;();&#13;&#10;&#9;&#9;HashMap&lt;String,Integer&gt; map4 = new HashMap&lt;String, Integer&gt;();&#13;&#10;&#9;&#9;HashMap&lt;String,Integer&gt; map5 = new HashMap&lt;String, Integer&gt;();&#13;&#10;&#9;&#9;HashMap&lt;String,Integer&gt; map6 = new HashMap&lt;String, Integer&gt;();&#13;&#10;&#9;&#9;HashMap&lt;String,Integer&gt; map7 = new HashMap&lt;String, Integer&gt;();&#13;&#10;&#9;&#9;HashMap&lt;String,Integer&gt; map8 = new HashMap&lt;String, Integer&gt;();&#13;&#10;&#9;&#9;HashMap&lt;String,Integer&gt; map9 = new HashMap&lt;String, Integer&gt;();&#13;&#10;&#9;&#9;HashMap&lt;String,Integer&gt; map10 = new HashMap&lt;String, Integer&gt;();&#13;&#10;&#9;&#9;HashMap&lt;String,Integer&gt; map11 = new HashMap&lt;String, Integer&gt;();&#13;&#10;&#9;&#9;HashMap&lt;String,Integer&gt; map12 = new HashMap&lt;String, Integer&gt;();&#13;&#10;&#9;&#9;HashMap&lt;String,Integer&gt; map13 = new HashMap&lt;String, Integer&gt;();&#13;&#10;&#9;&#9;HashMap&lt;String,Integer&gt; map14 = new HashMap&lt;String, Integer&gt;();&#13;&#10;&#9;&#9;HashMap&lt;String,Integer&gt; map15 = new HashMap&lt;String, Integer&gt;();&#13;&#10;&#9;&#9;HashMap&lt;String,Integer&gt; map16 = new HashMap&lt;String, Integer&gt;();&#13;&#10;&#9;&#9;HashMap&lt;String,Integer&gt; map17 = new HashMap&lt;String, Integer&gt;();&#13;&#10;&#9;&#9;HashMap&lt;String,Integer&gt; map18 = new HashMap&lt;String, Integer&gt;();&#13;&#10;&#9;&#9;HashMap&lt;String,Integer&gt; map19 = new HashMap&lt;String, Integer&gt;();&#13;&#10;&#9;&#9;HashMap&lt;String,Integer&gt; map20 = new HashMap&lt;String, Integer&gt;();&#13;&#10;&#9;&#9;HashMap&lt;String,Integer&gt; map21 = new HashMap&lt;String, Integer&gt;();&#13;&#10;&#9;&#9;HashMap&lt;String,Integer&gt; map22 = new HashMap&lt;String, Integer&gt;();&#13;&#10;&#9;&#9;HashMap&lt;String,Integer&gt; map23 = new HashMap&lt;String, Integer&gt;();&#13;&#10;&#9;&#9;HashMap&lt;String,Integer&gt; map24 = new HashMap&lt;String, Integer&gt;();&#13;&#10;&#9;&#9;HashMap&lt;String,Integer&gt; map25 = new HashMap&lt;String, Integer&gt;();&#13;&#10;&#9;&#9;HashMap&lt;String,Integer&gt; map26 = new HashMap&lt;String, Integer&gt;();&#13;&#10;&#9;&#9;HashMap&lt;String,Integer&gt; map27 = new HashMap&lt;String, Integer&gt;();&#13;&#10;&#9;&#9;HashMap&lt;String,Integer&gt; map28 = new HashMap&lt;String, Integer&gt;();&#13;&#10;&#9;&#9;HashMap&lt;String,Integer&gt; map29 = new HashMap&lt;String, Integer&gt;();&#13;&#10;&#9;&#9;HashMap&lt;String,Integer&gt; map30 = new HashMap&lt;String, Integer&gt;();&#13;&#10;&#9;&#9;HashMap&lt;String,Integer&gt; map31 = new HashMap&lt;String, Integer&gt;();&#13;&#10;&#9;&#9;HashMap&lt;String,Integer&gt; map32 = new HashMap&lt;String, Integer&gt;();&#13;&#10;&#9;&#9;HashMap&lt;String,Integer&gt; map33 = new HashMap&lt;String, Integer&gt;();&#13;&#10;&#9;&#9;HashMap&lt;String,Integer&gt; map34 = new HashMap&lt;String, Integer&gt;();&#13;&#10;&#9;&#9;HashMap&lt;String,Integer&gt; map35 = new HashMap&lt;String, Integer&gt;();&#13;&#10;&#9;&#9;HashMap&lt;String,Integer&gt; map36 = new HashMap&lt;String, Integer&gt;();&#13;&#10;&#9;&#9;HashMap&lt;String,Integer&gt; map37 = new HashMap&lt;String, Integer&gt;();&#13;&#10;&#9;&#9;HashMap&lt;String,Integer&gt; map38 = new HashMap&lt;String, Integer&gt;();&#13;&#10;&#9;&#9;HashMap&lt;String,Integer&gt; map39 = new HashMap&lt;String, Integer&gt;();&#13;&#10;&#9;&#9;HashMap&lt;String,Integer&gt; map40 = new HashMap&lt;String, Integer&gt;();&#13;&#10;&#9;&#9;HashMap&lt;String,Integer&gt; map41 = new HashMap&lt;String, Integer&gt;();&#13;&#10;&#9;&#9;HashMap&lt;String,Integer&gt; map42 = new HashMap&lt;String, Integer&gt;();&#13;&#10;&#9;&#9;HashMap&lt;String,Integer&gt; map43 = new HashMap&lt;String, Integer&gt;();&#13;&#10;&#9;&#9;HashMap&lt;String,Integer&gt; map44 = new HashMap&lt;String, Integer&gt;();&#13;&#10;&#9;&#9;HashMap&lt;String,Integer&gt; map45 = new HashMap&lt;String, Integer&gt;();&#13;&#10;&#9;&#9;HashMap&lt;String,Integer&gt; map46 = new HashMap&lt;String, Integer&gt;();&#13;&#10;&#9;&#9;HashMap&lt;String,Integer&gt; map47 = new HashMap&lt;String, Integer&gt;();&#13;&#10;&#9;&#9;HashMap&lt;String,Integer&gt; map48 = new HashMap&lt;String, Integer&gt;();&#13;&#10;&#9;&#9;HashMap&lt;String,Integer&gt; map49 = new HashMap&lt;String, Integer&gt;();&#13;&#10;&#13;&#10;&#9;&#9;BufferedImage image = null;&#13;&#10;&#9;&#9;&#13;&#10;&#9;&#9;image = ImageIO.read(new File (&quot;cardImages/Standard/Apprentice.png&quot;));&#13;&#10;&#9;&#9;&#9;&#9;&#13;&#10;&#9;&#9;map.put(RUNES, 1);&#13;&#10;&#9;&#9;apprentice = ACard.makeCard(image, &quot;Apprentice&quot;, &quot;none&quot;, &quot;Hero&quot;, 0, 0, -1, map);&#13;&#10;&#9;&#9;&#13;&#10;&#9;&#9;image = ImageIO.read(new File (&quot;cardImages/Standard/Militia1.png&quot;));&#13;&#10;&#13;&#10;&#9;&#9;map1.put(POWER, 1);&#13;&#10;&#9;&#9;militia = ACard.makeCard(image, &quot;Militia&quot;, &quot;none&quot;, &quot;Hero&quot;, 0, 0, -1, map1);&#13;&#10;&#9;&#9;&#13;&#10;&#9;&#9;image = ImageIO.read(new File (&quot;cardImages/Heroes/Arha-Initiate.png&quot;));&#13;&#10;&#9;&#9;&#13;&#10;&#9;&#9;map2.put(DRAW, 1);&#13;&#10;&#9;&#9;arhaInitiate = ACard.makeCard(image, &quot;Arha Initiate&quot;, &quot;Enlightened&quot;,&quot;Hero&quot;,1,1,3,map2);&#13;&#10;&#9;&#9;&#13;&#10;&#9;&#9;image = ImageIO.read(new File (&quot;cardImages/Heroes/Demon-Slayer.png&quot;));&#13;&#10;&#13;&#10;&#9;&#9;map3.put(POWER, 3);&#13;&#10;&#9;&#9;demonSlayer = ACard.makeCard(image, &quot;Demon Slayer&quot;, &quot;Void&quot;,&quot;Hero&quot;,4,2,2,map3);&#13;&#10;&#9;&#9;&#13;&#10;&#9;&#9;image = ImageIO.read(new File (&quot;cardImages/Heroes/Wolf-Shaman.png&quot;));&#13;&#10;&#13;&#10;&#9;&#9;map4.put(RUNES, 1);&#13;&#10;&#9;&#9;map4.put(DRAW, 1);&#13;&#10;&#9;&#9;wolfShaman = ACard.makeCard(image, &quot;Wolf Shaman&quot;, &quot;Lifebound&quot;,&quot;Hero&quot;,3,1,3,map4);&#13;&#10;&#9;&#9;&#13;&#10;&#9;&#9;image = ImageIO.read(new File (&quot;cardImages/Heroes/Flytrap-Witch.png&quot;));&#13;&#10;&#9;&#9;&#13;&#10;&#9;&#9;map5.put(HONOR, 2);&#13;&#10;&#9;&#9;map5.put(DRAW, 1);&#13;&#10;&#9;&#9;flyTrapWitch = ACard.makeCard(image, &quot;Fly Trap Witch&quot;, &quot;Lifebound&quot;,&quot;Hero&quot;,5,2,2,map5);&#13;&#10;&#9;&#9;&#13;&#10;&#9;&#9;image = ImageIO.read(new File (&quot;cardImages/Heroes/Ascetic-of-the-Lidless-Eye.png&quot;));&#13;&#10;&#9;&#9;&#13;&#10;&#9;&#9;map6.put(DRAW, 2);&#13;&#10;&#9;&#9;asceticOfTheLidlessEye = ACard.makeCard(image, &quot;Ascetic of the Lidless Eye&quot;, &quot;Enlightened&quot;,&quot;Hero&quot;,5,2,2,map6);&#13;&#10;&#9;&#9;&#13;&#10;&#9;&#9;image = ImageIO.read(new File (&quot;cardImages/Heroes/Emri-One-with-the-Void.png&quot;));&#13;&#10;&#9;&#9;&#13;&#10;&#9;&#9;map7.put(POWER, 4);&#13;&#10;&#9;&#9;emriOneWithTheVoid = ACard.makeCard(image, &quot;Emri, One with the Void&quot;, &quot;Void&quot;,&quot;Hero&quot;,6,3,1,map7);&#13;&#10;&#9;&#9;&#13;&#10;&#9;&#9;&#13;&#10;&#9;&#9;image = ImageIO.read(new File (&quot;cardImages/Heroes/Arbiter-of-the-Precipice.png&quot;));&#13;&#10;&#9;&#9;&#13;&#10;&#9;&#9;// TODO: Add more effects for this card. Banish one from hand&#13;&#10;&#9;&#9;&#13;&#10;&#9;&#9;map8.put(DRAW, 2);&#13;&#10;&#9;&#9;arbiterOfThePrecipice = ACard.makeCard(image, &quot;Arbiter of the Precipice&quot;, &quot;Void&quot;,&quot;Hero&quot;,4,1,2,map8);&#13;&#10;&#9;&#9;&#13;&#10;&#9;&#9;image = ImageIO.read(new File (&quot;cardImages/Heroes/Arha-Templar.png&quot;));&#13;&#10;&#9;&#9;&#13;&#10;&#9;&#9;// TODO: Add the effect, Kill one monster with 4 strength or less.&#13;&#10;&#13;&#10;&#9;&#9;arhaTemplar = ACard.makeCard(image, &quot;Arha Templar&quot;, &quot;Enlightened&quot;,&quot;Hero&quot;,4,3,2,map9);&#13;&#10;&#9;&#9;&#13;&#10;&#9;&#9;image = ImageIO.read(new File (&quot;cardImages/Heroes/Avatar-Golem.png&quot;));&#13;&#10;&#9;&#9;&#13;&#10;&#9;&#9;// TODO: Add the effect, gain one honor for each faction construct&#13;&#10;&#13;&#10;&#9;&#9;map10.put(POWER, 2);&#13;&#10;&#9;&#9;avatarGolem = ACard.makeCard(image, &quot;Avatar Golem&quot;, &quot;Mechana&quot;,&quot;Hero&quot;,4,2,2,map10);&#13;&#10;&#9;&#9;&#13;&#10;&#9;&#9;image = ImageIO.read(new File (&quot;cardImages/Monsters/Avatar-of-the-Fallen.png&quot;));&#13;&#10;&#9;&#9;&#13;&#10;&#9;&#9;// TODO: Add the effect, Unbanishable, gain or defeat one card in the center row.&#13;&#10;&#9;&#9;map11.put(HONOR, 4);&#13;&#10;&#9;&#9;avatarOfTheFallen = ACard.makeCard(image, &quot;Avatar of the Fallen&quot;, &quot;Monster&quot;,&quot;Monster&quot;,7,4,1,map11);&#13;&#10;&#9;&#9;&#13;&#10;&#9;&#9;image = ImageIO.read(new File (&quot;cardImages/Constructs/Burrower-Mark-II.png&quot;));&#13;&#10;&#9;&#9;&#13;&#10;&#9;&#9;// TODO: Add the effect, once per turn draw when a mechana construct enters your area.&#13;&#10;&#9;&#9;&#13;&#10;&#9;&#9;burrowerMarkII = ACard.makeCard(image, &quot;Burrower Mark II&quot;, &quot;Mechana&quot;,&quot;Construct&quot;,3,3,2,map12);&#13;&#10;&#9;&#9;&#13;&#10;&#9;&#9;image = ImageIO.read(new File (&quot;cardImages/Heroes/Cetra-Weaver-of-Stars.png&quot;));&#13;&#10;&#9;&#9;&#13;&#10;&#9;&#9;// TODO: Add the effect, acquire a hero without paying for it.&#13;&#10;&#9;&#9;&#13;&#10;&#9;&#9;cetraWeaverOfStars = ACard.makeCard(image, &quot;Cetra, Weaver of Stars&quot;, &quot;Lifebound&quot;,&quot;Hero&quot;,7,4,1,map13);&#13;&#10;&#9;&#9;&#13;&#10;&#9;&#9;image = ImageIO.read(new File (&quot;cardImages/Monsters/Corrosive-Widow.png&quot;));&#13;&#10;&#9;&#9;&#13;&#10;&#9;&#9;// TODO: Add the effect, choose a player, they destroy one construct&#13;&#10;&#9;&#9;map14.put(HONOR, 3);&#13;&#10;&#9;&#9;corrosiveWidow = ACard.makeCard(image, &quot;Corrosive Widow&quot;, &quot;Monster&quot;,&quot;Monster&quot;,4,3,4,map14);&#13;&#10;&#9;&#9;&#13;&#10;&#9;&#9;image = ImageIO.read(new File (&quot;cardImages/Heroes/Druids-of-the-Stone-Circle.png&quot;));&#13;&#10;&#9;&#9;&#13;&#10;&#9;&#9;// TODO: Add the effect, acquire a hero without paying for it that costs three or less.&#13;&#10;&#9;&#9;&#13;&#10;&#9;&#9;druidsOfTheStoneCircle = ACard.makeCard(image, &quot;Druids of the Stone Circle&quot;, &quot;Lifebound&quot;,&quot;Hero&quot;,4,3,2,map15);&#13;&#10;&#9;&#9;&#13;&#10;&#9;&#9;image = ImageIO.read(new File (&quot;cardImages/Monsters/Earth-Tyrant.png&quot;));&#13;&#10;&#9;&#9;&#9;&#9;&#13;&#10;&#9;&#9;map16.put(DRAW, 2);&#13;&#10;&#9;&#9;map16.put(HONOR, 5);&#13;&#10;&#9;&#9;earthTyrant = ACard.makeCard(image, &quot;Earth Tyrant&quot;, &quot;Monster&quot;,&quot;Monster&quot;,6,5,2,map16);&#13;&#10;&#9;&#9;&#13;&#10;&#9;&#9;image = ImageIO.read(new File (&quot;cardImages/Constructs/Hedron-Cannon.png&quot;));&#13;&#10;&#9;&#9;&#13;&#10;&#9;&#9;// TODO: Add the effect, gain one power for each mechana construct.&#13;&#10;&#9;&#9;&#13;&#10;&#9;&#9;hedronCannon = ACard.makeCard(image, &quot;Hedron Cannon&quot;, &quot;Mechana&quot;,&quot;Construct&quot;,8,8,1,map17);&#13;&#10;&#9;&#9;&#13;&#10;&#9;&#9;image = ImageIO.read(new File (&quot;cardImages/Constructs/Hedron-Link-Device.png&quot;));&#13;&#10;&#9;&#9;&#13;&#10;&#9;&#9;// TODO: Add the effect, you may consider all constructs as mechana constructs&#13;&#10;&#9;&#9;&#13;&#10;&#9;&#9;hedronLinkDevice = ACard.makeCard(image, &quot;Hedron Link Device&quot;, &quot;Mechana&quot;,&quot;Construct&quot;,7,7,1,map18);&#13;&#10;&#9;&#9;&#13;&#10;&#9;&#9;image = ImageIO.read(new File (&quot;cardImages/Heroes/Kor-the-Ferromancer.png&quot;));&#13;&#10;&#9;&#9;&#13;&#10;&#9;&#9;// TODO: Add the effect, draw a card if you control two or more constructs&#13;&#10;&#9;&#9;&#13;&#10;&#9;&#9;map19.put(POWER, 2);&#13;&#10;&#9;&#9;korTheFerromancer = ACard.makeCard(image, &quot;Kor, the Ferromancer&quot;, &quot;Mechana&quot;,&quot;Hero&quot;,3,2,1,map19);&#13;&#10;&#9;&#9;&#13;&#10;&#9;&#9;image = ImageIO.read(new File (&quot;cardImages/Heroes/Landtalker.png&quot;));&#13;&#10;&#9;&#9;&#13;&#10;&#9;&#9;map20.put(RUNES, 3);&#13;&#10;&#9;&#9;landtalker = ACard.makeCard(image, &quot;Landtalker&quot;, &quot;Lifebound&quot;,&quot;Hero&quot;,6,3,1,map20);&#13;&#10;&#9;&#9;&#13;&#10;&#9;&#9;image = ImageIO.read(new File (&quot;cardImages/Heroes/Lifebound-Initiate.png&quot;));&#13;&#10;&#9;&#9;&#13;&#10;&#9;&#9;map21.put(RUNES, 1);&#13;&#10;&#9;&#9;map21.put(HONOR, 1);&#13;&#10;&#9;&#9;lifeboundInitiate = ACard.makeCard(image, &quot;Lifebound Initiate&quot;, &quot;Lifebound&quot;,&quot;Hero&quot;,1,1,3,map21);&#13;&#10;&#9;&#9;&#13;&#10;&#9;&#9;image = ImageIO.read(new File (&quot;cardImages/Heroes/Master-Dhartha.png&quot;));&#13;&#10;&#9;&#9;&#13;&#10;&#9;&#9;map22.put(DRAW, 3);&#13;&#10;&#9;&#9;masterDhartha = ACard.makeCard(image, &quot;Master Dhartha&quot;, &quot;Enlightened&quot;,&quot;Hero&quot;,7,3,1,map22);&#13;&#10;&#9;&#9;&#13;&#10;&#9;&#9;image = ImageIO.read(new File (&quot;cardImages/Heroes/Mechana-Initiate.png&quot;));&#13;&#10;&#9;&#9;&#13;&#10;&#9;&#9;// TODO: Add the effect, gain one rune or power&#13;&#10;&#9;&#9;&#13;&#10;&#9;&#9;mechanaInitiate = ACard.makeCard(image, &quot;Mechana Initiate&quot;, &quot;Mechana&quot;,&quot;Hero&quot;,1,1,3,map23);&#13;&#10;&#9;&#9;&#13;&#10;&#9;&#9;image = ImageIO.read(new File (&quot;cardImages/Monsters/Mephit.png&quot;));&#13;&#10;&#9;&#9;&#13;&#10;&#9;&#9;// TODO: Add the effect, banish a card from the center row&#13;&#10;&#9;&#9;map24.put(HONOR, 2);&#13;&#10;&#9;&#9;mephit = ACard.makeCard(image, &quot;Mephit&quot;, &quot;Monster&quot;,&quot;Monster&quot;,3,2,3,map24);&#13;&#10;&#9;&#9;&#13;&#10;&#9;&#9;image = ImageIO.read(new File (&quot;cardImages/Monsters/Mistake-of-Creation.png&quot;));&#13;&#10;&#9;&#9;&#13;&#10;&#9;&#9;// TODO: Add the effect, banish a card from the center and/or your discard&#13;&#10;&#9;&#9;map25.put(HONOR, 4);&#13;&#10;&#9;&#9;mistakeOfCreation = ACard.makeCard(image, &quot;Mistake Of Creation&quot;, &quot;Monster&quot;,&quot;Monster&quot;,4,4,4,map25);&#13;&#10;&#9;&#9;&#13;&#10;&#9;&#9;image = ImageIO.read(new File (&quot;cardImages/Constructs/Muramasa.png&quot;));&#13;&#10;&#9;&#9;&#13;&#10;&#9;&#9;// TODO: Add the effect, once per turn gain 3 power&#13;&#10;&#9;&#9;&#13;&#10;&#9;&#9;muramasa = ACard.makeCard(image, &quot;Muramasa&quot;, &quot;Void&quot;,&quot;Construct&quot;,7,4,1,map26);&#13;&#10;&#9;&#9;&#13;&#10;&#9;&#9;image = ImageIO.read(new File (&quot;cardImages/Heroes/Oziah-the-Peerless.png&quot;));&#13;&#10;&#9;&#9;&#13;&#10;&#9;&#9;// TODO: Add the effect, defeat a monster with 6 or lower strength&#13;&#10;&#9;&#9;&#13;&#10;&#9;&#9;oziahThePeerless = ACard.makeCard(image, &quot;Oziah the Peerless&quot;, &quot;Enlightened&quot;,&quot;Hero&quot;,6,3,1,map27);&#13;&#10;&#9;&#9;&#13;&#10;&#9;&#9;image = ImageIO.read(new File (&quot;cardImages/Heroes/Reactor-Monk.png&quot;));&#13;&#10;&#9;&#9;&#13;&#10;&#9;&#9;// TODO: Add the effect, you pay one less for the next mechana construct&#13;&#10;&#9;&#9;map28.put(RUNES, 2);&#13;&#10;&#9;&#9;reactorMonk = ACard.makeCard(image, &quot;Reactor Monk&quot;, &quot;Mechana&quot;,&quot;Hero&quot;,4,2,2,map28);&#13;&#10;&#9;&#9;&#13;&#10;&#9;&#9;image = ImageIO.read(new File (&quot;cardImages/Constructs/Rocket-Courier-X-99.png&quot;));&#13;&#10;&#9;&#9;&#13;&#10;&#9;&#9;// TODO: Add the effect, once per turn, play the next mechana construct you acquire.&#13;&#10;&#9;&#9;&#13;&#10;&#9;&#9;rocketCourierX99 = ACard.makeCard(image, &quot;Rocket Courier X-99&quot;, &quot;Mechana&quot;,&quot;Construct&quot;,4,4,2,map29);&#13;&#10;&#9;&#9;&#13;&#10;&#9;&#9;image = ImageIO.read(new File (&quot;cardImages/Heroes/Runic-Lycanthrope.png&quot;));&#13;&#10;&#9;&#9;&#13;&#10;&#9;&#9;// TODO: Add the effect, If you have played a lifebound this turn gain 2 power.&#13;&#10;&#9;&#9;map30.put(RUNES, 2);&#13;&#10;&#9;&#9;runicLycanthrope = ACard.makeCard(image, &quot;Runic Lycanthrope&quot;, &quot;Lifebound&quot;,&quot;Hero&quot;,3,1,2,map30);&#13;&#10;&#9;&#9;&#13;&#10;&#9;&#9;image = ImageIO.read(new File (&quot;cardImages/Monsters/Samaels-Trickster.png&quot;));&#13;&#10;&#9;&#9;&#13;&#10;&#9;&#9;map31.put(HONOR, 1);&#13;&#10;&#9;&#9;map31.put(RUNES, 1);&#13;&#10;&#9;&#9;samaelsTrickster = ACard.makeCard(image, &quot;Samael's Trickster&quot;, &quot;Monster&quot;,&quot;Monster&quot;,3,1,4,map31);&#13;&#10;//&#9;&#9;&#13;&#10;&#9;&#9;image = ImageIO.read(new File (&quot;cardImages/Monsters/Sea-Tyrant.png&quot;));&#13;&#10;&#9;&#9;&#13;&#10;&#9;&#9;// TODO: Add the effect, all players destroy constructs until they have 1 left&#13;&#10;&#9;&#9;map32.put(HONOR, 5);&#13;&#10;&#9;&#9;seaTyrant = ACard.makeCard(image, &quot;Sea Tyrant&quot;, &quot;Monster&quot;,&quot;Monster&quot;,5,5,3,map32);&#13;&#10;&#9;&#9;&#13;&#10;&#9;&#9;image = ImageIO.read(new File (&quot;cardImages/Heroes/Seer-of-the-Forked-Path.png&quot;));&#13;&#10;&#9;&#9;&#13;&#10;&#9;&#9;// TODO: Add the effect, you may banish out of the center row.&#13;&#10;&#9;&#9;map33.put(DRAW, 1);&#13;&#10;&#9;&#9;seerOfTheForkedPath = ACard.makeCard(image, &quot;Seer of the Forked Path&quot;, &quot;Enlightened&quot;,&quot;Hero&quot;,2,1,3,map33);&#13;&#10;&#9;&#9;&#13;&#10;&#9;&#9;image = ImageIO.read(new File (&quot;cardImages/Heroes/Shade-of-the-Black-Watch.png&quot;));&#13;&#10;&#9;&#9;&#13;&#10;&#9;&#9;// TODO: Add the effect, you may banish from hand or discard&#13;&#10;&#9;&#9;map34.put(POWER, 2);&#13;&#10;&#9;&#9;shadeOfTheBlackWatch = ACard.makeCard(image, &quot;Shade of the Black Watch&quot;, &quot;Void&quot;,&quot;Hero&quot;,3,1,3,map34);&#13;&#10;&#9;&#9;&#13;&#10;&#9;&#9;image = ImageIO.read(new File (&quot;cardImages/Constructs/Shadow-Star.png&quot;));&#13;&#10;&#9;&#9;&#13;&#10;&#9;&#9;// TODO: Add the effect, once per turn gain one power.&#13;&#10;&#9;&#9;&#13;&#10;&#9;&#9;shadowStar = ACard.makeCard(image, &quot;Shadow Star&quot;, &quot;Void&quot;,&quot;Construct&quot;,3,2,2,map35);&#13;&#10;&#9;&#9;&#13;&#10;&#9;&#9;image = ImageIO.read(new File (&quot;cardImages/Constructs/Snapdragon.png&quot;));&#13;&#10;&#9;&#9;&#13;&#10;&#9;&#9;// TODO: Add the effect, once per turn gain a rune and the first time you play a lifebound gain one honor&#13;&#10;&#9;&#9;&#13;&#10;&#9;&#9;snapdragon = ACard.makeCard(image, &quot;Snapdragon&quot;, &quot;Lifebound&quot;,&quot;Construct&quot;,5,2,2,map36);&#13;&#10;&#9;&#9;&#13;&#10;&#9;&#9;image = ImageIO.read(new File (&quot;cardImages/Heroes/Spike-Vixen.png&quot;));&#13;&#10;&#9;&#9;&#13;&#10;&#9;&#9;map37.put(POWER, 1);&#13;&#10;&#9;&#9;map37.put(DRAW, 1);&#13;&#10;&#9;&#9;spikeVixen = ACard.makeCard(image, &quot;Spike Vixen&quot;, &quot;Void&quot;,&quot;Hero&quot;,2,1,2,map37);&#13;&#10;&#9;&#9;&#13;&#10;&#9;&#9;image = ImageIO.read(new File (&quot;cardImages/Constructs/Tablet-of-Times-Dawn.png&quot;));&#13;&#10;&#9;&#9;&#13;&#10;&#9;&#9;// TODO: Add the effect, you may banish this construct to take another turn&#13;&#10;&#9;&#9;&#13;&#10;&#9;&#9;tabletOfTimesDawn = ACard.makeCard(image, &quot;Tablet of Time's Dawn&quot;, &quot;Enlightened&quot;,&quot;Construct&quot;,5,2,1,map38);&#13;&#10;&#9;&#9;&#13;&#10;&#9;&#9;image = ImageIO.read(new File (&quot;cardImages/Heroes/Temple-Librarian.png&quot;));&#13;&#10;&#9;&#9;&#13;&#10;&#9;&#9;// TODO: Add the effect, discard one card then draw two&#13;&#10;&#9;&#9;&#13;&#10;&#9;&#9;templeLibrarian = ACard.makeCard(image, &quot;Temple Librarian&quot;, &quot;Enlightened&quot;,&quot;Hero&quot;,2,1,3,map39);&#13;&#10;&#9;&#9;&#13;&#10;&#9;&#9;image = ImageIO.read(new File (&quot;cardImages/Constructs/The-All-Seeing-Eye.png&quot;));&#13;&#10;&#9;&#9;&#13;&#10;&#9;&#9;// TODO: Add the effect, once per turn you may draw a card&#13;&#10;&#9;&#9;&#13;&#10;&#9;&#9;theAllSeeingEye = ACard.makeCard(image, &quot;The All-Seeing Eye&quot;, &quot;Enlightened&quot;,&quot;Construct&quot;,6,2,1,map40);&#13;&#10;&#9;&#9; &#13;&#10;&#9;&#9;image = ImageIO.read(new File (&quot;cardImages/Constructs/The-Grand-Design.png&quot;));&#13;&#10;&#9;&#9;&#13;&#10;&#9;&#9;// TODO: Add the effect, gain two runes towards a mechana construct&#13;&#10;&#9;&#9;&#13;&#10;&#9;&#9;theGrandDesign = ACard.makeCard(image, &quot;The Grand Design&quot;, &quot;Mechana&quot;,&quot;Construct&quot;,6,6,2,map41);&#13;&#10;&#9;&#9;&#13;&#10;&#9;&#9;image = ImageIO.read(new File (&quot;cardImages/Monsters/Tormented-Soul.png&quot;));&#13;&#10;&#9;&#9;&#13;&#10;&#9;&#9;map42.put(HONOR, 1);&#13;&#10;&#9;&#9;map42.put(DRAW, 1);&#13;&#10;&#9;&#9;tormentedSoul = ACard.makeCard(image, &quot;Tormented Soul&quot;, &quot;Monster&quot;,&quot;Monster&quot;,3,1,3,map42);&#13;&#10;&#9;&#9;&#13;&#10;&#9;&#9;image = ImageIO.read(new File (&quot;cardImages/Heroes/Twofold-Askara.png&quot;));&#13;&#10;&#9;&#9;&#13;&#10;&#9;&#9;// TODO: Add the effect, copy the effect of a hero played this turn&#13;&#10;&#9;&#9;&#13;&#10;&#9;&#9;twofoldAskara = ACard.makeCard(image, &quot;Twofold Askara&quot;, &quot;Enlightened&quot;,&quot;Hero&quot;,4,2,1,map43);&#13;&#10;&#9;&#9;&#13;&#10;&#9;&#9;image = ImageIO.read(new File (&quot;cardImages/Heroes/Void-Initiate.png&quot;));&#13;&#10;&#9;&#9;&#13;&#10;&#9;&#9;// TODO: Add the effect, you may banish one from the hand or discard&#13;&#10;&#9;&#9;map44.put(RUNES, 1);&#13;&#10;&#9;&#9;voidInitiate = ACard.makeCard(image, &quot;Void Initiate&quot;, &quot;Void&quot;,&quot;Hero&quot;,1,1,3,map44);&#13;&#10;&#9;&#9;&#13;&#10;&#9;&#9;image = ImageIO.read(new File (&quot;cardImages/Constructs/Voidthirster.png&quot;));&#13;&#10;&#9;&#9;&#13;&#10;&#9;&#9;// TODO: Add the effect, once per turn gain one power and the first time you kill a monster gain one honor&#13;&#10;&#9;&#9;&#13;&#10;&#9;&#9;voidthirster = ACard.makeCard(image, &quot;Voidthirster&quot;, &quot;Void&quot;,&quot;Construct&quot;,5,3,2,map45);&#13;&#10;&#9;&#9;&#13;&#10;&#9;&#9;image = ImageIO.read(new File (&quot;cardImages/Constructs/Watchmakers-Altar.png&quot;));&#13;&#10;&#9;&#9;&#13;&#10;&#9;&#9;// TODO: Add the effect, once per turn gain one rune toward a mechana construct&#13;&#10;&#9;&#9;&#13;&#10;&#9;&#9;watchmakersAltar = ACard.makeCard(image, &quot;Watchmaker's Altar&quot;, &quot;Mechana&quot;,&quot;Construct&quot;,5,5,2,map46);&#13;&#10;&#9;&#9;&#13;&#10;&#9;&#9;image = ImageIO.read(new File (&quot;cardImages/Monsters/Wind-Tyrant.png&quot;));&#13;&#10;&#9;&#9;&#13;&#10;&#9;&#9;map47.put(HONOR, 3);&#13;&#10;&#9;&#9;map47.put(RUNES, 3);&#13;&#10;&#9;&#9;windTyrant = ACard.makeCard(image, &quot;Wind Tyrant&quot;, &quot;Monster&quot;,&quot;Monster&quot;,5,3,3,map47);&#13;&#10;&#9;&#9;&#13;&#10;&#9;&#9;image = ImageIO.read(new File (&quot;cardImages/Monsters/Xeron-Duke-of-Lies.png&quot;));&#13;&#10;&#9;&#9;&#13;&#10;&#9;&#9;// TODO: Add the effect, take a card out of each player's hand and add it to your own&#13;&#10;&#9;&#9;&#13;&#10;&#9;&#9;xeronDukeOfLies = ACard.makeCard(image, &quot;Xeron, Duke of Lies&quot;, &quot;Monster&quot;,&quot;Monster&quot;,6,3,1,map48);&#13;&#10;&#9;&#9;&#13;&#10;&#9;&#9;image = ImageIO.read(new File (&quot;cardImages/Constructs/Yggdrasil-Staff.png&quot;));&#13;&#10;&#9;&#9;&#13;&#10;&#9;&#9;// TODO: Add the effect, once per turn gain one power, you can pay 4 runes for 3 honor&#13;&#10;&#9;&#9;&#13;&#10;&#9;&#9;yggdrasilStaff = ACard.makeCard(image, &quot;Yggdrasil Staff&quot;, &quot;Lifebound&quot;,&quot;Construct&quot;,4,2,2,map49);&#13;&#10;&#9;&#9;&#13;&#10;&#9;&#9;cards = new ACard[] {arhaInitiate, demonSlayer, wolfShaman, &#13;&#10;&#9;&#9;&#9;&#9;flyTrapWitch, asceticOfTheLidlessEye, emriOneWithTheVoid,&#13;&#10;&#9;&#9;&#9;&#9;arbiterOfThePrecipice, arhaTemplar, avatarGolem, avatarOfTheFallen,&#13;&#10;&#9;&#9;&#9;&#9;burrowerMarkII, cetraWeaverOfStars, corrosiveWidow, druidsOfTheStoneCircle,&#13;&#10;&#9;&#9;&#9;&#9;earthTyrant, hedronCannon, hedronLinkDevice, korTheFerromancer, &#13;&#10;&#9;&#9;&#9;&#9;landtalker, lifeboundInitiate, masterDhartha, mechanaInitiate,&#13;&#10;&#9;&#9;&#9;&#9;mephit, mistakeOfCreation, muramasa, oziahThePeerless, reactorMonk, &#13;&#10;&#9;&#9;&#9;&#9;rocketCourierX99, runicLycanthrope, samaelsTrickster, seaTyrant, seerOfTheForkedPath, &#13;&#10;&#9;&#9;&#9;&#9;shadeOfTheBlackWatch, shadowStar, snapdragon, spikeVixen, tabletOfTimesDawn,&#13;&#10;&#9;&#9;&#9;&#9;templeLibrarian, theAllSeeingEye, theGrandDesign, tormentedSoul, twofoldAskara, voidInitiate,&#13;&#10;&#9;&#9;&#9;&#9;voidthirster, watchmakersAltar, windTyrant, xeronDukeOfLies, yggdrasilStaff};&#13;&#10;&#9;}&#13;&#10;&#13;&#10;}&#13;&#10;" Filename="CardCollection.java" Intrnl_Id="8"/>
 <SrcFile Content="/**&#13;&#10; * &#13;&#10; */&#13;&#10;package devops.hw1.core;&#13;&#10;&#13;&#10;import java.io.IOException;&#13;&#10;import java.util.ArrayList;&#13;&#10;import java.util.Collections;&#13;&#10;import java.util.LinkedList;&#13;&#10;&#13;&#10;/**&#13;&#10; * @author fenogljc&#13;&#10; * @author gneezyn&#13;&#10; * @author heshelhj&#13;&#10; * @author bishopcc&#13;&#10; */&#13;&#10;public class Board {&#13;&#10;&#13;&#10;&#9;private ArrayList&lt;ACard&gt; theVoid;&#13;&#10;&#9;private LinkedList&lt;ACard&gt; cenDeck;&#13;&#10;&#9;private ACard[] cenField;&#13;&#10;&#9;private ACard cultist;&#13;&#10;&#9;private ACard heavyInf;&#13;&#10;&#9;private ACard mystic;&#13;&#10;&#13;&#10;&#9;/**&#13;&#10;&#9; * The default constructor for the Board Class.&#13;&#10;&#9; * &#13;&#10;&#9; */&#13;&#10;&#9;public Board() {&#13;&#10;&#9;&#9;try {&#13;&#10;&#9;&#9;&#9;new CardCollection();&#13;&#10;&#9;&#9;} catch (IOException exception) {&#13;&#10;&#9;&#9;&#9;System.out.println(&quot;File not found&quot;);&#13;&#10;&#9;&#9;}&#13;&#10;&#9;&#9;this.theVoid = new ArrayList&lt;ACard&gt;();&#13;&#10;&#9;&#9;this.cenDeck = new LinkedList&lt;ACard&gt;();&#13;&#10;&#9;&#9;this.cenField = new ACard[6];&#13;&#10;&#9;&#9;&#13;&#10;&#9;&#9;initializeCenterDeck();&#13;&#10;&#9;&#9;&#13;&#10;&#9;&#9;this.cultist = ACard.makeCard();&#13;&#10;&#9;&#9;this.heavyInf = ACard.makeCard();&#13;&#10;&#9;&#9;this.mystic = ACard.makeCard();&#13;&#10;&#9;}&#13;&#10;&#9;&#13;&#10;&#9;/**&#13;&#10;&#9; * This method fills the deck with the necessary cards and fills the center row with the top cards of the deck.&#13;&#10;&#9; */&#13;&#10;&#9;&#13;&#10;&#9;private void initializeCenterDeck() {&#13;&#10;&#9;&#9;for (int i = 0; i &lt; CardCollection.cards.length; i++) {&#13;&#10;&#9;&#9;&#9;for (int j = 0; j &lt; CardCollection.cards[i].rarity; j++) {&#13;&#10;&#9;&#9;&#9;&#9;this.cenDeck.add(CardCollection.cards[i]);&#13;&#10;&#9;&#9;&#9;}&#13;&#10;&#9;&#9;}&#13;&#10;&#9;&#9;Collections.shuffle(this.cenDeck);&#13;&#10;&#9;&#9;for (int m = 0; m &lt; 6; m++) {&#13;&#10;&#9;&#9;&#9;centerDeckToField(m);&#13;&#10;&#9;&#9;}&#13;&#10;&#9;}&#13;&#10;&#13;&#10;&#9;/**&#13;&#10;&#9; * @return the Void field (where banished cards and defeated Monsters go)&#13;&#10;&#9; */&#13;&#10;&#9;public ArrayList&lt;ACard&gt; getVoid() {&#13;&#10;&#9;&#9;return this.theVoid;&#13;&#10;&#9;}&#13;&#10;&#13;&#10;&#9;/**&#13;&#10;&#9; * &#13;&#10;&#9; * Adds the passed card to the void&#13;&#10;&#9; *&#13;&#10;&#9; * @param card to be added to the void pile&#13;&#10;&#9; */&#13;&#10;&#9;public void sendToVoid(ACard card){&#13;&#10;&#9;&#9;if(card == null){&#13;&#10;&#9;&#9;&#9;return;&#13;&#10;&#9;&#9;}&#13;&#10;&#9;&#9;this.theVoid.add(card);&#13;&#10;&#9;}&#13;&#10;&#9;&#13;&#10;&#9;/**&#13;&#10;&#9; * @return the Center Deck &#13;&#10;&#9; */&#13;&#10;&#9;public LinkedList&lt;ACard&gt; getCenDeck() {&#13;&#10;&#9;&#9;return this.cenDeck;&#13;&#10;&#9;}&#13;&#10;&#13;&#10;&#9;/**&#13;&#10;&#9; * @return the Cultist (Standard) Card&#13;&#10;&#9; */&#13;&#10;&#9;public ACard getCultist() {&#13;&#10;&#9;&#9;return this.cultist;&#13;&#10;&#9;}&#13;&#10;&#13;&#10;&#9;/**&#13;&#10;&#9; * @return the Heavy Infantry (Standard) Card&#13;&#10;&#9; */&#13;&#10;&#9;public ACard getHeavyInf() {&#13;&#10;&#9;&#9;return this.heavyInf;&#13;&#10;&#9;}&#13;&#10;&#13;&#10;&#9;/**&#13;&#10;&#9; * @return the Mystic (Standard) Card&#13;&#10;&#9; */&#13;&#10;&#9;public ACard getMystic() {&#13;&#10;&#9;&#9;return this.mystic;&#13;&#10;&#9;}&#13;&#10;&#13;&#10;&#9;/**&#13;&#10;&#9; * Moves the card from the Center Deck to the Center Field&#13;&#10;&#9; * @param cenCard the card to move&#13;&#10;&#9; * @param index the index on the Center Field that the card is moving to (base zero)&#13;&#10;&#9; */&#13;&#10;&#9;public void centerDeckToField(int index) {&#13;&#10;&#9;&#9;ACard card = this.cenDeck.remove();&#13;&#10;&#9;&#9;this.cenField[index] = card;&#13;&#10;&#9;}&#13;&#10;&#9;/**&#13;&#10;&#9; * &#13;&#10;&#9; * gets the center row&#13;&#10;&#9; *&#13;&#10;&#9; * @return the center cards &#13;&#10;&#9; */&#13;&#10;&#9;public ACard[] getCenField() {&#13;&#10;&#9;&#9;return this.cenField;&#13;&#10;&#9;}&#13;&#10;}&#13;&#10;" Filename="Board.java" Intrnl_Id="9"/>
 <SrcFile Content="package devops.hw1.core;&#13;&#10;&#13;&#10;public abstract class AbstractData&lt;T&gt; implements IData&lt;T&gt; {&#13;&#10;&#9;private long id;&#13;&#10;&#9;private T value;&#13;&#10;&#9;&#13;&#10;&#9;public AbstractData(long id, T value) {&#13;&#10;&#9;&#9;this.id = id;&#13;&#10;&#9;&#9;this.value = value;&#13;&#10;&#9;}&#13;&#10;&#13;&#10;&#9;public long getId() {&#13;&#10;&#9;&#9;return this.id;&#13;&#10;&#9;}&#13;&#10;&#13;&#10;&#9;public T getValue() {&#13;&#10;&#9;&#9;return this.value;&#13;&#10;&#9;}&#13;&#10;&#13;&#10;&#9;@Override&#13;&#10;&#9;public int hashCode() {&#13;&#10;&#9;&#9;final int prime = 31;&#13;&#10;&#9;&#9;int result = 1;&#13;&#10;&#9;&#9;result = prime * result + (int) (id ^ (id &gt;&gt;&gt; 32));&#13;&#10;&#9;&#9;result = prime * result + ((value == null) ? 0 : value.hashCode());&#13;&#10;&#9;&#9;return result;&#13;&#10;&#9;}&#13;&#10;&#13;&#10;&#9;@Override&#13;&#10;&#9;public boolean equals(Object obj) {&#13;&#10;&#9;&#9;if (this == obj)&#13;&#10;&#9;&#9;&#9;return true;&#13;&#10;&#9;&#9;if (obj == null)&#13;&#10;&#9;&#9;&#9;return false;&#13;&#10;&#9;&#9;if (getClass() != obj.getClass())&#13;&#10;&#9;&#9;&#9;return false;&#13;&#10;&#13;&#10;&#9;&#9;@SuppressWarnings(&quot;unchecked&quot;)&#13;&#10;&#9;&#9;AbstractData&lt;T&gt; other = (AbstractData&lt;T&gt;) obj;&#13;&#10;&#9;&#9;if (id != other.id)&#13;&#10;&#9;&#9;&#9;return false;&#13;&#10;&#9;&#9;if (value == null) {&#13;&#10;&#9;&#9;&#9;if (other.value != null)&#13;&#10;&#9;&#9;&#9;&#9;return false;&#13;&#10;&#9;&#9;} else if (!value.equals(other.value))&#13;&#10;&#9;&#9;&#9;return false;&#13;&#10;&#9;&#9;return true;&#13;&#10;&#9;}&#9;&#13;&#10;&#9;&#13;&#10;&#9;public abstract int compareTo(IData&lt;T&gt; o);&#13;&#10;}&#13;&#10;" Filename="AbstractData.java" Intrnl_Id="10"/>
-<SrcFile Content="/**&#13;&#10; * &#13;&#10; */&#13;&#10;package devops.hw1.core;&#13;&#10;&#13;&#10;import java.awt.image.BufferedImage;&#13;&#10;import java.util.HashMap;&#13;&#10;&#13;&#10;/**&#13;&#10; * @author fenogljc&#13;&#10; * &#13;&#10; */&#13;&#10;public abstract class ACard {&#13;&#10;&#13;&#10;&#9;protected int cost;&#13;&#10;&#9;protected HashMap&lt;String, Integer&gt; effects = new HashMap&lt;String, Integer&gt;();&#13;&#10;&#9;protected String faction;&#13;&#10;&#9;protected String name;&#13;&#10;&#9;protected int honor;&#13;&#10;&#9;protected int rarity;&#13;&#10;&#9;protected BufferedImage image;&#13;&#10;&#9;&#13;&#10;&#9;/**&#13;&#10;&#9; * This returns a card with zero cost and no other special attributes.&#13;&#10;&#9; * @return&#13;&#10;&#9; */&#13;&#10;&#13;&#10;&#9;public static ACard makeCard() {&#13;&#10;&#9;&#9;return new HeroCard();&#13;&#10;&#9;}&#13;&#10;&#13;&#10;&#9;/**&#13;&#10;&#9; * This returns a card with cost equal to the input with no other special attributes.&#13;&#10;&#9; * @param i&#13;&#10;&#9; * @return&#13;&#10;&#9; */&#13;&#10;&#9;&#13;&#10;&#9;public static ACard makeCard(int i) {&#13;&#10;&#9;&#9;return new HeroCard(i);&#13;&#10;&#9;}&#13;&#10;&#9;&#13;&#10;&#9;/**&#13;&#10;&#9; * This returns a card with the given information.&#13;&#10;&#9; * @param image&#9;the image of the card (as .png file)&#13;&#10;&#9; * @param name the name of the card (i.e. &quot;Cultist&quot;)&#13;&#10;&#9; * @param faction the card's faction (i.e. &quot;Lifebound&quot;)&#13;&#10;&#9; * @param type the card's type (i.e. Hero, Monster, etc.)&#13;&#10;&#9; * @param cost the amount paid to obtain the card (in runes or power)&#13;&#10;&#9; * @param honor the amount of honor that the card is worth&#13;&#10;&#9; * @param rarity the number of occurrences of the card in the game&#13;&#10;&#9; * @param effects a HashMap of the card's effect(s)&#13;&#10;&#9; * @return&#13;&#10;&#9; */&#13;&#10;&#9;public static ACard makeCard(BufferedImage image, String name, String faction,&#13;&#10;&#9;&#9;&#9;String type, int cost, int honor, int rarity,&#13;&#10;&#9;&#9;&#9;HashMap&lt;String, Integer&gt; effects) {&#13;&#10;&#9;&#9;&#13;&#10;&#9;&#9;// before returning the card, need to do input validation&#13;&#10;&#9;&#9;if (name == null || type == null) {&#13;&#10;&#9;&#9;&#9;throw new NullPointerException(&quot;The following values can not be null for a card: &quot;&#13;&#10;&#9;&#9;&#9;&#9;&#9;+ &quot;name, type, cost, honor, rarity, and effect.&quot;);&#13;&#10;&#9;&#9;} else if (effects.keySet().contains(null)) {&#13;&#10;&#9;&#9;&#9;throw new NullPointerException(&quot;The following values can not be null for a card: &quot;&#13;&#10;&#9;&#9;&#9;&#9;&#9;+ &quot;name, type, cost, honor, rarity, and effect.&quot;);&#13;&#10;&#9;&#9;} else if (effects.keySet().contains(&quot;&quot;) || effects.values().contains(0)) {&#13;&#10;&#9;&#9;&#9;throw new IllegalArgumentException(&quot;One or more of the arguments given for the card &quot;&#13;&#10;&#9;&#9;&#9;&#9;&#9;+ &quot;were not correct.&quot;);&#13;&#10;&#9;&#9;}&#13;&#10;&#9;&#9;else if (!(type.toLowerCase().equals(&quot;hero&quot;) || type.toLowerCase().equals(&quot;monster&quot;) &#13;&#10;&#9;&#9;&#9;&#9;|| type.toLowerCase().equals(&quot;standard&quot;) || type.toLowerCase().equals(&quot;construct&quot;))) {&#13;&#10;&#9;&#9;&#9;throw new IllegalArgumentException(&quot;One or more of the arguments given for the card &quot;&#13;&#10;&#9;&#9;&#9;&#9;&#9;+ &quot;were not correct.&quot;);&#13;&#10;&#9;&#9;} &#13;&#10;&#9;&#9;&#13;&#10;&#9;&#9;&#13;&#10;&#9;&#9;// TODO: Make this not only be able to return hero cards&#13;&#10;&#9;&#9;&#13;&#10;&#9;&#9;&#9;return new HeroCard(image, name, faction, cost, honor, rarity, effects);&#13;&#10;&#9;}&#13;&#10;&#13;&#10;&#9;/**&#13;&#10;&#9; * @return the faction&#13;&#10;&#9; */&#13;&#10;&#9;public String getFaction() {&#13;&#10;&#9;&#9;return faction;&#13;&#10;&#9;}&#13;&#10;&#13;&#10;&#9;/**&#13;&#10;&#9; * @param faction&#13;&#10;&#9; *            the faction to set&#13;&#10;&#9; */&#13;&#10;&#9;public void setFaction(String faction) {&#13;&#10;&#9;&#9;this.faction = faction;&#13;&#10;&#9;}&#13;&#10;&#13;&#10;&#9;/**&#13;&#10;&#9; * @return the name&#13;&#10;&#9; */&#13;&#10;&#9;public String getName() {&#13;&#10;&#9;&#9;return name;&#13;&#10;&#9;}&#13;&#10;&#13;&#10;&#9;/**&#13;&#10;&#9; * @param name&#13;&#10;&#9; *            the name to set&#13;&#10;&#9; */&#13;&#10;&#9;public void setName(String name) {&#13;&#10;&#9;&#9;this.name = name;&#13;&#10;&#9;}&#13;&#10;&#13;&#10;&#9;/**&#13;&#10;&#9; * @return the honor&#13;&#10;&#9; */&#13;&#10;&#9;public int getHonor() {&#13;&#10;&#9;&#9;return honor;&#13;&#10;&#9;}&#13;&#10;&#13;&#10;&#9;/**&#13;&#10;&#9; * @param honor&#13;&#10;&#9; *            the honor to set&#13;&#10;&#9; */&#13;&#10;&#9;public void setHonor(int honor) {&#13;&#10;&#9;&#9;this.honor = honor;&#13;&#10;&#9;}&#13;&#10;&#13;&#10;&#9;/**&#13;&#10;&#9; * @return the rarity&#13;&#10;&#9; */&#13;&#10;&#9;public int getRarity() {&#13;&#10;&#9;&#9;return rarity;&#13;&#10;&#9;}&#13;&#10;&#13;&#10;&#9;/**&#13;&#10;&#9; * @param rarity&#13;&#10;&#9; *            the rarity to set&#13;&#10;&#9; */&#13;&#10;&#9;public void setRarity(int rarity) {&#13;&#10;&#9;&#9;this.rarity = rarity;&#13;&#10;&#9;}&#13;&#10;&#13;&#10;&#9;/**&#13;&#10;&#9; * @return the image&#13;&#10;&#9; */&#13;&#10;&#9;public BufferedImage getImage() {&#13;&#10;&#9;&#9;return image;&#13;&#10;&#9;}&#13;&#10;&#13;&#10;&#9;/**&#13;&#10;&#9; * @param image&#13;&#10;&#9; *            the image to set&#13;&#10;&#9; */&#13;&#10;&#9;public void setImage(BufferedImage image) {&#13;&#10;&#9;&#9;this.image = image;&#13;&#10;&#9;}&#13;&#10;&#13;&#10;&#9;/**&#13;&#10;&#9; * @param effects&#13;&#10;&#9; *            the effects to set&#13;&#10;&#9; */&#13;&#10;&#9;public void setEffects(HashMap&lt;String, Integer&gt; effects) {&#13;&#10;&#9;&#9;this.effects = effects;&#13;&#10;&#9;}&#13;&#10;&#13;&#10;&#9;/**&#13;&#10;&#9; * Returns that cost of the card.&#13;&#10;&#9; * &#13;&#10;&#9; * @return&#13;&#10;&#9; */&#13;&#10;&#9;public int getCost() {&#13;&#10;&#9;&#9;return this.cost;&#13;&#10;&#9;}&#13;&#10;&#13;&#10;&#9;/**&#13;&#10;&#9; * Sets the cost of the card.&#13;&#10;&#9; * &#13;&#10;&#9; * @return&#13;&#10;&#9; */&#13;&#10;&#9;public void setCost(int i) {&#13;&#10;&#9;&#9;this.cost = i;&#13;&#10;&#9;}&#13;&#10;&#13;&#10;&#9;/**&#13;&#10;&#9; * Returns the hashmap of effects the card has.&#13;&#10;&#9; * @return&#13;&#10;&#9; */&#13;&#10;&#9;public HashMap&lt;String, Integer&gt; getEffects() {&#13;&#10;&#9;&#9;return this.effects;&#13;&#10;&#9;}&#13;&#10;&#13;&#10;&#9;/**&#13;&#10;&#9; * Puts an effect string and integer value pair into the hashmap of effects for the card.&#13;&#10;&#9; * @param effect&#13;&#10;&#9; * @param value&#13;&#10;&#9; */&#13;&#10;&#9;public void setEffect(String effect, int value) {&#13;&#10;&#9;&#9;if (effect == null) {&#13;&#10;&#9;&#9;&#9;return;&#13;&#10;&#9;&#9;}&#13;&#10;&#9;&#9;this.effects.put(effect, value);&#13;&#10;&#9;}&#13;&#10;&#9;&#13;&#10;&#9;&#13;&#10;&#9;public int getStrength(){&#13;&#10;&#9;&#9;return this.cost;&#13;&#10;&#9;}&#13;&#10;&#9;&#13;&#10;}&#13;&#10;" Filename="ACard.java" Intrnl_Id="11"/>
+<SrcFile Content="/**&#13;&#10; * &#13;&#10; */&#13;&#10;package devops.hw1.core;&#13;&#10;&#13;&#10;import java.awt.image.BufferedImage;&#13;&#10;import java.util.ArrayList;&#13;&#10;import java.util.HashMap;&#13;&#10;&#13;&#10;/**&#13;&#10; * @author fenogljc&#13;&#10; * &#13;&#10; */&#13;&#10;public abstract class ACard {&#13;&#10;&#13;&#10;&#9;protected int cost;&#13;&#10;&#9;protected HashMap&lt;String, Integer&gt; effects = new HashMap&lt;String, Integer&gt;();&#13;&#10;&#9;protected String faction;&#13;&#10;&#9;protected String name;&#13;&#10;&#9;protected int honor;&#13;&#10;&#9;protected int rarity;&#13;&#10;&#9;protected BufferedImage image;&#13;&#10;&#9;&#13;&#10;&#9;/**&#13;&#10;&#9; * This returns a card with zero cost and no other special attributes.&#13;&#10;&#9; * @return&#13;&#10;&#9; */&#13;&#10;&#13;&#10;&#9;public static ACard makeCard() {&#13;&#10;&#9;&#9;return new HeroCard();&#13;&#10;&#9;}&#13;&#10;&#13;&#10;&#9;/**&#13;&#10;&#9; * This returns a card with cost equal to the input with no other special attributes.&#13;&#10;&#9; * @param i&#13;&#10;&#9; * @return&#13;&#10;&#9; */&#13;&#10;&#9;&#13;&#10;&#9;public static ACard makeCard(int i) {&#13;&#10;&#9;&#9;return new HeroCard(i);&#13;&#10;&#9;}&#13;&#10;&#9;&#13;&#10;&#9;/**&#13;&#10;&#9; * This returns a card with the given information.&#13;&#10;&#9; * @param image&#9;the image of the card (as .png file)&#13;&#10;&#9; * @param name the name of the card (i.e. &quot;Cultist&quot;)&#13;&#10;&#9; * @param faction the card's faction (i.e. &quot;Lifebound&quot;)&#13;&#10;&#9; * @param type the card's type (i.e. Hero, Monster, etc.)&#13;&#10;&#9; * @param cost the amount paid to obtain the card (in runes or power)&#13;&#10;&#9; * @param honor the amount of honor that the card is worth&#13;&#10;&#9; * @param rarity the number of occurrences of the card in the game&#13;&#10;&#9; * @param effects a HashMap of the card's effect(s)&#13;&#10;&#9; * @return&#13;&#10;&#9; */&#13;&#10;&#9;public static ACard makeCard(BufferedImage image, String name, String faction,&#13;&#10;&#9;&#9;&#9;String type, int cost, int honor, int rarity,&#13;&#10;&#9;&#9;&#9;HashMap&lt;String, Integer&gt; effects) {&#13;&#10;&#9;&#9;// array list of accepted card types (all in lower case, for consistency).&#13;&#10;&#9;&#9;ArrayList&lt;String&gt; acceptedTypes = new ArrayList&lt;String&gt;();&#13;&#10;&#9;&#9;&#13;&#10;&#9;&#9;// before returning the card, need to do input validation&#13;&#10;&#9;&#9;if (name == null || type == null) {&#13;&#10;&#9;&#9;&#9;throw new NullPointerException(&quot;The following values can not be null for a card: &quot;&#13;&#10;&#9;&#9;&#9;&#9;&#9;+ &quot;name, type, cost, honor, rarity, and effect.&quot;);&#13;&#10;&#9;&#9;} else if (effects.keySet().contains(null)) {&#13;&#10;&#9;&#9;&#9;throw new NullPointerException(&quot;The following values can not be null for a card: &quot;&#13;&#10;&#9;&#9;&#9;&#9;&#9;+ &quot;name, type, cost, honor, rarity, and effect.&quot;);&#13;&#10;&#9;&#9;} else if (effects.keySet().contains(&quot;&quot;) || effects.values().contains(0)) {&#13;&#10;&#9;&#9;&#9;throw new IllegalArgumentException(&quot;One or more of the arguments given for the card &quot;&#13;&#10;&#9;&#9;&#9;&#9;&#9;+ &quot;were not correct.&quot;);&#13;&#10;&#9;&#9;}&#13;&#10;&#9;&#9;else if (!(type.toLowerCase().equals(&quot;hero&quot;) || type.toLowerCase().equals(&quot;monster&quot;) &#13;&#10;&#9;&#9;&#9;&#9;|| type.toLowerCase().equals(&quot;standard&quot;) || type.toLowerCase().equals(&quot;construct&quot;))) {&#13;&#10;&#9;&#9;&#9;throw new IllegalArgumentException(&quot;One or more of the arguments given for the card &quot;&#13;&#10;&#9;&#9;&#9;&#9;&#9;+ &quot;were not correct.&quot;);&#13;&#10;&#9;&#9;} &#13;&#10;&#9;&#9;&#13;&#10;&#9;&#9;&#13;&#10;&#9;&#9;// TODO: Make this not only be able to return hero cards&#13;&#10;&#9;&#9;&#13;&#10;&#9;&#9;&#9;return new HeroCard(image, name, faction, cost, honor, rarity, effects);&#13;&#10;&#9;}&#13;&#10;&#13;&#10;&#9;/**&#13;&#10;&#9; * @return the faction&#13;&#10;&#9; */&#13;&#10;&#9;public String getFaction() {&#13;&#10;&#9;&#9;return faction;&#13;&#10;&#9;}&#13;&#10;&#13;&#10;&#9;/**&#13;&#10;&#9; * @param faction&#13;&#10;&#9; *            the faction to set&#13;&#10;&#9; */&#13;&#10;&#9;public void setFaction(String faction) {&#13;&#10;&#9;&#9;this.faction = faction;&#13;&#10;&#9;}&#13;&#10;&#13;&#10;&#9;/**&#13;&#10;&#9; * @return the name&#13;&#10;&#9; */&#13;&#10;&#9;public String getName() {&#13;&#10;&#9;&#9;return name;&#13;&#10;&#9;}&#13;&#10;&#13;&#10;&#9;/**&#13;&#10;&#9; * @param name&#13;&#10;&#9; *            the name to set&#13;&#10;&#9; */&#13;&#10;&#9;public void setName(String name) {&#13;&#10;&#9;&#9;this.name = name;&#13;&#10;&#9;}&#13;&#10;&#13;&#10;&#9;/**&#13;&#10;&#9; * @return the honor&#13;&#10;&#9; */&#13;&#10;&#9;public int getHonor() {&#13;&#10;&#9;&#9;return honor;&#13;&#10;&#9;}&#13;&#10;&#13;&#10;&#9;/**&#13;&#10;&#9; * @param honor&#13;&#10;&#9; *            the honor to set&#13;&#10;&#9; */&#13;&#10;&#9;public void setHonor(int honor) {&#13;&#10;&#9;&#9;this.honor = honor;&#13;&#10;&#9;}&#13;&#10;&#13;&#10;&#9;/**&#13;&#10;&#9; * @return the rarity&#13;&#10;&#9; */&#13;&#10;&#9;public int getRarity() {&#13;&#10;&#9;&#9;return rarity;&#13;&#10;&#9;}&#13;&#10;&#13;&#10;&#9;/**&#13;&#10;&#9; * @param rarity&#13;&#10;&#9; *            the rarity to set&#13;&#10;&#9; */&#13;&#10;&#9;public void setRarity(int rarity) {&#13;&#10;&#9;&#9;this.rarity = rarity;&#13;&#10;&#9;}&#13;&#10;&#13;&#10;&#9;/**&#13;&#10;&#9; * @return the image&#13;&#10;&#9; */&#13;&#10;&#9;public BufferedImage getImage() {&#13;&#10;&#9;&#9;return image;&#13;&#10;&#9;}&#13;&#10;&#13;&#10;&#9;/**&#13;&#10;&#9; * @param image&#13;&#10;&#9; *            the image to set&#13;&#10;&#9; */&#13;&#10;&#9;public void setImage(BufferedImage image) {&#13;&#10;&#9;&#9;this.image = image;&#13;&#10;&#9;}&#13;&#10;&#13;&#10;&#9;/**&#13;&#10;&#9; * @param effects&#13;&#10;&#9; *            the effects to set&#13;&#10;&#9; */&#13;&#10;&#9;public void setEffects(HashMap&lt;String, Integer&gt; effects) {&#13;&#10;&#9;&#9;this.effects = effects;&#13;&#10;&#9;}&#13;&#10;&#13;&#10;&#9;/**&#13;&#10;&#9; * Returns that cost of the card.&#13;&#10;&#9; * &#13;&#10;&#9; * @return&#13;&#10;&#9; */&#13;&#10;&#9;public int getCost() {&#13;&#10;&#9;&#9;return this.cost;&#13;&#10;&#9;}&#13;&#10;&#13;&#10;&#9;/**&#13;&#10;&#9; * Sets the cost of the card.&#13;&#10;&#9; * &#13;&#10;&#9; * @return&#13;&#10;&#9; */&#13;&#10;&#9;public void setCost(int i) {&#13;&#10;&#9;&#9;this.cost = i;&#13;&#10;&#9;}&#13;&#10;&#13;&#10;&#9;/**&#13;&#10;&#9; * Returns the hashmap of effects the card has.&#13;&#10;&#9; * @return&#13;&#10;&#9; */&#13;&#10;&#9;public HashMap&lt;String, Integer&gt; getEffects() {&#13;&#10;&#9;&#9;return this.effects;&#13;&#10;&#9;}&#13;&#10;&#13;&#10;&#9;/**&#13;&#10;&#9; * Puts an effect string and integer value pair into the hashmap of effects for the card.&#13;&#10;&#9; * @param effect&#13;&#10;&#9; * @param value&#13;&#10;&#9; */&#13;&#10;&#9;public void setEffect(String effect, int value) {&#13;&#10;&#9;&#9;if (effect == null) {&#13;&#10;&#9;&#9;&#9;return;&#13;&#10;&#9;&#9;}&#13;&#10;&#9;&#9;this.effects.put(effect, value);&#13;&#10;&#9;}&#13;&#10;&#9;&#13;&#10;&#9;&#13;&#10;&#9;public int getStrength(){&#13;&#10;&#9;&#9;return this.cost;&#13;&#10;&#9;}&#13;&#10;&#9;&#13;&#10;}&#13;&#10;" Filename="ACard.java" Intrnl_Id="11"/>
 </SrcFileList>
 <CritList>
 <CritListEntry Name="org.codecover.model.utils.criteria.LoopCoverage" PluginName="org.codecover"/>
@@ -50,26 +50,26 @@
 <HierarchyLvlType EnglishName="default package" IntrnlName="default package" Intrnl_Id="19"/>
 </HierarchyLvlTypeList>
 <MASTRoot>
-<HierarchyLvl HierarchyLvlId="997" HierarchyLvlTypeId="19" Intrnl_Id="20" Name="default package">
+<HierarchyLvl HierarchyLvlId="3658" HierarchyLvlTypeId="19" Intrnl_Id="20" Name="default package">
 <Header/>
 <LocList/>
-<HierarchyLvl HierarchyLvlId="996" HierarchyLvlTypeId="15" Intrnl_Id="21" Name="devops">
+<HierarchyLvl HierarchyLvlId="3657" HierarchyLvlTypeId="15" Intrnl_Id="21" Name="devops">
 <Header/>
 <LocList/>
-<HierarchyLvl HierarchyLvlId="995" HierarchyLvlTypeId="15" Intrnl_Id="22" Name="hw1">
+<HierarchyLvl HierarchyLvlId="3656" HierarchyLvlTypeId="15" Intrnl_Id="22" Name="hw1">
 <Header/>
 <LocList/>
-<HierarchyLvl HierarchyLvlId="994" HierarchyLvlTypeId="15" Intrnl_Id="23" Name="core">
+<HierarchyLvl HierarchyLvlId="3655" HierarchyLvlTypeId="15" Intrnl_Id="23" Name="core">
 <Header/>
 <LocList/>
-<HierarchyLvl HierarchyLvlId="929" HierarchyLvlTypeId="18" Intrnl_Id="24" Name="Player">
+<HierarchyLvl HierarchyLvlId="3590" HierarchyLvlTypeId="18" Intrnl_Id="24" Name="Player">
 <Header>
 <Loc EndOffset="270" SrcFileId="1" StartOffset="251"/>
 </Header>
 <LocList>
 <Loc EndOffset="6976" SrcFileId="1" StartOffset="251"/>
 </LocList>
-<HierarchyLvl HierarchyLvlId="903" HierarchyLvlTypeId="17" Intrnl_Id="25" Name="Player">
+<HierarchyLvl HierarchyLvlId="3564" HierarchyLvlTypeId="17" Intrnl_Id="25" Name="Player">
 <Header>
 <Loc EndOffset="582" SrcFileId="1" StartOffset="566"/>
 </Header>
@@ -155,7 +155,7 @@
 </BasicStmnt>
 </StmntSeq>
 </HierarchyLvl>
-<HierarchyLvl HierarchyLvlId="904" HierarchyLvlTypeId="17" Intrnl_Id="40" Name="initialiseDeck">
+<HierarchyLvl HierarchyLvlId="3565" HierarchyLvlTypeId="17" Intrnl_Id="40" Name="initialiseDeck">
 <Header>
 <Loc EndOffset="981" SrcFileId="1" StartOffset="953"/>
 </Header>
@@ -215,7 +215,7 @@
 </LoopStmnt>
 </StmntSeq>
 </HierarchyLvl>
-<HierarchyLvl HierarchyLvlId="905" HierarchyLvlTypeId="17" Intrnl_Id="52" Name="endTurn">
+<HierarchyLvl HierarchyLvlId="3566" HierarchyLvlTypeId="17" Intrnl_Id="52" Name="endTurn">
 <Header>
 <Loc EndOffset="1313" SrcFileId="1" StartOffset="1292"/>
 </Header>
@@ -257,7 +257,7 @@
 </BasicStmnt>
 </StmntSeq>
 </HierarchyLvl>
-<HierarchyLvl HierarchyLvlId="906" HierarchyLvlTypeId="17" Intrnl_Id="59" Name="makePlayer">
+<HierarchyLvl HierarchyLvlId="3567" HierarchyLvlTypeId="17" Intrnl_Id="59" Name="makePlayer">
 <Header>
 <Loc EndOffset="1576" SrcFileId="1" StartOffset="1543"/>
 </Header>
@@ -281,7 +281,7 @@
 </BasicStmnt>
 </StmntSeq>
 </HierarchyLvl>
-<HierarchyLvl HierarchyLvlId="907" HierarchyLvlTypeId="17" Intrnl_Id="63" Name="addRunes">
+<HierarchyLvl HierarchyLvlId="3568" HierarchyLvlTypeId="17" Intrnl_Id="63" Name="addRunes">
 <Header>
 <Loc EndOffset="1782" SrcFileId="1" StartOffset="1755"/>
 </Header>
@@ -314,7 +314,7 @@
 </BasicStmnt>
 </StmntSeq>
 </HierarchyLvl>
-<HierarchyLvl HierarchyLvlId="908" HierarchyLvlTypeId="17" Intrnl_Id="69" Name="getRunes">
+<HierarchyLvl HierarchyLvlId="3569" HierarchyLvlTypeId="17" Intrnl_Id="69" Name="getRunes">
 <Header>
 <Loc EndOffset="1990" SrcFileId="1" StartOffset="1969"/>
 </Header>
@@ -332,7 +332,7 @@
 </BasicStmnt>
 </StmntSeq>
 </HierarchyLvl>
-<HierarchyLvl HierarchyLvlId="909" HierarchyLvlTypeId="17" Intrnl_Id="72" Name="setRunes">
+<HierarchyLvl HierarchyLvlId="3570" HierarchyLvlTypeId="17" Intrnl_Id="72" Name="setRunes">
 <Header>
 <Loc EndOffset="2195" SrcFileId="1" StartOffset="2164"/>
 </Header>
@@ -350,7 +350,7 @@
 </BasicStmnt>
 </StmntSeq>
 </HierarchyLvl>
-<HierarchyLvl HierarchyLvlId="910" HierarchyLvlTypeId="17" Intrnl_Id="75" Name="getDiscardSize">
+<HierarchyLvl HierarchyLvlId="3571" HierarchyLvlTypeId="17" Intrnl_Id="75" Name="getDiscardSize">
 <Header>
 <Loc EndOffset="2339" SrcFileId="1" StartOffset="2312"/>
 </Header>
@@ -368,7 +368,7 @@
 </BasicStmnt>
 </StmntSeq>
 </HierarchyLvl>
-<HierarchyLvl HierarchyLvlId="911" HierarchyLvlTypeId="17" Intrnl_Id="78" Name="discard">
+<HierarchyLvl HierarchyLvlId="3572" HierarchyLvlTypeId="17" Intrnl_Id="78" Name="discard">
 <Header>
 <Loc EndOffset="2504" SrcFileId="1" StartOffset="2473"/>
 </Header>
@@ -429,7 +429,7 @@
 </BasicStmnt>
 </StmntSeq>
 </HierarchyLvl>
-<HierarchyLvl HierarchyLvlId="912" HierarchyLvlTypeId="17" Intrnl_Id="90" Name="getDiscardPile">
+<HierarchyLvl HierarchyLvlId="3573" HierarchyLvlTypeId="17" Intrnl_Id="90" Name="getDiscardPile">
 <Header>
 <Loc EndOffset="2755" SrcFileId="1" StartOffset="2715"/>
 </Header>
@@ -447,7 +447,7 @@
 </BasicStmnt>
 </StmntSeq>
 </HierarchyLvl>
-<HierarchyLvl HierarchyLvlId="913" HierarchyLvlTypeId="17" Intrnl_Id="93" Name="buyCard">
+<HierarchyLvl HierarchyLvlId="3574" HierarchyLvlTypeId="17" Intrnl_Id="93" Name="buyCard">
 <Header>
 <Loc EndOffset="3088" SrcFileId="1" StartOffset="3054"/>
 </Header>
@@ -524,7 +524,7 @@
 </BasicStmnt>
 </StmntSeq>
 </HierarchyLvl>
-<HierarchyLvl HierarchyLvlId="914" HierarchyLvlTypeId="17" Intrnl_Id="108" Name="attackCard">
+<HierarchyLvl HierarchyLvlId="3575" HierarchyLvlTypeId="17" Intrnl_Id="108" Name="attackCard">
 <Header>
 <Loc EndOffset="3580" SrcFileId="1" StartOffset="3530"/>
 </Header>
@@ -601,7 +601,7 @@
 </BasicStmnt>
 </StmntSeq>
 </HierarchyLvl>
-<HierarchyLvl HierarchyLvlId="915" HierarchyLvlTypeId="17" Intrnl_Id="123" Name="getHandSize">
+<HierarchyLvl HierarchyLvlId="3576" HierarchyLvlTypeId="17" Intrnl_Id="123" Name="getHandSize">
 <Header>
 <Loc EndOffset="3890" SrcFileId="1" StartOffset="3866"/>
 </Header>
@@ -619,7 +619,7 @@
 </BasicStmnt>
 </StmntSeq>
 </HierarchyLvl>
-<HierarchyLvl HierarchyLvlId="916" HierarchyLvlTypeId="17" Intrnl_Id="126" Name="drawCard">
+<HierarchyLvl HierarchyLvlId="3577" HierarchyLvlTypeId="17" Intrnl_Id="126" Name="drawCard">
 <Header>
 <Loc EndOffset="4050" SrcFileId="1" StartOffset="4028"/>
 </Header>
@@ -692,7 +692,7 @@
 </BasicStmnt>
 </StmntSeq>
 </HierarchyLvl>
-<HierarchyLvl HierarchyLvlId="917" HierarchyLvlTypeId="17" Intrnl_Id="140" Name="addCardToDeck">
+<HierarchyLvl HierarchyLvlId="3578" HierarchyLvlTypeId="17" Intrnl_Id="140" Name="addCardToDeck">
 <Header>
 <Loc EndOffset="4442" SrcFileId="1" StartOffset="4405"/>
 </Header>
@@ -753,7 +753,7 @@
 </BasicStmnt>
 </StmntSeq>
 </HierarchyLvl>
-<HierarchyLvl HierarchyLvlId="918" HierarchyLvlTypeId="17" Intrnl_Id="152" Name="addCardToHand">
+<HierarchyLvl HierarchyLvlId="3579" HierarchyLvlTypeId="17" Intrnl_Id="152" Name="addCardToHand">
 <Header>
 <Loc EndOffset="4737" SrcFileId="1" StartOffset="4700"/>
 </Header>
@@ -814,7 +814,7 @@
 </BasicStmnt>
 </StmntSeq>
 </HierarchyLvl>
-<HierarchyLvl HierarchyLvlId="919" HierarchyLvlTypeId="17" Intrnl_Id="164" Name="getHand">
+<HierarchyLvl HierarchyLvlId="3580" HierarchyLvlTypeId="17" Intrnl_Id="164" Name="getHand">
 <Header>
 <Loc EndOffset="5002" SrcFileId="1" StartOffset="4969"/>
 </Header>
@@ -832,7 +832,7 @@
 </BasicStmnt>
 </StmntSeq>
 </HierarchyLvl>
-<HierarchyLvl HierarchyLvlId="920" HierarchyLvlTypeId="17" Intrnl_Id="167" Name="playCard">
+<HierarchyLvl HierarchyLvlId="3581" HierarchyLvlTypeId="17" Intrnl_Id="167" Name="playCard">
 <Header>
 <Loc EndOffset="5142" SrcFileId="1" StartOffset="5110"/>
 </Header>
@@ -905,7 +905,7 @@
 </BasicStmnt>
 </StmntSeq>
 </HierarchyLvl>
-<HierarchyLvl HierarchyLvlId="921" HierarchyLvlTypeId="17" Intrnl_Id="181" Name="drawCard">
+<HierarchyLvl HierarchyLvlId="3582" HierarchyLvlTypeId="17" Intrnl_Id="181" Name="drawCard">
 <Header>
 <Loc EndOffset="5401" SrcFileId="1" StartOffset="5370"/>
 </Header>
@@ -941,7 +941,7 @@
 </LoopStmnt>
 </StmntSeq>
 </HierarchyLvl>
-<HierarchyLvl HierarchyLvlId="922" HierarchyLvlTypeId="17" Intrnl_Id="188" Name="getDeck">
+<HierarchyLvl HierarchyLvlId="3583" HierarchyLvlTypeId="17" Intrnl_Id="188" Name="getDeck">
 <Header>
 <Loc EndOffset="5547" SrcFileId="1" StartOffset="5518"/>
 </Header>
@@ -959,7 +959,7 @@
 </BasicStmnt>
 </StmntSeq>
 </HierarchyLvl>
-<HierarchyLvl HierarchyLvlId="923" HierarchyLvlTypeId="17" Intrnl_Id="191" Name="getDeckSize">
+<HierarchyLvl HierarchyLvlId="3584" HierarchyLvlTypeId="17" Intrnl_Id="191" Name="getDeckSize">
 <Header>
 <Loc EndOffset="5681" SrcFileId="1" StartOffset="5657"/>
 </Header>
@@ -977,7 +977,7 @@
 </BasicStmnt>
 </StmntSeq>
 </HierarchyLvl>
-<HierarchyLvl HierarchyLvlId="924" HierarchyLvlTypeId="17" Intrnl_Id="194" Name="getPower">
+<HierarchyLvl HierarchyLvlId="3585" HierarchyLvlTypeId="17" Intrnl_Id="194" Name="getPower">
 <Header>
 <Loc EndOffset="5873" SrcFileId="1" StartOffset="5852"/>
 </Header>
@@ -995,7 +995,7 @@
 </BasicStmnt>
 </StmntSeq>
 </HierarchyLvl>
-<HierarchyLvl HierarchyLvlId="925" HierarchyLvlTypeId="17" Intrnl_Id="197" Name="addPower">
+<HierarchyLvl HierarchyLvlId="3586" HierarchyLvlTypeId="17" Intrnl_Id="197" Name="addPower">
 <Header>
 <Loc EndOffset="6032" SrcFileId="1" StartOffset="6005"/>
 </Header>
@@ -1013,7 +1013,7 @@
 </BasicStmnt>
 </StmntSeq>
 </HierarchyLvl>
-<HierarchyLvl HierarchyLvlId="926" HierarchyLvlTypeId="17" Intrnl_Id="200" Name="applyEffects">
+<HierarchyLvl HierarchyLvlId="3587" HierarchyLvlTypeId="17" Intrnl_Id="200" Name="applyEffects">
 <Header>
 <Loc EndOffset="6216" SrcFileId="1" StartOffset="6150"/>
 </Header>
@@ -1152,7 +1152,7 @@
 </LoopStmnt>
 </StmntSeq>
 </HierarchyLvl>
-<HierarchyLvl HierarchyLvlId="927" HierarchyLvlTypeId="17" Intrnl_Id="224" Name="getHonor">
+<HierarchyLvl HierarchyLvlId="3588" HierarchyLvlTypeId="17" Intrnl_Id="224" Name="getHonor">
 <Header>
 <Loc EndOffset="6766" SrcFileId="1" StartOffset="6745"/>
 </Header>
@@ -1170,7 +1170,7 @@
 </BasicStmnt>
 </StmntSeq>
 </HierarchyLvl>
-<HierarchyLvl HierarchyLvlId="928" HierarchyLvlTypeId="17" Intrnl_Id="227" Name="addHonor">
+<HierarchyLvl HierarchyLvlId="3589" HierarchyLvlTypeId="17" Intrnl_Id="227" Name="addHonor">
 <Header>
 <Loc EndOffset="6941" SrcFileId="1" StartOffset="6914"/>
 </Header>
@@ -1189,14 +1189,14 @@
 </StmntSeq>
 </HierarchyLvl>
 </HierarchyLvl>
-<HierarchyLvl HierarchyLvlId="932" HierarchyLvlTypeId="18" Intrnl_Id="230" Name="NumericData">
+<HierarchyLvl HierarchyLvlId="3593" HierarchyLvlTypeId="18" Intrnl_Id="230" Name="NumericData">
 <Header>
 <Loc EndOffset="79" SrcFileId="2" StartOffset="28"/>
 </Header>
 <LocList>
 <Loc EndOffset="399" SrcFileId="2" StartOffset="28"/>
 </LocList>
-<HierarchyLvl HierarchyLvlId="930" HierarchyLvlTypeId="17" Intrnl_Id="231" Name="NumericData">
+<HierarchyLvl HierarchyLvlId="3591" HierarchyLvlTypeId="17" Intrnl_Id="231" Name="NumericData">
 <Header>
 <Loc EndOffset="125" SrcFileId="2" StartOffset="86"/>
 </Header>
@@ -1214,7 +1214,7 @@
 </BasicStmnt>
 </StmntSeq>
 </HierarchyLvl>
-<HierarchyLvl HierarchyLvlId="931" HierarchyLvlTypeId="17" Intrnl_Id="234" Name="compareTo">
+<HierarchyLvl HierarchyLvlId="3592" HierarchyLvlTypeId="17" Intrnl_Id="234" Name="compareTo">
 <Header>
 <Loc EndOffset="208" SrcFileId="2" StartOffset="157"/>
 </Header>
@@ -1319,7 +1319,7 @@
 </StmntSeq>
 </HierarchyLvl>
 </HierarchyLvl>
-<HierarchyLvl HierarchyLvlId="934" HierarchyLvlTypeId="18" Intrnl_Id="255" Name="MainGUI">
+<HierarchyLvl HierarchyLvlId="3595" HierarchyLvlTypeId="18" Intrnl_Id="255" Name="MainGUI">
 <Header>
 <Loc EndOffset="220" SrcFileId="3" StartOffset="200"/>
 </Header>
@@ -1342,7 +1342,7 @@
 </LocList>
 </BasicStmnt>
 </StmntSeq>
-<HierarchyLvl HierarchyLvlId="933" HierarchyLvlTypeId="17" Intrnl_Id="259" Name="main">
+<HierarchyLvl HierarchyLvlId="3594" HierarchyLvlTypeId="17" Intrnl_Id="259" Name="main">
 <Header>
 <Loc EndOffset="350" SrcFileId="3" StartOffset="312"/>
 </Header>
@@ -1421,14 +1421,14 @@
 </StmntSeq>
 </HierarchyLvl>
 </HierarchyLvl>
-<HierarchyLvl HierarchyLvlId="937" HierarchyLvlTypeId="16" Intrnl_Id="272" Name="IData">
+<HierarchyLvl HierarchyLvlId="3598" HierarchyLvlTypeId="16" Intrnl_Id="272" Name="IData">
 <Header>
 <Loc EndOffset="82" SrcFileId="4" StartOffset="28"/>
 </Header>
 <LocList>
 <Loc EndOffset="133" SrcFileId="4" StartOffset="28"/>
 </LocList>
-<HierarchyLvl HierarchyLvlId="935" HierarchyLvlTypeId="17" Intrnl_Id="273" Name="getId">
+<HierarchyLvl HierarchyLvlId="3596" HierarchyLvlTypeId="17" Intrnl_Id="273" Name="getId">
 <Header>
 <Loc EndOffset="106" SrcFileId="4" StartOffset="87"/>
 </Header>
@@ -1436,7 +1436,7 @@
 <Loc EndOffset="107" SrcFileId="4" StartOffset="87"/>
 </LocList>
 </HierarchyLvl>
-<HierarchyLvl HierarchyLvlId="936" HierarchyLvlTypeId="17" Intrnl_Id="274" Name="getValue">
+<HierarchyLvl HierarchyLvlId="3597" HierarchyLvlTypeId="17" Intrnl_Id="274" Name="getValue">
 <Header>
 <Loc EndOffset="129" SrcFileId="4" StartOffset="110"/>
 </Header>
@@ -1445,14 +1445,14 @@
 </LocList>
 </HierarchyLvl>
 </HierarchyLvl>
-<HierarchyLvl HierarchyLvlId="941" HierarchyLvlTypeId="18" Intrnl_Id="275" Name="HeroCard">
+<HierarchyLvl HierarchyLvlId="3602" HierarchyLvlTypeId="18" Intrnl_Id="275" Name="HeroCard">
 <Header>
 <Loc EndOffset="130" SrcFileId="5" StartOffset="95"/>
 </Header>
 <LocList>
 <Loc EndOffset="749" SrcFileId="5" StartOffset="95"/>
 </LocList>
-<HierarchyLvl HierarchyLvlId="938" HierarchyLvlTypeId="17" Intrnl_Id="276" Name="HeroCard">
+<HierarchyLvl HierarchyLvlId="3599" HierarchyLvlTypeId="17" Intrnl_Id="276" Name="HeroCard">
 <Header>
 <Loc EndOffset="155" SrcFileId="5" StartOffset="138"/>
 </Header>
@@ -1470,7 +1470,7 @@
 </BasicStmnt>
 </StmntSeq>
 </HierarchyLvl>
-<HierarchyLvl HierarchyLvlId="939" HierarchyLvlTypeId="17" Intrnl_Id="279" Name="HeroCard">
+<HierarchyLvl HierarchyLvlId="3600" HierarchyLvlTypeId="17" Intrnl_Id="279" Name="HeroCard">
 <Header>
 <Loc EndOffset="206" SrcFileId="5" StartOffset="184"/>
 </Header>
@@ -1488,7 +1488,7 @@
 </BasicStmnt>
 </StmntSeq>
 </HierarchyLvl>
-<HierarchyLvl HierarchyLvlId="940" HierarchyLvlTypeId="17" Intrnl_Id="282" Name="HeroCard">
+<HierarchyLvl HierarchyLvlId="3601" HierarchyLvlTypeId="17" Intrnl_Id="282" Name="HeroCard">
 <Header>
 <Loc EndOffset="571" SrcFileId="5" StartOffset="435"/>
 </Header>
@@ -1543,7 +1543,7 @@
 </StmntSeq>
 </HierarchyLvl>
 </HierarchyLvl>
-<HierarchyLvl HierarchyLvlId="945" HierarchyLvlTypeId="18" Intrnl_Id="291" Name="GameBoard">
+<HierarchyLvl HierarchyLvlId="3606" HierarchyLvlTypeId="18" Intrnl_Id="291" Name="GameBoard">
 <Header>
 <Loc EndOffset="476" SrcFileId="6" StartOffset="410"/>
 </Header>
@@ -1626,7 +1626,7 @@
 </LocList>
 </BasicStmnt>
 </StmntSeq>
-<HierarchyLvl HierarchyLvlId="942" HierarchyLvlTypeId="17" Intrnl_Id="305" Name="GameBoard">
+<HierarchyLvl HierarchyLvlId="3603" HierarchyLvlTypeId="17" Intrnl_Id="305" Name="GameBoard">
 <Header>
 <Loc EndOffset="1849" SrcFileId="6" StartOffset="1831"/>
 </Header>
@@ -1776,7 +1776,7 @@
 </BasicStmnt>
 </StmntSeq>
 </HierarchyLvl>
-<HierarchyLvl HierarchyLvlId="943" HierarchyLvlTypeId="17" Intrnl_Id="330" Name="GameBoard">
+<HierarchyLvl HierarchyLvlId="3604" HierarchyLvlTypeId="17" Intrnl_Id="330" Name="GameBoard">
 <Header>
 <Loc EndOffset="2894" SrcFileId="6" StartOffset="2850"/>
 </Header>
@@ -1818,7 +1818,7 @@
 </BasicStmnt>
 </StmntSeq>
 </HierarchyLvl>
-<HierarchyLvl HierarchyLvlId="944" HierarchyLvlTypeId="17" Intrnl_Id="337" Name="paint">
+<HierarchyLvl HierarchyLvlId="3605" HierarchyLvlTypeId="17" Intrnl_Id="337" Name="paint">
 <Header>
 <Loc EndOffset="3230" SrcFileId="6" StartOffset="3189"/>
 </Header>
@@ -1983,14 +1983,14 @@
 </StmntSeq>
 </HierarchyLvl>
 </HierarchyLvl>
-<HierarchyLvl HierarchyLvlId="953" HierarchyLvlTypeId="18" Intrnl_Id="370" Name="CardListener">
+<HierarchyLvl HierarchyLvlId="3614" HierarchyLvlTypeId="18" Intrnl_Id="370" Name="CardListener">
 <Header>
 <Loc EndOffset="356" SrcFileId="7" StartOffset="306"/>
 </Header>
 <LocList>
 <Loc EndOffset="2890" SrcFileId="7" StartOffset="306"/>
 </LocList>
-<HierarchyLvl HierarchyLvlId="946" HierarchyLvlTypeId="17" Intrnl_Id="371" Name="CardListener">
+<HierarchyLvl HierarchyLvlId="3607" HierarchyLvlTypeId="17" Intrnl_Id="371" Name="CardListener">
 <Header>
 <Loc EndOffset="679" SrcFileId="7" StartOffset="563"/>
 </Header>
@@ -2026,7 +2026,7 @@
 </BasicStmnt>
 </StmntSeq>
 </HierarchyLvl>
-<HierarchyLvl HierarchyLvlId="947" HierarchyLvlTypeId="17" Intrnl_Id="377" Name="mouseClicked">
+<HierarchyLvl HierarchyLvlId="3608" HierarchyLvlTypeId="17" Intrnl_Id="377" Name="mouseClicked">
 <Header>
 <Loc EndOffset="993" SrcFileId="7" StartOffset="955"/>
 </Header>
@@ -2354,7 +2354,7 @@
 </BasicStmnt>
 </StmntSeq>
 </HierarchyLvl>
-<HierarchyLvl HierarchyLvlId="948" HierarchyLvlTypeId="17" Intrnl_Id="443" Name="updateGUI">
+<HierarchyLvl HierarchyLvlId="3609" HierarchyLvlTypeId="17" Intrnl_Id="443" Name="updateGUI">
 <Header>
 <Loc EndOffset="2338" SrcFileId="7" StartOffset="2315"/>
 </Header>
@@ -2390,7 +2390,7 @@
 </BasicStmnt>
 </StmntSeq>
 </HierarchyLvl>
-<HierarchyLvl HierarchyLvlId="949" HierarchyLvlTypeId="17" Intrnl_Id="449" Name="mouseEntered">
+<HierarchyLvl HierarchyLvlId="3610" HierarchyLvlTypeId="17" Intrnl_Id="449" Name="mouseEntered">
 <Header>
 <Loc EndOffset="2633" SrcFileId="7" StartOffset="2592"/>
 </Header>
@@ -2398,7 +2398,7 @@
 <Loc EndOffset="2661" SrcFileId="7" StartOffset="2592"/>
 </LocList>
 </HierarchyLvl>
-<HierarchyLvl HierarchyLvlId="950" HierarchyLvlTypeId="17" Intrnl_Id="450" Name="mouseExited">
+<HierarchyLvl HierarchyLvlId="3611" HierarchyLvlTypeId="17" Intrnl_Id="450" Name="mouseExited">
 <Header>
 <Loc EndOffset="2706" SrcFileId="7" StartOffset="2666"/>
 </Header>
@@ -2406,7 +2406,7 @@
 <Loc EndOffset="2734" SrcFileId="7" StartOffset="2666"/>
 </LocList>
 </HierarchyLvl>
-<HierarchyLvl HierarchyLvlId="951" HierarchyLvlTypeId="17" Intrnl_Id="451" Name="mousePressed">
+<HierarchyLvl HierarchyLvlId="3612" HierarchyLvlTypeId="17" Intrnl_Id="451" Name="mousePressed">
 <Header>
 <Loc EndOffset="2780" SrcFileId="7" StartOffset="2739"/>
 </Header>
@@ -2414,7 +2414,7 @@
 <Loc EndOffset="2808" SrcFileId="7" StartOffset="2739"/>
 </LocList>
 </HierarchyLvl>
-<HierarchyLvl HierarchyLvlId="952" HierarchyLvlTypeId="17" Intrnl_Id="452" Name="mouseReleased">
+<HierarchyLvl HierarchyLvlId="3613" HierarchyLvlTypeId="17" Intrnl_Id="452" Name="mouseReleased">
 <Header>
 <Loc EndOffset="2855" SrcFileId="7" StartOffset="2813"/>
 </Header>
@@ -2423,7 +2423,7 @@
 </LocList>
 </HierarchyLvl>
 </HierarchyLvl>
-<HierarchyLvl HierarchyLvlId="955" HierarchyLvlTypeId="18" Intrnl_Id="453" Name="CardCollection">
+<HierarchyLvl HierarchyLvlId="3616" HierarchyLvlTypeId="18" Intrnl_Id="453" Name="CardCollection">
 <Header>
 <Loc EndOffset="340" SrcFileId="8" StartOffset="313"/>
 </Header>
@@ -2458,7 +2458,7 @@
 </LocList>
 </BasicStmnt>
 </StmntSeq>
-<HierarchyLvl HierarchyLvlId="954" HierarchyLvlTypeId="17" Intrnl_Id="459" Name="CardCollection">
+<HierarchyLvl HierarchyLvlId="3615" HierarchyLvlTypeId="17" Intrnl_Id="459" Name="CardCollection">
 <Header>
 <Loc EndOffset="2503" SrcFileId="8" StartOffset="2461"/>
 </Header>
@@ -3605,14 +3605,14 @@
 </StmntSeq>
 </HierarchyLvl>
 </HierarchyLvl>
-<HierarchyLvl HierarchyLvlId="966" HierarchyLvlTypeId="18" Intrnl_Id="650" Name="Board">
+<HierarchyLvl HierarchyLvlId="3627" HierarchyLvlTypeId="18" Intrnl_Id="650" Name="Board">
 <Header>
 <Loc EndOffset="275" SrcFileId="9" StartOffset="257"/>
 </Header>
 <LocList>
 <Loc EndOffset="2682" SrcFileId="9" StartOffset="257"/>
 </LocList>
-<HierarchyLvl HierarchyLvlId="956" HierarchyLvlTypeId="17" Intrnl_Id="651" Name="Board">
+<HierarchyLvl HierarchyLvlId="3617" HierarchyLvlTypeId="17" Intrnl_Id="651" Name="Board">
 <Header>
 <Loc EndOffset="542" SrcFileId="9" StartOffset="528"/>
 </Header>
@@ -3704,7 +3704,7 @@
 </BasicStmnt>
 </StmntSeq>
 </HierarchyLvl>
-<HierarchyLvl HierarchyLvlId="957" HierarchyLvlTypeId="17" Intrnl_Id="667" Name="initializeCenterDeck">
+<HierarchyLvl HierarchyLvlId="3618" HierarchyLvlTypeId="17" Intrnl_Id="667" Name="initializeCenterDeck">
 <Header>
 <Loc EndOffset="1098" SrcFileId="9" StartOffset="1063"/>
 </Header>
@@ -3788,7 +3788,7 @@
 </LoopStmnt>
 </StmntSeq>
 </HierarchyLvl>
-<HierarchyLvl HierarchyLvlId="958" HierarchyLvlTypeId="17" Intrnl_Id="684" Name="getVoid">
+<HierarchyLvl HierarchyLvlId="3619" HierarchyLvlTypeId="17" Intrnl_Id="684" Name="getVoid">
 <Header>
 <Loc EndOffset="1513" SrcFileId="9" StartOffset="1480"/>
 </Header>
@@ -3806,7 +3806,7 @@
 </BasicStmnt>
 </StmntSeq>
 </HierarchyLvl>
-<HierarchyLvl HierarchyLvlId="959" HierarchyLvlTypeId="17" Intrnl_Id="687" Name="sendToVoid">
+<HierarchyLvl HierarchyLvlId="3620" HierarchyLvlTypeId="17" Intrnl_Id="687" Name="sendToVoid">
 <Header>
 <Loc EndOffset="1689" SrcFileId="9" StartOffset="1655"/>
 </Header>
@@ -3861,7 +3861,7 @@
 </BasicStmnt>
 </StmntSeq>
 </HierarchyLvl>
-<HierarchyLvl HierarchyLvlId="960" HierarchyLvlTypeId="17" Intrnl_Id="698" Name="getCenDeck">
+<HierarchyLvl HierarchyLvlId="3621" HierarchyLvlTypeId="17" Intrnl_Id="698" Name="getCenDeck">
 <Header>
 <Loc EndOffset="1844" SrcFileId="9" StartOffset="1807"/>
 </Header>
@@ -3879,7 +3879,7 @@
 </BasicStmnt>
 </StmntSeq>
 </HierarchyLvl>
-<HierarchyLvl HierarchyLvlId="961" HierarchyLvlTypeId="17" Intrnl_Id="701" Name="getCultist">
+<HierarchyLvl HierarchyLvlId="3622" HierarchyLvlTypeId="17" Intrnl_Id="701" Name="getCultist">
 <Header>
 <Loc EndOffset="1957" SrcFileId="9" StartOffset="1932"/>
 </Header>
@@ -3897,7 +3897,7 @@
 </BasicStmnt>
 </StmntSeq>
 </HierarchyLvl>
-<HierarchyLvl HierarchyLvlId="962" HierarchyLvlTypeId="17" Intrnl_Id="704" Name="getHeavyInf">
+<HierarchyLvl HierarchyLvlId="3623" HierarchyLvlTypeId="17" Intrnl_Id="704" Name="getHeavyInf">
 <Header>
 <Loc EndOffset="2078" SrcFileId="9" StartOffset="2052"/>
 </Header>
@@ -3915,7 +3915,7 @@
 </BasicStmnt>
 </StmntSeq>
 </HierarchyLvl>
-<HierarchyLvl HierarchyLvlId="963" HierarchyLvlTypeId="17" Intrnl_Id="707" Name="getMystic">
+<HierarchyLvl HierarchyLvlId="3624" HierarchyLvlTypeId="17" Intrnl_Id="707" Name="getMystic">
 <Header>
 <Loc EndOffset="2190" SrcFileId="9" StartOffset="2166"/>
 </Header>
@@ -3933,7 +3933,7 @@
 </BasicStmnt>
 </StmntSeq>
 </HierarchyLvl>
-<HierarchyLvl HierarchyLvlId="964" HierarchyLvlTypeId="17" Intrnl_Id="710" Name="centerDeckToField">
+<HierarchyLvl HierarchyLvlId="3625" HierarchyLvlTypeId="17" Intrnl_Id="710" Name="centerDeckToField">
 <Header>
 <Loc EndOffset="2461" SrcFileId="9" StartOffset="2421"/>
 </Header>
@@ -3957,7 +3957,7 @@
 </BasicStmnt>
 </StmntSeq>
 </HierarchyLvl>
-<HierarchyLvl HierarchyLvlId="965" HierarchyLvlTypeId="17" Intrnl_Id="714" Name="getCenField">
+<HierarchyLvl HierarchyLvlId="3626" HierarchyLvlTypeId="17" Intrnl_Id="714" Name="getCenField">
 <Header>
 <Loc EndOffset="2648" SrcFileId="9" StartOffset="2620"/>
 </Header>
@@ -3976,14 +3976,14 @@
 </StmntSeq>
 </HierarchyLvl>
 </HierarchyLvl>
-<HierarchyLvl HierarchyLvlId="973" HierarchyLvlTypeId="18" Intrnl_Id="717" Name="AbstractData">
+<HierarchyLvl HierarchyLvlId="3634" HierarchyLvlTypeId="18" Intrnl_Id="717" Name="AbstractData">
 <Header>
 <Loc EndOffset="85" SrcFileId="10" StartOffset="28"/>
 </Header>
 <LocList>
 <Loc EndOffset="1060" SrcFileId="10" StartOffset="28"/>
 </LocList>
-<HierarchyLvl HierarchyLvlId="967" HierarchyLvlTypeId="17" Intrnl_Id="718" Name="AbstractData">
+<HierarchyLvl HierarchyLvlId="3628" HierarchyLvlTypeId="17" Intrnl_Id="718" Name="AbstractData">
 <Header>
 <Loc EndOffset="168" SrcFileId="10" StartOffset="131"/>
 </Header>
@@ -4007,7 +4007,7 @@
 </BasicStmnt>
 </StmntSeq>
 </HierarchyLvl>
-<HierarchyLvl HierarchyLvlId="968" HierarchyLvlTypeId="17" Intrnl_Id="722" Name="getId">
+<HierarchyLvl HierarchyLvlId="3629" HierarchyLvlTypeId="17" Intrnl_Id="722" Name="getId">
 <Header>
 <Loc EndOffset="238" SrcFileId="10" StartOffset="219"/>
 </Header>
@@ -4025,7 +4025,7 @@
 </BasicStmnt>
 </StmntSeq>
 </HierarchyLvl>
-<HierarchyLvl HierarchyLvlId="969" HierarchyLvlTypeId="17" Intrnl_Id="725" Name="getValue">
+<HierarchyLvl HierarchyLvlId="3630" HierarchyLvlTypeId="17" Intrnl_Id="725" Name="getValue">
 <Header>
 <Loc EndOffset="287" SrcFileId="10" StartOffset="268"/>
 </Header>
@@ -4043,7 +4043,7 @@
 </BasicStmnt>
 </StmntSeq>
 </HierarchyLvl>
-<HierarchyLvl HierarchyLvlId="970" HierarchyLvlTypeId="17" Intrnl_Id="728" Name="hashCode">
+<HierarchyLvl HierarchyLvlId="3631" HierarchyLvlTypeId="17" Intrnl_Id="728" Name="hashCode">
 <Header>
 <Loc EndOffset="353" SrcFileId="10" StartOffset="320"/>
 </Header>
@@ -4100,7 +4100,7 @@
 </BasicStmnt>
 </StmntSeq>
 </HierarchyLvl>
-<HierarchyLvl HierarchyLvlId="971" HierarchyLvlTypeId="17" Intrnl_Id="738" Name="equals">
+<HierarchyLvl HierarchyLvlId="3632" HierarchyLvlTypeId="17" Intrnl_Id="738" Name="equals">
 <Header>
 <Loc EndOffset="597" SrcFileId="10" StartOffset="552"/>
 </Header>
@@ -4387,7 +4387,7 @@
 </BasicStmnt>
 </StmntSeq>
 </HierarchyLvl>
-<HierarchyLvl HierarchyLvlId="972" HierarchyLvlTypeId="17" Intrnl_Id="798" Name="compareTo">
+<HierarchyLvl HierarchyLvlId="3633" HierarchyLvlTypeId="17" Intrnl_Id="798" Name="compareTo">
 <Header>
 <Loc EndOffset="1056" SrcFileId="10" StartOffset="1015"/>
 </Header>
@@ -4396,616 +4396,622 @@
 </LocList>
 </HierarchyLvl>
 </HierarchyLvl>
-<HierarchyLvl HierarchyLvlId="993" HierarchyLvlTypeId="18" Intrnl_Id="799" Name="ACard">
+<HierarchyLvl HierarchyLvlId="3654" HierarchyLvlTypeId="18" Intrnl_Id="799" Name="ACard">
 <Header>
-<Loc EndOffset="173" SrcFileId="11" StartOffset="146"/>
+<Loc EndOffset="202" SrcFileId="11" StartOffset="175"/>
 </Header>
 <LocList>
-<Loc EndOffset="4627" SrcFileId="11" StartOffset="146"/>
+<Loc EndOffset="4796" SrcFileId="11" StartOffset="175"/>
 </LocList>
 <StmntSeq Intrnl_Id="800">
 <LocList>
-<Loc EndOffset="278" SrcFileId="11" StartOffset="202"/>
+<Loc EndOffset="307" SrcFileId="11" StartOffset="231"/>
 </LocList>
 <BasicStmnt CovItemId="S1" CovItemPrefix="devops.hw1.core.ACard.java" Intrnl_Id="801">
 <LocList>
-<Loc EndOffset="278" SrcFileId="11" StartOffset="202"/>
+<Loc EndOffset="307" SrcFileId="11" StartOffset="231"/>
 </LocList>
 </BasicStmnt>
 </StmntSeq>
-<HierarchyLvl HierarchyLvlId="974" HierarchyLvlTypeId="17" Intrnl_Id="802" Name="makeCard">
+<HierarchyLvl HierarchyLvlId="3635" HierarchyLvlTypeId="17" Intrnl_Id="802" Name="makeCard">
 <Header>
-<Loc EndOffset="547" SrcFileId="11" StartOffset="517"/>
+<Loc EndOffset="576" SrcFileId="11" StartOffset="546"/>
 </Header>
 <LocList>
-<Loc EndOffset="579" SrcFileId="11" StartOffset="517"/>
+<Loc EndOffset="608" SrcFileId="11" StartOffset="546"/>
 </LocList>
 <StmntSeq Intrnl_Id="803">
 <LocList>
-<Loc EndOffset="575" SrcFileId="11" StartOffset="553"/>
+<Loc EndOffset="604" SrcFileId="11" StartOffset="582"/>
 </LocList>
 <BasicStmnt CovItemId="S2" CovItemPrefix="devops.hw1.core.ACard.java" Intrnl_Id="804">
 <LocList>
-<Loc EndOffset="575" SrcFileId="11" StartOffset="553"/>
+<Loc EndOffset="604" SrcFileId="11" StartOffset="582"/>
 </LocList>
 </BasicStmnt>
 </StmntSeq>
 </HierarchyLvl>
-<HierarchyLvl HierarchyLvlId="975" HierarchyLvlTypeId="17" Intrnl_Id="805" Name="makeCard">
+<HierarchyLvl HierarchyLvlId="3636" HierarchyLvlTypeId="17" Intrnl_Id="805" Name="makeCard">
 <Header>
-<Loc EndOffset="749" SrcFileId="11" StartOffset="714"/>
+<Loc EndOffset="778" SrcFileId="11" StartOffset="743"/>
 </Header>
 <LocList>
-<Loc EndOffset="782" SrcFileId="11" StartOffset="714"/>
+<Loc EndOffset="811" SrcFileId="11" StartOffset="743"/>
 </LocList>
 <StmntSeq Intrnl_Id="806">
 <LocList>
-<Loc EndOffset="778" SrcFileId="11" StartOffset="755"/>
+<Loc EndOffset="807" SrcFileId="11" StartOffset="784"/>
 </LocList>
 <BasicStmnt CovItemId="S3" CovItemPrefix="devops.hw1.core.ACard.java" Intrnl_Id="807">
 <LocList>
-<Loc EndOffset="778" SrcFileId="11" StartOffset="755"/>
+<Loc EndOffset="807" SrcFileId="11" StartOffset="784"/>
 </LocList>
 </BasicStmnt>
 </StmntSeq>
 </HierarchyLvl>
-<HierarchyLvl HierarchyLvlId="976" HierarchyLvlTypeId="17" Intrnl_Id="808" Name="makeCard">
+<HierarchyLvl HierarchyLvlId="3637" HierarchyLvlTypeId="17" Intrnl_Id="808" Name="makeCard">
 <Header>
-<Loc EndOffset="1516" SrcFileId="11" StartOffset="1350"/>
+<Loc EndOffset="1545" SrcFileId="11" StartOffset="1379"/>
 </Header>
 <LocList>
-<Loc EndOffset="2623" SrcFileId="11" StartOffset="1350"/>
+<Loc EndOffset="2792" SrcFileId="11" StartOffset="1379"/>
 </LocList>
 <StmntSeq Intrnl_Id="809">
 <LocList>
-<Loc EndOffset="2469" SrcFileId="11" StartOffset="1587"/>
-<Loc EndOffset="2619" SrcFileId="11" StartOffset="2547"/>
+<Loc EndOffset="1687" SrcFileId="11" StartOffset="1629"/>
+<Loc EndOffset="2638" SrcFileId="11" StartOffset="1756"/>
+<Loc EndOffset="2788" SrcFileId="11" StartOffset="2716"/>
 </LocList>
-<CondStmnt CovItemId="S4" CovItemPrefix="devops.hw1.core.ACard.java" Intrnl_Id="810">
-<Branch CovItemId="B1" CovItemPrefix="devops.hw1.core.ACard.java" Implct="false" Intrnl_Id="811">
+<BasicStmnt CovItemId="S4" CovItemPrefix="devops.hw1.core.ACard.java" Intrnl_Id="810">
+<LocList>
+<Loc EndOffset="1687" SrcFileId="11" StartOffset="1629"/>
+</LocList>
+</BasicStmnt>
+<CondStmnt CovItemId="S5" CovItemPrefix="devops.hw1.core.ACard.java" Intrnl_Id="811">
+<Branch CovItemId="B1" CovItemPrefix="devops.hw1.core.ACard.java" Implct="false" Intrnl_Id="812">
 <Cond/>
 <LocList>
-<Loc EndOffset="1771" SrcFileId="11" StartOffset="1621"/>
+<Loc EndOffset="1940" SrcFileId="11" StartOffset="1790"/>
 </LocList>
-<StmntSeq Intrnl_Id="812">
+<StmntSeq Intrnl_Id="813">
 <LocList>
-<Loc EndOffset="1766" SrcFileId="11" StartOffset="1627"/>
+<Loc EndOffset="1935" SrcFileId="11" StartOffset="1796"/>
 </LocList>
-<BasicStmnt CovItemId="S5" CovItemPrefix="devops.hw1.core.ACard.java" Intrnl_Id="813">
+<BasicStmnt CovItemId="S6" CovItemPrefix="devops.hw1.core.ACard.java" Intrnl_Id="814">
 <LocList>
-<Loc EndOffset="1766" SrcFileId="11" StartOffset="1627"/>
+<Loc EndOffset="1935" SrcFileId="11" StartOffset="1796"/>
 </LocList>
 </BasicStmnt>
 </StmntSeq>
 </Branch>
-<Branch CovItemId="B2" CovItemPrefix="devops.hw1.core.ACard.java" Implct="false" Intrnl_Id="814">
+<Branch CovItemId="B2" CovItemPrefix="devops.hw1.core.ACard.java" Implct="false" Intrnl_Id="815">
 <Cond>
-<Loc EndOffset="1776" SrcFileId="11" StartOffset="1772"/>
+<Loc EndOffset="1945" SrcFileId="11" StartOffset="1941"/>
 </Cond>
 <LocList>
-<Loc EndOffset="2469" SrcFileId="11" StartOffset="1777"/>
+<Loc EndOffset="2638" SrcFileId="11" StartOffset="1946"/>
 </LocList>
-<StmntSeq Intrnl_Id="815">
+<StmntSeq Intrnl_Id="816">
 <LocList>
-<Loc EndOffset="2469" SrcFileId="11" StartOffset="1777"/>
+<Loc EndOffset="2638" SrcFileId="11" StartOffset="1946"/>
 </LocList>
-<CondStmnt CovItemId="S6" CovItemPrefix="devops.hw1.core.ACard.java" Intrnl_Id="816">
-<Branch CovItemId="B3" CovItemPrefix="devops.hw1.core.ACard.java" Implct="false" Intrnl_Id="817">
+<CondStmnt CovItemId="S7" CovItemPrefix="devops.hw1.core.ACard.java" Intrnl_Id="817">
+<Branch CovItemId="B3" CovItemPrefix="devops.hw1.core.ACard.java" Implct="false" Intrnl_Id="818">
 <Cond/>
 <LocList>
-<Loc EndOffset="1964" SrcFileId="11" StartOffset="1814"/>
+<Loc EndOffset="2133" SrcFileId="11" StartOffset="1983"/>
 </LocList>
-<StmntSeq Intrnl_Id="818">
+<StmntSeq Intrnl_Id="819">
 <LocList>
-<Loc EndOffset="1959" SrcFileId="11" StartOffset="1820"/>
+<Loc EndOffset="2128" SrcFileId="11" StartOffset="1989"/>
 </LocList>
-<BasicStmnt CovItemId="S7" CovItemPrefix="devops.hw1.core.ACard.java" Intrnl_Id="819">
+<BasicStmnt CovItemId="S8" CovItemPrefix="devops.hw1.core.ACard.java" Intrnl_Id="820">
 <LocList>
-<Loc EndOffset="1959" SrcFileId="11" StartOffset="1820"/>
+<Loc EndOffset="2128" SrcFileId="11" StartOffset="1989"/>
 </LocList>
 </BasicStmnt>
 </StmntSeq>
 </Branch>
-<Branch CovItemId="B4" CovItemPrefix="devops.hw1.core.ACard.java" Implct="false" Intrnl_Id="820">
+<Branch CovItemId="B4" CovItemPrefix="devops.hw1.core.ACard.java" Implct="false" Intrnl_Id="821">
 <Cond>
-<Loc EndOffset="1969" SrcFileId="11" StartOffset="1965"/>
+<Loc EndOffset="2138" SrcFileId="11" StartOffset="2134"/>
 </Cond>
 <LocList>
-<Loc EndOffset="2469" SrcFileId="11" StartOffset="1970"/>
+<Loc EndOffset="2638" SrcFileId="11" StartOffset="2139"/>
 </LocList>
-<StmntSeq Intrnl_Id="821">
+<StmntSeq Intrnl_Id="822">
 <LocList>
-<Loc EndOffset="2469" SrcFileId="11" StartOffset="1970"/>
+<Loc EndOffset="2638" SrcFileId="11" StartOffset="2139"/>
 </LocList>
-<CondStmnt CovItemId="S8" CovItemPrefix="devops.hw1.core.ACard.java" Intrnl_Id="822">
-<Branch CovItemId="B5" CovItemPrefix="devops.hw1.core.ACard.java" Implct="false" Intrnl_Id="823">
+<CondStmnt CovItemId="S9" CovItemPrefix="devops.hw1.core.ACard.java" Intrnl_Id="823">
+<Branch CovItemId="B5" CovItemPrefix="devops.hw1.core.ACard.java" Implct="false" Intrnl_Id="824">
 <Cond/>
 <LocList>
-<Loc EndOffset="2163" SrcFileId="11" StartOffset="2037"/>
+<Loc EndOffset="2332" SrcFileId="11" StartOffset="2206"/>
 </LocList>
-<StmntSeq Intrnl_Id="824">
+<StmntSeq Intrnl_Id="825">
 <LocList>
-<Loc EndOffset="2158" SrcFileId="11" StartOffset="2043"/>
+<Loc EndOffset="2327" SrcFileId="11" StartOffset="2212"/>
 </LocList>
-<BasicStmnt CovItemId="S9" CovItemPrefix="devops.hw1.core.ACard.java" Intrnl_Id="825">
+<BasicStmnt CovItemId="S10" CovItemPrefix="devops.hw1.core.ACard.java" Intrnl_Id="826">
 <LocList>
-<Loc EndOffset="2158" SrcFileId="11" StartOffset="2043"/>
+<Loc EndOffset="2327" SrcFileId="11" StartOffset="2212"/>
 </LocList>
 </BasicStmnt>
 </StmntSeq>
 </Branch>
-<Branch CovItemId="B6" CovItemPrefix="devops.hw1.core.ACard.java" Implct="false" Intrnl_Id="826">
+<Branch CovItemId="B6" CovItemPrefix="devops.hw1.core.ACard.java" Implct="false" Intrnl_Id="827">
 <Cond>
-<Loc EndOffset="2171" SrcFileId="11" StartOffset="2167"/>
+<Loc EndOffset="2340" SrcFileId="11" StartOffset="2336"/>
 </Cond>
 <LocList>
-<Loc EndOffset="2469" SrcFileId="11" StartOffset="2172"/>
+<Loc EndOffset="2638" SrcFileId="11" StartOffset="2341"/>
 </LocList>
-<StmntSeq Intrnl_Id="827">
+<StmntSeq Intrnl_Id="828">
 <LocList>
-<Loc EndOffset="2469" SrcFileId="11" StartOffset="2172"/>
+<Loc EndOffset="2638" SrcFileId="11" StartOffset="2341"/>
 </LocList>
-<CondStmnt CovItemId="S10" CovItemPrefix="devops.hw1.core.ACard.java" Intrnl_Id="828">
-<Branch CovItemId="B7" CovItemPrefix="devops.hw1.core.ACard.java" Implct="false" Intrnl_Id="829">
+<CondStmnt CovItemId="S11" CovItemPrefix="devops.hw1.core.ACard.java" Intrnl_Id="829">
+<Branch CovItemId="B7" CovItemPrefix="devops.hw1.core.ACard.java" Implct="false" Intrnl_Id="830">
 <Cond/>
 <LocList>
-<Loc EndOffset="2469" SrcFileId="11" StartOffset="2343"/>
+<Loc EndOffset="2638" SrcFileId="11" StartOffset="2512"/>
 </LocList>
-<StmntSeq Intrnl_Id="830">
+<StmntSeq Intrnl_Id="831">
 <LocList>
-<Loc EndOffset="2464" SrcFileId="11" StartOffset="2349"/>
+<Loc EndOffset="2633" SrcFileId="11" StartOffset="2518"/>
 </LocList>
-<BasicStmnt CovItemId="S11" CovItemPrefix="devops.hw1.core.ACard.java" Intrnl_Id="831">
+<BasicStmnt CovItemId="S12" CovItemPrefix="devops.hw1.core.ACard.java" Intrnl_Id="832">
 <LocList>
-<Loc EndOffset="2464" SrcFileId="11" StartOffset="2349"/>
+<Loc EndOffset="2633" SrcFileId="11" StartOffset="2518"/>
 </LocList>
 </BasicStmnt>
 </StmntSeq>
 </Branch>
-<Branch CovItemId="B8" CovItemPrefix="devops.hw1.core.ACard.java" Implct="true" Intrnl_Id="832">
+<Branch CovItemId="B8" CovItemPrefix="devops.hw1.core.ACard.java" Implct="true" Intrnl_Id="833">
 <Cond/>
 <LocList/>
-<StmntSeq Intrnl_Id="833">
+<StmntSeq Intrnl_Id="834">
 <LocList/>
 </StmntSeq>
 </Branch>
-<Keyword EndOffset="2174" SrcFileId="11" StartOffset="2172"/>
+<Keyword EndOffset="2343" SrcFileId="11" StartOffset="2341"/>
 <LocList>
-<Loc EndOffset="2469" SrcFileId="11" StartOffset="2172"/>
+<Loc EndOffset="2638" SrcFileId="11" StartOffset="2341"/>
 </LocList>
-<RootTerm CovItemId="C4" CovItemPrefix="devops.hw1.core.ACard.java" Intrnl_Id="834">
-<OpTerm BooleanOpId="14" Intrnl_Id="835">
-<OpTerm BooleanOpId="13" Intrnl_Id="836">
+<RootTerm CovItemId="C4" CovItemPrefix="devops.hw1.core.ACard.java" Intrnl_Id="835">
+<OpTerm BooleanOpId="14" Intrnl_Id="836">
 <OpTerm BooleanOpId="13" Intrnl_Id="837">
 <OpTerm BooleanOpId="13" Intrnl_Id="838">
-<BasicBoolTerm Intrnl_Id="839">
-<LocList>
-<Loc EndOffset="2211" SrcFileId="11" StartOffset="2178"/>
-</LocList>
-</BasicBoolTerm>
+<OpTerm BooleanOpId="13" Intrnl_Id="839">
 <BasicBoolTerm Intrnl_Id="840">
 <LocList>
-<Loc EndOffset="2251" SrcFileId="11" StartOffset="2215"/>
+<Loc EndOffset="2380" SrcFileId="11" StartOffset="2347"/>
 </LocList>
 </BasicBoolTerm>
-<LocList>
-<Loc EndOffset="2214" SrcFileId="11" StartOffset="2212"/>
-</LocList>
-</OpTerm>
 <BasicBoolTerm Intrnl_Id="841">
 <LocList>
-<Loc EndOffset="2298" SrcFileId="11" StartOffset="2261"/>
+<Loc EndOffset="2420" SrcFileId="11" StartOffset="2384"/>
 </LocList>
 </BasicBoolTerm>
 <LocList>
-<Loc EndOffset="2260" SrcFileId="11" StartOffset="2258"/>
+<Loc EndOffset="2383" SrcFileId="11" StartOffset="2381"/>
 </LocList>
 </OpTerm>
 <BasicBoolTerm Intrnl_Id="842">
 <LocList>
-<Loc EndOffset="2340" SrcFileId="11" StartOffset="2302"/>
+<Loc EndOffset="2467" SrcFileId="11" StartOffset="2430"/>
 </LocList>
 </BasicBoolTerm>
 <LocList>
-<Loc EndOffset="2301" SrcFileId="11" StartOffset="2299"/>
+<Loc EndOffset="2429" SrcFileId="11" StartOffset="2427"/>
+</LocList>
+</OpTerm>
+<BasicBoolTerm Intrnl_Id="843">
+<LocList>
+<Loc EndOffset="2509" SrcFileId="11" StartOffset="2471"/>
+</LocList>
+</BasicBoolTerm>
+<LocList>
+<Loc EndOffset="2470" SrcFileId="11" StartOffset="2468"/>
 </LocList>
 </OpTerm>
 <LocList>
-<Loc EndOffset="2177" SrcFileId="11" StartOffset="2176"/>
+<Loc EndOffset="2346" SrcFileId="11" StartOffset="2345"/>
 </LocList>
 </OpTerm>
 </RootTerm>
 </CondStmnt>
 </StmntSeq>
 </Branch>
-<Keyword EndOffset="1972" SrcFileId="11" StartOffset="1970"/>
+<Keyword EndOffset="2141" SrcFileId="11" StartOffset="2139"/>
 <LocList>
-<Loc EndOffset="2469" SrcFileId="11" StartOffset="1970"/>
+<Loc EndOffset="2638" SrcFileId="11" StartOffset="2139"/>
 </LocList>
-<RootTerm CovItemId="C3" CovItemPrefix="devops.hw1.core.ACard.java" Intrnl_Id="843">
-<OpTerm BooleanOpId="13" Intrnl_Id="844">
-<BasicBoolTerm Intrnl_Id="845">
-<LocList>
-<Loc EndOffset="2003" SrcFileId="11" StartOffset="1974"/>
-</LocList>
-</BasicBoolTerm>
+<RootTerm CovItemId="C3" CovItemPrefix="devops.hw1.core.ACard.java" Intrnl_Id="844">
+<OpTerm BooleanOpId="13" Intrnl_Id="845">
 <BasicBoolTerm Intrnl_Id="846">
 <LocList>
-<Loc EndOffset="2035" SrcFileId="11" StartOffset="2007"/>
+<Loc EndOffset="2172" SrcFileId="11" StartOffset="2143"/>
+</LocList>
+</BasicBoolTerm>
+<BasicBoolTerm Intrnl_Id="847">
+<LocList>
+<Loc EndOffset="2204" SrcFileId="11" StartOffset="2176"/>
 </LocList>
 </BasicBoolTerm>
 <LocList>
-<Loc EndOffset="2006" SrcFileId="11" StartOffset="2004"/>
+<Loc EndOffset="2175" SrcFileId="11" StartOffset="2173"/>
 </LocList>
 </OpTerm>
 </RootTerm>
 </CondStmnt>
 </StmntSeq>
 </Branch>
-<Keyword EndOffset="1779" SrcFileId="11" StartOffset="1777"/>
+<Keyword EndOffset="1948" SrcFileId="11" StartOffset="1946"/>
 <LocList>
-<Loc EndOffset="2469" SrcFileId="11" StartOffset="1777"/>
+<Loc EndOffset="2638" SrcFileId="11" StartOffset="1946"/>
 </LocList>
-<RootTerm CovItemId="C2" CovItemPrefix="devops.hw1.core.ACard.java" Intrnl_Id="847">
-<BasicBoolTerm Intrnl_Id="848">
+<RootTerm CovItemId="C2" CovItemPrefix="devops.hw1.core.ACard.java" Intrnl_Id="848">
+<BasicBoolTerm Intrnl_Id="849">
 <LocList>
-<Loc EndOffset="1812" SrcFileId="11" StartOffset="1781"/>
+<Loc EndOffset="1981" SrcFileId="11" StartOffset="1950"/>
 </LocList>
 </BasicBoolTerm>
 </RootTerm>
 </CondStmnt>
 </StmntSeq>
 </Branch>
-<Keyword EndOffset="1589" SrcFileId="11" StartOffset="1587"/>
+<Keyword EndOffset="1758" SrcFileId="11" StartOffset="1756"/>
 <LocList>
-<Loc EndOffset="2469" SrcFileId="11" StartOffset="1587"/>
+<Loc EndOffset="2638" SrcFileId="11" StartOffset="1756"/>
 </LocList>
-<RootTerm CovItemId="C1" CovItemPrefix="devops.hw1.core.ACard.java" Intrnl_Id="849">
-<OpTerm BooleanOpId="13" Intrnl_Id="850">
-<BasicBoolTerm Intrnl_Id="851">
-<LocList>
-<Loc EndOffset="1603" SrcFileId="11" StartOffset="1591"/>
-</LocList>
-</BasicBoolTerm>
+<RootTerm CovItemId="C1" CovItemPrefix="devops.hw1.core.ACard.java" Intrnl_Id="850">
+<OpTerm BooleanOpId="13" Intrnl_Id="851">
 <BasicBoolTerm Intrnl_Id="852">
 <LocList>
-<Loc EndOffset="1619" SrcFileId="11" StartOffset="1607"/>
+<Loc EndOffset="1772" SrcFileId="11" StartOffset="1760"/>
+</LocList>
+</BasicBoolTerm>
+<BasicBoolTerm Intrnl_Id="853">
+<LocList>
+<Loc EndOffset="1788" SrcFileId="11" StartOffset="1776"/>
 </LocList>
 </BasicBoolTerm>
 <LocList>
-<Loc EndOffset="1606" SrcFileId="11" StartOffset="1604"/>
+<Loc EndOffset="1775" SrcFileId="11" StartOffset="1773"/>
 </LocList>
 </OpTerm>
 </RootTerm>
 </CondStmnt>
-<BasicStmnt CovItemId="S12" CovItemPrefix="devops.hw1.core.ACard.java" Intrnl_Id="853">
+<BasicStmnt CovItemId="S13" CovItemPrefix="devops.hw1.core.ACard.java" Intrnl_Id="854">
 <LocList>
-<Loc EndOffset="2619" SrcFileId="11" StartOffset="2547"/>
+<Loc EndOffset="2788" SrcFileId="11" StartOffset="2716"/>
 </LocList>
 </BasicStmnt>
 </StmntSeq>
 </HierarchyLvl>
-<HierarchyLvl HierarchyLvlId="977" HierarchyLvlTypeId="17" Intrnl_Id="854" Name="getFaction">
+<HierarchyLvl HierarchyLvlId="3638" HierarchyLvlTypeId="17" Intrnl_Id="855" Name="getFaction">
 <Header>
-<Loc EndOffset="2691" SrcFileId="11" StartOffset="2665"/>
+<Loc EndOffset="2860" SrcFileId="11" StartOffset="2834"/>
 </Header>
 <LocList>
-<Loc EndOffset="2716" SrcFileId="11" StartOffset="2665"/>
+<Loc EndOffset="2885" SrcFileId="11" StartOffset="2834"/>
 </LocList>
-<StmntSeq Intrnl_Id="855">
+<StmntSeq Intrnl_Id="856">
 <LocList>
-<Loc EndOffset="2712" SrcFileId="11" StartOffset="2697"/>
+<Loc EndOffset="2881" SrcFileId="11" StartOffset="2866"/>
 </LocList>
-<BasicStmnt CovItemId="S13" CovItemPrefix="devops.hw1.core.ACard.java" Intrnl_Id="856">
+<BasicStmnt CovItemId="S14" CovItemPrefix="devops.hw1.core.ACard.java" Intrnl_Id="857">
 <LocList>
-<Loc EndOffset="2712" SrcFileId="11" StartOffset="2697"/>
+<Loc EndOffset="2881" SrcFileId="11" StartOffset="2866"/>
 </LocList>
 </BasicStmnt>
 </StmntSeq>
 </HierarchyLvl>
-<HierarchyLvl HierarchyLvlId="978" HierarchyLvlTypeId="17" Intrnl_Id="857" Name="setFaction">
+<HierarchyLvl HierarchyLvlId="3639" HierarchyLvlTypeId="17" Intrnl_Id="858" Name="setFaction">
 <Header>
-<Loc EndOffset="2826" SrcFileId="11" StartOffset="2788"/>
+<Loc EndOffset="2995" SrcFileId="11" StartOffset="2957"/>
 </Header>
 <LocList>
-<Loc EndOffset="2859" SrcFileId="11" StartOffset="2788"/>
+<Loc EndOffset="3028" SrcFileId="11" StartOffset="2957"/>
 </LocList>
-<StmntSeq Intrnl_Id="858">
+<StmntSeq Intrnl_Id="859">
 <LocList>
-<Loc EndOffset="2855" SrcFileId="11" StartOffset="2832"/>
+<Loc EndOffset="3024" SrcFileId="11" StartOffset="3001"/>
 </LocList>
-<BasicStmnt CovItemId="S14" CovItemPrefix="devops.hw1.core.ACard.java" Intrnl_Id="859">
+<BasicStmnt CovItemId="S15" CovItemPrefix="devops.hw1.core.ACard.java" Intrnl_Id="860">
 <LocList>
-<Loc EndOffset="2855" SrcFileId="11" StartOffset="2832"/>
+<Loc EndOffset="3024" SrcFileId="11" StartOffset="3001"/>
 </LocList>
 </BasicStmnt>
 </StmntSeq>
 </HierarchyLvl>
-<HierarchyLvl HierarchyLvlId="979" HierarchyLvlTypeId="17" Intrnl_Id="860" Name="getName">
+<HierarchyLvl HierarchyLvlId="3640" HierarchyLvlTypeId="17" Intrnl_Id="861" Name="getName">
 <Header>
-<Loc EndOffset="2921" SrcFileId="11" StartOffset="2898"/>
+<Loc EndOffset="3090" SrcFileId="11" StartOffset="3067"/>
 </Header>
 <LocList>
-<Loc EndOffset="2943" SrcFileId="11" StartOffset="2898"/>
+<Loc EndOffset="3112" SrcFileId="11" StartOffset="3067"/>
 </LocList>
-<StmntSeq Intrnl_Id="861">
+<StmntSeq Intrnl_Id="862">
 <LocList>
-<Loc EndOffset="2939" SrcFileId="11" StartOffset="2927"/>
+<Loc EndOffset="3108" SrcFileId="11" StartOffset="3096"/>
 </LocList>
-<BasicStmnt CovItemId="S15" CovItemPrefix="devops.hw1.core.ACard.java" Intrnl_Id="862">
+<BasicStmnt CovItemId="S16" CovItemPrefix="devops.hw1.core.ACard.java" Intrnl_Id="863">
 <LocList>
-<Loc EndOffset="2939" SrcFileId="11" StartOffset="2927"/>
+<Loc EndOffset="3108" SrcFileId="11" StartOffset="3096"/>
 </LocList>
 </BasicStmnt>
 </StmntSeq>
 </HierarchyLvl>
-<HierarchyLvl HierarchyLvlId="980" HierarchyLvlTypeId="17" Intrnl_Id="863" Name="setName">
+<HierarchyLvl HierarchyLvlId="3641" HierarchyLvlTypeId="17" Intrnl_Id="864" Name="setName">
 <Header>
-<Loc EndOffset="3041" SrcFileId="11" StartOffset="3009"/>
+<Loc EndOffset="3210" SrcFileId="11" StartOffset="3178"/>
 </Header>
 <LocList>
-<Loc EndOffset="3068" SrcFileId="11" StartOffset="3009"/>
+<Loc EndOffset="3237" SrcFileId="11" StartOffset="3178"/>
 </LocList>
-<StmntSeq Intrnl_Id="864">
+<StmntSeq Intrnl_Id="865">
 <LocList>
-<Loc EndOffset="3064" SrcFileId="11" StartOffset="3047"/>
+<Loc EndOffset="3233" SrcFileId="11" StartOffset="3216"/>
 </LocList>
-<BasicStmnt CovItemId="S16" CovItemPrefix="devops.hw1.core.ACard.java" Intrnl_Id="865">
+<BasicStmnt CovItemId="S17" CovItemPrefix="devops.hw1.core.ACard.java" Intrnl_Id="866">
 <LocList>
-<Loc EndOffset="3064" SrcFileId="11" StartOffset="3047"/>
+<Loc EndOffset="3233" SrcFileId="11" StartOffset="3216"/>
 </LocList>
 </BasicStmnt>
 </StmntSeq>
 </HierarchyLvl>
-<HierarchyLvl HierarchyLvlId="981" HierarchyLvlTypeId="17" Intrnl_Id="866" Name="getHonor">
+<HierarchyLvl HierarchyLvlId="3642" HierarchyLvlTypeId="17" Intrnl_Id="867" Name="getHonor">
 <Header>
-<Loc EndOffset="3129" SrcFileId="11" StartOffset="3108"/>
+<Loc EndOffset="3298" SrcFileId="11" StartOffset="3277"/>
 </Header>
 <LocList>
-<Loc EndOffset="3152" SrcFileId="11" StartOffset="3108"/>
+<Loc EndOffset="3321" SrcFileId="11" StartOffset="3277"/>
 </LocList>
-<StmntSeq Intrnl_Id="867">
+<StmntSeq Intrnl_Id="868">
 <LocList>
-<Loc EndOffset="3148" SrcFileId="11" StartOffset="3135"/>
+<Loc EndOffset="3317" SrcFileId="11" StartOffset="3304"/>
 </LocList>
-<BasicStmnt CovItemId="S17" CovItemPrefix="devops.hw1.core.ACard.java" Intrnl_Id="868">
+<BasicStmnt CovItemId="S18" CovItemPrefix="devops.hw1.core.ACard.java" Intrnl_Id="869">
 <LocList>
-<Loc EndOffset="3148" SrcFileId="11" StartOffset="3135"/>
+<Loc EndOffset="3317" SrcFileId="11" StartOffset="3304"/>
 </LocList>
 </BasicStmnt>
 </StmntSeq>
 </HierarchyLvl>
-<HierarchyLvl HierarchyLvlId="982" HierarchyLvlTypeId="17" Intrnl_Id="869" Name="setHonor">
+<HierarchyLvl HierarchyLvlId="3643" HierarchyLvlTypeId="17" Intrnl_Id="870" Name="setHonor">
 <Header>
-<Loc EndOffset="3251" SrcFileId="11" StartOffset="3220"/>
+<Loc EndOffset="3420" SrcFileId="11" StartOffset="3389"/>
 </Header>
 <LocList>
-<Loc EndOffset="3280" SrcFileId="11" StartOffset="3220"/>
+<Loc EndOffset="3449" SrcFileId="11" StartOffset="3389"/>
 </LocList>
-<StmntSeq Intrnl_Id="870">
+<StmntSeq Intrnl_Id="871">
 <LocList>
-<Loc EndOffset="3276" SrcFileId="11" StartOffset="3257"/>
+<Loc EndOffset="3445" SrcFileId="11" StartOffset="3426"/>
 </LocList>
-<BasicStmnt CovItemId="S18" CovItemPrefix="devops.hw1.core.ACard.java" Intrnl_Id="871">
+<BasicStmnt CovItemId="S19" CovItemPrefix="devops.hw1.core.ACard.java" Intrnl_Id="872">
 <LocList>
-<Loc EndOffset="3276" SrcFileId="11" StartOffset="3257"/>
+<Loc EndOffset="3445" SrcFileId="11" StartOffset="3426"/>
 </LocList>
 </BasicStmnt>
 </StmntSeq>
 </HierarchyLvl>
-<HierarchyLvl HierarchyLvlId="983" HierarchyLvlTypeId="17" Intrnl_Id="872" Name="getRarity">
+<HierarchyLvl HierarchyLvlId="3644" HierarchyLvlTypeId="17" Intrnl_Id="873" Name="getRarity">
 <Header>
-<Loc EndOffset="3343" SrcFileId="11" StartOffset="3321"/>
+<Loc EndOffset="3512" SrcFileId="11" StartOffset="3490"/>
 </Header>
 <LocList>
-<Loc EndOffset="3367" SrcFileId="11" StartOffset="3321"/>
+<Loc EndOffset="3536" SrcFileId="11" StartOffset="3490"/>
 </LocList>
-<StmntSeq Intrnl_Id="873">
+<StmntSeq Intrnl_Id="874">
 <LocList>
-<Loc EndOffset="3363" SrcFileId="11" StartOffset="3349"/>
+<Loc EndOffset="3532" SrcFileId="11" StartOffset="3518"/>
 </LocList>
-<BasicStmnt CovItemId="S19" CovItemPrefix="devops.hw1.core.ACard.java" Intrnl_Id="874">
+<BasicStmnt CovItemId="S20" CovItemPrefix="devops.hw1.core.ACard.java" Intrnl_Id="875">
 <LocList>
-<Loc EndOffset="3363" SrcFileId="11" StartOffset="3349"/>
+<Loc EndOffset="3532" SrcFileId="11" StartOffset="3518"/>
 </LocList>
 </BasicStmnt>
 </StmntSeq>
 </HierarchyLvl>
-<HierarchyLvl HierarchyLvlId="984" HierarchyLvlTypeId="17" Intrnl_Id="875" Name="setRarity">
+<HierarchyLvl HierarchyLvlId="3645" HierarchyLvlTypeId="17" Intrnl_Id="876" Name="setRarity">
 <Header>
-<Loc EndOffset="3470" SrcFileId="11" StartOffset="3437"/>
+<Loc EndOffset="3639" SrcFileId="11" StartOffset="3606"/>
 </Header>
 <LocList>
-<Loc EndOffset="3501" SrcFileId="11" StartOffset="3437"/>
+<Loc EndOffset="3670" SrcFileId="11" StartOffset="3606"/>
 </LocList>
-<StmntSeq Intrnl_Id="876">
+<StmntSeq Intrnl_Id="877">
 <LocList>
-<Loc EndOffset="3497" SrcFileId="11" StartOffset="3476"/>
+<Loc EndOffset="3666" SrcFileId="11" StartOffset="3645"/>
 </LocList>
-<BasicStmnt CovItemId="S20" CovItemPrefix="devops.hw1.core.ACard.java" Intrnl_Id="877">
+<BasicStmnt CovItemId="S21" CovItemPrefix="devops.hw1.core.ACard.java" Intrnl_Id="878">
 <LocList>
-<Loc EndOffset="3497" SrcFileId="11" StartOffset="3476"/>
+<Loc EndOffset="3666" SrcFileId="11" StartOffset="3645"/>
 </LocList>
 </BasicStmnt>
 </StmntSeq>
 </HierarchyLvl>
-<HierarchyLvl HierarchyLvlId="985" HierarchyLvlTypeId="17" Intrnl_Id="878" Name="getImage">
+<HierarchyLvl HierarchyLvlId="3646" HierarchyLvlTypeId="17" Intrnl_Id="879" Name="getImage">
 <Header>
-<Loc EndOffset="3572" SrcFileId="11" StartOffset="3541"/>
+<Loc EndOffset="3741" SrcFileId="11" StartOffset="3710"/>
 </Header>
 <LocList>
-<Loc EndOffset="3595" SrcFileId="11" StartOffset="3541"/>
+<Loc EndOffset="3764" SrcFileId="11" StartOffset="3710"/>
 </LocList>
-<StmntSeq Intrnl_Id="879">
+<StmntSeq Intrnl_Id="880">
 <LocList>
-<Loc EndOffset="3591" SrcFileId="11" StartOffset="3578"/>
+<Loc EndOffset="3760" SrcFileId="11" StartOffset="3747"/>
 </LocList>
-<BasicStmnt CovItemId="S21" CovItemPrefix="devops.hw1.core.ACard.java" Intrnl_Id="880">
+<BasicStmnt CovItemId="S22" CovItemPrefix="devops.hw1.core.ACard.java" Intrnl_Id="881">
 <LocList>
-<Loc EndOffset="3591" SrcFileId="11" StartOffset="3578"/>
+<Loc EndOffset="3760" SrcFileId="11" StartOffset="3747"/>
 </LocList>
 </BasicStmnt>
 </StmntSeq>
 </HierarchyLvl>
-<HierarchyLvl HierarchyLvlId="986" HierarchyLvlTypeId="17" Intrnl_Id="881" Name="setImage">
+<HierarchyLvl HierarchyLvlId="3647" HierarchyLvlTypeId="17" Intrnl_Id="882" Name="setImage">
 <Header>
-<Loc EndOffset="3704" SrcFileId="11" StartOffset="3663"/>
+<Loc EndOffset="3873" SrcFileId="11" StartOffset="3832"/>
 </Header>
 <LocList>
-<Loc EndOffset="3733" SrcFileId="11" StartOffset="3663"/>
+<Loc EndOffset="3902" SrcFileId="11" StartOffset="3832"/>
 </LocList>
-<StmntSeq Intrnl_Id="882">
+<StmntSeq Intrnl_Id="883">
 <LocList>
-<Loc EndOffset="3729" SrcFileId="11" StartOffset="3710"/>
+<Loc EndOffset="3898" SrcFileId="11" StartOffset="3879"/>
 </LocList>
-<BasicStmnt CovItemId="S22" CovItemPrefix="devops.hw1.core.ACard.java" Intrnl_Id="883">
+<BasicStmnt CovItemId="S23" CovItemPrefix="devops.hw1.core.ACard.java" Intrnl_Id="884">
 <LocList>
-<Loc EndOffset="3729" SrcFileId="11" StartOffset="3710"/>
+<Loc EndOffset="3898" SrcFileId="11" StartOffset="3879"/>
 </LocList>
 </BasicStmnt>
 </StmntSeq>
 </HierarchyLvl>
-<HierarchyLvl HierarchyLvlId="987" HierarchyLvlTypeId="17" Intrnl_Id="884" Name="setEffects">
+<HierarchyLvl HierarchyLvlId="3648" HierarchyLvlTypeId="17" Intrnl_Id="885" Name="setEffects">
 <Header>
-<Loc EndOffset="3861" SrcFileId="11" StartOffset="3805"/>
+<Loc EndOffset="4030" SrcFileId="11" StartOffset="3974"/>
 </Header>
 <LocList>
-<Loc EndOffset="3894" SrcFileId="11" StartOffset="3805"/>
+<Loc EndOffset="4063" SrcFileId="11" StartOffset="3974"/>
 </LocList>
-<StmntSeq Intrnl_Id="885">
+<StmntSeq Intrnl_Id="886">
 <LocList>
-<Loc EndOffset="3890" SrcFileId="11" StartOffset="3867"/>
+<Loc EndOffset="4059" SrcFileId="11" StartOffset="4036"/>
 </LocList>
-<BasicStmnt CovItemId="S23" CovItemPrefix="devops.hw1.core.ACard.java" Intrnl_Id="886">
+<BasicStmnt CovItemId="S24" CovItemPrefix="devops.hw1.core.ACard.java" Intrnl_Id="887">
 <LocList>
-<Loc EndOffset="3890" SrcFileId="11" StartOffset="3867"/>
+<Loc EndOffset="4059" SrcFileId="11" StartOffset="4036"/>
 </LocList>
 </BasicStmnt>
 </StmntSeq>
 </HierarchyLvl>
-<HierarchyLvl HierarchyLvlId="988" HierarchyLvlTypeId="17" Intrnl_Id="887" Name="getCost">
+<HierarchyLvl HierarchyLvlId="3649" HierarchyLvlTypeId="17" Intrnl_Id="888" Name="getCost">
 <Header>
-<Loc EndOffset="3986" SrcFileId="11" StartOffset="3966"/>
+<Loc EndOffset="4155" SrcFileId="11" StartOffset="4135"/>
 </Header>
 <LocList>
-<Loc EndOffset="4013" SrcFileId="11" StartOffset="3966"/>
+<Loc EndOffset="4182" SrcFileId="11" StartOffset="4135"/>
 </LocList>
-<StmntSeq Intrnl_Id="888">
+<StmntSeq Intrnl_Id="889">
 <LocList>
-<Loc EndOffset="4009" SrcFileId="11" StartOffset="3992"/>
+<Loc EndOffset="4178" SrcFileId="11" StartOffset="4161"/>
 </LocList>
-<BasicStmnt CovItemId="S24" CovItemPrefix="devops.hw1.core.ACard.java" Intrnl_Id="889">
+<BasicStmnt CovItemId="S25" CovItemPrefix="devops.hw1.core.ACard.java" Intrnl_Id="890">
 <LocList>
-<Loc EndOffset="4009" SrcFileId="11" StartOffset="3992"/>
+<Loc EndOffset="4178" SrcFileId="11" StartOffset="4161"/>
 </LocList>
 </BasicStmnt>
 </StmntSeq>
 </HierarchyLvl>
-<HierarchyLvl HierarchyLvlId="989" HierarchyLvlTypeId="17" Intrnl_Id="890" Name="setCost">
+<HierarchyLvl HierarchyLvlId="3650" HierarchyLvlTypeId="17" Intrnl_Id="891" Name="setCost">
 <Header>
-<Loc EndOffset="4107" SrcFileId="11" StartOffset="4081"/>
+<Loc EndOffset="4276" SrcFileId="11" StartOffset="4250"/>
 </Header>
 <LocList>
-<Loc EndOffset="4131" SrcFileId="11" StartOffset="4081"/>
+<Loc EndOffset="4300" SrcFileId="11" StartOffset="4250"/>
 </LocList>
-<StmntSeq Intrnl_Id="891">
+<StmntSeq Intrnl_Id="892">
 <LocList>
-<Loc EndOffset="4127" SrcFileId="11" StartOffset="4113"/>
+<Loc EndOffset="4296" SrcFileId="11" StartOffset="4282"/>
 </LocList>
-<BasicStmnt CovItemId="S25" CovItemPrefix="devops.hw1.core.ACard.java" Intrnl_Id="892">
+<BasicStmnt CovItemId="S26" CovItemPrefix="devops.hw1.core.ACard.java" Intrnl_Id="893">
 <LocList>
-<Loc EndOffset="4127" SrcFileId="11" StartOffset="4113"/>
+<Loc EndOffset="4296" SrcFileId="11" StartOffset="4282"/>
 </LocList>
 </BasicStmnt>
 </StmntSeq>
 </HierarchyLvl>
-<HierarchyLvl HierarchyLvlId="990" HierarchyLvlTypeId="17" Intrnl_Id="893" Name="getEffects">
+<HierarchyLvl HierarchyLvlId="3651" HierarchyLvlTypeId="17" Intrnl_Id="894" Name="getEffects">
 <Header>
-<Loc EndOffset="4255" SrcFileId="11" StartOffset="4211"/>
+<Loc EndOffset="4424" SrcFileId="11" StartOffset="4380"/>
 </Header>
 <LocList>
-<Loc EndOffset="4285" SrcFileId="11" StartOffset="4211"/>
+<Loc EndOffset="4454" SrcFileId="11" StartOffset="4380"/>
 </LocList>
-<StmntSeq Intrnl_Id="894">
+<StmntSeq Intrnl_Id="895">
 <LocList>
-<Loc EndOffset="4281" SrcFileId="11" StartOffset="4261"/>
+<Loc EndOffset="4450" SrcFileId="11" StartOffset="4430"/>
 </LocList>
-<BasicStmnt CovItemId="S26" CovItemPrefix="devops.hw1.core.ACard.java" Intrnl_Id="895">
+<BasicStmnt CovItemId="S27" CovItemPrefix="devops.hw1.core.ACard.java" Intrnl_Id="896">
 <LocList>
-<Loc EndOffset="4281" SrcFileId="11" StartOffset="4261"/>
+<Loc EndOffset="4450" SrcFileId="11" StartOffset="4430"/>
 </LocList>
 </BasicStmnt>
 </StmntSeq>
 </HierarchyLvl>
-<HierarchyLvl HierarchyLvlId="991" HierarchyLvlTypeId="17" Intrnl_Id="896" Name="setEffect">
+<HierarchyLvl HierarchyLvlId="3652" HierarchyLvlTypeId="17" Intrnl_Id="897" Name="setEffect">
 <Header>
-<Loc EndOffset="4478" SrcFileId="11" StartOffset="4431"/>
+<Loc EndOffset="4647" SrcFileId="11" StartOffset="4600"/>
 </Header>
 <LocList>
-<Loc EndOffset="4562" SrcFileId="11" StartOffset="4431"/>
+<Loc EndOffset="4731" SrcFileId="11" StartOffset="4600"/>
 </LocList>
-<StmntSeq Intrnl_Id="897">
+<StmntSeq Intrnl_Id="898">
 <LocList>
-<Loc EndOffset="4522" SrcFileId="11" StartOffset="4484"/>
-<Loc EndOffset="4558" SrcFileId="11" StartOffset="4526"/>
+<Loc EndOffset="4691" SrcFileId="11" StartOffset="4653"/>
+<Loc EndOffset="4727" SrcFileId="11" StartOffset="4695"/>
 </LocList>
-<CondStmnt CovItemId="S27" CovItemPrefix="devops.hw1.core.ACard.java" Intrnl_Id="898">
-<Branch CovItemId="B9" CovItemPrefix="devops.hw1.core.ACard.java" Implct="false" Intrnl_Id="899">
+<CondStmnt CovItemId="S28" CovItemPrefix="devops.hw1.core.ACard.java" Intrnl_Id="899">
+<Branch CovItemId="B9" CovItemPrefix="devops.hw1.core.ACard.java" Implct="false" Intrnl_Id="900">
 <Cond/>
 <LocList>
-<Loc EndOffset="4522" SrcFileId="11" StartOffset="4504"/>
+<Loc EndOffset="4691" SrcFileId="11" StartOffset="4673"/>
 </LocList>
-<StmntSeq Intrnl_Id="900">
+<StmntSeq Intrnl_Id="901">
 <LocList>
-<Loc EndOffset="4517" SrcFileId="11" StartOffset="4510"/>
+<Loc EndOffset="4686" SrcFileId="11" StartOffset="4679"/>
 </LocList>
-<BasicStmnt CovItemId="S28" CovItemPrefix="devops.hw1.core.ACard.java" Intrnl_Id="901">
+<BasicStmnt CovItemId="S29" CovItemPrefix="devops.hw1.core.ACard.java" Intrnl_Id="902">
 <LocList>
-<Loc EndOffset="4517" SrcFileId="11" StartOffset="4510"/>
+<Loc EndOffset="4686" SrcFileId="11" StartOffset="4679"/>
 </LocList>
 </BasicStmnt>
 </StmntSeq>
 </Branch>
-<Branch CovItemId="B10" CovItemPrefix="devops.hw1.core.ACard.java" Implct="true" Intrnl_Id="902">
+<Branch CovItemId="B10" CovItemPrefix="devops.hw1.core.ACard.java" Implct="true" Intrnl_Id="903">
 <Cond/>
 <LocList/>
-<StmntSeq Intrnl_Id="903">
+<StmntSeq Intrnl_Id="904">
 <LocList/>
 </StmntSeq>
 </Branch>
-<Keyword EndOffset="4486" SrcFileId="11" StartOffset="4484"/>
+<Keyword EndOffset="4655" SrcFileId="11" StartOffset="4653"/>
 <LocList>
-<Loc EndOffset="4522" SrcFileId="11" StartOffset="4484"/>
+<Loc EndOffset="4691" SrcFileId="11" StartOffset="4653"/>
 </LocList>
-<RootTerm CovItemId="C5" CovItemPrefix="devops.hw1.core.ACard.java" Intrnl_Id="904">
-<BasicBoolTerm Intrnl_Id="905">
+<RootTerm CovItemId="C5" CovItemPrefix="devops.hw1.core.ACard.java" Intrnl_Id="905">
+<BasicBoolTerm Intrnl_Id="906">
 <LocList>
-<Loc EndOffset="4502" SrcFileId="11" StartOffset="4488"/>
+<Loc EndOffset="4671" SrcFileId="11" StartOffset="4657"/>
 </LocList>
 </BasicBoolTerm>
 </RootTerm>
 </CondStmnt>
-<BasicStmnt CovItemId="S29" CovItemPrefix="devops.hw1.core.ACard.java" Intrnl_Id="906">
+<BasicStmnt CovItemId="S30" CovItemPrefix="devops.hw1.core.ACard.java" Intrnl_Id="907">
 <LocList>
-<Loc EndOffset="4558" SrcFileId="11" StartOffset="4526"/>
+<Loc EndOffset="4727" SrcFileId="11" StartOffset="4695"/>
 </LocList>
 </BasicStmnt>
 </StmntSeq>
 </HierarchyLvl>
-<HierarchyLvl HierarchyLvlId="992" HierarchyLvlTypeId="17" Intrnl_Id="907" Name="getStrength">
+<HierarchyLvl HierarchyLvlId="3653" HierarchyLvlTypeId="17" Intrnl_Id="908" Name="getStrength">
 <Header>
-<Loc EndOffset="4595" SrcFileId="11" StartOffset="4571"/>
+<Loc EndOffset="4764" SrcFileId="11" StartOffset="4740"/>
 </Header>
 <LocList>
-<Loc EndOffset="4621" SrcFileId="11" StartOffset="4571"/>
+<Loc EndOffset="4790" SrcFileId="11" StartOffset="4740"/>
 </LocList>
-<StmntSeq Intrnl_Id="908">
+<StmntSeq Intrnl_Id="909">
 <LocList>
-<Loc EndOffset="4617" SrcFileId="11" StartOffset="4600"/>
+<Loc EndOffset="4786" SrcFileId="11" StartOffset="4769"/>
 </LocList>
-<BasicStmnt CovItemId="S30" CovItemPrefix="devops.hw1.core.ACard.java" Intrnl_Id="909">
+<BasicStmnt CovItemId="S31" CovItemPrefix="devops.hw1.core.ACard.java" Intrnl_Id="910">
 <LocList>
-<Loc EndOffset="4617" SrcFileId="11" StartOffset="4600"/>
+<Loc EndOffset="4786" SrcFileId="11" StartOffset="4769"/>
 </LocList>
 </BasicStmnt>
 </StmntSeq>
@@ -5016,1430 +5022,4 @@
 </HierarchyLvl>
 </HierarchyLvl>
 </MASTRoot>
-<TestSession Comment="" Date="1461796894622" Name="Apr 27, 2016 6:41:34 PM">
-<TestCase Comment="This is a test case containing all coverage results cause no startTestCase methods where captured." Date="1461796892435" Name="UNNAMED TESTCASE">
-<CovList>
-<CovPrefix CovItemPrefix="devops.hw1.core.ACard.java">
-<Cov CovItemId="B1" Value="2"/>
-<Cov CovItemId="B10" Value="5"/>
-<Cov CovItemId="B2" Value="2310"/>
-<Cov CovItemId="B3" Value="1"/>
-<Cov CovItemId="B4" Value="2309"/>
-<Cov CovItemId="B5" Value="1"/>
-<Cov CovItemId="B6" Value="2308"/>
-<Cov CovItemId="B7" Value="1"/>
-<Cov CovItemId="B8" Value="2307"/>
-<Cov CovItemId="B9" Value="1"/>
-<Cov CovItemId="S1" Value="2351"/>
-<Cov CovItemId="S10" Value="2308"/>
-<Cov CovItemId="S11" Value="1"/>
-<Cov CovItemId="S12" Value="2307"/>
-<Cov CovItemId="S13" Value="1"/>
-<Cov CovItemId="S15" Value="7"/>
-<Cov CovItemId="S17" Value="1"/>
-<Cov CovItemId="S19" Value="1"/>
-<Cov CovItemId="S2" Value="32"/>
-<Cov CovItemId="S24" Value="12"/>
-<Cov CovItemId="S26" Value="25"/>
-<Cov CovItemId="S27" Value="6"/>
-<Cov CovItemId="S28" Value="1"/>
-<Cov CovItemId="S29" Value="5"/>
-<Cov CovItemId="S3" Value="12"/>
-<Cov CovItemId="S30" Value="1"/>
-<Cov CovItemId="S4" Value="2312"/>
-<Cov CovItemId="S5" Value="2"/>
-<Cov CovItemId="S6" Value="2310"/>
-<Cov CovItemId="S7" Value="1"/>
-<Cov CovItemId="S8" Value="2309"/>
-<Cov CovItemId="S9" Value="1"/>
-</CovPrefix>
-<CovPrefix CovItemPrefix="devops.hw1.core.Board.java">
-<Cov CovItemId="B1" Value="7"/>
-<Cov CovItemId="B4" Value="1"/>
-<Cov CovItemId="L1-2" Value="7"/>
-<Cov CovItemId="L2-1" Value="98"/>
-<Cov CovItemId="L2-2" Value="238"/>
-<Cov CovItemId="L3-2" Value="7"/>
-<Cov CovItemId="S1" Value="7"/>
-<Cov CovItemId="S10" Value="7"/>
-<Cov CovItemId="S11" Value="7"/>
-<Cov CovItemId="S12" Value="336"/>
-<Cov CovItemId="S13" Value="700"/>
-<Cov CovItemId="S14" Value="7"/>
-<Cov CovItemId="S15" Value="7"/>
-<Cov CovItemId="S16" Value="42"/>
-<Cov CovItemId="S17" Value="3"/>
-<Cov CovItemId="S18" Value="1"/>
-<Cov CovItemId="S2" Value="7"/>
-<Cov CovItemId="S20" Value="1"/>
-<Cov CovItemId="S21" Value="10"/>
-<Cov CovItemId="S22" Value="1"/>
-<Cov CovItemId="S23" Value="1"/>
-<Cov CovItemId="S24" Value="1"/>
-<Cov CovItemId="S25" Value="48"/>
-<Cov CovItemId="S26" Value="48"/>
-<Cov CovItemId="S27" Value="1"/>
-<Cov CovItemId="S4" Value="7"/>
-<Cov CovItemId="S5" Value="7"/>
-<Cov CovItemId="S6" Value="7"/>
-<Cov CovItemId="S7" Value="7"/>
-<Cov CovItemId="S8" Value="7"/>
-<Cov CovItemId="S9" Value="7"/>
-</CovPrefix>
-<CovPrefix CovItemPrefix="devops.hw1.core.CardCollection.java">
-<Cov CovItemId="S1" Value="1"/>
-<Cov CovItemId="S10" Value="46"/>
-<Cov CovItemId="S100" Value="46"/>
-<Cov CovItemId="S101" Value="46"/>
-<Cov CovItemId="S102" Value="46"/>
-<Cov CovItemId="S103" Value="46"/>
-<Cov CovItemId="S104" Value="46"/>
-<Cov CovItemId="S105" Value="46"/>
-<Cov CovItemId="S106" Value="46"/>
-<Cov CovItemId="S107" Value="46"/>
-<Cov CovItemId="S108" Value="46"/>
-<Cov CovItemId="S109" Value="46"/>
-<Cov CovItemId="S11" Value="46"/>
-<Cov CovItemId="S110" Value="46"/>
-<Cov CovItemId="S111" Value="46"/>
-<Cov CovItemId="S112" Value="46"/>
-<Cov CovItemId="S113" Value="46"/>
-<Cov CovItemId="S114" Value="46"/>
-<Cov CovItemId="S115" Value="46"/>
-<Cov CovItemId="S116" Value="46"/>
-<Cov CovItemId="S117" Value="46"/>
-<Cov CovItemId="S118" Value="46"/>
-<Cov CovItemId="S119" Value="46"/>
-<Cov CovItemId="S12" Value="46"/>
-<Cov CovItemId="S120" Value="46"/>
-<Cov CovItemId="S121" Value="46"/>
-<Cov CovItemId="S122" Value="46"/>
-<Cov CovItemId="S123" Value="46"/>
-<Cov CovItemId="S124" Value="46"/>
-<Cov CovItemId="S125" Value="46"/>
-<Cov CovItemId="S126" Value="46"/>
-<Cov CovItemId="S127" Value="46"/>
-<Cov CovItemId="S128" Value="46"/>
-<Cov CovItemId="S129" Value="46"/>
-<Cov CovItemId="S13" Value="46"/>
-<Cov CovItemId="S130" Value="46"/>
-<Cov CovItemId="S131" Value="46"/>
-<Cov CovItemId="S132" Value="46"/>
-<Cov CovItemId="S133" Value="46"/>
-<Cov CovItemId="S134" Value="46"/>
-<Cov CovItemId="S135" Value="46"/>
-<Cov CovItemId="S136" Value="46"/>
-<Cov CovItemId="S137" Value="46"/>
-<Cov CovItemId="S138" Value="46"/>
-<Cov CovItemId="S139" Value="46"/>
-<Cov CovItemId="S14" Value="46"/>
-<Cov CovItemId="S140" Value="46"/>
-<Cov CovItemId="S141" Value="46"/>
-<Cov CovItemId="S142" Value="46"/>
-<Cov CovItemId="S143" Value="46"/>
-<Cov CovItemId="S144" Value="46"/>
-<Cov CovItemId="S145" Value="46"/>
-<Cov CovItemId="S146" Value="46"/>
-<Cov CovItemId="S147" Value="46"/>
-<Cov CovItemId="S148" Value="46"/>
-<Cov CovItemId="S149" Value="46"/>
-<Cov CovItemId="S15" Value="46"/>
-<Cov CovItemId="S150" Value="46"/>
-<Cov CovItemId="S151" Value="46"/>
-<Cov CovItemId="S152" Value="46"/>
-<Cov CovItemId="S153" Value="46"/>
-<Cov CovItemId="S154" Value="46"/>
-<Cov CovItemId="S155" Value="46"/>
-<Cov CovItemId="S156" Value="46"/>
-<Cov CovItemId="S157" Value="46"/>
-<Cov CovItemId="S158" Value="46"/>
-<Cov CovItemId="S159" Value="46"/>
-<Cov CovItemId="S16" Value="46"/>
-<Cov CovItemId="S160" Value="46"/>
-<Cov CovItemId="S161" Value="46"/>
-<Cov CovItemId="S162" Value="46"/>
-<Cov CovItemId="S163" Value="46"/>
-<Cov CovItemId="S164" Value="46"/>
-<Cov CovItemId="S165" Value="46"/>
-<Cov CovItemId="S166" Value="46"/>
-<Cov CovItemId="S167" Value="46"/>
-<Cov CovItemId="S168" Value="46"/>
-<Cov CovItemId="S169" Value="46"/>
-<Cov CovItemId="S17" Value="46"/>
-<Cov CovItemId="S170" Value="46"/>
-<Cov CovItemId="S171" Value="46"/>
-<Cov CovItemId="S172" Value="46"/>
-<Cov CovItemId="S173" Value="46"/>
-<Cov CovItemId="S174" Value="46"/>
-<Cov CovItemId="S175" Value="46"/>
-<Cov CovItemId="S176" Value="46"/>
-<Cov CovItemId="S177" Value="46"/>
-<Cov CovItemId="S178" Value="46"/>
-<Cov CovItemId="S179" Value="46"/>
-<Cov CovItemId="S18" Value="46"/>
-<Cov CovItemId="S180" Value="46"/>
-<Cov CovItemId="S181" Value="46"/>
-<Cov CovItemId="S182" Value="46"/>
-<Cov CovItemId="S183" Value="46"/>
-<Cov CovItemId="S184" Value="46"/>
-<Cov CovItemId="S185" Value="46"/>
-<Cov CovItemId="S186" Value="46"/>
-<Cov CovItemId="S187" Value="46"/>
-<Cov CovItemId="S188" Value="46"/>
-<Cov CovItemId="S189" Value="46"/>
-<Cov CovItemId="S19" Value="46"/>
-<Cov CovItemId="S190" Value="46"/>
-<Cov CovItemId="S191" Value="46"/>
-<Cov CovItemId="S192" Value="46"/>
-<Cov CovItemId="S193" Value="46"/>
-<Cov CovItemId="S2" Value="1"/>
-<Cov CovItemId="S20" Value="46"/>
-<Cov CovItemId="S21" Value="46"/>
-<Cov CovItemId="S22" Value="46"/>
-<Cov CovItemId="S23" Value="46"/>
-<Cov CovItemId="S24" Value="46"/>
-<Cov CovItemId="S25" Value="46"/>
-<Cov CovItemId="S26" Value="46"/>
-<Cov CovItemId="S27" Value="46"/>
-<Cov CovItemId="S28" Value="46"/>
-<Cov CovItemId="S29" Value="46"/>
-<Cov CovItemId="S3" Value="1"/>
-<Cov CovItemId="S30" Value="46"/>
-<Cov CovItemId="S31" Value="46"/>
-<Cov CovItemId="S32" Value="46"/>
-<Cov CovItemId="S33" Value="46"/>
-<Cov CovItemId="S34" Value="46"/>
-<Cov CovItemId="S35" Value="46"/>
-<Cov CovItemId="S36" Value="46"/>
-<Cov CovItemId="S37" Value="46"/>
-<Cov CovItemId="S38" Value="46"/>
-<Cov CovItemId="S39" Value="46"/>
-<Cov CovItemId="S4" Value="1"/>
-<Cov CovItemId="S40" Value="46"/>
-<Cov CovItemId="S41" Value="46"/>
-<Cov CovItemId="S42" Value="46"/>
-<Cov CovItemId="S43" Value="46"/>
-<Cov CovItemId="S44" Value="46"/>
-<Cov CovItemId="S45" Value="46"/>
-<Cov CovItemId="S46" Value="46"/>
-<Cov CovItemId="S47" Value="46"/>
-<Cov CovItemId="S48" Value="46"/>
-<Cov CovItemId="S49" Value="46"/>
-<Cov CovItemId="S5" Value="46"/>
-<Cov CovItemId="S50" Value="46"/>
-<Cov CovItemId="S51" Value="46"/>
-<Cov CovItemId="S52" Value="46"/>
-<Cov CovItemId="S53" Value="46"/>
-<Cov CovItemId="S54" Value="46"/>
-<Cov CovItemId="S55" Value="46"/>
-<Cov CovItemId="S56" Value="46"/>
-<Cov CovItemId="S57" Value="46"/>
-<Cov CovItemId="S58" Value="46"/>
-<Cov CovItemId="S59" Value="46"/>
-<Cov CovItemId="S6" Value="46"/>
-<Cov CovItemId="S60" Value="46"/>
-<Cov CovItemId="S61" Value="46"/>
-<Cov CovItemId="S62" Value="46"/>
-<Cov CovItemId="S63" Value="46"/>
-<Cov CovItemId="S64" Value="46"/>
-<Cov CovItemId="S65" Value="46"/>
-<Cov CovItemId="S66" Value="46"/>
-<Cov CovItemId="S67" Value="46"/>
-<Cov CovItemId="S68" Value="46"/>
-<Cov CovItemId="S69" Value="46"/>
-<Cov CovItemId="S7" Value="46"/>
-<Cov CovItemId="S70" Value="46"/>
-<Cov CovItemId="S71" Value="46"/>
-<Cov CovItemId="S72" Value="46"/>
-<Cov CovItemId="S73" Value="46"/>
-<Cov CovItemId="S74" Value="46"/>
-<Cov CovItemId="S75" Value="46"/>
-<Cov CovItemId="S76" Value="46"/>
-<Cov CovItemId="S77" Value="46"/>
-<Cov CovItemId="S78" Value="46"/>
-<Cov CovItemId="S79" Value="46"/>
-<Cov CovItemId="S8" Value="46"/>
-<Cov CovItemId="S80" Value="46"/>
-<Cov CovItemId="S81" Value="46"/>
-<Cov CovItemId="S82" Value="46"/>
-<Cov CovItemId="S83" Value="46"/>
-<Cov CovItemId="S84" Value="46"/>
-<Cov CovItemId="S85" Value="46"/>
-<Cov CovItemId="S86" Value="46"/>
-<Cov CovItemId="S87" Value="46"/>
-<Cov CovItemId="S88" Value="46"/>
-<Cov CovItemId="S89" Value="46"/>
-<Cov CovItemId="S9" Value="46"/>
-<Cov CovItemId="S90" Value="46"/>
-<Cov CovItemId="S91" Value="46"/>
-<Cov CovItemId="S92" Value="46"/>
-<Cov CovItemId="S93" Value="46"/>
-<Cov CovItemId="S94" Value="46"/>
-<Cov CovItemId="S95" Value="46"/>
-<Cov CovItemId="S96" Value="46"/>
-<Cov CovItemId="S97" Value="46"/>
-<Cov CovItemId="S98" Value="46"/>
-<Cov CovItemId="S99" Value="46"/>
-</CovPrefix>
-<CovPrefix CovItemPrefix="devops.hw1.core.HeroCard.java">
-<Cov CovItemId="S1" Value="32"/>
-<Cov CovItemId="S2" Value="12"/>
-<Cov CovItemId="S3" Value="2307"/>
-<Cov CovItemId="S4" Value="2307"/>
-<Cov CovItemId="S5" Value="2307"/>
-<Cov CovItemId="S6" Value="2307"/>
-<Cov CovItemId="S7" Value="2307"/>
-<Cov CovItemId="S8" Value="2307"/>
-<Cov CovItemId="S9" Value="2307"/>
-</CovPrefix>
-<CovPrefix CovItemPrefix="devops.hw1.core.Player.java">
-<Cov CovItemId="B1" Value="39"/>
-<Cov CovItemId="B10" Value="233"/>
-<Cov CovItemId="B11" Value="1"/>
-<Cov CovItemId="B12" Value="396"/>
-<Cov CovItemId="B13" Value="1"/>
-<Cov CovItemId="B14" Value="4"/>
-<Cov CovItemId="B15" Value="1"/>
-<Cov CovItemId="B16" Value="15"/>
-<Cov CovItemId="B17" Value="14"/>
-<Cov CovItemId="B18" Value="7"/>
-<Cov CovItemId="B19" Value="5"/>
-<Cov CovItemId="B20" Value="4"/>
-<Cov CovItemId="B3" Value="1"/>
-<Cov CovItemId="B4" Value="27"/>
-<Cov CovItemId="B5" Value="4"/>
-<Cov CovItemId="B6" Value="3"/>
-<Cov CovItemId="B7" Value="1"/>
-<Cov CovItemId="B9" Value="1"/>
-<Cov CovItemId="L1-2" Value="39"/>
-<Cov CovItemId="L2-2" Value="39"/>
-<Cov CovItemId="L3-1" Value="3"/>
-<Cov CovItemId="L3-2" Value="46"/>
-<Cov CovItemId="L4-0" Value="1"/>
-<Cov CovItemId="L4-1" Value="22"/>
-<Cov CovItemId="L4-2" Value="2"/>
-<Cov CovItemId="Q0-0" Value="21"/>
-<Cov CovItemId="Q0-1" Value="1"/>
-<Cov CovItemId="S1" Value="39"/>
-<Cov CovItemId="S10" Value="39"/>
-<Cov CovItemId="S11" Value="312"/>
-<Cov CovItemId="S12" Value="39"/>
-<Cov CovItemId="S13" Value="78"/>
-<Cov CovItemId="S14" Value="1"/>
-<Cov CovItemId="S15" Value="1"/>
-<Cov CovItemId="S16" Value="1"/>
-<Cov CovItemId="S17" Value="1"/>
-<Cov CovItemId="S18" Value="1"/>
-<Cov CovItemId="S19" Value="39"/>
-<Cov CovItemId="S2" Value="39"/>
-<Cov CovItemId="S20" Value="39"/>
-<Cov CovItemId="S21" Value="22"/>
-<Cov CovItemId="S22" Value="67"/>
-<Cov CovItemId="S23" Value="27"/>
-<Cov CovItemId="S24" Value="13"/>
-<Cov CovItemId="S25" Value="28"/>
-<Cov CovItemId="S26" Value="1"/>
-<Cov CovItemId="S27" Value="1"/>
-<Cov CovItemId="S28" Value="27"/>
-<Cov CovItemId="S29" Value="12"/>
-<Cov CovItemId="S30" Value="7"/>
-<Cov CovItemId="S31" Value="4"/>
-<Cov CovItemId="S32" Value="4"/>
-<Cov CovItemId="S33" Value="4"/>
-<Cov CovItemId="S34" Value="3"/>
-<Cov CovItemId="S35" Value="1"/>
-<Cov CovItemId="S36" Value="1"/>
-<Cov CovItemId="S37" Value="1"/>
-<Cov CovItemId="S38" Value="1"/>
-<Cov CovItemId="S4" Value="39"/>
-<Cov CovItemId="S40" Value="27"/>
-<Cov CovItemId="S41" Value="234"/>
-<Cov CovItemId="S42" Value="1"/>
-<Cov CovItemId="S43" Value="1"/>
-<Cov CovItemId="S44" Value="1"/>
-<Cov CovItemId="S45" Value="234"/>
-<Cov CovItemId="S46" Value="234"/>
-<Cov CovItemId="S47" Value="397"/>
-<Cov CovItemId="S48" Value="1"/>
-<Cov CovItemId="S49" Value="1"/>
-<Cov CovItemId="S5" Value="39"/>
-<Cov CovItemId="S50" Value="396"/>
-<Cov CovItemId="S51" Value="5"/>
-<Cov CovItemId="S52" Value="1"/>
-<Cov CovItemId="S53" Value="1"/>
-<Cov CovItemId="S54" Value="4"/>
-<Cov CovItemId="S55" Value="19"/>
-<Cov CovItemId="S56" Value="16"/>
-<Cov CovItemId="S57" Value="1"/>
-<Cov CovItemId="S58" Value="1"/>
-<Cov CovItemId="S59" Value="15"/>
-<Cov CovItemId="S6" Value="39"/>
-<Cov CovItemId="S60" Value="15"/>
-<Cov CovItemId="S61" Value="15"/>
-<Cov CovItemId="S62" Value="49"/>
-<Cov CovItemId="S63" Value="230"/>
-<Cov CovItemId="S64" Value="1"/>
-<Cov CovItemId="S65" Value="12"/>
-<Cov CovItemId="S66" Value="13"/>
-<Cov CovItemId="S67" Value="12"/>
-<Cov CovItemId="S68" Value="25"/>
-<Cov CovItemId="S69" Value="25"/>
-<Cov CovItemId="S7" Value="39"/>
-<Cov CovItemId="S70" Value="30"/>
-<Cov CovItemId="S71" Value="14"/>
-<Cov CovItemId="S72" Value="14"/>
-<Cov CovItemId="S73" Value="7"/>
-<Cov CovItemId="S74" Value="7"/>
-<Cov CovItemId="S75" Value="5"/>
-<Cov CovItemId="S76" Value="5"/>
-<Cov CovItemId="S77" Value="4"/>
-<Cov CovItemId="S78" Value="4"/>
-<Cov CovItemId="S79" Value="11"/>
-<Cov CovItemId="S8" Value="39"/>
-<Cov CovItemId="S80" Value="5"/>
-<Cov CovItemId="S9" Value="39"/>
-</CovPrefix>
-</CovList>
-<AssgnmntList>
-<AssgnmntPrefix RootTermCovItemPrefix="devops.hw1.core.ACard.java">
-<AssgnmntListEntry Length="2" RootTermCovItemId="C1">
-<MapEntry BoolAssgnmnt="00" Value="2310"/>
-<MapEntry BoolAssgnmnt="01" Value="1"/>
-<MapEntry BoolAssgnmnt="12" Value="1"/>
-</AssgnmntListEntry>
-<AssgnmntListEntry Length="1" RootTermCovItemId="C2">
-<MapEntry BoolAssgnmnt="0" Value="2309"/>
-<MapEntry BoolAssgnmnt="1" Value="1"/>
-</AssgnmntListEntry>
-<AssgnmntListEntry Length="2" RootTermCovItemId="C3">
-<MapEntry BoolAssgnmnt="00" Value="2308"/>
-<MapEntry BoolAssgnmnt="12" Value="1"/>
-</AssgnmntListEntry>
-<AssgnmntListEntry Length="4" RootTermCovItemId="C4">
-<MapEntry BoolAssgnmnt="0000" Value="1"/>
-<MapEntry BoolAssgnmnt="0001" Value="598"/>
-<MapEntry BoolAssgnmnt="0122" Value="461"/>
-<MapEntry BoolAssgnmnt="1222" Value="1248"/>
-</AssgnmntListEntry>
-<AssgnmntListEntry Length="1" RootTermCovItemId="C5">
-<MapEntry BoolAssgnmnt="0" Value="5"/>
-<MapEntry BoolAssgnmnt="1" Value="1"/>
-</AssgnmntListEntry>
-</AssgnmntPrefix>
-<AssgnmntPrefix RootTermCovItemPrefix="devops.hw1.core.Board.java">
-<AssgnmntListEntry Length="1" RootTermCovItemId="C1">
-<MapEntry BoolAssgnmnt="0" Value="7"/>
-<MapEntry BoolAssgnmnt="1" Value="336"/>
-</AssgnmntListEntry>
-<AssgnmntListEntry Length="1" RootTermCovItemId="C2">
-<MapEntry BoolAssgnmnt="0" Value="336"/>
-<MapEntry BoolAssgnmnt="1" Value="700"/>
-</AssgnmntListEntry>
-<AssgnmntListEntry Length="1" RootTermCovItemId="C3">
-<MapEntry BoolAssgnmnt="0" Value="7"/>
-<MapEntry BoolAssgnmnt="1" Value="42"/>
-</AssgnmntListEntry>
-<AssgnmntListEntry Length="1" RootTermCovItemId="C4">
-<MapEntry BoolAssgnmnt="0" Value="1"/>
-</AssgnmntListEntry>
-</AssgnmntPrefix>
-<AssgnmntPrefix RootTermCovItemPrefix="devops.hw1.core.Player.java">
-<AssgnmntListEntry Length="1" RootTermCovItemId="C1">
-<MapEntry BoolAssgnmnt="0" Value="39"/>
-<MapEntry BoolAssgnmnt="1" Value="312"/>
-</AssgnmntListEntry>
-<AssgnmntListEntry Length="1" RootTermCovItemId="C10">
-<MapEntry BoolAssgnmnt="0" Value="49"/>
-<MapEntry BoolAssgnmnt="1" Value="230"/>
-</AssgnmntListEntry>
-<AssgnmntListEntry Length="1" RootTermCovItemId="C2">
-<MapEntry BoolAssgnmnt="0" Value="39"/>
-<MapEntry BoolAssgnmnt="1" Value="78"/>
-</AssgnmntListEntry>
-<AssgnmntListEntry Length="1" RootTermCovItemId="C3">
-<MapEntry BoolAssgnmnt="0" Value="27"/>
-<MapEntry BoolAssgnmnt="1" Value="1"/>
-</AssgnmntListEntry>
-<AssgnmntListEntry Length="2" RootTermCovItemId="C4">
-<MapEntry BoolAssgnmnt="02" Value="1"/>
-<MapEntry BoolAssgnmnt="10" Value="2"/>
-<MapEntry BoolAssgnmnt="11" Value="4"/>
-</AssgnmntListEntry>
-<AssgnmntListEntry Length="2" RootTermCovItemId="C5">
-<MapEntry BoolAssgnmnt="11" Value="1"/>
-</AssgnmntListEntry>
-<AssgnmntListEntry Length="1" RootTermCovItemId="C6">
-<MapEntry BoolAssgnmnt="0" Value="233"/>
-<MapEntry BoolAssgnmnt="1" Value="1"/>
-</AssgnmntListEntry>
-<AssgnmntListEntry Length="1" RootTermCovItemId="C7">
-<MapEntry BoolAssgnmnt="0" Value="396"/>
-<MapEntry BoolAssgnmnt="1" Value="1"/>
-</AssgnmntListEntry>
-<AssgnmntListEntry Length="1" RootTermCovItemId="C8">
-<MapEntry BoolAssgnmnt="0" Value="4"/>
-<MapEntry BoolAssgnmnt="1" Value="1"/>
-</AssgnmntListEntry>
-<AssgnmntListEntry Length="1" RootTermCovItemId="C9">
-<MapEntry BoolAssgnmnt="0" Value="15"/>
-<MapEntry BoolAssgnmnt="1" Value="1"/>
-</AssgnmntListEntry>
-</AssgnmntPrefix>
-</AssgnmntList>
-<ObjMetaDataList/>
-<MetaDataList/>
-</TestCase>
-<MetaDataList/>
-</TestSession>
-<TestSession Comment="" Date="1461798494718" Name="Apr 27, 2016 7:08:14 PM">
-<TestCase Comment="This is a test case containing all coverage results cause no startTestCase methods where captured." Date="1461798492858" Name="UNNAMED TESTCASE">
-<CovList>
-<CovPrefix CovItemPrefix="devops.hw1.core.ACard.java">
-<Cov CovItemId="B1" Value="2"/>
-<Cov CovItemId="B10" Value="5"/>
-<Cov CovItemId="B2" Value="2310"/>
-<Cov CovItemId="B3" Value="1"/>
-<Cov CovItemId="B4" Value="2309"/>
-<Cov CovItemId="B5" Value="1"/>
-<Cov CovItemId="B6" Value="2308"/>
-<Cov CovItemId="B7" Value="1"/>
-<Cov CovItemId="B8" Value="2307"/>
-<Cov CovItemId="B9" Value="1"/>
-<Cov CovItemId="S1" Value="2352"/>
-<Cov CovItemId="S10" Value="2308"/>
-<Cov CovItemId="S11" Value="1"/>
-<Cov CovItemId="S12" Value="2307"/>
-<Cov CovItemId="S13" Value="1"/>
-<Cov CovItemId="S15" Value="6"/>
-<Cov CovItemId="S17" Value="1"/>
-<Cov CovItemId="S19" Value="1"/>
-<Cov CovItemId="S2" Value="32"/>
-<Cov CovItemId="S24" Value="12"/>
-<Cov CovItemId="S26" Value="25"/>
-<Cov CovItemId="S27" Value="6"/>
-<Cov CovItemId="S28" Value="1"/>
-<Cov CovItemId="S29" Value="5"/>
-<Cov CovItemId="S3" Value="13"/>
-<Cov CovItemId="S30" Value="1"/>
-<Cov CovItemId="S4" Value="2312"/>
-<Cov CovItemId="S5" Value="2"/>
-<Cov CovItemId="S6" Value="2310"/>
-<Cov CovItemId="S7" Value="1"/>
-<Cov CovItemId="S8" Value="2309"/>
-<Cov CovItemId="S9" Value="1"/>
-</CovPrefix>
-<CovPrefix CovItemPrefix="devops.hw1.core.Board.java">
-<Cov CovItemId="B1" Value="7"/>
-<Cov CovItemId="B4" Value="1"/>
-<Cov CovItemId="L1-2" Value="7"/>
-<Cov CovItemId="L2-1" Value="98"/>
-<Cov CovItemId="L2-2" Value="238"/>
-<Cov CovItemId="L3-2" Value="7"/>
-<Cov CovItemId="S1" Value="7"/>
-<Cov CovItemId="S10" Value="7"/>
-<Cov CovItemId="S11" Value="7"/>
-<Cov CovItemId="S12" Value="336"/>
-<Cov CovItemId="S13" Value="700"/>
-<Cov CovItemId="S14" Value="7"/>
-<Cov CovItemId="S15" Value="7"/>
-<Cov CovItemId="S16" Value="42"/>
-<Cov CovItemId="S17" Value="3"/>
-<Cov CovItemId="S18" Value="1"/>
-<Cov CovItemId="S2" Value="7"/>
-<Cov CovItemId="S20" Value="1"/>
-<Cov CovItemId="S21" Value="10"/>
-<Cov CovItemId="S22" Value="1"/>
-<Cov CovItemId="S23" Value="1"/>
-<Cov CovItemId="S24" Value="1"/>
-<Cov CovItemId="S25" Value="48"/>
-<Cov CovItemId="S26" Value="48"/>
-<Cov CovItemId="S27" Value="1"/>
-<Cov CovItemId="S4" Value="7"/>
-<Cov CovItemId="S5" Value="7"/>
-<Cov CovItemId="S6" Value="7"/>
-<Cov CovItemId="S7" Value="7"/>
-<Cov CovItemId="S8" Value="7"/>
-<Cov CovItemId="S9" Value="7"/>
-</CovPrefix>
-<CovPrefix CovItemPrefix="devops.hw1.core.CardCollection.java">
-<Cov CovItemId="S1" Value="1"/>
-<Cov CovItemId="S10" Value="46"/>
-<Cov CovItemId="S100" Value="46"/>
-<Cov CovItemId="S101" Value="46"/>
-<Cov CovItemId="S102" Value="46"/>
-<Cov CovItemId="S103" Value="46"/>
-<Cov CovItemId="S104" Value="46"/>
-<Cov CovItemId="S105" Value="46"/>
-<Cov CovItemId="S106" Value="46"/>
-<Cov CovItemId="S107" Value="46"/>
-<Cov CovItemId="S108" Value="46"/>
-<Cov CovItemId="S109" Value="46"/>
-<Cov CovItemId="S11" Value="46"/>
-<Cov CovItemId="S110" Value="46"/>
-<Cov CovItemId="S111" Value="46"/>
-<Cov CovItemId="S112" Value="46"/>
-<Cov CovItemId="S113" Value="46"/>
-<Cov CovItemId="S114" Value="46"/>
-<Cov CovItemId="S115" Value="46"/>
-<Cov CovItemId="S116" Value="46"/>
-<Cov CovItemId="S117" Value="46"/>
-<Cov CovItemId="S118" Value="46"/>
-<Cov CovItemId="S119" Value="46"/>
-<Cov CovItemId="S12" Value="46"/>
-<Cov CovItemId="S120" Value="46"/>
-<Cov CovItemId="S121" Value="46"/>
-<Cov CovItemId="S122" Value="46"/>
-<Cov CovItemId="S123" Value="46"/>
-<Cov CovItemId="S124" Value="46"/>
-<Cov CovItemId="S125" Value="46"/>
-<Cov CovItemId="S126" Value="46"/>
-<Cov CovItemId="S127" Value="46"/>
-<Cov CovItemId="S128" Value="46"/>
-<Cov CovItemId="S129" Value="46"/>
-<Cov CovItemId="S13" Value="46"/>
-<Cov CovItemId="S130" Value="46"/>
-<Cov CovItemId="S131" Value="46"/>
-<Cov CovItemId="S132" Value="46"/>
-<Cov CovItemId="S133" Value="46"/>
-<Cov CovItemId="S134" Value="46"/>
-<Cov CovItemId="S135" Value="46"/>
-<Cov CovItemId="S136" Value="46"/>
-<Cov CovItemId="S137" Value="46"/>
-<Cov CovItemId="S138" Value="46"/>
-<Cov CovItemId="S139" Value="46"/>
-<Cov CovItemId="S14" Value="46"/>
-<Cov CovItemId="S140" Value="46"/>
-<Cov CovItemId="S141" Value="46"/>
-<Cov CovItemId="S142" Value="46"/>
-<Cov CovItemId="S143" Value="46"/>
-<Cov CovItemId="S144" Value="46"/>
-<Cov CovItemId="S145" Value="46"/>
-<Cov CovItemId="S146" Value="46"/>
-<Cov CovItemId="S147" Value="46"/>
-<Cov CovItemId="S148" Value="46"/>
-<Cov CovItemId="S149" Value="46"/>
-<Cov CovItemId="S15" Value="46"/>
-<Cov CovItemId="S150" Value="46"/>
-<Cov CovItemId="S151" Value="46"/>
-<Cov CovItemId="S152" Value="46"/>
-<Cov CovItemId="S153" Value="46"/>
-<Cov CovItemId="S154" Value="46"/>
-<Cov CovItemId="S155" Value="46"/>
-<Cov CovItemId="S156" Value="46"/>
-<Cov CovItemId="S157" Value="46"/>
-<Cov CovItemId="S158" Value="46"/>
-<Cov CovItemId="S159" Value="46"/>
-<Cov CovItemId="S16" Value="46"/>
-<Cov CovItemId="S160" Value="46"/>
-<Cov CovItemId="S161" Value="46"/>
-<Cov CovItemId="S162" Value="46"/>
-<Cov CovItemId="S163" Value="46"/>
-<Cov CovItemId="S164" Value="46"/>
-<Cov CovItemId="S165" Value="46"/>
-<Cov CovItemId="S166" Value="46"/>
-<Cov CovItemId="S167" Value="46"/>
-<Cov CovItemId="S168" Value="46"/>
-<Cov CovItemId="S169" Value="46"/>
-<Cov CovItemId="S17" Value="46"/>
-<Cov CovItemId="S170" Value="46"/>
-<Cov CovItemId="S171" Value="46"/>
-<Cov CovItemId="S172" Value="46"/>
-<Cov CovItemId="S173" Value="46"/>
-<Cov CovItemId="S174" Value="46"/>
-<Cov CovItemId="S175" Value="46"/>
-<Cov CovItemId="S176" Value="46"/>
-<Cov CovItemId="S177" Value="46"/>
-<Cov CovItemId="S178" Value="46"/>
-<Cov CovItemId="S179" Value="46"/>
-<Cov CovItemId="S18" Value="46"/>
-<Cov CovItemId="S180" Value="46"/>
-<Cov CovItemId="S181" Value="46"/>
-<Cov CovItemId="S182" Value="46"/>
-<Cov CovItemId="S183" Value="46"/>
-<Cov CovItemId="S184" Value="46"/>
-<Cov CovItemId="S185" Value="46"/>
-<Cov CovItemId="S186" Value="46"/>
-<Cov CovItemId="S187" Value="46"/>
-<Cov CovItemId="S188" Value="46"/>
-<Cov CovItemId="S189" Value="46"/>
-<Cov CovItemId="S19" Value="46"/>
-<Cov CovItemId="S190" Value="46"/>
-<Cov CovItemId="S191" Value="46"/>
-<Cov CovItemId="S192" Value="46"/>
-<Cov CovItemId="S193" Value="46"/>
-<Cov CovItemId="S2" Value="1"/>
-<Cov CovItemId="S20" Value="46"/>
-<Cov CovItemId="S21" Value="46"/>
-<Cov CovItemId="S22" Value="46"/>
-<Cov CovItemId="S23" Value="46"/>
-<Cov CovItemId="S24" Value="46"/>
-<Cov CovItemId="S25" Value="46"/>
-<Cov CovItemId="S26" Value="46"/>
-<Cov CovItemId="S27" Value="46"/>
-<Cov CovItemId="S28" Value="46"/>
-<Cov CovItemId="S29" Value="46"/>
-<Cov CovItemId="S3" Value="1"/>
-<Cov CovItemId="S30" Value="46"/>
-<Cov CovItemId="S31" Value="46"/>
-<Cov CovItemId="S32" Value="46"/>
-<Cov CovItemId="S33" Value="46"/>
-<Cov CovItemId="S34" Value="46"/>
-<Cov CovItemId="S35" Value="46"/>
-<Cov CovItemId="S36" Value="46"/>
-<Cov CovItemId="S37" Value="46"/>
-<Cov CovItemId="S38" Value="46"/>
-<Cov CovItemId="S39" Value="46"/>
-<Cov CovItemId="S4" Value="1"/>
-<Cov CovItemId="S40" Value="46"/>
-<Cov CovItemId="S41" Value="46"/>
-<Cov CovItemId="S42" Value="46"/>
-<Cov CovItemId="S43" Value="46"/>
-<Cov CovItemId="S44" Value="46"/>
-<Cov CovItemId="S45" Value="46"/>
-<Cov CovItemId="S46" Value="46"/>
-<Cov CovItemId="S47" Value="46"/>
-<Cov CovItemId="S48" Value="46"/>
-<Cov CovItemId="S49" Value="46"/>
-<Cov CovItemId="S5" Value="46"/>
-<Cov CovItemId="S50" Value="46"/>
-<Cov CovItemId="S51" Value="46"/>
-<Cov CovItemId="S52" Value="46"/>
-<Cov CovItemId="S53" Value="46"/>
-<Cov CovItemId="S54" Value="46"/>
-<Cov CovItemId="S55" Value="46"/>
-<Cov CovItemId="S56" Value="46"/>
-<Cov CovItemId="S57" Value="46"/>
-<Cov CovItemId="S58" Value="46"/>
-<Cov CovItemId="S59" Value="46"/>
-<Cov CovItemId="S6" Value="46"/>
-<Cov CovItemId="S60" Value="46"/>
-<Cov CovItemId="S61" Value="46"/>
-<Cov CovItemId="S62" Value="46"/>
-<Cov CovItemId="S63" Value="46"/>
-<Cov CovItemId="S64" Value="46"/>
-<Cov CovItemId="S65" Value="46"/>
-<Cov CovItemId="S66" Value="46"/>
-<Cov CovItemId="S67" Value="46"/>
-<Cov CovItemId="S68" Value="46"/>
-<Cov CovItemId="S69" Value="46"/>
-<Cov CovItemId="S7" Value="46"/>
-<Cov CovItemId="S70" Value="46"/>
-<Cov CovItemId="S71" Value="46"/>
-<Cov CovItemId="S72" Value="46"/>
-<Cov CovItemId="S73" Value="46"/>
-<Cov CovItemId="S74" Value="46"/>
-<Cov CovItemId="S75" Value="46"/>
-<Cov CovItemId="S76" Value="46"/>
-<Cov CovItemId="S77" Value="46"/>
-<Cov CovItemId="S78" Value="46"/>
-<Cov CovItemId="S79" Value="46"/>
-<Cov CovItemId="S8" Value="46"/>
-<Cov CovItemId="S80" Value="46"/>
-<Cov CovItemId="S81" Value="46"/>
-<Cov CovItemId="S82" Value="46"/>
-<Cov CovItemId="S83" Value="46"/>
-<Cov CovItemId="S84" Value="46"/>
-<Cov CovItemId="S85" Value="46"/>
-<Cov CovItemId="S86" Value="46"/>
-<Cov CovItemId="S87" Value="46"/>
-<Cov CovItemId="S88" Value="46"/>
-<Cov CovItemId="S89" Value="46"/>
-<Cov CovItemId="S9" Value="46"/>
-<Cov CovItemId="S90" Value="46"/>
-<Cov CovItemId="S91" Value="46"/>
-<Cov CovItemId="S92" Value="46"/>
-<Cov CovItemId="S93" Value="46"/>
-<Cov CovItemId="S94" Value="46"/>
-<Cov CovItemId="S95" Value="46"/>
-<Cov CovItemId="S96" Value="46"/>
-<Cov CovItemId="S97" Value="46"/>
-<Cov CovItemId="S98" Value="46"/>
-<Cov CovItemId="S99" Value="46"/>
-</CovPrefix>
-<CovPrefix CovItemPrefix="devops.hw1.core.HeroCard.java">
-<Cov CovItemId="S1" Value="32"/>
-<Cov CovItemId="S2" Value="13"/>
-<Cov CovItemId="S3" Value="2307"/>
-<Cov CovItemId="S4" Value="2307"/>
-<Cov CovItemId="S5" Value="2307"/>
-<Cov CovItemId="S6" Value="2307"/>
-<Cov CovItemId="S7" Value="2307"/>
-<Cov CovItemId="S8" Value="2307"/>
-<Cov CovItemId="S9" Value="2307"/>
-</CovPrefix>
-<CovPrefix CovItemPrefix="devops.hw1.core.Player.java">
-<Cov CovItemId="B1" Value="39"/>
-<Cov CovItemId="B10" Value="233"/>
-<Cov CovItemId="B11" Value="1"/>
-<Cov CovItemId="B12" Value="396"/>
-<Cov CovItemId="B13" Value="1"/>
-<Cov CovItemId="B14" Value="4"/>
-<Cov CovItemId="B15" Value="1"/>
-<Cov CovItemId="B16" Value="15"/>
-<Cov CovItemId="B17" Value="16"/>
-<Cov CovItemId="B18" Value="5"/>
-<Cov CovItemId="B19" Value="5"/>
-<Cov CovItemId="B20" Value="4"/>
-<Cov CovItemId="B3" Value="1"/>
-<Cov CovItemId="B4" Value="27"/>
-<Cov CovItemId="B5" Value="4"/>
-<Cov CovItemId="B6" Value="3"/>
-<Cov CovItemId="B7" Value="1"/>
-<Cov CovItemId="B9" Value="1"/>
-<Cov CovItemId="L1-2" Value="39"/>
-<Cov CovItemId="L2-2" Value="39"/>
-<Cov CovItemId="L3-1" Value="3"/>
-<Cov CovItemId="L3-2" Value="46"/>
-<Cov CovItemId="L4-0" Value="1"/>
-<Cov CovItemId="L4-1" Value="22"/>
-<Cov CovItemId="L4-2" Value="2"/>
-<Cov CovItemId="Q0-0" Value="23"/>
-<Cov CovItemId="Q0-1" Value="1"/>
-<Cov CovItemId="S1" Value="39"/>
-<Cov CovItemId="S10" Value="39"/>
-<Cov CovItemId="S11" Value="312"/>
-<Cov CovItemId="S12" Value="39"/>
-<Cov CovItemId="S13" Value="78"/>
-<Cov CovItemId="S14" Value="1"/>
-<Cov CovItemId="S15" Value="1"/>
-<Cov CovItemId="S16" Value="1"/>
-<Cov CovItemId="S17" Value="1"/>
-<Cov CovItemId="S18" Value="1"/>
-<Cov CovItemId="S19" Value="39"/>
-<Cov CovItemId="S2" Value="39"/>
-<Cov CovItemId="S20" Value="39"/>
-<Cov CovItemId="S21" Value="24"/>
-<Cov CovItemId="S22" Value="72"/>
-<Cov CovItemId="S23" Value="29"/>
-<Cov CovItemId="S24" Value="13"/>
-<Cov CovItemId="S25" Value="28"/>
-<Cov CovItemId="S26" Value="1"/>
-<Cov CovItemId="S27" Value="1"/>
-<Cov CovItemId="S28" Value="27"/>
-<Cov CovItemId="S29" Value="12"/>
-<Cov CovItemId="S30" Value="7"/>
-<Cov CovItemId="S31" Value="4"/>
-<Cov CovItemId="S32" Value="4"/>
-<Cov CovItemId="S33" Value="4"/>
-<Cov CovItemId="S34" Value="3"/>
-<Cov CovItemId="S35" Value="1"/>
-<Cov CovItemId="S36" Value="1"/>
-<Cov CovItemId="S37" Value="1"/>
-<Cov CovItemId="S38" Value="1"/>
-<Cov CovItemId="S4" Value="39"/>
-<Cov CovItemId="S40" Value="27"/>
-<Cov CovItemId="S41" Value="234"/>
-<Cov CovItemId="S42" Value="1"/>
-<Cov CovItemId="S43" Value="1"/>
-<Cov CovItemId="S44" Value="1"/>
-<Cov CovItemId="S45" Value="234"/>
-<Cov CovItemId="S46" Value="234"/>
-<Cov CovItemId="S47" Value="397"/>
-<Cov CovItemId="S48" Value="1"/>
-<Cov CovItemId="S49" Value="1"/>
-<Cov CovItemId="S5" Value="39"/>
-<Cov CovItemId="S50" Value="396"/>
-<Cov CovItemId="S51" Value="5"/>
-<Cov CovItemId="S52" Value="1"/>
-<Cov CovItemId="S53" Value="1"/>
-<Cov CovItemId="S54" Value="4"/>
-<Cov CovItemId="S55" Value="19"/>
-<Cov CovItemId="S56" Value="16"/>
-<Cov CovItemId="S57" Value="1"/>
-<Cov CovItemId="S58" Value="1"/>
-<Cov CovItemId="S59" Value="15"/>
-<Cov CovItemId="S6" Value="39"/>
-<Cov CovItemId="S60" Value="15"/>
-<Cov CovItemId="S61" Value="15"/>
-<Cov CovItemId="S62" Value="49"/>
-<Cov CovItemId="S63" Value="230"/>
-<Cov CovItemId="S64" Value="1"/>
-<Cov CovItemId="S65" Value="12"/>
-<Cov CovItemId="S66" Value="12"/>
-<Cov CovItemId="S67" Value="10"/>
-<Cov CovItemId="S68" Value="25"/>
-<Cov CovItemId="S69" Value="25"/>
-<Cov CovItemId="S7" Value="39"/>
-<Cov CovItemId="S70" Value="30"/>
-<Cov CovItemId="S71" Value="16"/>
-<Cov CovItemId="S72" Value="16"/>
-<Cov CovItemId="S73" Value="5"/>
-<Cov CovItemId="S74" Value="5"/>
-<Cov CovItemId="S75" Value="5"/>
-<Cov CovItemId="S76" Value="5"/>
-<Cov CovItemId="S77" Value="4"/>
-<Cov CovItemId="S78" Value="4"/>
-<Cov CovItemId="S79" Value="11"/>
-<Cov CovItemId="S8" Value="39"/>
-<Cov CovItemId="S80" Value="5"/>
-<Cov CovItemId="S9" Value="39"/>
-</CovPrefix>
-</CovList>
-<AssgnmntList>
-<AssgnmntPrefix RootTermCovItemPrefix="devops.hw1.core.ACard.java">
-<AssgnmntListEntry Length="2" RootTermCovItemId="C1">
-<MapEntry BoolAssgnmnt="00" Value="2310"/>
-<MapEntry BoolAssgnmnt="01" Value="1"/>
-<MapEntry BoolAssgnmnt="12" Value="1"/>
-</AssgnmntListEntry>
-<AssgnmntListEntry Length="1" RootTermCovItemId="C2">
-<MapEntry BoolAssgnmnt="0" Value="2309"/>
-<MapEntry BoolAssgnmnt="1" Value="1"/>
-</AssgnmntListEntry>
-<AssgnmntListEntry Length="2" RootTermCovItemId="C3">
-<MapEntry BoolAssgnmnt="00" Value="2308"/>
-<MapEntry BoolAssgnmnt="12" Value="1"/>
-</AssgnmntListEntry>
-<AssgnmntListEntry Length="4" RootTermCovItemId="C4">
-<MapEntry BoolAssgnmnt="0000" Value="1"/>
-<MapEntry BoolAssgnmnt="0001" Value="598"/>
-<MapEntry BoolAssgnmnt="0122" Value="461"/>
-<MapEntry BoolAssgnmnt="1222" Value="1248"/>
-</AssgnmntListEntry>
-<AssgnmntListEntry Length="1" RootTermCovItemId="C5">
-<MapEntry BoolAssgnmnt="0" Value="5"/>
-<MapEntry BoolAssgnmnt="1" Value="1"/>
-</AssgnmntListEntry>
-</AssgnmntPrefix>
-<AssgnmntPrefix RootTermCovItemPrefix="devops.hw1.core.Board.java">
-<AssgnmntListEntry Length="1" RootTermCovItemId="C1">
-<MapEntry BoolAssgnmnt="0" Value="7"/>
-<MapEntry BoolAssgnmnt="1" Value="336"/>
-</AssgnmntListEntry>
-<AssgnmntListEntry Length="1" RootTermCovItemId="C2">
-<MapEntry BoolAssgnmnt="0" Value="336"/>
-<MapEntry BoolAssgnmnt="1" Value="700"/>
-</AssgnmntListEntry>
-<AssgnmntListEntry Length="1" RootTermCovItemId="C3">
-<MapEntry BoolAssgnmnt="0" Value="7"/>
-<MapEntry BoolAssgnmnt="1" Value="42"/>
-</AssgnmntListEntry>
-<AssgnmntListEntry Length="1" RootTermCovItemId="C4">
-<MapEntry BoolAssgnmnt="0" Value="1"/>
-</AssgnmntListEntry>
-</AssgnmntPrefix>
-<AssgnmntPrefix RootTermCovItemPrefix="devops.hw1.core.Player.java">
-<AssgnmntListEntry Length="1" RootTermCovItemId="C1">
-<MapEntry BoolAssgnmnt="0" Value="39"/>
-<MapEntry BoolAssgnmnt="1" Value="312"/>
-</AssgnmntListEntry>
-<AssgnmntListEntry Length="1" RootTermCovItemId="C10">
-<MapEntry BoolAssgnmnt="0" Value="49"/>
-<MapEntry BoolAssgnmnt="1" Value="230"/>
-</AssgnmntListEntry>
-<AssgnmntListEntry Length="1" RootTermCovItemId="C2">
-<MapEntry BoolAssgnmnt="0" Value="39"/>
-<MapEntry BoolAssgnmnt="1" Value="78"/>
-</AssgnmntListEntry>
-<AssgnmntListEntry Length="1" RootTermCovItemId="C3">
-<MapEntry BoolAssgnmnt="0" Value="27"/>
-<MapEntry BoolAssgnmnt="1" Value="1"/>
-</AssgnmntListEntry>
-<AssgnmntListEntry Length="2" RootTermCovItemId="C4">
-<MapEntry BoolAssgnmnt="02" Value="1"/>
-<MapEntry BoolAssgnmnt="10" Value="2"/>
-<MapEntry BoolAssgnmnt="11" Value="4"/>
-</AssgnmntListEntry>
-<AssgnmntListEntry Length="2" RootTermCovItemId="C5">
-<MapEntry BoolAssgnmnt="11" Value="1"/>
-</AssgnmntListEntry>
-<AssgnmntListEntry Length="1" RootTermCovItemId="C6">
-<MapEntry BoolAssgnmnt="0" Value="233"/>
-<MapEntry BoolAssgnmnt="1" Value="1"/>
-</AssgnmntListEntry>
-<AssgnmntListEntry Length="1" RootTermCovItemId="C7">
-<MapEntry BoolAssgnmnt="0" Value="396"/>
-<MapEntry BoolAssgnmnt="1" Value="1"/>
-</AssgnmntListEntry>
-<AssgnmntListEntry Length="1" RootTermCovItemId="C8">
-<MapEntry BoolAssgnmnt="0" Value="4"/>
-<MapEntry BoolAssgnmnt="1" Value="1"/>
-</AssgnmntListEntry>
-<AssgnmntListEntry Length="1" RootTermCovItemId="C9">
-<MapEntry BoolAssgnmnt="0" Value="15"/>
-<MapEntry BoolAssgnmnt="1" Value="1"/>
-</AssgnmntListEntry>
-</AssgnmntPrefix>
-</AssgnmntList>
-<ObjMetaDataList/>
-<MetaDataList/>
-</TestCase>
-<MetaDataList/>
-</TestSession>
-<TestSession Comment="" Date="1461798682545" Name="Apr 27, 2016 7:11:22 PM">
-<TestCase Comment="This is a test case containing all coverage results cause no startTestCase methods where captured." Date="1461798680620" Name="UNNAMED TESTCASE">
-<CovList>
-<CovPrefix CovItemPrefix="devops.hw1.core.ACard.java">
-<Cov CovItemId="B1" Value="2"/>
-<Cov CovItemId="B10" Value="5"/>
-<Cov CovItemId="B2" Value="2311"/>
-<Cov CovItemId="B3" Value="1"/>
-<Cov CovItemId="B4" Value="2310"/>
-<Cov CovItemId="B5" Value="2"/>
-<Cov CovItemId="B6" Value="2308"/>
-<Cov CovItemId="B7" Value="1"/>
-<Cov CovItemId="B8" Value="2307"/>
-<Cov CovItemId="B9" Value="1"/>
-<Cov CovItemId="S1" Value="2352"/>
-<Cov CovItemId="S10" Value="2308"/>
-<Cov CovItemId="S11" Value="1"/>
-<Cov CovItemId="S12" Value="2307"/>
-<Cov CovItemId="S13" Value="1"/>
-<Cov CovItemId="S15" Value="7"/>
-<Cov CovItemId="S17" Value="1"/>
-<Cov CovItemId="S19" Value="1"/>
-<Cov CovItemId="S2" Value="32"/>
-<Cov CovItemId="S24" Value="12"/>
-<Cov CovItemId="S26" Value="25"/>
-<Cov CovItemId="S27" Value="6"/>
-<Cov CovItemId="S28" Value="1"/>
-<Cov CovItemId="S29" Value="5"/>
-<Cov CovItemId="S3" Value="13"/>
-<Cov CovItemId="S30" Value="1"/>
-<Cov CovItemId="S4" Value="2313"/>
-<Cov CovItemId="S5" Value="2"/>
-<Cov CovItemId="S6" Value="2311"/>
-<Cov CovItemId="S7" Value="1"/>
-<Cov CovItemId="S8" Value="2310"/>
-<Cov CovItemId="S9" Value="2"/>
-</CovPrefix>
-<CovPrefix CovItemPrefix="devops.hw1.core.Board.java">
-<Cov CovItemId="B1" Value="7"/>
-<Cov CovItemId="B4" Value="1"/>
-<Cov CovItemId="L1-2" Value="7"/>
-<Cov CovItemId="L2-1" Value="98"/>
-<Cov CovItemId="L2-2" Value="238"/>
-<Cov CovItemId="L3-2" Value="7"/>
-<Cov CovItemId="S1" Value="7"/>
-<Cov CovItemId="S10" Value="7"/>
-<Cov CovItemId="S11" Value="7"/>
-<Cov CovItemId="S12" Value="336"/>
-<Cov CovItemId="S13" Value="700"/>
-<Cov CovItemId="S14" Value="7"/>
-<Cov CovItemId="S15" Value="7"/>
-<Cov CovItemId="S16" Value="42"/>
-<Cov CovItemId="S17" Value="3"/>
-<Cov CovItemId="S18" Value="1"/>
-<Cov CovItemId="S2" Value="7"/>
-<Cov CovItemId="S20" Value="1"/>
-<Cov CovItemId="S21" Value="10"/>
-<Cov CovItemId="S22" Value="1"/>
-<Cov CovItemId="S23" Value="1"/>
-<Cov CovItemId="S24" Value="1"/>
-<Cov CovItemId="S25" Value="48"/>
-<Cov CovItemId="S26" Value="48"/>
-<Cov CovItemId="S27" Value="1"/>
-<Cov CovItemId="S4" Value="7"/>
-<Cov CovItemId="S5" Value="7"/>
-<Cov CovItemId="S6" Value="7"/>
-<Cov CovItemId="S7" Value="7"/>
-<Cov CovItemId="S8" Value="7"/>
-<Cov CovItemId="S9" Value="7"/>
-</CovPrefix>
-<CovPrefix CovItemPrefix="devops.hw1.core.CardCollection.java">
-<Cov CovItemId="S1" Value="1"/>
-<Cov CovItemId="S10" Value="46"/>
-<Cov CovItemId="S100" Value="46"/>
-<Cov CovItemId="S101" Value="46"/>
-<Cov CovItemId="S102" Value="46"/>
-<Cov CovItemId="S103" Value="46"/>
-<Cov CovItemId="S104" Value="46"/>
-<Cov CovItemId="S105" Value="46"/>
-<Cov CovItemId="S106" Value="46"/>
-<Cov CovItemId="S107" Value="46"/>
-<Cov CovItemId="S108" Value="46"/>
-<Cov CovItemId="S109" Value="46"/>
-<Cov CovItemId="S11" Value="46"/>
-<Cov CovItemId="S110" Value="46"/>
-<Cov CovItemId="S111" Value="46"/>
-<Cov CovItemId="S112" Value="46"/>
-<Cov CovItemId="S113" Value="46"/>
-<Cov CovItemId="S114" Value="46"/>
-<Cov CovItemId="S115" Value="46"/>
-<Cov CovItemId="S116" Value="46"/>
-<Cov CovItemId="S117" Value="46"/>
-<Cov CovItemId="S118" Value="46"/>
-<Cov CovItemId="S119" Value="46"/>
-<Cov CovItemId="S12" Value="46"/>
-<Cov CovItemId="S120" Value="46"/>
-<Cov CovItemId="S121" Value="46"/>
-<Cov CovItemId="S122" Value="46"/>
-<Cov CovItemId="S123" Value="46"/>
-<Cov CovItemId="S124" Value="46"/>
-<Cov CovItemId="S125" Value="46"/>
-<Cov CovItemId="S126" Value="46"/>
-<Cov CovItemId="S127" Value="46"/>
-<Cov CovItemId="S128" Value="46"/>
-<Cov CovItemId="S129" Value="46"/>
-<Cov CovItemId="S13" Value="46"/>
-<Cov CovItemId="S130" Value="46"/>
-<Cov CovItemId="S131" Value="46"/>
-<Cov CovItemId="S132" Value="46"/>
-<Cov CovItemId="S133" Value="46"/>
-<Cov CovItemId="S134" Value="46"/>
-<Cov CovItemId="S135" Value="46"/>
-<Cov CovItemId="S136" Value="46"/>
-<Cov CovItemId="S137" Value="46"/>
-<Cov CovItemId="S138" Value="46"/>
-<Cov CovItemId="S139" Value="46"/>
-<Cov CovItemId="S14" Value="46"/>
-<Cov CovItemId="S140" Value="46"/>
-<Cov CovItemId="S141" Value="46"/>
-<Cov CovItemId="S142" Value="46"/>
-<Cov CovItemId="S143" Value="46"/>
-<Cov CovItemId="S144" Value="46"/>
-<Cov CovItemId="S145" Value="46"/>
-<Cov CovItemId="S146" Value="46"/>
-<Cov CovItemId="S147" Value="46"/>
-<Cov CovItemId="S148" Value="46"/>
-<Cov CovItemId="S149" Value="46"/>
-<Cov CovItemId="S15" Value="46"/>
-<Cov CovItemId="S150" Value="46"/>
-<Cov CovItemId="S151" Value="46"/>
-<Cov CovItemId="S152" Value="46"/>
-<Cov CovItemId="S153" Value="46"/>
-<Cov CovItemId="S154" Value="46"/>
-<Cov CovItemId="S155" Value="46"/>
-<Cov CovItemId="S156" Value="46"/>
-<Cov CovItemId="S157" Value="46"/>
-<Cov CovItemId="S158" Value="46"/>
-<Cov CovItemId="S159" Value="46"/>
-<Cov CovItemId="S16" Value="46"/>
-<Cov CovItemId="S160" Value="46"/>
-<Cov CovItemId="S161" Value="46"/>
-<Cov CovItemId="S162" Value="46"/>
-<Cov CovItemId="S163" Value="46"/>
-<Cov CovItemId="S164" Value="46"/>
-<Cov CovItemId="S165" Value="46"/>
-<Cov CovItemId="S166" Value="46"/>
-<Cov CovItemId="S167" Value="46"/>
-<Cov CovItemId="S168" Value="46"/>
-<Cov CovItemId="S169" Value="46"/>
-<Cov CovItemId="S17" Value="46"/>
-<Cov CovItemId="S170" Value="46"/>
-<Cov CovItemId="S171" Value="46"/>
-<Cov CovItemId="S172" Value="46"/>
-<Cov CovItemId="S173" Value="46"/>
-<Cov CovItemId="S174" Value="46"/>
-<Cov CovItemId="S175" Value="46"/>
-<Cov CovItemId="S176" Value="46"/>
-<Cov CovItemId="S177" Value="46"/>
-<Cov CovItemId="S178" Value="46"/>
-<Cov CovItemId="S179" Value="46"/>
-<Cov CovItemId="S18" Value="46"/>
-<Cov CovItemId="S180" Value="46"/>
-<Cov CovItemId="S181" Value="46"/>
-<Cov CovItemId="S182" Value="46"/>
-<Cov CovItemId="S183" Value="46"/>
-<Cov CovItemId="S184" Value="46"/>
-<Cov CovItemId="S185" Value="46"/>
-<Cov CovItemId="S186" Value="46"/>
-<Cov CovItemId="S187" Value="46"/>
-<Cov CovItemId="S188" Value="46"/>
-<Cov CovItemId="S189" Value="46"/>
-<Cov CovItemId="S19" Value="46"/>
-<Cov CovItemId="S190" Value="46"/>
-<Cov CovItemId="S191" Value="46"/>
-<Cov CovItemId="S192" Value="46"/>
-<Cov CovItemId="S193" Value="46"/>
-<Cov CovItemId="S2" Value="1"/>
-<Cov CovItemId="S20" Value="46"/>
-<Cov CovItemId="S21" Value="46"/>
-<Cov CovItemId="S22" Value="46"/>
-<Cov CovItemId="S23" Value="46"/>
-<Cov CovItemId="S24" Value="46"/>
-<Cov CovItemId="S25" Value="46"/>
-<Cov CovItemId="S26" Value="46"/>
-<Cov CovItemId="S27" Value="46"/>
-<Cov CovItemId="S28" Value="46"/>
-<Cov CovItemId="S29" Value="46"/>
-<Cov CovItemId="S3" Value="1"/>
-<Cov CovItemId="S30" Value="46"/>
-<Cov CovItemId="S31" Value="46"/>
-<Cov CovItemId="S32" Value="46"/>
-<Cov CovItemId="S33" Value="46"/>
-<Cov CovItemId="S34" Value="46"/>
-<Cov CovItemId="S35" Value="46"/>
-<Cov CovItemId="S36" Value="46"/>
-<Cov CovItemId="S37" Value="46"/>
-<Cov CovItemId="S38" Value="46"/>
-<Cov CovItemId="S39" Value="46"/>
-<Cov CovItemId="S4" Value="1"/>
-<Cov CovItemId="S40" Value="46"/>
-<Cov CovItemId="S41" Value="46"/>
-<Cov CovItemId="S42" Value="46"/>
-<Cov CovItemId="S43" Value="46"/>
-<Cov CovItemId="S44" Value="46"/>
-<Cov CovItemId="S45" Value="46"/>
-<Cov CovItemId="S46" Value="46"/>
-<Cov CovItemId="S47" Value="46"/>
-<Cov CovItemId="S48" Value="46"/>
-<Cov CovItemId="S49" Value="46"/>
-<Cov CovItemId="S5" Value="46"/>
-<Cov CovItemId="S50" Value="46"/>
-<Cov CovItemId="S51" Value="46"/>
-<Cov CovItemId="S52" Value="46"/>
-<Cov CovItemId="S53" Value="46"/>
-<Cov CovItemId="S54" Value="46"/>
-<Cov CovItemId="S55" Value="46"/>
-<Cov CovItemId="S56" Value="46"/>
-<Cov CovItemId="S57" Value="46"/>
-<Cov CovItemId="S58" Value="46"/>
-<Cov CovItemId="S59" Value="46"/>
-<Cov CovItemId="S6" Value="46"/>
-<Cov CovItemId="S60" Value="46"/>
-<Cov CovItemId="S61" Value="46"/>
-<Cov CovItemId="S62" Value="46"/>
-<Cov CovItemId="S63" Value="46"/>
-<Cov CovItemId="S64" Value="46"/>
-<Cov CovItemId="S65" Value="46"/>
-<Cov CovItemId="S66" Value="46"/>
-<Cov CovItemId="S67" Value="46"/>
-<Cov CovItemId="S68" Value="46"/>
-<Cov CovItemId="S69" Value="46"/>
-<Cov CovItemId="S7" Value="46"/>
-<Cov CovItemId="S70" Value="46"/>
-<Cov CovItemId="S71" Value="46"/>
-<Cov CovItemId="S72" Value="46"/>
-<Cov CovItemId="S73" Value="46"/>
-<Cov CovItemId="S74" Value="46"/>
-<Cov CovItemId="S75" Value="46"/>
-<Cov CovItemId="S76" Value="46"/>
-<Cov CovItemId="S77" Value="46"/>
-<Cov CovItemId="S78" Value="46"/>
-<Cov CovItemId="S79" Value="46"/>
-<Cov CovItemId="S8" Value="46"/>
-<Cov CovItemId="S80" Value="46"/>
-<Cov CovItemId="S81" Value="46"/>
-<Cov CovItemId="S82" Value="46"/>
-<Cov CovItemId="S83" Value="46"/>
-<Cov CovItemId="S84" Value="46"/>
-<Cov CovItemId="S85" Value="46"/>
-<Cov CovItemId="S86" Value="46"/>
-<Cov CovItemId="S87" Value="46"/>
-<Cov CovItemId="S88" Value="46"/>
-<Cov CovItemId="S89" Value="46"/>
-<Cov CovItemId="S9" Value="46"/>
-<Cov CovItemId="S90" Value="46"/>
-<Cov CovItemId="S91" Value="46"/>
-<Cov CovItemId="S92" Value="46"/>
-<Cov CovItemId="S93" Value="46"/>
-<Cov CovItemId="S94" Value="46"/>
-<Cov CovItemId="S95" Value="46"/>
-<Cov CovItemId="S96" Value="46"/>
-<Cov CovItemId="S97" Value="46"/>
-<Cov CovItemId="S98" Value="46"/>
-<Cov CovItemId="S99" Value="46"/>
-</CovPrefix>
-<CovPrefix CovItemPrefix="devops.hw1.core.HeroCard.java">
-<Cov CovItemId="S1" Value="32"/>
-<Cov CovItemId="S2" Value="13"/>
-<Cov CovItemId="S3" Value="2307"/>
-<Cov CovItemId="S4" Value="2307"/>
-<Cov CovItemId="S5" Value="2307"/>
-<Cov CovItemId="S6" Value="2307"/>
-<Cov CovItemId="S7" Value="2307"/>
-<Cov CovItemId="S8" Value="2307"/>
-<Cov CovItemId="S9" Value="2307"/>
-</CovPrefix>
-<CovPrefix CovItemPrefix="devops.hw1.core.Player.java">
-<Cov CovItemId="B1" Value="39"/>
-<Cov CovItemId="B10" Value="233"/>
-<Cov CovItemId="B11" Value="1"/>
-<Cov CovItemId="B12" Value="396"/>
-<Cov CovItemId="B13" Value="1"/>
-<Cov CovItemId="B14" Value="4"/>
-<Cov CovItemId="B15" Value="1"/>
-<Cov CovItemId="B16" Value="15"/>
-<Cov CovItemId="B17" Value="14"/>
-<Cov CovItemId="B18" Value="7"/>
-<Cov CovItemId="B19" Value="5"/>
-<Cov CovItemId="B20" Value="4"/>
-<Cov CovItemId="B3" Value="1"/>
-<Cov CovItemId="B4" Value="27"/>
-<Cov CovItemId="B5" Value="4"/>
-<Cov CovItemId="B6" Value="3"/>
-<Cov CovItemId="B7" Value="1"/>
-<Cov CovItemId="B9" Value="1"/>
-<Cov CovItemId="L1-2" Value="39"/>
-<Cov CovItemId="L2-2" Value="39"/>
-<Cov CovItemId="L3-1" Value="3"/>
-<Cov CovItemId="L3-2" Value="46"/>
-<Cov CovItemId="L4-0" Value="1"/>
-<Cov CovItemId="L4-1" Value="22"/>
-<Cov CovItemId="L4-2" Value="2"/>
-<Cov CovItemId="Q0-0" Value="21"/>
-<Cov CovItemId="Q0-1" Value="1"/>
-<Cov CovItemId="S1" Value="39"/>
-<Cov CovItemId="S10" Value="39"/>
-<Cov CovItemId="S11" Value="312"/>
-<Cov CovItemId="S12" Value="39"/>
-<Cov CovItemId="S13" Value="78"/>
-<Cov CovItemId="S14" Value="1"/>
-<Cov CovItemId="S15" Value="1"/>
-<Cov CovItemId="S16" Value="1"/>
-<Cov CovItemId="S17" Value="1"/>
-<Cov CovItemId="S18" Value="1"/>
-<Cov CovItemId="S19" Value="39"/>
-<Cov CovItemId="S2" Value="39"/>
-<Cov CovItemId="S20" Value="39"/>
-<Cov CovItemId="S21" Value="22"/>
-<Cov CovItemId="S22" Value="67"/>
-<Cov CovItemId="S23" Value="27"/>
-<Cov CovItemId="S24" Value="13"/>
-<Cov CovItemId="S25" Value="28"/>
-<Cov CovItemId="S26" Value="1"/>
-<Cov CovItemId="S27" Value="1"/>
-<Cov CovItemId="S28" Value="27"/>
-<Cov CovItemId="S29" Value="12"/>
-<Cov CovItemId="S30" Value="7"/>
-<Cov CovItemId="S31" Value="4"/>
-<Cov CovItemId="S32" Value="4"/>
-<Cov CovItemId="S33" Value="4"/>
-<Cov CovItemId="S34" Value="3"/>
-<Cov CovItemId="S35" Value="1"/>
-<Cov CovItemId="S36" Value="1"/>
-<Cov CovItemId="S37" Value="1"/>
-<Cov CovItemId="S38" Value="1"/>
-<Cov CovItemId="S4" Value="39"/>
-<Cov CovItemId="S40" Value="27"/>
-<Cov CovItemId="S41" Value="234"/>
-<Cov CovItemId="S42" Value="1"/>
-<Cov CovItemId="S43" Value="1"/>
-<Cov CovItemId="S44" Value="1"/>
-<Cov CovItemId="S45" Value="234"/>
-<Cov CovItemId="S46" Value="234"/>
-<Cov CovItemId="S47" Value="397"/>
-<Cov CovItemId="S48" Value="1"/>
-<Cov CovItemId="S49" Value="1"/>
-<Cov CovItemId="S5" Value="39"/>
-<Cov CovItemId="S50" Value="396"/>
-<Cov CovItemId="S51" Value="5"/>
-<Cov CovItemId="S52" Value="1"/>
-<Cov CovItemId="S53" Value="1"/>
-<Cov CovItemId="S54" Value="4"/>
-<Cov CovItemId="S55" Value="19"/>
-<Cov CovItemId="S56" Value="16"/>
-<Cov CovItemId="S57" Value="1"/>
-<Cov CovItemId="S58" Value="1"/>
-<Cov CovItemId="S59" Value="15"/>
-<Cov CovItemId="S6" Value="39"/>
-<Cov CovItemId="S60" Value="15"/>
-<Cov CovItemId="S61" Value="15"/>
-<Cov CovItemId="S62" Value="49"/>
-<Cov CovItemId="S63" Value="230"/>
-<Cov CovItemId="S64" Value="1"/>
-<Cov CovItemId="S65" Value="12"/>
-<Cov CovItemId="S66" Value="13"/>
-<Cov CovItemId="S67" Value="12"/>
-<Cov CovItemId="S68" Value="25"/>
-<Cov CovItemId="S69" Value="25"/>
-<Cov CovItemId="S7" Value="39"/>
-<Cov CovItemId="S70" Value="30"/>
-<Cov CovItemId="S71" Value="14"/>
-<Cov CovItemId="S72" Value="14"/>
-<Cov CovItemId="S73" Value="7"/>
-<Cov CovItemId="S74" Value="7"/>
-<Cov CovItemId="S75" Value="5"/>
-<Cov CovItemId="S76" Value="5"/>
-<Cov CovItemId="S77" Value="4"/>
-<Cov CovItemId="S78" Value="4"/>
-<Cov CovItemId="S79" Value="11"/>
-<Cov CovItemId="S8" Value="39"/>
-<Cov CovItemId="S80" Value="5"/>
-<Cov CovItemId="S9" Value="39"/>
-</CovPrefix>
-</CovList>
-<AssgnmntList>
-<AssgnmntPrefix RootTermCovItemPrefix="devops.hw1.core.ACard.java">
-<AssgnmntListEntry Length="2" RootTermCovItemId="C1">
-<MapEntry BoolAssgnmnt="00" Value="2311"/>
-<MapEntry BoolAssgnmnt="01" Value="1"/>
-<MapEntry BoolAssgnmnt="12" Value="1"/>
-</AssgnmntListEntry>
-<AssgnmntListEntry Length="1" RootTermCovItemId="C2">
-<MapEntry BoolAssgnmnt="0" Value="2310"/>
-<MapEntry BoolAssgnmnt="1" Value="1"/>
-</AssgnmntListEntry>
-<AssgnmntListEntry Length="2" RootTermCovItemId="C3">
-<MapEntry BoolAssgnmnt="00" Value="2308"/>
-<MapEntry BoolAssgnmnt="01" Value="1"/>
-<MapEntry BoolAssgnmnt="12" Value="1"/>
-</AssgnmntListEntry>
-<AssgnmntListEntry Length="4" RootTermCovItemId="C4">
-<MapEntry BoolAssgnmnt="0000" Value="1"/>
-<MapEntry BoolAssgnmnt="0001" Value="598"/>
-<MapEntry BoolAssgnmnt="0122" Value="461"/>
-<MapEntry BoolAssgnmnt="1222" Value="1248"/>
-</AssgnmntListEntry>
-<AssgnmntListEntry Length="1" RootTermCovItemId="C5">
-<MapEntry BoolAssgnmnt="0" Value="5"/>
-<MapEntry BoolAssgnmnt="1" Value="1"/>
-</AssgnmntListEntry>
-</AssgnmntPrefix>
-<AssgnmntPrefix RootTermCovItemPrefix="devops.hw1.core.Board.java">
-<AssgnmntListEntry Length="1" RootTermCovItemId="C1">
-<MapEntry BoolAssgnmnt="0" Value="7"/>
-<MapEntry BoolAssgnmnt="1" Value="336"/>
-</AssgnmntListEntry>
-<AssgnmntListEntry Length="1" RootTermCovItemId="C2">
-<MapEntry BoolAssgnmnt="0" Value="336"/>
-<MapEntry BoolAssgnmnt="1" Value="700"/>
-</AssgnmntListEntry>
-<AssgnmntListEntry Length="1" RootTermCovItemId="C3">
-<MapEntry BoolAssgnmnt="0" Value="7"/>
-<MapEntry BoolAssgnmnt="1" Value="42"/>
-</AssgnmntListEntry>
-<AssgnmntListEntry Length="1" RootTermCovItemId="C4">
-<MapEntry BoolAssgnmnt="0" Value="1"/>
-</AssgnmntListEntry>
-</AssgnmntPrefix>
-<AssgnmntPrefix RootTermCovItemPrefix="devops.hw1.core.Player.java">
-<AssgnmntListEntry Length="1" RootTermCovItemId="C1">
-<MapEntry BoolAssgnmnt="0" Value="39"/>
-<MapEntry BoolAssgnmnt="1" Value="312"/>
-</AssgnmntListEntry>
-<AssgnmntListEntry Length="1" RootTermCovItemId="C10">
-<MapEntry BoolAssgnmnt="0" Value="49"/>
-<MapEntry BoolAssgnmnt="1" Value="230"/>
-</AssgnmntListEntry>
-<AssgnmntListEntry Length="1" RootTermCovItemId="C2">
-<MapEntry BoolAssgnmnt="0" Value="39"/>
-<MapEntry BoolAssgnmnt="1" Value="78"/>
-</AssgnmntListEntry>
-<AssgnmntListEntry Length="1" RootTermCovItemId="C3">
-<MapEntry BoolAssgnmnt="0" Value="27"/>
-<MapEntry BoolAssgnmnt="1" Value="1"/>
-</AssgnmntListEntry>
-<AssgnmntListEntry Length="2" RootTermCovItemId="C4">
-<MapEntry BoolAssgnmnt="02" Value="1"/>
-<MapEntry BoolAssgnmnt="10" Value="2"/>
-<MapEntry BoolAssgnmnt="11" Value="4"/>
-</AssgnmntListEntry>
-<AssgnmntListEntry Length="2" RootTermCovItemId="C5">
-<MapEntry BoolAssgnmnt="11" Value="1"/>
-</AssgnmntListEntry>
-<AssgnmntListEntry Length="1" RootTermCovItemId="C6">
-<MapEntry BoolAssgnmnt="0" Value="233"/>
-<MapEntry BoolAssgnmnt="1" Value="1"/>
-</AssgnmntListEntry>
-<AssgnmntListEntry Length="1" RootTermCovItemId="C7">
-<MapEntry BoolAssgnmnt="0" Value="396"/>
-<MapEntry BoolAssgnmnt="1" Value="1"/>
-</AssgnmntListEntry>
-<AssgnmntListEntry Length="1" RootTermCovItemId="C8">
-<MapEntry BoolAssgnmnt="0" Value="4"/>
-<MapEntry BoolAssgnmnt="1" Value="1"/>
-</AssgnmntListEntry>
-<AssgnmntListEntry Length="1" RootTermCovItemId="C9">
-<MapEntry BoolAssgnmnt="0" Value="15"/>
-<MapEntry BoolAssgnmnt="1" Value="1"/>
-</AssgnmntListEntry>
-</AssgnmntPrefix>
-</AssgnmntList>
-<ObjMetaDataList/>
-<MetaDataList/>
-</TestCase>
-<MetaDataList/>
-</TestSession>
 </TestSessionContainer>

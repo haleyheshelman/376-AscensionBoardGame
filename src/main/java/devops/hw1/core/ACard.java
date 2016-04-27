@@ -4,6 +4,7 @@
 package devops.hw1.core;
 
 import java.awt.image.BufferedImage;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 /**
@@ -54,6 +55,12 @@ public abstract class ACard {
 	public static ACard makeCard(BufferedImage image, String name, String faction,
 			String type, int cost, int honor, int rarity,
 			HashMap<String, Integer> effects) {
+		// array list of accepted card types (all in lower case, for consistency)
+		ArrayList<String> acceptedTypes = new ArrayList<String>();
+		acceptedTypes.add("hero");
+		acceptedTypes.add("monster");
+		acceptedTypes.add("construct");
+		acceptedTypes.add("standard");
 		
 		// before returning the card, need to do input validation
 		if (name == null || type == null) {
@@ -66,8 +73,7 @@ public abstract class ACard {
 			throw new IllegalArgumentException("One or more of the arguments given for the card "
 					+ "were not correct.");
 		}
-		else if (!(type.toLowerCase().equals("hero") || type.toLowerCase().equals("monster") 
-				|| type.toLowerCase().equals("standard") || type.toLowerCase().equals("construct"))) {
+		else if (!(acceptedTypes.contains(type.toLowerCase()))) {
 			throw new IllegalArgumentException("One or more of the arguments given for the card "
 					+ "were not correct.");
 		} 
