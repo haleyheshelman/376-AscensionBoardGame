@@ -836,14 +836,39 @@ public class Tests {
 	@Test
 	public void testAttackCard() {
 		Player p = Player.makePlayer();
+		
 		Board mockBoard = EasyMock.niceMock(Board.class);
 		ACard mockCard = EasyMock.niceMock(ACard.class);
+		
 		EasyMock.expect(mockCard.getStrength()).andReturn(5);
 		mockBoard.sendToVoid(mockCard);
 		EasyMock.replay(mockCard, mockBoard);
 		p.addPower(5);
-		p.attackCard(mockCard, mockBoard);
+		assertTrue(p.attackCard(mockCard, mockBoard));
+		
 		EasyMock.verify(mockCard, mockBoard);
+	}
+	
+	/**
+	 * A more thorough test of attackCard.
+	 */
+	@Test
+	public void testAttackCardOther() {
+		Player p = Player.makePlayer();
+		
+		Board fakeBoard = EasyMock.niceMock(Board.class);
+		ACard fakeCard = EasyMock.niceMock(ACard.class);
+		ACard nullCard = null;
+		
+		EasyMock.expect(fakeCard.getStrength()).andReturn(6);
+		EasyMock.replay(fakeCard, fakeBoard);
+		p.addPower(3);
+		
+		assertFalse(p.attackCard(nullCard, fakeBoard));
+		assertFalse(p.attackCard(fakeCard, fakeBoard));
+		assertTrue(fakeBoard.getVoid() == null);
+		
+		EasyMock.verify(fakeBoard, fakeCard);
 	}
 
 	/**
