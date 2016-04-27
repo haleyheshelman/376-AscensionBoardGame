@@ -52,6 +52,19 @@ public class Player {
 			this.addCardToDeck(CardCollection.militia);
 		}		
 	}
+	
+	/**
+	 * 
+	 * Puts all of the players cards into the discard pile and draws 
+	 * 5 pcards for a new hand
+	 *
+	 */
+//	public void endTurn(){
+//		for(int i = 0; i< this.getHandSize(); i++){
+//			this.discard(this.playerHand.get(i));
+//		}
+//		this.drawCard(5);	
+//	}
 
 	/**
 	 * This constructs and returns a player.
@@ -143,6 +156,10 @@ public class Player {
 	 * Attack card will take a card and the board.  
 	 * If the player has enough power it will place the card in
 	 * the void discard pile
+	 * 
+	 * @param card to be attacked
+	 * @return true if attacked and sent to void and false
+	 * otherwise
 	 */
 	
 	public boolean attackCard(ACard card, Board board) {
@@ -281,6 +298,7 @@ public class Player {
 	 * Applies the effects of the given card to the player.
 	 * @param card
 	 */
+	@SuppressWarnings("boxing")
 	public void applyEffects(ACard card) {
 		HashMap<String, Integer> map = card.getEffects();
 		for (String k : map.keySet()) {

@@ -811,10 +811,13 @@ public class Tests {
 		assertEquals(4, m.getStrength());	
 	}
 	
-	
+	/**
+	 * 		
+	 * Tests the sendToVoid function in Board class
+	 *
+	 */
 	@Test
 	public void testSendToVoid(){
-//		Player p = Player.makePlayer();
 		Board b = new Board();
 		ACard card = ACard.makeCard();
 		assertTrue(b.getVoid().size()==0);
@@ -822,7 +825,12 @@ public class Tests {
 		assertTrue(b.getVoid().size()==1);
 		
 	}
-		
+	
+	/**
+	 * 
+	 * Tests attackCard in Player class
+	 *
+	 */
 	@SuppressWarnings("boxing")
 	@Test
 	public void testAttackCard(){
@@ -835,5 +843,21 @@ public class Tests {
 		p.addPower(5);
 		p.attackCard(mockCard, mockBoard);
 		EasyMock.verify(mockCard,mockBoard);
+	}
+	
+	/**
+	 * 
+	 * Tests ending turn with an empty hand
+	 *
+	 */
+	@Test
+	public void testEndTurnWithEmptyHand(){
+		Player p = Player.makePlayer();
+		p.endTurn();
+		assertEquals(0, p.getRunes());
+		assertEquals(0, p.getHonor());
+		assertEquals(0, p.getPower());
+		assertEquals(5, p.getHandSize());
+	
 	}
 }
