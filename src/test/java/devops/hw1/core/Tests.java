@@ -801,39 +801,34 @@ public class Tests {
 	
 	
 	/**
-	 * Tests monster class
+	 * Tests that "Monster" specification works.
 	 */
 	@Test
-	public void testMonster(){
+	public void testMonster() {
 		HashMap<String, Integer> map = new HashMap<String, Integer>();
 		map.put("draw", 1);
 		ACard m = ACard.makeCard(null, "Name", null, "Monster", 4, 3, 2, map);
-		assertEquals(4, m.getStrength());	
+		assertEquals(4, m.getStrength());
 	}
 	
 	/**
-	 * 		
 	 * Tests the sendToVoid function in Board class
-	 *
 	 */
 	@Test
-	public void testSendToVoid(){
+	public void testSendToVoid() {
 		Board b = new Board();
 		ACard card = ACard.makeCard();
-		assertTrue(b.getVoid().size()==0);
+		assertTrue(b.getVoid().size() == 0);
 		b.sendToVoid(card);
-		assertTrue(b.getVoid().size()==1);
-		
+		assertTrue(b.getVoid().size() == 1);
 	}
 	
 	/**
-	 * 
 	 * Tests attackCard in Player class
-	 *
 	 */
 	@SuppressWarnings("boxing")
 	@Test
-	public void testAttackCard(){
+	public void testAttackCard() {
 		Player p = Player.makePlayer();
 		Board mockBoard = EasyMock.niceMock(Board.class);
 		ACard mockCard = EasyMock.niceMock(ACard.class);
@@ -842,22 +837,20 @@ public class Tests {
 		EasyMock.replay(mockCard, mockBoard);
 		p.addPower(5);
 		p.attackCard(mockCard, mockBoard);
-		EasyMock.verify(mockCard,mockBoard);
+		EasyMock.verify(mockCard, mockBoard);
 	}
-	
+
 	/**
-	 * 
 	 * Tests ending turn with an empty hand
-	 *
 	 */
 	@Test
-	public void testEndTurnWithEmptyHand(){
+	public void testEndTurnWithEmptyHand() {
 		Player p = Player.makePlayer();
 		p.endTurn();
 		assertEquals(0, p.getRunes());
 		assertEquals(0, p.getHonor());
 		assertEquals(0, p.getPower());
 		assertEquals(5, p.getHandSize());
-	
+
 	}
 }

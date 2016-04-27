@@ -11,7 +11,7 @@ import org.junit.runner.RunWith;
 import static org.junit.Assert.*;
 
 /**
- * Parameterized Tests of some of the Unit Tests (found in Tests.java).
+ * Parameterized Tests of the buyCard method (found in Tests.java).
  * 
  * @author gneezyn
  *
@@ -19,7 +19,6 @@ import static org.junit.Assert.*;
 @RunWith(Parameterized.class)
 public class ParameterizedTestBuyCard {
 	
-//	private ACard fakeCard = EasyMock.niceMock(ACard.class);
 	private Integer cardCost;
 	private Integer expectedRunes;
 	private Integer expectedDiscSize;

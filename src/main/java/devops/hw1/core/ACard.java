@@ -41,17 +41,16 @@ public abstract class ACard {
 	
 	/**
 	 * This returns a card with the given information.
-	 * @param image
-	 * @param name
-	 * @param faction
-	 * @param type
-	 * @param cost
-	 * @param honor
-	 * @param rarity
-	 * @param effects
+	 * @param image	the image of the card (as .png file)
+	 * @param name the name of the card (i.e. "Cultist")
+	 * @param faction the card's faction (i.e. "Lifebound")
+	 * @param type the card's type (i.e. Hero, Monster, etc.)
+	 * @param cost the amount paid to obtain the card (in runes or power)
+	 * @param honor the amount of honor that the card is worth
+	 * @param rarity the number of occurrences of the card in the game
+	 * @param effects a HashMap of the card's effect(s)
 	 * @return
 	 */
-
 	public static ACard makeCard(BufferedImage image, String name, String faction,
 			String type, int cost, int honor, int rarity,
 			HashMap<String, Integer> effects) {
