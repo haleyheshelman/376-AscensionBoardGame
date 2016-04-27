@@ -407,7 +407,7 @@ public class Tests {
 	public void testIsDeckCreated() {
 		Board newBored = new Board();
 		assertFalse(newBored.getCenDeck().isEmpty());
-		assertEquals(100, newBored.getCenDeck().size());
+		assertEquals(94, newBored.getCenDeck().size());
 		assertFalse(newBored.getCenDeck().size() == 101);
 	}
 
@@ -492,9 +492,10 @@ public class Tests {
 
 		// cards should be added to the Center Field based on indexes [0-5] (6
 		// positions)
+		assertEquals(94, newBored.getCenDeck().size());
 		for (int i = 0; i < 6; i++) {
 			newBored.centerDeckToField(i);
-			assertEquals(100 - (i + 1), newBored.getCenDeck().size());
+			assertEquals(94 - (i + 1), newBored.getCenDeck().size());
 		}
 	}
 
