@@ -313,7 +313,7 @@ public class CardCollection {
 		map31.put(HONOR, 1);
 		map31.put(RUNES, 1);
 		samaelsTrickster = ACard.makeCard(image, "Samael's Trickster", "Monster","Monster",3,1,4,map31);
-		
+//		
 		image = ImageIO.read(new File ("cardImages/Monsters/Sea-Tyrant.png"));
 		
 		// TODO: Add the effect, all players destroy constructs until they have 1 left
@@ -350,7 +350,7 @@ public class CardCollection {
 		map37.put(DRAW, 1);
 		spikeVixen = ACard.makeCard(image, "Spike Vixen", "Void","Hero",2,1,2,map37);
 		
-		image = ImageIO.read(new File ("cardImages/Construct/Tablet-of-Times-Dawn.png"));
+		image = ImageIO.read(new File ("cardImages/Constructs/Tablet-of-Times-Dawn.png"));
 		
 		// TODO: Add the effect, you may banish this construct to take another turn
 		
