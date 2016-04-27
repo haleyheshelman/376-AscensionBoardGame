@@ -811,6 +811,18 @@ public class Tests {
 		assertEquals(4, m.getStrength());	
 	}
 	
+	
+	@Test
+	public void testSendToVoid(){
+//		Player p = Player.makePlayer();
+		Board b = new Board();
+		ACard card = ACard.makeCard();
+		assertTrue(b.getVoid().size()==0);
+		b.sendToVoid(card);
+		assertTrue(b.getVoid().size()==1);
+		
+	}
+		
 	@SuppressWarnings("boxing")
 	@Test
 	public void testAttackCard(){
@@ -822,16 +834,4 @@ public class Tests {
 		
 		EasyMock.verify(mockCard);
 	}
-	
-	@Test
-	public void testSendToVoid(){
-		Player p = Player.makePlayer();
-		Board b = new Board();
-		ACard card = ACard.makeCard();
-		assertTrue(b.getVoid().size()==0);
-		b.sendToVoid(card);
-		assertTrue(b.getVoid().size()==1);
-		
-	}
-		
 }
