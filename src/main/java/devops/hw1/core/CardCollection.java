@@ -372,7 +372,7 @@ public class CardCollection {
 		
 		// TODO: Add the effect, gain two runes towards a mechana construct
 		
-		theGrandDesign = ACard.makeCard(image, "The Grand Design", "Mechana","Constructs",6,6,2,map41);
+		theGrandDesign = ACard.makeCard(image, "The Grand Design", "Mechana","Construct",6,6,2,map41);
 		
 		image = ImageIO.read(new File ("cardImages/Monsters/Tormented-Soul.png"));
 		

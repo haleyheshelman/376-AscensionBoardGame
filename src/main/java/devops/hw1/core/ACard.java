@@ -55,6 +55,24 @@ public abstract class ACard {
 			String type, int cost, int honor, int rarity,
 			HashMap<String, Integer> effects) {
 		
+		// before returning the card, need to do input validation
+		if (name == null || type == null) {
+			throw new NullPointerException("The following values can not be null for a card: "
+					+ "name, type, cost, honor, rarity, and effect.");
+		} else if (effects.keySet().contains(null)) {
+			throw new NullPointerException("The following values can not be null for a card: "
+					+ "name, type, cost, honor, rarity, and effect.");
+		} else if (effects.keySet().contains("") || effects.values().contains(0)) {
+			throw new IllegalArgumentException("One or more of the arguments given for the card "
+					+ "were not correct.");
+		}
+		else if (!(type.toLowerCase().equals("hero") || type.toLowerCase().equals("monster") 
+				|| type.toLowerCase().equals("standard") || type.toLowerCase().equals("construct"))) {
+			throw new IllegalArgumentException("One or more of the arguments given for the card "
+					+ "were not correct.");
+		} 
+		
+		
 		// TODO: Make this not only be able to return hero cards
 		
 			return new HeroCard(image, name, faction, cost, honor, rarity, effects);
