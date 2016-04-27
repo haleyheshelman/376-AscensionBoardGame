@@ -39,13 +39,14 @@ public class Board {
 		
 		initializeCenterDeck();
 		
-		for (int m = 0; m < 6; m++) {
-			centerDeckToField(m);
-		}
 		this.cultist = ACard.makeCard();
 		this.heavyInf = ACard.makeCard();
 		this.mystic = ACard.makeCard();
 	}
+	
+	/**
+	 * This method fills the deck with the necessary cards and fills the center row with the top cards of the deck.
+	 */
 	
 	private void initializeCenterDeck() {
 		for (int i = 0; i < CardCollection.cards.length; i++) {
@@ -54,6 +55,9 @@ public class Board {
 			}
 		}
 		Collections.shuffle(this.cenDeck);
+		for (int m = 0; m < 6; m++) {
+			centerDeckToField(m);
+		}
 	}
 
 	/**
