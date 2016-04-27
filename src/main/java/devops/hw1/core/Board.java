@@ -67,7 +67,16 @@ public class Board {
 		return this.theVoid;
 	}
 
+	/**
+	 * 
+	 * Adds the passed card to the void
+	 *
+	 * @param card to be added to the void pile
+	 */
 	public void sendToVoid(ACard card){
+		if(card == null){
+			return;
+		}
 		this.theVoid.add(card);
 	}
 	
