@@ -798,5 +798,22 @@ public class Tests {
 		Board board = new Board();
 		assertFalse(board.getCenField() == null);
 	}
+	
+	
+	/**
+	 * Tests monster class
+	 */
+	@Test
+	public void testMonster(){
+		HashMap<String, Integer> map = new HashMap<String, Integer>();
+		map.put("draw", 1);
+		Monster m = ACard.makeCard(null, "Name", null, "Monster", 4, 3, 2, map);
+		assertEquals("Monster", m.getType());
+		assertEquals(4, m.getStrength());
+		assertEquals(3, m.getHonor());
+		assertEquals(2, m.getRarity());
+		assertEquals("draw", m.getEffect().get("draw"));
+		
+	}
 
 }
