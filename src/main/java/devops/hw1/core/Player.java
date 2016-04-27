@@ -59,12 +59,13 @@ public class Player {
 	 * 5 pcards for a new hand
 	 *
 	 */
-//	public void endTurn(){
-//		for(int i = 0; i< this.getHandSize(); i++){
-//			this.discard(this.playerHand.get(i));
-//		}
-//		this.drawCard(5);	
-//	}
+	public void endTurn(){
+		this.discardPile.addAll(this.getHand());
+		this.getHand().clear();
+		this.setRunes(0);
+		this.addPower(0-this.power);
+		this.drawCard(5);	
+	}
 
 	/**
 	 * This constructs and returns a player.
