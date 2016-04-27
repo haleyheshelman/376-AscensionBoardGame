@@ -140,6 +140,22 @@ public class Player {
 	}
 
 	/**
+	 * Attack card will take a card and the board.  If the player has enough power it will place the card in
+	 * the void discard pile
+	 */
+	
+//	public boolean attackCard(ACard card, Board board) {
+//		if (card != null && card.getStrength() <= this.power) {
+//			this.addPower(0 - card.getStrength());
+//			board.
+//			return true;
+//		}
+//		return false;
+//	}
+	
+	
+	
+	/**
 	 * 
 	 * Returns the size of the player hand
 	 *
@@ -301,4 +317,6 @@ public class Player {
 	public void addHonor(int i) {
 		this.honor += i;
 	}
+	
+	
 }

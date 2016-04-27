@@ -808,8 +808,37 @@ public class Tests {
 		HashMap<String, Integer> map = new HashMap<String, Integer>();
 		map.put("draw", 1);
 		ACard m = ACard.makeCard(null, "Name", null, "Monster", 4, 3, 2, map);
-		assertEquals(4, m.getStrength());
+		assertEquals(4, m.getStrength());	
+	}
+	
+	@SuppressWarnings("boxing")
+	@Test
+	public void testAttackCard(){
+		Player p = Player.makePlayer();
+		ACard mockCard = EasyMock.niceMock(ACard.class);
+		EasyMock.expect(mockCard.getStrength()).andReturn(3);
+		EasyMock.replay(mockCard);
+		
+		
+		EasyMock.verify(mockCard);
+	}
+	
+	@Test
+	public void testSendToVoid(){
+		Player p = Player.makePlayer();
+		Board b = new Board();
+		assertTrue(b.getVoid().size()==0);
 		
 	}
-
+	
+	public void testPlayerDiscard() {
+		Player newPlayer = Player.makePlayer();
+		assertTrue(newPlayer.getDiscardSize() == 0);
+		newPlayer.discard(ACard.makeCard());
+		assertTrue(newPlayer.getDiscardSize() == 1);
+		newPlayer.discard(ACard.makeCard());
+		newPlayer.discard(ACard.makeCard());
+		assertTrue(newPlayer.getDiscardSize() == 3);
+	}
+	
 }

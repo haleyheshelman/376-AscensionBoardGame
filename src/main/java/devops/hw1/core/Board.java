@@ -67,7 +67,9 @@ public class Board {
 		return this.theVoid;
 	}
 
-	
+//	public boolean sendToVoid(ACard card){
+//		
+//	}
 	
 	/**
 	 * @return the Center Deck 
