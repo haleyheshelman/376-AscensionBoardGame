@@ -827,11 +827,13 @@ public class Tests {
 	@Test
 	public void testAttackCard(){
 		Player p = Player.makePlayer();
+		Board mockBoard = EasyMock.niceMock(Board.class);
 		ACard mockCard = EasyMock.niceMock(ACard.class);
-		EasyMock.expect(mockCard.getStrength()).andReturn(3);
-		EasyMock.replay(mockCard);
-		
-		
-		EasyMock.verify(mockCard);
+		EasyMock.expect(mockCard.getStrength()).andReturn(5);
+		mockBoard.sendToVoid(mockCard);
+		EasyMock.replay(mockCard, mockBoard);
+		p.addPower(5);
+		p.attackCard(mockCard, mockBoard);
+		EasyMock.verify(mockCard,mockBoard);
 	}
 }

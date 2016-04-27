@@ -145,14 +145,14 @@ public class Player {
 	 * the void discard pile
 	 */
 	
-//	public boolean attackCard(ACard card, Board board) {
-//		if (card != null && card.getStrength() <= this.power) {
-//			this.addPower(0 - card.getStrength());
-//			board.sendToVoid(card);
-//			return true;
-//		}
-//		return false;
-//	}
+	public boolean attackCard(ACard card, Board board) {
+		if (card != null && card.getStrength() <= this.power) {
+			this.addPower(0 - card.getStrength());
+			board.sendToVoid(card);
+			return true;
+		}
+		return false;
+	}
 	
 	/**
 	 * 
