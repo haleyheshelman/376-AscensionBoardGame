@@ -36,22 +36,28 @@ public class Board {
 		this.theVoid = new ArrayList<ACard>();
 		this.cenDeck = new LinkedList<ACard>();
 		this.cenField = new ACard[6];
-		for (int i = 0; i < CardCollection.arhaInitiate.rarity+3; i++) {
-			this.cenDeck.add(CardCollection.arhaInitiate);
-		}
-		for (int j = 0; j < CardCollection.demonSlayer.rarity+3; j++) {
-			this.cenDeck.add(CardCollection.demonSlayer);
-		}
-		for (int k = 0; k < CardCollection.flyTrapWitch.rarity+3; k++) {
-			this.cenDeck.add(CardCollection.flyTrapWitch);
+		
+		initializeCenterDeck();
+		
+		this.cultist = ACard.makeCard();
+		this.heavyInf = ACard.makeCard();
+		this.mystic = ACard.makeCard();
+	}
+	
+	/**
+	 * This method fills the deck with the necessary cards and fills the center row with the top cards of the deck.
+	 */
+	
+	private void initializeCenterDeck() {
+		for (int i = 0; i < CardCollection.cards.length; i++) {
+			for (int j = 0; j < CardCollection.cards[i].rarity; j++) {
+				this.cenDeck.add(CardCollection.cards[i]);
+			}
 		}
 		Collections.shuffle(this.cenDeck);
 		for (int m = 0; m < 6; m++) {
 			centerDeckToField(m);
 		}
-		this.cultist = ACard.makeCard();
-		this.heavyInf = ACard.makeCard();
-		this.mystic = ACard.makeCard();
 	}
 
 	/**
