@@ -58,10 +58,7 @@ public abstract class ACard {
 		
 		// TODO: Make this not only be able to return hero cards
 		
-		if (type == "Hero"){
 			return new HeroCard(image, name, faction, cost, honor, rarity, effects);
-		}
-		return new HeroCard();
 	}
 
 	/**
@@ -183,6 +180,11 @@ public abstract class ACard {
 			return;
 		}
 		this.effects.put(effect, value);
+	}
+	
+	
+	public int getStrength(){
+		return this.cost;
 	}
 	
 }
