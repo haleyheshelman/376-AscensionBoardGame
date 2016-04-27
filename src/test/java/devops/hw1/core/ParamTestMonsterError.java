@@ -15,8 +15,6 @@ import org.junit.runners.Parameterized;
 @RunWith(Parameterized.class)
 public class ParamTestMonsterError {
 
-//	private ArrayList<HashMap<String, Integer>> effectsArray;
-//	private ArrayList<Exception> exceptionsList;
 	private String name;
 	private String type;
 	private int cost;
@@ -25,15 +23,6 @@ public class ParamTestMonsterError {
 	private HashMap<String, Integer> map = new HashMap<String, Integer>();
 	private ACard card;
 
-	@Before
-    public void initialize() {
-//		this.exceptionsList = new ArrayList<Exception>();
-//		this.exceptionsList.add(new IllegalArgumentException("One or more of the arguments given for the card "
-//																+ "were not correct."));
-//		this.exceptionsList.add(new NullPointerException("The following values can not be null for a card: "
-//															+ "name, type, cost, honor, and rarity"));
-   }
-	
    // Each parameter should be placed as an argument here
    // Every time runner triggers, it will pass the arguments
    // from parameters we defined in paramNumbers() method (below)
@@ -67,8 +56,10 @@ public class ParamTestMonsterError {
          																			//should throw an IllegalArgumentException
          { "Just Me", "Monster", 2, 2, 1, null, 2, exceptionsList.get(1)},	//case 3: tests that effect is not null,
          																			//should throw a NullPointerException
-         { "Whoever's Left", null, 3, 4, 7, "honor", 6, exceptionsList.get(1)}	//case 4: tests for null values (similar to case 2)
+         { "Whoever's Left", null, 3, 4, 7, "honor", 6, exceptionsList.get(1)},	//case 4: tests for null values (similar to case 2)
          																			//should throw a NullPointerException
+         { "Anybody", "Monster", 1, 4, 5, "draw", 0, exceptionsList.get(0)}		//case 5: tests for zero in the effects
+         																			//should throw an IllegalArgumentException
       });
    }
    

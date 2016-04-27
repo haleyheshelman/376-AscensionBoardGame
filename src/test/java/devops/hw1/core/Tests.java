@@ -8,6 +8,7 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import org.easymock.EasyMock;
@@ -854,4 +855,35 @@ public class Tests {
 		assertEquals(5, p.getHandSize());
 
 	}
+
+	/**
+	 * Tests Player, with ACard with more tests cases.
+	 * Test cases are from use CodeCover (a.k.a. CC).
+	 * Uses Mocking.
+	 */
+	@Test
+	public void testCardForCC() {
+		ACard card1 = ACard.makeCard(6);
+		ACard card2 = null;
+		
+		Player me = EasyMock.niceMock(Player.class);
+		Board that = EasyMock.niceMock(Board.class);
+		
+		EasyMock.expect(me.attackCard(card1, that)).andReturn(true);
+		ArrayList<ACard> annoying = new ArrayList<ACard>();
+		annoying.add(card1);
+		EasyMock.expect(that.getVoid()).andReturn(annoying);
+		
+		EasyMock.replay(me, that);
+		
+		assertEquals(1, that.getVoid().size());
+		assertFalse(me.attackCard(card2, that));	// False, True case
+		me.addPower(3);
+		assertTrue(me.attackCard(card1, that));		// True, False case
+		
+		EasyMock.verify(me, that);
+		
+	}
+	
+	
 }
