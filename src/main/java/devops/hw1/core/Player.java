@@ -166,6 +166,7 @@ public class Player {
 	public boolean attackCard(ACard card, Board board) {
 		if (card != null && card.getStrength() <= this.power) {
 			this.addPower(0 - card.getStrength());
+			this.applyEffects(card);
 			board.sendToVoid(card);
 			return true;
 		}
