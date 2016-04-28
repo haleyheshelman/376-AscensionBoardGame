@@ -6,9 +6,12 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.GridLayout;
 import java.awt.Shape;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
+import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -32,7 +35,8 @@ public class GameBoard extends JPanel {
 	public JLabel powerLabel = new JLabel("Power: 0");
 	public JLabel deckLabel = new JLabel("Left in Deck: 5");
 	public JLabel discard_pileLabel = new JLabel("Discard: 0");
-
+	public JButton endTurnButton = new JButton("End Turn");
+	
 	// counters for keeping track of the various information, will be replaced as project progresses
 	public int runeCount;
 	public int powerCount;
@@ -80,10 +84,12 @@ public class GameBoard extends JPanel {
 		this.setLayout(new BorderLayout());
 		
 		JPanel leftInfo = new JPanel();
-		leftInfo.setLayout(new GridLayout(3, 1));
+		leftInfo.setLayout(new GridLayout(4, 1));
+		leftInfo.add(this.endTurnButton);
 		leftInfo.add(this.runesLabel);
 		leftInfo.add(this.powerLabel);
 		leftInfo.add(this.deckLabel);
+		
 		
 		JPanel labels = new JPanel();
 		labels.setLayout(new BorderLayout());
@@ -102,6 +108,7 @@ public class GameBoard extends JPanel {
 		this.runeCount = this.player.getRunes();
 		this.discardCount = this.player.getDiscardSize();
 		this.board = board;
+		this.endTurnButton.addActionListener(new EndTurnListener(this.player, this));
 	}
 	/**
 	 * Paints the cards onto the game baord

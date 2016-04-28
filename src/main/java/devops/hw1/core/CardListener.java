@@ -83,6 +83,7 @@ public class CardListener implements MouseListener {
 		gameboard.runesLabel.setText("Runes: " + player.getRunes());
 		gameboard.powerLabel.setText("Power: " + player.getPower());				
 		gameboard.discard_pileLabel.setText("Discard: " + player.getDiscardSize());
+		gameboard.deckLabel.setText("Left in Deck: " + player.getDeckSize());
 		gameboard.repaint();
 		
 	}
