@@ -341,5 +341,16 @@ public class Player {
 	public void addHonor(int i) {
 		this.honor += i;
 	}
+	
+	/**
+	 * This function takes a card and decides how to handle the card.
+	 */
 
+	public boolean doCard(ACard card) {
+		if (card.getType().equals("Hero")) {
+			return this.buyCard(card);
+		} else {
+			return this.attackCard(card, board);
+		}
+	}
 }
