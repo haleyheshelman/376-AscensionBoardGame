@@ -60,5 +60,28 @@ public class GuiTests {
 		Board board = new Board();
 		CardListener cL = new CardListener(player, this.shapeList, this.shapeList, board);
 	}
+	
+	/**
+	 * Checks that the player hand size is handled correctly
+	 * within the CardListener class.
+	 */
+	@Test
+	public void testPlayerHandSizeInCardListener() {
+		Player player = Player.makePlayer();
+		Board board = new Board();
+		
+		assertEquals(5, player.getHandSize());
+		for (int i = 0; i < 5; i++) {	// get to hand size = 0
+			ACard card = player.getHand().get(0);
+			player.playCard(card);	
+		}
+		assertEquals(0, player.getHandSize());
+		
+		//checking that creating card listener doesn't throw an exception
+		CardListener cL1 = new CardListener(player, this.shapeList, this.shapeList, board);
+		
+		//now checking that hand size hasn't changed
+		assertEquals(0, player.getHandSize());
+	}
 
 }
