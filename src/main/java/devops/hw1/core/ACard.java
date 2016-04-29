@@ -17,6 +17,7 @@ public abstract class ACard {
 	protected HashMap<String, Integer> effects = new HashMap<String, Integer>();
 	protected String faction;
 	protected String name;
+	protected String type;
 	protected int honor;
 	protected int rarity;
 	protected BufferedImage image;
@@ -96,8 +97,7 @@ public abstract class ACard {
 		}
 
 		// TODO: Make this not only be able to return hero cards
-
-		return new HeroCard(image, name, faction, cost, honor, rarity, effects);
+		return new HeroCard(image, name, faction, type, cost, honor, rarity, effects);
 	}
 
 	/**
@@ -223,9 +223,21 @@ public abstract class ACard {
 		}
 		this.effects.put(effect, value);
 	}
+	
+	/**
+	 * Returns the strength of the card.
+	 * @return
+	 */
 
 	public int getStrength() {
 		return this.cost;
+	}
+	
+	/**
+	 * Returns the type of the card as a string
+	 */
+	public String getType() {
+		return this.type;
 	}
 
 }

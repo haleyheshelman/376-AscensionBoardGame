@@ -916,8 +916,8 @@ public class Tests {
 	
 	@Test
 	public void testCardGetType() {
-		ACard card = ACard.makeCard(null, "name", "faction", "type", 1, 1, 1, new HashMap<String, Integer>());
-		assertEquals("type", card.getType());
+		ACard card = ACard.makeCard(null, "name", "faction", "hero", 1, 1, 1, new HashMap<String, Integer>());
+		assertEquals("hero", card.getType());
 	}
 	
 }

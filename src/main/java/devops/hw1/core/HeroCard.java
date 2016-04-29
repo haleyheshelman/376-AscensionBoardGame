@@ -24,7 +24,7 @@ public class HeroCard extends ACard {
 	 * @param rarity
 	 * @param effects
 	 */
-	public HeroCard(BufferedImage image, String name, String faction, int cost,
+	public HeroCard(BufferedImage image, String name, String faction, String type, int cost,
 			int honor, int rarity, HashMap<String, Integer> effects) {
 		this.image = image;
 		this.name = name;
@@ -33,6 +33,7 @@ public class HeroCard extends ACard {
 		this.honor = honor;
 		this.rarity = rarity;
 		this.effects = effects;
+		this.type = type;
 	}
 
 }
