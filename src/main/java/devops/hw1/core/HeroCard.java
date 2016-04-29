@@ -4,17 +4,18 @@ import java.awt.image.BufferedImage;
 import java.util.HashMap;
 
 public class HeroCard extends ACard {
-	
-	public HeroCard(){
+
+	public HeroCard() {
 		this.cost = 0;
 	}
-	
-	public HeroCard(int i){
+
+	public HeroCard(int i) {
 		this.cost = i;
 	}
 
 	/**
 	 * Constructs a hero card that has the given information.
+	 * 
 	 * @param image
 	 * @param name
 	 * @param faction

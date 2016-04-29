@@ -20,9 +20,10 @@ public abstract class ACard {
 	protected int honor;
 	protected int rarity;
 	protected BufferedImage image;
-	
+
 	/**
 	 * This returns a card with zero cost and no other special attributes.
+	 * 
 	 * @return
 	 */
 
@@ -31,57 +32,72 @@ public abstract class ACard {
 	}
 
 	/**
-	 * This returns a card with cost equal to the input with no other special attributes.
+	 * This returns a card with cost equal to the input with no other special
+	 * attributes.
+	 * 
 	 * @param i
 	 * @return
 	 */
-	
+
 	public static ACard makeCard(int i) {
 		return new HeroCard(i);
 	}
-	
+
 	/**
 	 * This returns a card with the given information.
-	 * @param image	the image of the card (as .png file)
-	 * @param name the name of the card (i.e. "Cultist")
-	 * @param faction the card's faction (i.e. "Lifebound")
-	 * @param type the card's type (i.e. Hero, Monster, etc.)
-	 * @param cost the amount paid to obtain the card (in runes or power)
-	 * @param honor the amount of honor that the card is worth
-	 * @param rarity the number of occurrences of the card in the game
-	 * @param effects a HashMap of the card's effect(s)
+	 * 
+	 * @param image
+	 *            the image of the card (as .png file)
+	 * @param name
+	 *            the name of the card (i.e. "Cultist")
+	 * @param faction
+	 *            the card's faction (i.e. "Lifebound")
+	 * @param type
+	 *            the card's type (i.e. Hero, Monster, etc.)
+	 * @param cost
+	 *            the amount paid to obtain the card (in runes or power)
+	 * @param honor
+	 *            the amount of honor that the card is worth
+	 * @param rarity
+	 *            the number of occurrences of the card in the game
+	 * @param effects
+	 *            a HashMap of the card's effect(s)
 	 * @return
 	 */
-	public static ACard makeCard(BufferedImage image, String name, String faction,
-			String type, int cost, int honor, int rarity,
+	public static ACard makeCard(BufferedImage image, String name,
+			String faction, String type, int cost, int honor, int rarity,
 			HashMap<String, Integer> effects) {
-		// array list of accepted card types (all in lower case, for consistency)
+		// array list of accepted card types (all in lower case, for
+		// consistency)
 		ArrayList<String> acceptedTypes = new ArrayList<String>();
 		acceptedTypes.add("hero");
 		acceptedTypes.add("monster");
 		acceptedTypes.add("construct");
 		acceptedTypes.add("standard");
-		
+
 		// before returning the card, need to do input validation
 		if (name == null || type == null) {
-			throw new NullPointerException("The following values can not be null for a card: "
-					+ "name, type, cost, honor, rarity, and effect.");
+			throw new NullPointerException(
+					"The following values can not be null for a card: "
+							+ "name, type, cost, honor, rarity, and effect.");
 		} else if (effects.keySet().contains(null)) {
-			throw new NullPointerException("The following values can not be null for a card: "
-					+ "name, type, cost, honor, rarity, and effect.");
-		} else if (effects.keySet().contains("") || effects.values().contains(0)) {
-			throw new IllegalArgumentException("One or more of the arguments given for the card "
-					+ "were not correct.");
+			throw new NullPointerException(
+					"The following values can not be null for a card: "
+							+ "name, type, cost, honor, rarity, and effect.");
+		} else if (effects.keySet().contains("")
+				|| effects.values().contains(0)) {
+			throw new IllegalArgumentException(
+					"One or more of the arguments given for the card "
+							+ "were not correct.");
+		} else if (!(acceptedTypes.contains(type.toLowerCase()))) {
+			throw new IllegalArgumentException(
+					"One or more of the arguments given for the card "
+							+ "were not correct.");
 		}
-		else if (!(acceptedTypes.contains(type.toLowerCase()))) {
-			throw new IllegalArgumentException("One or more of the arguments given for the card "
-					+ "were not correct.");
-		} 
-		
-		
+
 		// TODO: Make this not only be able to return hero cards
-		
-			return new HeroCard(image, name, faction, cost, honor, rarity, effects);
+
+		return new HeroCard(image, name, faction, cost, honor, rarity, effects);
 	}
 
 	/**
@@ -187,6 +203,7 @@ public abstract class ACard {
 
 	/**
 	 * Returns the hashmap of effects the card has.
+	 * 
 	 * @return
 	 */
 	public HashMap<String, Integer> getEffects() {
@@ -194,7 +211,9 @@ public abstract class ACard {
 	}
 
 	/**
-	 * Puts an effect string and integer value pair into the hashmap of effects for the card.
+	 * Puts an effect string and integer value pair into the hashmap of effects
+	 * for the card.
+	 * 
 	 * @param effect
 	 * @param value
 	 */
@@ -204,10 +223,9 @@ public abstract class ACard {
 		}
 		this.effects.put(effect, value);
 	}
-	
-	
-	public int getStrength(){
+
+	public int getStrength() {
 		return this.cost;
 	}
-	
+
 }

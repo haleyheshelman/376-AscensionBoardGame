@@ -6,14 +6,13 @@ import javax.swing.JFrame;
 
 /**
  * 
- *Starts the GUI for Ascension
+ * Starts the GUI for Ascension
  *
- * @author heshelhj.
- *         Created Apr 22, 2016.
+ * @author heshelhj. Created Apr 22, 2016.
  */
 
 public class MainGUI {
-	
+
 	private static final int WIDTH = 1220;
 	private static final int HEIGHT = 900;
 
@@ -24,13 +23,14 @@ public class MainGUI {
 		GameBoard ascension = new GameBoard(player1, board);
 		JFrame frame = new JFrame("ASCENSION");
 		frame.setSize(WIDTH, HEIGHT);
-		
-		ascension.addMouseListener(new CardListener(player1, ascension.playerList, ascension.centerList, board));
-		
+
+		ascension.addMouseListener(new CardListener(player1,
+				ascension.playerList, ascension.centerList, board));
+
 		frame.add(ascension, BorderLayout.CENTER);
-		
+
 		ascension.repaint();
-		
+
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setVisible(true);
 	}

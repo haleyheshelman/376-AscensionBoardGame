@@ -24,10 +24,11 @@ public class Player {
 	private LinkedList<ACard> playerDeck;
 
 	/**
-	 * The constructor creates a player with a hand of five cards and a deck of five cards.
+	 * The constructor creates a player with a hand of five cards and a deck of
+	 * five cards.
 	 */
-	
-	private Player() {	
+
+	private Player() {
 		try {
 			new CardCollection();
 		} catch (IOException e) {
@@ -45,26 +46,26 @@ public class Player {
 	 * 
 	 */
 	public void initialiseDeck() {
-			for (int i = 0; i < 8; i++) { 
+		for (int i = 0; i < 8; i++) {
 			this.addCardToDeck(CardCollection.apprentice);
 		}
 		for (int j = 0; j < 2; j++) {
 			this.addCardToDeck(CardCollection.militia);
-		}		
+		}
 	}
-	
+
 	/**
 	 * 
-	 * Puts all of the players cards into the discard pile and draws 
-	 * 5 pcards for a new hand
+	 * Puts all of the players cards into the discard pile and draws 5 pcards
+	 * for a new hand
 	 *
 	 */
-	public void endTurn(){
+	public void endTurn() {
 		this.discardPile.addAll(this.getHand());
 		this.getHand().clear();
 		this.setRunes(0);
-		this.addPower(0-this.power);
-		this.drawCard(5);	
+		this.addPower(0 - this.power);
+		this.drawCard(5);
 	}
 
 	/**
@@ -154,15 +155,14 @@ public class Player {
 	}
 
 	/**
-	 * Attack card will take a card and the board.  
-	 * If the player has enough power it will place the card in
-	 * the void discard pile
+	 * Attack card will take a card and the board. If the player has enough
+	 * power it will place the card in the void discard pile
 	 * 
-	 * @param card to be attacked
-	 * @return true if attacked and sent to void and false
-	 * otherwise
+	 * @param card
+	 *            to be attacked
+	 * @return true if attacked and sent to void and false otherwise
 	 */
-	
+
 	public boolean attackCard(ACard card, Board board) {
 		if (card != null && card.getStrength() <= this.power) {
 			this.addPower(0 - card.getStrength());
@@ -171,7 +171,7 @@ public class Player {
 		}
 		return false;
 	}
-	
+
 	/**
 	 * 
 	 * Returns the size of the player hand
@@ -188,7 +188,7 @@ public class Player {
 	 *
 	 */
 	public void drawCard() {
-		if (this.playerDeck.isEmpty()){
+		if (this.playerDeck.isEmpty()) {
 			this.playerDeck.addAll(this.discardPile);
 			this.discardPile.clear();
 			Collections.shuffle(this.playerDeck);
@@ -222,7 +222,7 @@ public class Player {
 	 */
 	public void addCardToHand(ACard card) {
 
-		if (card == null){
+		if (card == null) {
 			System.out.println("attempted to add a null card to hand");
 			return;
 		}
@@ -246,7 +246,7 @@ public class Player {
 	 * @param card
 	 */
 	public void playCard(ACard card) {
-		
+
 		if (card == null) {
 			System.out.println("attempted to play a null card");
 			return;
@@ -281,6 +281,7 @@ public class Player {
 
 	/**
 	 * This method returns the amount of power the player currently has.
+	 * 
 	 * @return how much power the player has
 	 */
 	public int getPower() {
@@ -289,6 +290,7 @@ public class Player {
 
 	/**
 	 * This method adds power to the total amount of power the player has.
+	 * 
 	 * @param i
 	 */
 	public void addPower(int i) {
@@ -297,6 +299,7 @@ public class Player {
 
 	/**
 	 * Applies the effects of the given card to the player.
+	 * 
 	 * @param card
 	 */
 	@SuppressWarnings("boxing")
@@ -319,9 +322,10 @@ public class Player {
 			}
 		}
 	}
-	
+
 	/**
 	 * This method returns the amount of honor the player has.
+	 * 
 	 * @return amount of honor
 	 */
 	public int getHonor() {
@@ -329,12 +333,13 @@ public class Player {
 	}
 
 	/**
-	 * This method adds the amount given to the total amount of honor that the player has.
+	 * This method adds the amount given to the total amount of honor that the
+	 * player has.
+	 * 
 	 * @param i
 	 */
 	public void addHonor(int i) {
 		this.honor += i;
 	}
-	
-	
+
 }

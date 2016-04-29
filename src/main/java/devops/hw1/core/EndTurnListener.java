@@ -10,11 +10,11 @@ import java.awt.event.ActionListener;
  * @author fenogljc
  *
  */
-public class EndTurnListener implements ActionListener{
+public class EndTurnListener implements ActionListener {
 
 	private Player player;
-	private GameBoard gameboard;	
-	
+	private GameBoard gameboard;
+
 	/**
 	 * @param player
 	 */
@@ -25,21 +25,23 @@ public class EndTurnListener implements ActionListener{
 	}
 
 	/**
-	 * 
-	 * updates the labels on the GUI and repaints 
-	 *
+	 * updates the labels on the GUI and repaints
 	 */
 	public void updateGUI() {
 		gameboard.runesLabel.setText("Runes: " + player.getRunes());
-		gameboard.powerLabel.setText("Power: " + player.getPower());				
-		gameboard.discard_pileLabel.setText("Discard: " + player.getDiscardSize());
+		gameboard.powerLabel.setText("Power: " + player.getPower());
+		gameboard.discard_pileLabel.setText("Discard: "
+				+ player.getDiscardSize());
 		gameboard.deckLabel.setText("Left in Deck: " + player.getDeckSize());
 		gameboard.repaint();
-		
+
 	}
-	
-	/* (non-Javadoc)
-	 * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
 	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {

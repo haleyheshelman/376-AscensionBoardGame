@@ -36,18 +36,19 @@ public class Board {
 		this.theVoid = new ArrayList<ACard>();
 		this.cenDeck = new LinkedList<ACard>();
 		this.cenField = new ACard[6];
-		
+
 		initializeCenterDeck();
-		
+
 		this.cultist = ACard.makeCard();
 		this.heavyInf = ACard.makeCard();
 		this.mystic = ACard.makeCard();
 	}
-	
+
 	/**
-	 * This method fills the deck with the necessary cards and fills the center row with the top cards of the deck.
+	 * This method fills the deck with the necessary cards and fills the center
+	 * row with the top cards of the deck.
 	 */
-	
+
 	private void initializeCenterDeck() {
 		for (int i = 0; i < CardCollection.cards.length; i++) {
 			for (int j = 0; j < CardCollection.cards[i].rarity; j++) {
@@ -71,17 +72,18 @@ public class Board {
 	 * 
 	 * Adds the passed card to the void
 	 *
-	 * @param card to be added to the void pile
+	 * @param card
+	 *            to be added to the void pile
 	 */
-	public void sendToVoid(ACard card){
-		if(card == null){
+	public void sendToVoid(ACard card) {
+		if (card == null) {
 			return;
 		}
 		this.theVoid.add(card);
 	}
-	
+
 	/**
-	 * @return the Center Deck 
+	 * @return the Center Deck
 	 */
 	public LinkedList<ACard> getCenDeck() {
 		return this.cenDeck;
@@ -110,18 +112,23 @@ public class Board {
 
 	/**
 	 * Moves the card from the Center Deck to the Center Field
-	 * @param cenCard the card to move
-	 * @param index the index on the Center Field that the card is moving to (base zero)
+	 * 
+	 * @param cenCard
+	 *            the card to move
+	 * @param index
+	 *            the index on the Center Field that the card is moving to (base
+	 *            zero)
 	 */
 	public void centerDeckToField(int index) {
 		ACard card = this.cenDeck.remove();
 		this.cenField[index] = card;
 	}
+
 	/**
 	 * 
 	 * gets the center row
 	 *
-	 * @return the center cards 
+	 * @return the center cards
 	 */
 	public ACard[] getCenField() {
 		return this.cenField;
