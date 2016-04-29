@@ -58,17 +58,6 @@ public class Tests {
 		assertTrue(newPlayer instanceof Player);
 	}
 
-	//This test is unnecessary since a more thorough one already exists (see tesPlayerAddRunes()). 
-//	/**
-//	 * Tests that the player can have runes added (addRunes method).
-//	 */
-//	@Test
-//	public void testPlayerHasRunes() {
-//		Player newPlayer = Player.makePlayer();
-//		newPlayer.addRunes(3);
-//		assertTrue(newPlayer.getRunes() == 3);
-//	}
-
 	/**
 	 * Tests that the player can have runes added by calling 
 	 * the addRunes method. Also checks that the player starts
@@ -88,9 +77,10 @@ public class Tests {
 	}
 
 	/**
-	 * Integration test equivalent of testPlayerDiscard.
-	 * Tests that the discard method works through the 
-	 * use of Mocking.
+	 * Tests that the player can discard pile works appropriately.
+	 * This includes checking that cards can be added to the 
+	 * discard pile and making sure that the size of the discard
+	 * pile is actually increasing. 
 	 */
 	@Test
 	public void testPlayerDiscardMock() {
@@ -109,11 +99,10 @@ public class Tests {
 
 	}
 
+
 	/**
-	 * Tests that the player can discard pile works appropriately.
-	 * This includes checking that cards can be added to the 
-	 * discard pile and making sure that the size of the discard
-	 * pile is actually increasing.
+	 * Integration test equivalent of testPlayerDiscardMock.
+	 * Tests that the discard method works.
 	 */
 	@Test
 	public void testPlayerDiscard() {
@@ -127,9 +116,8 @@ public class Tests {
 	}
 
 	/**
-	 * Integration test equivalent of testDiscardingCards().
-	 * Tests that the discard method actually puts the card(s)
-	 * in the discard pile through the use of Mocking.
+	 * Tests that discard actually puts the cards in the 
+	 * discard pile and that the hand doesn't have the card.
 	 */
 	@Test
 	public void testDiscardingCardsMock() {
@@ -144,9 +132,11 @@ public class Tests {
 		assertTrue(newPlayer.getDiscardPile().contains(card1));
 	}
 
+
 	/**
-	 * Tests that discard actually puts the cards in the 
-	 * discard pile and that the hand doesn't have the card.
+	 * Integration test equivalent of testDiscardingCards().
+	 * Tests that the discard method actually puts the card(s)
+	 * in the discard pile.
 	 */
 	@Test
 	public void testDiscardingCards() {
@@ -248,9 +238,9 @@ public class Tests {
 	}
 
 	/**
-	 * Integration test equivalent of testPlayerDrawCardWithCard().
-	 * Tests that the player can draw a card from their deck and 
-	 * that the card is in the player's hand through the use of Mocking.
+	 * Tests that the player can draw a card from their deck.
+	 * And checks that the player's hand actually contains
+	 * the card that was added.
 	 */
 	@Test
 	public void testPlayerDrawCardWithCardMock() {
@@ -262,10 +252,11 @@ public class Tests {
 		assertTrue(player.getHand().contains(card));
 	}
 
+
 	/**
-	 * Tests that the player can draw a card from their deck.
-	 * And checks that the player's hand actually contains
-	 * the card that was added.
+	 * Integration test equivalent of testPlayerDrawCardWithCardMock().
+	 * Tests that the player can draw a card from their deck and 
+	 * that the card is in the player's hand.
 	 */
 	@Test
 	public void testPlayerDrawCardWithCard() {
@@ -519,9 +510,8 @@ public class Tests {
 	}
 
 	/**
-	 * Integration test equivalent of testApplyEffectsRunesMockless().
-	 * Tests that applyEffects method (from Player) works for "runes" 
-	 * through the use of Mocking.
+	 * Tests that applying the effect of a card leads to the 
+	 * effect taking place (only tested with "runes" effect).
 	 */
 	@Test
 	public void testApplyEffectsRunes() {
@@ -538,9 +528,10 @@ public class Tests {
 		EasyMock.verify(runeCard);
 	}
 
+
 	/**
-	 * Tests that applying the effect of a card leads to the 
-	 * effect taking place (only tested with "runes" effect).
+	 * Integration test equivalent of testApplyEffectsRunes().
+	 * Tests that applyEffects method (from Player) works for "runes".
 	 */
 	@Test
 	public void testApplyEffectsRunesMockless() {
@@ -554,9 +545,8 @@ public class Tests {
 	}
 
 	/**
-	 * Integration test equivalent of testApplyEffectsRunesMockless().
-	 * Tests that applyEffects method (from Player) works for "power" 
-	 * through the use of Mocking.
+	 * Tests that applying the effect of a card leads to the 
+	 * effect taking place (only tested with "power" effect).
 	 */
 	@Test
 	public void testApplyEffectsPower() {
@@ -574,8 +564,8 @@ public class Tests {
 	}
 
 	/**
-	 * Tests that applying the effect of a card leads to the 
-	 * effect taking place (only tested with "power" effect).
+	 * Integration test equivalent of testApplyEffectsPower().
+	 * Tests that applyEffects method (from Player) works for "power".
 	 */
 	@Test
 	public void testApplyEffectsPowerMockless() {
@@ -589,9 +579,8 @@ public class Tests {
 	}
 
 	/**
-	 * Integration test equivalent of testApplyEffectsRunesMockless().
-	 * Tests that applyEffects method (from Player) works for "draw" 
-	 * through the use of Mocking.
+	 * Tests that applying the effect of a card leads to the 
+	 * effect taking place (only tested with "draw" effect).
 	 */
 	@Test
 	public void testApplyEffectsDraw() {
@@ -612,8 +601,8 @@ public class Tests {
 	}
 
 	/**
-	 * Tests that applying the effect of a card leads to the 
-	 * effect taking place (only tested with "draw" effect).
+	 * Integration test equivalent of testApplyEffectsDraw().
+	 * Tests that applyEffects method (from Player) works for "draw".
 	 */
 	@Test
 	public void testApplyEffectsDrawMockless() {
@@ -642,9 +631,8 @@ public class Tests {
 	}
 
 	/**
-	 * Integration test equivalent of testApplyEffectsRunesMockless().
-	 * Tests that applyEffects method (from Player) works for "honor" 
-	 * through the use of Mocking.
+	 * Tests that applying the effect of a card leads to the 
+	 * effect taking place (only tested with "honor" effect).
 	 */
 	@Test
 	public void testApplyEffectsHonor() {
@@ -662,8 +650,8 @@ public class Tests {
 	}
 
 	/**
-	 * Tests that applying the effect of a card leads to the 
-	 * effect taking place (only tested with "honor" effect).
+	 * Integration test equivalent of testApplyEffectsHonor().
+	 * Tests that applyEffects method (from Player) works for "honor".
 	 */
 	@Test
 	public void testApplyEffectsHonorMockless() {
@@ -677,9 +665,9 @@ public class Tests {
 	}
 
 	/**
-	 * Integration test equivalent of testApplyEffectsAllBasicMockless().
-	 * Tests that when a card has more than one effect, all of the 
-	 * effects are applied properly.
+	 * Tests (for all of the basic effects) that a card can have
+	 * more than one effect and that when the card's effect(s) 
+	 * are applied, they produce the correct results.
 	 */
 	@Test
 	public void testApplyEffectsAllBasic() {
@@ -709,9 +697,9 @@ public class Tests {
 	}
 
 	/**
-	 * Tests (for all of the basic effects) that a card can have
-	 * more than one effect and that when the card's effect(s) 
-	 * are applied, they produce the correct results.
+	 * Integration test equivalent of testApplyEffectsAllBasic().
+	 * Tests that when a card has more than one effect, all of the 
+	 * effects are applied properly.
 	 */
 	@Test
 	public void testApplyEffectsAllBasicMockless() {
@@ -801,7 +789,6 @@ public class Tests {
 		assertFalse(board.getCenField() == null);
 	}
 	
-	
 	/**
 	 * Tests that "Monster" specification works.
 	 */
@@ -850,6 +837,30 @@ public class Tests {
 	}
 	
 	/**
+	 * Integration test equivalent of testAttackCard.
+	 * Tests the attackCard method in the Player
+	 * class.
+	 */
+	@Test
+	public void testAttackCardInteg() {
+		Player player = Player.makePlayer();
+		Board board = new Board();
+		ACard card = ACard.makeCard(5);
+		
+		assertEquals(0, player.getPower());
+		assertEquals(0, player.getRunes());
+		assertEquals(0, board.getVoid().size());
+		
+		player.addPower(5);
+		assertEquals(5, player.getPower());
+		assertTrue(player.attackCard(card, board));
+		
+		assertEquals(0, player.getPower());
+		assertEquals(1, board.getVoid().size());
+		
+	}
+	
+	/**
 	 * A more thorough test of attackCard.
 	 */
 	@Test
@@ -869,6 +880,24 @@ public class Tests {
 		assertTrue(fakeBoard.getVoid() == null);
 		
 		EasyMock.verify(fakeBoard, fakeCard);
+	}
+	
+	/**
+	 * Integration test equivalent of testAttackCardOther().
+	 * A more thorough test of the attackCard() method.
+	 */
+	@Test
+	public void testAttackCardOtherInteg() {
+		Player player = Player.makePlayer();
+		Board board = new Board();
+		ACard card1 = ACard.makeCard(6);
+		ACard card2 = null;
+		
+		player.addPower(3);
+		
+		assertFalse(player.attackCard(card2, board));
+		assertFalse(player.attackCard(card1, board));
+		assertTrue(board.getVoid().size() == 0);
 	}
 
 	/**
