@@ -350,7 +350,7 @@ public class Player {
 		if (card.getType().equals("Hero")) {
 			return this.buyCard(card);
 		} else {
-			return this.attackCard(card, board);
+			return this.attackCard(card, board); // There is a problem here........
 		}
 	}
 }
