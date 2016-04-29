@@ -46,5 +46,5 @@ All - held a code walkthrough on Thursday.
 
 
 Milestone: Monsters 
-Netta - Software Engineer in Test: Added java docs to all of the tests (except Parameterized test) and commented out one unnecessary test. Also added another Parameterized test (for testing Monsters and ACard in general for errors). Created AllTests to run all of the tests (was needed to get CodeCover to work). Got 100% code coverage for all classes (except GUI-related classes).
+Netta - Software Engineer in Test: Added java docs to all of the tests (except Parameterized test) and commented out one unnecessary test. Also added another Parameterized test (for testing Monsters and ACard in general for errors). Created AllTests to run all of the tests (was needed to get CodeCover to work). Got 100% code coverage for all classes (except GUI-related classes). Added Integration tests and some error checking for the GUI (not much to do).
 
