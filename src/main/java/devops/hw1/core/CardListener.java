@@ -23,6 +23,8 @@ public class CardListener implements MouseListener {
 
 	public CardListener(Player player, ArrayList<Shape> playerHandImages,
 			ArrayList<Shape> centerHandImages, Board board) {
+		if (player == null || board == null) throw new NullPointerException("Both a valid Board and Player object must be given.");
+		
 		this.playerHandImages = playerHandImages;
 		this.centerHandImages = centerHandImages;
 		this.player = player;
