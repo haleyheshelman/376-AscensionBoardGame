@@ -50,5 +50,15 @@ public class GuiTests {
 		CardListener cL = new CardListener(null, this.shapeList,
 				this.shapeList, null);
 	}
+	
+	/**
+	 * Checks that the CardListener constructor still works properly.
+	 */
+	@Test
+	public void testCardListenerWorks() {
+		Player player = Player.makePlayer();
+		Board board = new Board();
+		CardListener cL = new CardListener(player, this.shapeList, this.shapeList, board);
+	}
 
 }
