@@ -8,7 +8,7 @@ import javax.swing.JFrame;
  * 
  * Starts the GUI for Ascension
  *
- * @author heshelhj. Created Apr 22, 2016.
+ * @author bishopcc, fenogljc, gneezyn, heshelhj
  */
 
 public class MainGUI {

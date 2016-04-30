@@ -1,6 +1,3 @@
-/**
- * 
- */
 package devops.hw1.core;
 
 import java.io.IOException;
@@ -9,10 +6,9 @@ import java.util.Collections;
 import java.util.LinkedList;
 
 /**
- * @author fenogljc
- * @author gneezyn
- * @author heshelhj
- * @author bishopcc
+ * The board for Ascension (not gui related).
+ * 
+ * @author bishopcc, fenogljc, gneezyn, heshelhj
  */
 public class Board {
 

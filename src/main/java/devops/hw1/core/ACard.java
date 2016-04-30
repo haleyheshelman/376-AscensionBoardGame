@@ -1,6 +1,3 @@
-/**
- * 
- */
 package devops.hw1.core;
 
 import java.awt.image.BufferedImage;
@@ -8,8 +5,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 /**
- * @author fenogljc
+ * An abstract class used by all cards.
  * 
+ * @author bishopcc, fenogljc, gneezyn, heshelhj
  */
 public abstract class ACard {
 
@@ -48,22 +46,23 @@ public abstract class ACard {
 	 * This returns a card with the given information.
 	 * 
 	 * @param image
-	 *            the image of the card (as .png file)
+	 *            , the image of the card (as .png file)
 	 * @param name
-	 *            the name of the card (i.e. "Cultist")
+	 *            , the name of the card (i.e. "Cultist")
 	 * @param faction
-	 *            the card's faction (i.e. "Lifebound")
+	 *            , the card's faction (i.e. "Lifebound")
 	 * @param type
-	 *            the card's type (i.e. Hero, Monster, etc.)
+	 *            , the card's type (i.e. Hero, Monster, etc.)
 	 * @param cost
-	 *            the amount paid to obtain the card (in runes or power)
+	 *            , the amount paid to obtain the card (in runes or power)
 	 * @param honor
-	 *            the amount of honor that the card is worth
+	 *            , the amount of honor that the card is worth
 	 * @param rarity
-	 *            the number of occurrences of the card in the game
+	 *            , the number of occurrences of the card in the game
 	 * @param effects
-	 *            a HashMap of the card's effect(s)
-	 * @return
+	 *            , a HashMap of the card's effect(s)
+	 * 
+	 * @return the card that was made (with the given information)
 	 */
 	public static ACard makeCard(BufferedImage image, String name,
 			String faction, String type, int cost, int honor, int rarity,
@@ -97,11 +96,12 @@ public abstract class ACard {
 		}
 
 		// TODO: Make this not only be able to return hero cards
-		return new HeroCard(image, name, faction, type, cost, honor, rarity, effects);
+		return new HeroCard(image, name, faction, type, cost, honor, rarity,
+				effects);
 	}
 
 	/**
-	 * @return the faction
+	 * @return the card's faction (i.e. Lifebound, Void, etc.)
 	 */
 	public String getFaction() {
 		return faction;
@@ -109,14 +109,14 @@ public abstract class ACard {
 
 	/**
 	 * @param faction
-	 *            the faction to set
+	 *            , the faction to set
 	 */
 	public void setFaction(String faction) {
 		this.faction = faction;
 	}
 
 	/**
-	 * @return the name
+	 * @return the card's name
 	 */
 	public String getName() {
 		return name;
@@ -124,14 +124,14 @@ public abstract class ACard {
 
 	/**
 	 * @param name
-	 *            the name to set
+	 *            , the name to give the card
 	 */
 	public void setName(String name) {
 		this.name = name;
 	}
 
 	/**
-	 * @return the honor
+	 * @return the card's honor value
 	 */
 	public int getHonor() {
 		return honor;
@@ -139,7 +139,7 @@ public abstract class ACard {
 
 	/**
 	 * @param honor
-	 *            the honor to set
+	 *            , the honor to set
 	 */
 	public void setHonor(int honor) {
 		this.honor = honor;
@@ -223,16 +223,17 @@ public abstract class ACard {
 		}
 		this.effects.put(effect, value);
 	}
-	
+
 	/**
 	 * Returns the strength of the card.
+	 * 
 	 * @return
 	 */
 
 	public int getStrength() {
 		return this.cost;
 	}
-	
+
 	/**
 	 * Returns the type of the card as a string
 	 */

@@ -10,7 +10,7 @@ import java.util.ArrayList;
  * 
  * Handles mouse clicks on cards and on the board
  *
- * @author heshelhj. Created Apr 22, 2016.
+ * @author bishopcc, fenogljc, gneezyn, heshelhj
  */
 public class CardListener implements MouseListener {
 
@@ -23,17 +23,18 @@ public class CardListener implements MouseListener {
 
 	public CardListener(Player player, ArrayList<Shape> playerHandImages,
 			ArrayList<Shape> centerHandImages, Board board) {
-		if (player == null || board == null) throw new NullPointerException("Both a valid Board and Player object must be given.");
-		
+		if (player == null || board == null)
+			throw new NullPointerException(
+					"Both a valid Board and Player object must be given.");
+
 		this.playerHandImages = playerHandImages;
 		this.centerHandImages = centerHandImages;
 		this.player = player;
 		this.board = board;
-		// this.playerHand = player.getHand();
 	}
 
 	/**
-	 * Determines if a card has been clicked and takes the appropriate action
+	 * Determines if a card has been clicked and takes the appropriate action.
 	 */
 	public void mouseClicked(MouseEvent e) {
 		gameboard = (GameBoard) e.getSource();
@@ -79,9 +80,7 @@ public class CardListener implements MouseListener {
 	}
 
 	/**
-	 * 
-	 * updates the labels on the GUI and repaints
-	 *
+	 * Updates the labels on the GUI and repaints
 	 */
 	public void updateGUI() {
 		gameboard.runesLabel.setText("Runes: " + player.getRunes());

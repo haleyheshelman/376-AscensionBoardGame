@@ -1,14 +1,12 @@
-/**
- * 
- */
 package devops.hw1.core;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 /**
- * @author fenogljc
- *
+ * Handles the timing for ending a player's turn.
+ * 
+ * @author bishopcc, fenogljc, gneezyn, heshelhj
  */
 public class EndTurnListener implements ActionListener {
 

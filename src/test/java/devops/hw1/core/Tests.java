@@ -1,6 +1,3 @@
-/**
- * 
- */
 package devops.hw1.core;
 
 import static org.junit.Assert.assertEquals;
@@ -8,15 +5,14 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 
 import org.easymock.EasyMock;
 import org.junit.Test;
 
 /**
- * @author fenogljc, gneezyn, bishopcc, heshelhj
- * 
+ * @author bishopcc, fenogljc, gneezyn, heshelhj
+ * The main tests for the game logic.
  */
 public class Tests {
 

@@ -6,8 +6,6 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.GridLayout;
 import java.awt.Shape;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
@@ -17,7 +15,9 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 /**
- * The GUI for the Ascension Game Board.
+ * The GUI for the Ascension Game Board. Contains none of the game logic code.
+ * 
+ * @author bishopcc, fenogljc, gneezyn, heshelhj
  */
 @SuppressWarnings("serial")
 public class GameBoard extends JPanel {
