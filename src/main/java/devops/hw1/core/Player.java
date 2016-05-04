@@ -322,11 +322,11 @@ public class Player {
 	/**
 	 * This function takes a card and decides how to handle the card.
 	 */
-	public boolean doCard(ACard card) {
+	public boolean doCard(ACard card, Board board) {
+		System.out.println(card.getType());
 		if (card.getType().equals("Hero")) {
 			return this.buyCard(card);
-		} else {
-			return this.attackCard(card, board); // There is a problem here........
 		}
+		return this.attackCard(card, board); // There is a problem here........
 	}
 }
