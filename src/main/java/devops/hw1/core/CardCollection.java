@@ -71,6 +71,16 @@ public class CardCollection {
 	public static final String POWER = "power";
 	public static final String DRAW = "draw";
 	public static final String HONOR = "honor";
+	public static final String BANISH = "banish";
+	/**
+	 * Banish values
+	 * 1 = hand
+	 * 2 = discard
+	 * 3 = center
+	 * 4 = center or discard
+	 * 5 = hand or discard
+	 * 
+	 */
 
 	public CardCollection() throws IOException {
 		HashMap<String, Integer> map = new HashMap<String, Integer>();
@@ -183,7 +193,7 @@ public class CardCollection {
 				"cardImages/Heroes/Arbiter-of-the-Precipice.png"));
 
 		// TODO: Add more effects for this card. Banish one from hand
-
+		map8.put(BANISH, 1);
 		map8.put(DRAW, 2);
 		arbiterOfThePrecipice = ACard.makeCard(image,
 				"Arbiter of the Precipice", "Void", "Hero", 4, 1, 2, map8);
@@ -312,6 +322,7 @@ public class CardCollection {
 		image = ImageIO.read(new File("cardImages/Monsters/Mephit.png"));
 
 		// TODO: Add the effect, banish a card from the center row
+		map24.put(BANISH, 3);
 		map24.put(HONOR, 2);
 		mephit = ACard.makeCard(image, "Mephit", "Monster", "Monster", 3, 2, 3,
 				map24);
@@ -321,6 +332,7 @@ public class CardCollection {
 
 		// TODO: Add the effect, banish a card from the center and/or your
 		// discard
+		map25.put(BANISH, 4);
 		map25.put(HONOR, 4);
 		mistakeOfCreation = ACard.makeCard(image, "Mistake Of Creation",
 				"Monster", "Monster", 4, 4, 4, map25);
@@ -385,6 +397,7 @@ public class CardCollection {
 				"cardImages/Heroes/Seer-of-the-Forked-Path.png"));
 
 		// TODO: Add the effect, you may banish out of the center row.
+		map33.put(BANISH, 3);
 		map33.put(DRAW, 1);
 		seerOfTheForkedPath = ACard.makeCard(image, "Seer of the Forked Path",
 				"Enlightened", "Hero", 2, 1, 3, map33);
@@ -393,6 +406,7 @@ public class CardCollection {
 				"cardImages/Heroes/Shade-of-the-Black-Watch.png"));
 
 		// TODO: Add the effect, you may banish from hand or discard
+		map34.put(BANISH, 5);
 		map34.put(POWER, 2);
 		shadeOfTheBlackWatch = ACard.makeCard(image,
 				"Shade of the Black Watch", "Void", "Hero", 3, 1, 3, map34);
@@ -470,6 +484,7 @@ public class CardCollection {
 		image = ImageIO.read(new File("cardImages/Heroes/Void-Initiate.png"));
 
 		// TODO: Add the effect, you may banish one from the hand or discard
+		map44.put(BANISH, 5);
 		map44.put(RUNES, 1);
 		voidInitiate = ACard.makeCard(image, "Void Initiate", "Void", "Hero",
 				1, 1, 3, map44);

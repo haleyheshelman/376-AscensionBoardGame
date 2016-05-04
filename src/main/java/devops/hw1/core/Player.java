@@ -18,6 +18,7 @@ public class Player {
 	private ArrayList<ACard> discardPile;
 	private ArrayList<ACard> playerHand;
 	private LinkedList<ACard> playerDeck;
+	private int banishLocation = 0;
 
 	/**
 	 * The constructor creates a player with a hand of five cards and a deck of
@@ -133,11 +134,13 @@ public class Player {
 	 * @return true if the card can be bought by the player, false otherwise
 	 */
 	public boolean buyCard(ACard card) {
-		int cost = card.getCost();
-		if (card != null && cost <= this.runes) {
-			this.setRunes(this.runes - cost);
-			this.discard(card);
-			return true;
+		if (card != null){
+			int cost = card.getCost();
+			if (cost <= this.runes) {
+				this.setRunes(this.runes - cost);
+				this.discard(card);
+				return true;
+			}
 		}
 		return false;
 	}
@@ -151,13 +154,14 @@ public class Player {
 	 */
 
 	public boolean attackCard(ACard card, Board board) {
-		int strength = card.getStrength();
-		System.out.println(strength);
-		if (card != null && strength <= this.power) {
-			this.addPower(0 - strength);
-			this.applyEffects(card);
-			board.sendToVoid(card);
-			return true;
+		if (card != null){
+			int strength = card.getStrength();
+			if (strength <= this.power) {
+				this.addPower(0 - strength);
+				this.applyEffects(card);
+				board.sendToVoid(card);
+				return true;
+			}
 		}
 		return false;
 	}
@@ -299,7 +303,17 @@ public class Player {
 			case CardCollection.HONOR:
 				this.addHonor(map.get(k));
 				break;
+			case CardCollection.BANISH:
+				this.banishLocation += map.get(k);
+				break;
+				 
 			}
+		}
+	}
+	
+	public void banishCard(ACard toBanish, Board board){
+		if (toBanish != null && board != null){
+			board.sendToVoid(toBanish);
 		}
 	}
 
