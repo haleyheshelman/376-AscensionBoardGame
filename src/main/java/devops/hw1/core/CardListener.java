@@ -68,7 +68,7 @@ public class CardListener implements MouseListener {
 			if ((currentPos.getX() < rightBound && currentPos.getX() > leftBound)
 					&& (currentPos.getY() < centerLowerBound && currentPos
 							.getY() > centerUpperBound)) {
-				if (player.buyCard(board.getCenField()[j])) {
+				if (player.doCard(board.getCenField()[j], board)) {
 					board.centerDeckToField(j);
 				}
 				break;

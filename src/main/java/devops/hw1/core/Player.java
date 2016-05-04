@@ -152,6 +152,7 @@ public class Player {
 
 	public boolean attackCard(ACard card, Board board) {
 		int strength = card.getStrength();
+		System.out.println(strength);
 		if (card != null && strength <= this.power) {
 			this.addPower(0 - strength);
 			this.applyEffects(card);
@@ -329,7 +330,7 @@ public class Player {
 	 */
 	public boolean doCard(ACard card, Board board) {
 		String type = card.getType();
-		if (type.equals("Hero")) {
+		if (type.equals("Hero") || type.equals("Construct")) {
 			return this.buyCard(card);
 		}
 		return this.attackCard(card, board); // There is a problem here........
