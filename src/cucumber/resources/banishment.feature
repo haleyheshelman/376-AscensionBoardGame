@@ -7,7 +7,7 @@ Scenario: banish from center row
 	
 	Given we have a full board
 	And we have a player
-	And we have a card that can banish
+	And we have a card that can banish from the center
 	When we play that card
 	Then a card we select from the center is sent to the the void
 	And our card is discarded
@@ -17,7 +17,7 @@ Scenario: banish from hand
 	
 	Given we have a full board
 	And we have a player
-	And we have a card that can banish
+	And we have a card that can banish from the hand
 	When we play that card
 	Then a card we select from our hand is sent to the the void
 	And our card is discarded
