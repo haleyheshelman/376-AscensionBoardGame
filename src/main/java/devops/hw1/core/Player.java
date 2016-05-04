@@ -133,8 +133,9 @@ public class Player {
 	 * @return true if the card can be bought by the player, false otherwise
 	 */
 	public boolean buyCard(ACard card) {
-		if (card != null && card.getCost() <= this.runes) {
-			this.setRunes(this.runes - card.getCost());
+		int cost = card.getCost();
+		if (card != null && cost <= this.runes) {
+			this.setRunes(this.runes - cost);
 			this.discard(card);
 			return true;
 		}
@@ -150,8 +151,9 @@ public class Player {
 	 */
 
 	public boolean attackCard(ACard card, Board board) {
-		if (card != null && card.getStrength() <= this.power) {
-			this.addPower(0 - card.getStrength());
+		int strength = card.getStrength();
+		if (card != null && strength <= this.power) {
+			this.addPower(0 - strength);
 			this.applyEffects(card);
 			board.sendToVoid(card);
 			return true;
@@ -321,10 +323,13 @@ public class Player {
 	
 	/**
 	 * This function takes a card and decides how to handle the card.
+	 * @param card 
+	 * @param board 
+	 * @return 
 	 */
 	public boolean doCard(ACard card, Board board) {
-		System.out.println(card.getType());
-		if (card.getType().equals("Hero")) {
+		String type = card.getType();
+		if (type.equals("Hero")) {
 			return this.buyCard(card);
 		}
 		return this.attackCard(card, board); // There is a problem here........
