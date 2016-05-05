@@ -46,21 +46,34 @@ public class CardListener implements MouseListener {
 		if (player.getHandSize() != 0) {
 			int factor = (1220 - 600) / player.getHandSize();
 			
+			int banishType = player.getBanishLocation();
 			// if banish effect is taking place
-			if (player.getBanishLocation() > 0) {
-				
-			} else {	// should never be less than zero since it is initialized at zero
-				for (int i = 0; i < player.getHandSize(); i++) {
-					int leftBound = (factor * i) + 300;
-					int rightBound = (factor * i) + 390;
-					if ((currentPos.getX() < rightBound && currentPos.getX() > leftBound)
-							&& (currentPos.getY() < lowerBound && currentPos.getY() > upperBound)) {
-						player.playCard(player.getHand().get(i));
-						break;
-					}
-					
+			if (banishType > 0) {	//action depends on which banish effect it is
+				switch (banishType) {
+					case 1: //do something		//1 = banish from hand
+							break;
+					case 2: //do something		//2 = banish from discard
+							break;
+					case 3: //do something		//3 = banish from center field
+							break;
+					case 4: //do something		//4 = banish from center or discard
+							break;
+					case 5: //do somethign		//5 = banish from hand or discard
+							break;
 				}
+			}	// should never be less than zero since it is initialized at zero
+			
+			for (int i = 0; i < player.getHandSize(); i++) {
+				int leftBound = (factor * i) + 300;
+				int rightBound = (factor * i) + 390;
+				if ((currentPos.getX() < rightBound && currentPos.getX() > leftBound)
+						&& (currentPos.getY() < lowerBound && currentPos.getY() > upperBound)) {
+					player.playCard(player.getHand().get(i));
+					break;
+				}
+				
 			}
+			
 
 		}
 
