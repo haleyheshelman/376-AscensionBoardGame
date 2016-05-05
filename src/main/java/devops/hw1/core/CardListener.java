@@ -59,7 +59,7 @@ public class CardListener implements MouseListener {
 		}
 
 		int centerUpperBound = 400; // board height - 400
-		int centerLowerBound = 530; // upperbound + card height
+		int centerLowerBound = 530; // upper-bound + card height
 
 		// if the card click is in the center row
 		for (int j = 0; j < 6; j++) {

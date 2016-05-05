@@ -39,15 +39,17 @@ public class GameBoard extends JPanel {
 	public JLabel deckLabel = new JLabel("Left in Deck: 5");
 	public JLabel discard_pileLabel = new JLabel("Discard: 0");
 	public JButton endTurnButton = new JButton("End Turn");
+	//TODO: might want to add a start turn button so that player1 doesn't see cards in player2's hand
 
 	// tracking positions of cards based on rectangle objects drawn beneath them
 	public ArrayList<Shape> centerList;
 	public ArrayList<Shape> playerList;
-	public ArrayList<Shape> cpuList;
+	public ArrayList<Shape> opponentList;
+	public ArrayList<Shape> standardList;
 
 	public Player player;
 	public Board board;
-	public Player cpu;
+	public Player opponent;
 
 	// sets bounds for the player's hand
 	public int playerHandLeft = 300;
@@ -55,11 +57,19 @@ public class GameBoard extends JPanel {
 	public int playerHandY = HEIGHT - 200;
 	
 	// sets bounds for the cpu's hand (same as player's hand, except for the height)
-	public int cpuHandY = 50;
+	public int oppHandY = 50;
 
 	// sets positions for the center cards
 	public int cardY = HEIGHT - 500;
 	public int card1X = 300;
+	
+	// sets positions (x & y) for the Void
+	public int voidX = WIDTH - 150;
+	public int voidY = HEIGHT - 500;
+	
+	// sets positions for the standard cards (Mystic, Heavy Infantry, & Cultist)
+	public int standardY = HEIGHT - 300;
+	public int standard1X = 150;
 
 	/**
 	 * The default constructor for the Game Board.
@@ -70,7 +80,8 @@ public class GameBoard extends JPanel {
 
 		this.centerList = new ArrayList<Shape>();
 		this.playerList = new ArrayList<Shape>();
-		this.cpuList = new ArrayList<Shape>();
+		this.opponentList = new ArrayList<Shape>();
+		this.standardList = new ArrayList<Shape>();
 
 		// Setting the fonts of the labels
 		this.runesLabel.setFont(LABEL_FONT);
@@ -95,6 +106,13 @@ public class GameBoard extends JPanel {
 		this.add(labels, BorderLayout.SOUTH);
 	}
 
+	/**
+	 * The main constructor to be used. Takes a Player and 
+	 * Board object as it's parameters.
+	 * 
+	 * @param player the main player (must be Player Object)
+	 * @param board the board that the game takes place on
+	 */
 	public GameBoard(Player player, Board board) {
 		// call the default constructor first
 		this();
@@ -102,13 +120,13 @@ public class GameBoard extends JPanel {
 		// then do additional stuff
 		this.player = player;
 		this.board = board;
-		this.cpu = Player.makePlayer();
+		this.opponent = Player.makePlayer();
 		this.endTurnButton.addActionListener(new EndTurnListener(this.player,
 				this));
 	}
 
 	/**
-	 * Paints the cards onto the game baord
+	 * Paints the cards onto the game board.
 	 */
 	@Override
 	public void paint(Graphics g) {
@@ -122,7 +140,6 @@ public class GameBoard extends JPanel {
 			for (int i = 0; i < numCards; i++) {
 				BufferedImage card = player.getHand().get(i).getImage();
 				g2.drawImage(card, 300 + (factor * i), playerHandY, null);
-
 			}
 		}
 		
@@ -137,21 +154,37 @@ public class GameBoard extends JPanel {
 		if (player.getDiscardSize() != 0) {
 			g2.drawImage(
 					player.getDiscardPile().get(player.getDiscardSize() - 1)
-							.getImage(), 20, 600, null);
+							.getImage(), 1100, 650, null);
 		}
 		
-		int cpuCards = cpu.getHandSize();
-		if (cpuCards != 0) {
-			int factor = (playerHandRight - playerHandLeft) / cpuCards;
-			for (int i = 0; i < cpuCards; i++) {
+		// painting the back (image) of the opponent's hand
+		int opponentCards = opponent.getHandSize();
+		if (opponentCards != 0) {
+			int factor = (playerHandRight - playerHandLeft) / opponentCards;
+			for (int i = 0; i < opponentCards; i++) {
 				try {
 					BufferedImage card = ImageIO.read(new File("cardImages/back_of_card.png"));
-					g2.drawImage(card, 300 + (factor * i), cpuHandY, null);
+					g2.drawImage(card, 300 + (factor * i), oppHandY, null);
 				} catch (IOException e) {
 					System.out.println("The image was not found at: " + "cardImages/back_of_card.png");
 				}
 			}
 		}
+		
+		// painting banished card's onto the Void
+//		JLabel voidLabel = new JLabel("THE VOID");
+		g2.setFont(LABEL_FONT);
+		g2.drawString("THE VOID", voidX, voidY - 9);
+		if (board.getVoid().size() != 0) {
+			ArrayList<ACard> theVoid = board.getVoid();
+			g2.drawImage(theVoid.get(theVoid.size() - 1).getImage(), voidX, voidY, null);
+		}
+		
+		//TODO: setting up the standard cards (only images so far)
+//		for (int i = 0; i < 3; i++) {
+//			BufferedImage card = board.getStandardField()[i].getImage();
+//			g2.drawImage(card, card1X + (50 * i), standardY, null);
+//		}
 
 	}
 
