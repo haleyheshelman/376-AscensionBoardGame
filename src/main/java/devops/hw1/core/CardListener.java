@@ -58,7 +58,7 @@ public class CardListener implements MouseListener {
 							break;
 					case 4: //do something		//4 = banish from center or discard
 							break;
-					case 5: //do somethign		//5 = banish from hand or discard
+					case 5: //do something		//5 = banish from hand or discard
 							break;
 				}
 			}	// should never be less than zero since it is initialized at zero
