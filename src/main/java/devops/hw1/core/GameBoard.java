@@ -171,10 +171,9 @@ public class GameBoard extends JPanel {
 			}
 		}
 		
-		// painting banished card's onto the Void
-//		JLabel voidLabel = new JLabel("THE VOID");
 		g2.setFont(LABEL_FONT);
-		g2.drawString("THE VOID", voidX, voidY - 9);
+		g2.drawString("THE VOID", voidX, voidY - 9);	// the label for the Void
+		// painting banished cards onto the Void
 		if (board.getVoid().size() != 0) {
 			ArrayList<ACard> theVoid = board.getVoid();
 			g2.drawImage(theVoid.get(theVoid.size() - 1).getImage(), voidX, voidY, null);
