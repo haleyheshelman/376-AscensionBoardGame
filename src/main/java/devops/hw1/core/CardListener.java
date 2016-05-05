@@ -45,17 +45,23 @@ public class CardListener implements MouseListener {
 		// if the card clicked is in the player hand
 		if (player.getHandSize() != 0) {
 			int factor = (1220 - 600) / player.getHandSize();
-
-			for (int i = 0; i < player.getHandSize(); i++) {
-				int leftBound = (factor * i) + 300;
-				int rightBound = (factor * i) + 390;
-				if ((currentPos.getX() < rightBound && currentPos.getX() > leftBound)
-						&& (currentPos.getY() < lowerBound && currentPos.getY() > upperBound)) {
-					player.playCard(player.getHand().get(i));
-					break;
+			
+			// if banish effect is taking place
+			if (player.getBanishLocation() > 0) {
+				
+			} else {	// should never be less than zero since it is initialized at zero
+				for (int i = 0; i < player.getHandSize(); i++) {
+					int leftBound = (factor * i) + 300;
+					int rightBound = (factor * i) + 390;
+					if ((currentPos.getX() < rightBound && currentPos.getX() > leftBound)
+							&& (currentPos.getY() < lowerBound && currentPos.getY() > upperBound)) {
+						player.playCard(player.getHand().get(i));
+						break;
+					}
+					
 				}
-
 			}
+
 		}
 
 		int centerUpperBound = 400; // board height - 400

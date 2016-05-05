@@ -349,4 +349,8 @@ public class Player {
 		}
 		return this.attackCard(card, board); // There is a problem here........
 	}
+	
+	public int getBanishLocation() {
+		return this.banishLocation;
+	}
 }
