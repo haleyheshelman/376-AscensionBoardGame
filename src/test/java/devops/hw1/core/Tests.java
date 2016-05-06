@@ -5,7 +5,12 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.util.HashMap;
+
+import javax.imageio.ImageIO;
 
 import org.easymock.EasyMock;
 import org.junit.Test;
@@ -952,4 +957,44 @@ public class Tests {
 		EasyMock.verify(cardHero, cardMon, mockBoard);
 	}
 	
+	@Test
+	public void testACardCoverage() throws IOException {
+		ACard card = ACard.makeCard(5);
+		card.setFaction("Mechana");
+		assertEquals("Mechana", card.getFaction());
+		
+		card.setName("Fake");
+		assertEquals("Fake", card.getName());
+		
+		card.setHonor(3);
+		assertEquals(3, card.getHonor());
+		
+		card.setRarity(2);
+		assertEquals(2, card.getRarity());
+		
+		BufferedImage image = null;
+		image = ImageIO.read(new File("cardImages/Standard/Militia1.png"));
+		card.setImage(image);
+		assertEquals(image, card.getImage());
+		
+		assertEquals(5, card.getCost());
+		card.setCost(3);
+		assertEquals(3, card.getCost());
+		
+		HashMap<String, Integer> map = new HashMap<String, Integer>();
+		map.put("draw", 1);
+		card.setEffects(map);
+		assertEquals(1, (int) card.getEffects().get("draw"));
+	}
+	
+	@Test
+	public void testPlayerTermCoverage() {
+		Board board = new Board();
+		Player p = Player.makePlayer();
+		ACard conCard = CardCollection.watchmakersAltar;
+		p.setRunes(5);
+		p.doCard(conCard, board);
+		assertTrue(p.getDiscardPile().contains(conCard));
+	}
+
 }
