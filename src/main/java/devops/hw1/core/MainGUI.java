@@ -28,6 +28,7 @@ public class MainGUI {
 				ascension.playerList, ascension.centerList, board));
 
 		frame.add(ascension, BorderLayout.CENTER);
+		
 
 		ascension.repaint();
 
