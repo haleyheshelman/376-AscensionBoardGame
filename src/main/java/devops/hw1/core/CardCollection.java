@@ -422,7 +422,7 @@ public class CardCollection {
 
 		// TODO: Add the effect, once per turn gain a rune and the first time
 		// you play a lifebound gain one honor
-
+		map36.put(RUNES, 1);
 		snapdragon = ACard.makeCard(image, "Snapdragon", "Lifebound",
 				"Construct", 5, 2, 2, map36);
 

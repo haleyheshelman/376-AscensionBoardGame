@@ -64,4 +64,30 @@ public class Dummy {
 	public void a_card_we_select_from_our_hand_is_sent_to_the_the_void() throws Throwable {
 	    Assert.assertEquals(board.getVoid().size(), 2);
 	}
+	
+	@Given("^the player has a Construct in hand$")	//just added
+	public void the_player_has_a_Construct_in_hand() throws Throwable {
+	    bcard = CardCollection.snapdragon;
+		player.addCardToHand(bcard);
+	}
+
+	@When("^the player plays the Construct$")
+	public void the_player_plays_the_Construct() throws Throwable {
+	    player.playCard(bcard);
+	}
+
+	@Then("^the Construct leaves the player's hand$")
+	public void the_Construct_leaves_the_player_s_hand() throws Throwable {
+	    Assert.assertFalse(player.getHand().contains(bcard));
+	}
+
+	@Then("^the Construct stays in play$")
+	public void the_Construct_stays_in_play() throws Throwable {
+	    Assert.assertTrue(player.getConstructs().contains(bcard));
+	}
+
+	@Then("^the Construct is not in the discard$")
+	public void the_Construct_is_not_in_the_discard() throws Throwable {
+	    Assert.assertFalse(player.getDiscardPile().contains(bcard));
+	}
 }
