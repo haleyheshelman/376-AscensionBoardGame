@@ -19,6 +19,7 @@ public class Player {
 	private ArrayList<ACard> playerHand;
 	private LinkedList<ACard> playerDeck;
 	private int banishLocation = 0;
+	private ArrayList<ACard> constructs;
 
 	/**
 	 * The constructor creates a player with a hand of five cards and a deck of
@@ -33,6 +34,7 @@ public class Player {
 		this.discardPile = new ArrayList<ACard>();
 		this.playerHand = new ArrayList<ACard>();
 		this.playerDeck = new LinkedList<ACard>();
+		this.constructs = new ArrayList<ACard>();
 		this.initialiseDeck();
 		Collections.shuffle(this.playerDeck);
 		this.drawCard(5);
@@ -234,8 +236,16 @@ public class Player {
 			return;
 		}
 		this.playerHand.remove(card);
+		if (card.getType().equals("Construct")) {
+			this.addConstruct(card);
+			return;
+		}
 		this.applyEffects(card);
 		this.discard(card);
+	}
+	
+	public void addConstruct(ACard card) {
+		this.constructs.add(card);
 	}
 
 	/**
@@ -352,5 +362,9 @@ public class Player {
 	
 	public int getBanishLocation() {
 		return this.banishLocation;
+	}
+
+	public ArrayList<ACard> getConstructs() {
+		return this.constructs;
 	}
 }
