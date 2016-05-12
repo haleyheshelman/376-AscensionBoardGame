@@ -363,7 +363,22 @@ public class Player {
 		return this.banishLocation;
 	}
 
+	/**
+	 * This method returns the ArrayList (of type ACard) which contains all of the Construct 
+	 * cards that the player currently has in play.
+	 * @return constructs, an array list containing all of the Constructs played by the player
+	 */
 	public ArrayList<ACard> getConstructs() {
 		return this.constructs;
+	}
+
+	/**
+	 * This method "discards" the Construct by first removing it from the player's 
+	 * list of constructs in play, and then calling the discard method on the card.
+	 * @param card, the Construct card that is being "destroyed"
+	 */
+	public void discardConstruct(ACard card) {
+		this.constructs.remove(card);
+		this.discard(card);
 	}
 }
