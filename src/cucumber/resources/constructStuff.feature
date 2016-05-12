@@ -23,3 +23,13 @@ Scenario: activating the effect of a Construct in play
 	Then the corresponding effect takes place
 	And the Construct's effect cannot be activated again this turn
 	
+@Constructing
+Scenario: moving a Construct from play to the discard pile
+	
+	Given we have a full board
+	And we have a player
+	And the player has a Construct in play
+	When a card's effect destroys a Construct
+	Then the Construct is in the player's discard pile
+	And the Construct is no longer in play
+	

@@ -118,4 +118,20 @@ public class Dummy {
 	    player.getConstructs().get(0).setTimesActivated(1);
 	}
 	
+	@When("^a card's effect destroys a Construct$")		//for "destroying" a construct
+	public void a_card_s_effect_destroys_a_Construct() throws Throwable {
+	    ACard card = CardCollection.corrosiveWidow;
+	    player.doCard(card, board);
+	    player.discardConstruct(bcard);
+	}
+
+	@Then("^the Construct is in the player's discard pile$")
+	public void the_Construct_is_in_the_player_s_discard_pile() throws Throwable {
+	    Assert.assertTrue(player.getDiscardPile().contains(bcard));
+	}
+
+	@Then("^the Construct is no longer in play$")
+	public void the_Construct_is_no_longer_in_play() throws Throwable {
+	    Assert.assertFalse(player.getConstructs().contains(bcard));
+	}	
 }
