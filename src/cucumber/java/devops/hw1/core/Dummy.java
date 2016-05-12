@@ -47,7 +47,8 @@ public class Dummy {
 
 	@When("^we play that card$")
 	public void we_play_that_card() throws Throwable {
-	    player.doCard(bcard, board);
+		player.doCard(bcard, board);
+//		player.playCard(bcard);
 	}
 
 	@Then("^a card we select from the center is sent to the the void$")
@@ -62,7 +63,7 @@ public class Dummy {
 
 	@Then("^a card we select from our hand is sent to the the void$")
 	public void a_card_we_select_from_our_hand_is_sent_to_the_the_void() throws Throwable {
-	    Assert.assertEquals(board.getVoid().size(), 2);
+	    Assert.assertEquals(2, board.getVoid().size());
 	}
 	
 	@Given("^the player has a Construct in hand$")	//Start of the Playing a Construct (from the hand) Scenario
