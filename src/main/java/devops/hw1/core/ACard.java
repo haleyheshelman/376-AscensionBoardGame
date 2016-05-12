@@ -19,6 +19,7 @@ public abstract class ACard {
 	protected int honor;
 	protected int rarity;
 	protected BufferedImage image;
+	protected int timesActivated = 0;
 
 	/**
 	 * This returns a card with zero cost and no other special attributes.
@@ -239,6 +240,19 @@ public abstract class ACard {
 	 */
 	public String getType() {
 		return this.type;
+	}
+
+	/**
+	 * Gets the number of time's the card's effect has been activated this turn.
+	 * Mostly for Constructs.
+	 * @return timesActivated, the number of times the card's effect has been activated this turn
+	 */
+	public int getTimesActivated() {	//used for Constructs, so that their effects are only activated once per turn
+		return timesActivated;
+	}
+
+	public void setTimesActivated(int activations) {
+		timesActivated = activations;
 	}
 
 }

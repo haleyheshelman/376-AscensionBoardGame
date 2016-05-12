@@ -99,7 +99,7 @@ public class Dummy {
 
 	@Given("^the Construct's effect has not yet been activated$")
 	public void the_Construct_s_effect_has_not_yet_been_activated() throws Throwable {
-	    Assert.assertEquals(0, player.getConstructs().get(0).timesActivated());
+	    Assert.assertEquals(0, player.getConstructs().get(0).getTimesActivated());
 	}
 
 	@When("^the player activates the Construct's effect$")
@@ -114,6 +114,6 @@ public class Dummy {
 
 	@Then("^the Construct's effect cannot be activated again this turn$")
 	public void the_Construct_s_effect_cannot_be_activated_again_this_turn() throws Throwable {
-	    player.getConstructs().get(0).activated();
+	    player.getConstructs().get(0).setTimesActivated(1);
 	}
 }
