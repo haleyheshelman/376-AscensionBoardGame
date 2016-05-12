@@ -23,4 +23,15 @@ Scenario: activating the effect of a Construct in play
 	Then the corresponding effect takes place
 	And the Construct's effect cannot be activated again this turn
 	
+@Constructing
+Scenario: activating the Construct's effect when certain conditions are met
+
+	Given we have a full board
+	And we have a player
+	And the player has a Construct in play
+	And the Construct's effect has not yet been activated
+	When the Construct's condition(s) are met
+	Then the corresponding effect takes place
+	And the Construct's effect cannot be activated again this turn
+	
 	
