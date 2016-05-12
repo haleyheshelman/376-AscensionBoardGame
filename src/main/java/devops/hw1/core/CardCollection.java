@@ -242,7 +242,7 @@ public class CardCollection {
 		image = ImageIO
 				.read(new File("cardImages/Monsters/Corrosive-Widow.png"));
 
-		// TODO: Add the effect, choose a player, they destroy one construct
+		// TODO: Add the effect, choose a player, then destroy (destroy=discard) one construct
 		map14.put(HONOR, 3);
 		corrosiveWidow = ACard.makeCard(image, "Corrosive Widow", "Monster",
 				"Monster", 4, 3, 4, map14);
