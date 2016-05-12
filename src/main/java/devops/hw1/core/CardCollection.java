@@ -339,8 +339,7 @@ public class CardCollection {
 
 		image = ImageIO.read(new File("cardImages/Constructs/Muramasa.png"));
 
-		// TODO: Add the effect, once per turn gain 3 power
-
+		map26.put(POWER, 3);
 		muramasa = ACard.makeCard(image, "Muramasa", "Void", "Construct", 7, 4,
 				1, map26);
 

@@ -65,7 +65,7 @@ public class Dummy {
 	    Assert.assertEquals(board.getVoid().size(), 2);
 	}
 	
-	@Given("^the player has a Construct in hand$")	//just added
+	@Given("^the player has a Construct in hand$")	//Start of the Playing a Construct (from the hand) Scenario
 	public void the_player_has_a_Construct_in_hand() throws Throwable {
 	    bcard = CardCollection.snapdragon;
 		player.addCardToHand(bcard);
@@ -89,5 +89,31 @@ public class Dummy {
 	@Then("^the Construct is not in the discard$")
 	public void the_Construct_is_not_in_the_discard() throws Throwable {
 	    Assert.assertFalse(player.getDiscardPile().contains(bcard));
+	}
+	
+	@Given("^the player has a Construct in play$")	//Start of the Activating a Construct's Effect Scenario
+	public void the_player_has_a_Construct_in_play() throws Throwable {
+		bcard = CardCollection.muramasa;	//gain 3 power every turn
+		player.addConstruct(bcard);
+	}
+
+	@Given("^the Construct's effect has not yet been activated$")
+	public void the_Construct_s_effect_has_not_yet_been_activated() throws Throwable {
+	    Assert.assertEquals(0, player.getConstructs().get(0).timesActivated());
+	}
+
+	@When("^the player activates the Construct's effect$")
+	public void the_player_activates_the_Construct_s_effect() throws Throwable {
+		player.applyEffects(bcard);
+	}
+
+	@Then("^the corresponding effect takes place$")
+	public void the_corresponding_effect_takes_place() throws Throwable {
+	    Assert.assertEquals(3, player.getPower());
+	}
+
+	@Then("^the Construct's effect cannot be activated again this turn$")
+	public void the_Construct_s_effect_cannot_be_activated_again_this_turn() throws Throwable {
+	    player.getConstructs().get(0).activated();
 	}
 }
