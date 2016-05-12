@@ -117,11 +117,4 @@ public class Dummy {
 	    player.getConstructs().get(0).setTimesActivated(1);
 	}
 	
-	@When("^the Construct's condition\\(s\\) are met$")		//For Activating a Construct's effect based on certain conditions
-	public void the_Construct_s_condition_s_are_met() throws Throwable {
-	    bcard = CardCollection.runicLycanthrope;
-	    ACard cardToPlay = CardCollection.lifeboundInitiate;
-		String condition = bcard.getCondition();
-		Assert.assertEquals("Lifebound played".toLowerCase(), condition.toLowerCase());
-	}
 }
