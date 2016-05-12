@@ -47,7 +47,8 @@ public class Dummy {
 
 	@When("^we play that card$")
 	public void we_play_that_card() throws Throwable {
-	    player.doCard(bcard, board);
+		player.doCard(bcard, board);
+//		player.playCard(bcard);
 	}
 
 	@Then("^a card we select from the center is sent to the the void$")
@@ -62,7 +63,7 @@ public class Dummy {
 
 	@Then("^a card we select from our hand is sent to the the void$")
 	public void a_card_we_select_from_our_hand_is_sent_to_the_the_void() throws Throwable {
-	    Assert.assertEquals(board.getVoid().size(), 2);
+	    Assert.assertEquals(2, board.getVoid().size());
 	}
 	
 	@Given("^the player has a Construct in hand$")	//Start of the Playing a Construct (from the hand) Scenario
@@ -116,4 +117,21 @@ public class Dummy {
 	public void the_Construct_s_effect_cannot_be_activated_again_this_turn() throws Throwable {
 	    player.getConstructs().get(0).setTimesActivated(1);
 	}
+	
+	@When("^a card's effect destroys a Construct$")		//for "destroying" a construct
+	public void a_card_s_effect_destroys_a_Construct() throws Throwable {
+	    ACard card = CardCollection.corrosiveWidow;
+	    player.doCard(card, board);
+	    player.discardConstruct(bcard);
+	}
+
+	@Then("^the Construct is in the player's discard pile$")
+	public void the_Construct_is_in_the_player_s_discard_pile() throws Throwable {
+	    Assert.assertTrue(player.getDiscardPile().contains(bcard));
+	}
+
+	@Then("^the Construct is no longer in play$")
+	public void the_Construct_is_no_longer_in_play() throws Throwable {
+	    Assert.assertFalse(player.getConstructs().contains(bcard));
+	}	
 }
