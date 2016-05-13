@@ -328,7 +328,7 @@ public class Tests {
 	@Test
 	public void testPlayCardAddingRunes() {
 		Player player = Player.makePlayer();
-		ACard card = HeroCard.makeCard();
+		ACard card = ACard.makeCard();
 		card.setEffect("runes", 3);
 		player.addCardToDeck(card);
 		player.drawCard();

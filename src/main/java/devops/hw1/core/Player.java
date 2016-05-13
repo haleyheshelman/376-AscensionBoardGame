@@ -236,7 +236,7 @@ public class Player {
 			return;
 		}
 		this.playerHand.remove(card);
-		if (card.getType().equals("Construct")) {
+		if (card.getType() != null && card.getType().equals("Construct")) {
 			this.addConstruct(card);
 			return;
 		}
