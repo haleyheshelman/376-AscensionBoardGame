@@ -51,7 +51,6 @@ public class Board {
 				this.cenDeck.add(CardCollection.cards[i]);
 			}
 		}
-		Collections.shuffle(this.cenDeck);
 		for (int m = 0; m < 6; m++) {
 			centerDeckToField(m);
 		}

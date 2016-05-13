@@ -531,7 +531,7 @@ public class CardCollection {
 		yggdrasilStaff = ACard.makeCard(image, "Yggdrasil Staff", "Lifebound",
 				"Construct", 4, 2, 2, map49);
 
-		cards = new ACard[] { arhaInitiate, demonSlayer, wolfShaman,
+		cards = new ACard[] { yggdrasilStaff, watchmakersAltar, arhaInitiate, demonSlayer, wolfShaman,
 				flyTrapWitch, asceticOfTheLidlessEye, emriOneWithTheVoid,
 				arbiterOfThePrecipice, arhaTemplar, avatarGolem,
 				avatarOfTheFallen, burrowerMarkII, cetraWeaverOfStars,
@@ -544,7 +544,7 @@ public class CardCollection {
 				shadowStar, snapdragon, spikeVixen, tabletOfTimesDawn,
 				templeLibrarian, theAllSeeingEye, theGrandDesign,
 				tormentedSoul, twofoldAskara, voidInitiate, voidthirster,
-				watchmakersAltar, windTyrant, xeronDukeOfLies, yggdrasilStaff };
+				windTyrant, xeronDukeOfLies };
 	}
 
 }

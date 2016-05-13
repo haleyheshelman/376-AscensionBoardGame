@@ -171,6 +171,14 @@ public class GameBoard extends JPanel {
 			}
 		}
 		
+		int numConstructs = player.getConstructs().size();
+		if (numConstructs != 0) {
+			int factor = (playerHandRight - playerHandLeft) / numConstructs;
+			for (int i = 0; i < numConstructs; i++) {
+				g2.drawImage(player.getConstructs().get(i).getImage(), 300 + (factor*i), 550, null);
+			}
+		}
+		
 		g2.setFont(LABEL_FONT);
 		g2.drawString("THE VOID", voidX, voidY - 9);	// the label for the Void
 		// painting banished cards onto the Void

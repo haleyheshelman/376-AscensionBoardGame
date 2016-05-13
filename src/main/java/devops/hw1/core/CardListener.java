@@ -39,6 +39,7 @@ public class CardListener implements MouseListener {
 	 */
 	public void mouseClicked(MouseEvent e) {
 		gameboard = (GameBoard) e.getSource();
+		System.out.println(e.getX() + " " + e.getY());
 		Point currentPos = gameboard.getMousePosition();
 		int upperBound = 695;
 		int lowerBound = 850;
