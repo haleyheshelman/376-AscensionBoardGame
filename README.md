@@ -53,3 +53,5 @@ Netta - Software Engineer in Test: Added java docs to all of the tests (except P
 Milestone: Banishing and Complex Effects
 Netta - Test Engineer: Added image of opponents cards (can only see the back of the cards, since you aren't supposed to know what cards your opponent has).
 
+Milestone: Constructs
+Charlie - Software Engineer: Assissted Netta in implementing constructs through Behavior Driven Development
