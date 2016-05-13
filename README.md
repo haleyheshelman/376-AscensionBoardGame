@@ -19,7 +19,8 @@ To build the project in Eclipse, right-click on the project -> Run As -> Gradle 
 
 Netta - Test Engineer: Added images to the GUI and introduced new constructor (in addition to the default one). Also got counters and CardListener to work properly.
 
-Haley - Along with Chase refactored the GUI.  It now works with the back end (game logic)
+Haley - Used bottom up integration testing on the player class with the ACard class
+
 Chase - I produced the test code that checks input on various methods in the player and card class. I added Mocking tests so that we can test certain methods using UnitTesting. Also, helped with some of the ideas on how to implement some of the logic.
 
 
