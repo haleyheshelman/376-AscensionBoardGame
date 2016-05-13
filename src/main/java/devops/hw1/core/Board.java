@@ -74,6 +74,16 @@ public class Board {
 		if (card == null) {
 			return;
 		}
+		int index = -1;
+		for (int i = 0; i < 6;i ++) {
+			if (card.equals(this.cenField[i])) {
+				index = i;
+				break;
+			}
+		}
+		if (index >=0) {
+			centerDeckToField(index);
+		}
 		this.theVoid.add(card);
 	}
 

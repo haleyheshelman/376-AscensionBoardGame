@@ -531,18 +531,18 @@ public class CardCollection {
 		yggdrasilStaff = ACard.makeCard(image, "Yggdrasil Staff", "Lifebound",
 				"Construct", 4, 2, 2, map49);
 
-		cards = new ACard[] { yggdrasilStaff, watchmakersAltar, arhaInitiate, demonSlayer, wolfShaman,
+		cards = new ACard[] { yggdrasilStaff, seerOfTheForkedPath, arbiterOfThePrecipice, arhaInitiate, demonSlayer, wolfShaman,
 				flyTrapWitch, asceticOfTheLidlessEye, emriOneWithTheVoid,
-				arbiterOfThePrecipice, arhaTemplar, avatarGolem,
+				arhaTemplar, avatarGolem,
 				avatarOfTheFallen, burrowerMarkII, cetraWeaverOfStars,
-				corrosiveWidow, druidsOfTheStoneCircle, earthTyrant,
+				corrosiveWidow, druidsOfTheStoneCircle,  templeLibrarian, earthTyrant,
 				hedronCannon, hedronLinkDevice, korTheFerromancer, landtalker,
-				lifeboundInitiate, masterDhartha, mechanaInitiate, mephit,
+				lifeboundInitiate, watchmakersAltar, masterDhartha, mechanaInitiate, mephit,
 				mistakeOfCreation, muramasa, oziahThePeerless, reactorMonk,
 				rocketCourierX99, runicLycanthrope, samaelsTrickster,
-				seaTyrant, seerOfTheForkedPath, shadeOfTheBlackWatch,
+				seaTyrant,  shadeOfTheBlackWatch,
 				shadowStar, snapdragon, spikeVixen, tabletOfTimesDawn,
-				templeLibrarian, theAllSeeingEye, theGrandDesign,
+				 theAllSeeingEye, theGrandDesign,
 				tormentedSoul, twofoldAskara, voidInitiate, voidthirster,
 				windTyrant, xeronDukeOfLies };
 	}

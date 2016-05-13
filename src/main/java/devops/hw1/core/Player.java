@@ -323,6 +323,10 @@ public class Player {
 	public void banishCard(ACard toBanish, Board board){
 		if (toBanish != null && board != null){
 			board.sendToVoid(toBanish);
+			if (this.banishLocation == 1 || this.banishLocation == 5) {
+				this.playerHand.remove(toBanish);
+			}
+			this.banishLocation = 0;
 		}
 	}
 
