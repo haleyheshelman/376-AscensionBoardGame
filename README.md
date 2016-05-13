@@ -55,3 +55,4 @@ Netta - Test Engineer: Added image of opponents cards (can only see the back of 
 
 Milestone: Constructs
 Charlie - Software Engineer: Assissted Netta in implementing constructs through Behavior Driven Development
+Netta - Software Engineer: Implemented Constructs through Behavior Driven Development (use of cucumber).
