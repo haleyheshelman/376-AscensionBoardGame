@@ -62,6 +62,9 @@ public class Player {
 		this.setRunes(0);
 		this.addPower(0 - this.power);
 		this.drawCard(5);
+		for (ACard construct : this.constructs){
+			construct.setTimesActivated(0);
+		}
 	}
 
 	/**
@@ -302,6 +305,13 @@ public class Player {
 	public boolean applyEffects(ACard card) {
 		boolean result = true;
 		HashMap<String, Integer> map = card.getEffects();
+		if (card.getType() == "Construct"){
+			if (card.getTimesActivated() == 0)
+				card.setTimesActivated(1);
+			else{
+				return false;
+			}
+		}
 		if (map.isEmpty()){
 			return result;
 		}

@@ -63,4 +63,21 @@ public class MutationTests {
 		assertFalse(p.doCard(monster, b));	
 		
 	}
+	
+	@Test
+	public void cardMutation(){
+		ACard card = ACard.makeCard();
+		Player p = Player.makePlayer();
+		Board b = new Board();
+		
+		card = CardCollection.burrowerMarkII;
+		p.addConstruct(card);
+		
+		assertEquals(card.getTimesActivated(), 0);
+		p.applyEffects(card);
+		assertEquals(card.getTimesActivated(), 1);
+		p.endTurn();
+		assertEquals(card.getTimesActivated(), 0);
+		
+	}
 }
