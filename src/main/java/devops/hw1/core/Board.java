@@ -81,7 +81,7 @@ public class Board {
 				break;
 			}
 		}
-		if (index >=0) {
+		if (index >= 0) {
 			centerDeckToField(index);
 		}
 		this.theVoid.add(card);
