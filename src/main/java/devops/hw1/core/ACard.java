@@ -244,7 +244,7 @@ public abstract class ACard {
 
 	/**
 	 * Gets the number of time's the card's effect has been activated this turn.
-	 * Mostly for Constructs.
+	 * Entirely for Constructs.
 	 * @return timesActivated, the number of times the card's effect has been activated this turn
 	 */
 	public int getTimesActivated() {	//used for Constructs, so that their effects are only activated once per turn

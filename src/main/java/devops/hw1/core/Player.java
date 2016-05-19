@@ -44,10 +44,10 @@ public class Player {
 	 * Initializes the player's deck (adds cards).
 	 */
 	public void initialiseDeck() {
-		for (int i = 0; i < 8; i++) {
+		for (int i = 0; 0 <= i && i < 8; i++) {
 			this.addCardToDeck(CardCollection.apprentice);
 		}
-		for (int j = 0; j < 2; j++) {
+		for (int j = 0; 0 <= j && j < 2; j++) {
 			this.addCardToDeck(CardCollection.militia);
 		}
 	}

@@ -47,7 +47,7 @@ public class Board {
 
 	private void initializeCenterDeck() {
 		for (int i = 0; i < CardCollection.cards.length; i++) {
-			for (int j = 0; j < CardCollection.cards[i].rarity; j++) {
+			for (int j = 0; 0 <= j && j < CardCollection.cards[i].rarity; j++) {
 				this.cenDeck.add(CardCollection.cards[i]);
 			}
 		}
