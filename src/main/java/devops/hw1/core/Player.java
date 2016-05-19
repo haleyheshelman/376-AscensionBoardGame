@@ -79,7 +79,7 @@ public class Player {
 	 * @param i amount of runes to add (must be greater than zero)
 	 */
 	public void addRunes(int i) {
-		this.setRunes((i + this.getRunes() > 0) ? this.getRunes() + i : 0);
+		this.setRunes((i + this.getRunes() >= 1) ? this.getRunes() + i : 0);
 	}
 
 	/**
@@ -295,31 +295,39 @@ public class Player {
 	 * Applies the effects of the given card to the player.
 	 * 
 	 * @param card the card whose effect(s) are being used
+	 * 
+	 * A false return means that a part of the card's abilities were not implemented yet.
 	 */
 	@SuppressWarnings("boxing")
-	public void applyEffects(ACard card) {
+	public boolean applyEffects(ACard card) {
+		boolean result = true;
 		HashMap<String, Integer> map = card.getEffects();
+		if (map.isEmpty()){
+			return result;
+		}
 		for (String k : map.keySet()) {
 			switch (k) {
 			case CardCollection.RUNES:
-				this.addRunes(map.get(k));
+				this.addRunes(map.get(CardCollection.RUNES));
 				break;
 			case CardCollection.POWER:
-				this.addPower(map.get(k));
+				this.addPower(map.get(CardCollection.POWER));
 				break;
 			case CardCollection.DRAW:
-				this.drawCard(map.get(k));
+				this.drawCard(map.get(CardCollection.DRAW));
 				break;
 			case CardCollection.HONOR:
-				this.addHonor(map.get(k));
+				this.addHonor(map.get(CardCollection.HONOR));
 				break;
 			case CardCollection.BANISH:
-				this.banishLocation += map.get(k);
+				this.banishLocation += map.get(CardCollection.BANISH);
 				break;
 			default:
-				
+				result = false;
+				break;
 			}
 		}
+		return result;
 	}
 	
 	public void banishCard(ACard toBanish, Board board){

@@ -36,10 +36,25 @@ public class MutationTests {
 	public void playerMutation(){
 		Player p = Player.makePlayer();
 				
-		p.addRunes(3);
+		p.addRunes(1);
 		p.addPower(3);
 		p.endTurn();
 		assertTrue(p.getRunes() == 0);
 		assertTrue(p.getPower() == 0);
+		
+		ACard fakeEffectCard = ACard.makeCard();
+		fakeEffectCard.setEffect("fake effect", 99);
+		assertFalse(p.applyEffects(fakeEffectCard));
+		ACard blankCard = ACard.makeCard();
+		assertTrue(p.applyEffects(blankCard));
+		
+		Board b = new Board();
+		ACard hero = CardCollection.arhaInitiate;
+		ACard monster = CardCollection.avatarOfTheFallen;
+		b.getCenField()[0] = hero;
+		b.getCenField()[1] = monster;
+		assertFalse(p.doCard(hero, b));
+		assertFalse(p.doCard(monster, b));	
+		
 	}
 }
