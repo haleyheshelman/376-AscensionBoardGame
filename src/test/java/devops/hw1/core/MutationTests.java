@@ -48,6 +48,12 @@ public class MutationTests {
 		ACard blankCard = ACard.makeCard();
 		assertTrue(p.applyEffects(blankCard));
 		
+		ACard banishCard = ACard.makeCard();
+		banishCard.setEffect("banish", 1);
+		p.applyEffects(banishCard);
+		assertTrue(p.getBanishLocation() == 1);
+		
+		p.endTurn();
 		Board b = new Board();
 		ACard hero = CardCollection.arhaInitiate;
 		ACard monster = CardCollection.avatarOfTheFallen;
