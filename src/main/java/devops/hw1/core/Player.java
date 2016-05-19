@@ -315,7 +315,9 @@ public class Player {
 				break;
 			case CardCollection.BANISH:
 				this.banishLocation += map.get(k);
-				break;			 
+				break;
+			default:
+				
 			}
 		}
 	}
