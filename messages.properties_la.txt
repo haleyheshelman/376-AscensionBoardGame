@@ -1,4 +1,4 @@
-VOID = VACUUM
+VOID = VACCUM
 END = Tum Finis
 RUNES = Infrenaverunt
 POWER = Potentia
