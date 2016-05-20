@@ -35,7 +35,7 @@ public class CardListener implements MouseListener {
 		this.centerHandImages = centerHandImages;
 		this.player = player;
 		this.board = board;
-		this.locale = Locale.getDefault();
+		this.locale = new Locale("la");
 		this.messages = ResourceBundle.getBundle("messages", this.locale);
 	}
 
