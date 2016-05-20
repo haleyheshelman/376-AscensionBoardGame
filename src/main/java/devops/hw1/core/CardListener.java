@@ -26,6 +26,12 @@ public class CardListener implements MouseListener {
 	private Locale locale;
 	private ResourceBundle messages;
 
+	/**
+	 * @param player, the main Player in the game	
+	 * @param playerHandImages, an array list (of type Shape) of the Images of the cards in the Player's hand
+	 * @param centerHandImages, an array list (of type Shape) of the Images in the center field
+	 * @param board, contains the game logic of the game's board (not to be confused with GameBoard, which is the GUI code)
+	 */
 	public CardListener(Player player, ArrayList<Shape> playerHandImages, ArrayList<Shape> centerHandImages,
 			Board board) {
 		if (player == null || board == null)
@@ -91,6 +97,11 @@ public class CardListener implements MouseListener {
 
 	}
 
+	/**
+	 * Acts as a helper method for banishment in order to get the player's next mouse click
+	 * @param currentPos, the current position of the mouse click
+	 * @param location, the location that the banishment is done to and from
+	 */
 	@SuppressWarnings("resource")
 	private void nextMouseClick(Point currentPos, int location) { // currently
 																	// has a

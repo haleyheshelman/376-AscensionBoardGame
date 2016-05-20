@@ -105,6 +105,7 @@ public class GameBoard extends JPanel {
 		this.deckLabel.setFont(LABEL_FONT);
 		this.discard_pileLabel.setFont(LABEL_FONT);
 
+		// setting up the GUI layout and adding the initial elements
 		this.setLayout(new BorderLayout());
 
 		JPanel leftInfo = new JPanel();
