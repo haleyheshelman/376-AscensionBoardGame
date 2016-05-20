@@ -1,0 +1,6 @@
+message.VOID = VOID
+message.END = End Turn
+message.RUNES = Runes
+message.POWER = Power
+message.DISCARD = Discard
+message.LEFTINDECK = Left in Deck

@@ -1,0 +1,6 @@
+message.VOID = VACCUM
+message.END = Tum Finis
+message.RUNES = Infrenaverunt
+message.POWER = Potentia
+message.DISCARD = Excutio
+message.LEFTINDECK = Reliquit in Navi
