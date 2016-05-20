@@ -53,8 +53,8 @@ public class Player {
 	}
 
 	/**
-	 * Puts all of the players cards into the discard pile and draws 5 cards
-	 * for a new hand.
+	 * Puts all of the players cards into the discard pile and draws 5 cards for
+	 * a new hand.
 	 */
 	public void endTurn() {
 		this.discardPile.addAll(this.getHand());
@@ -62,7 +62,7 @@ public class Player {
 		this.setRunes(0);
 		this.addPower(0 - this.power);
 		this.drawCard(5);
-		for (ACard construct : this.constructs){
+		for (ACard construct : this.constructs) {
 			construct.setTimesActivated(0);
 		}
 	}
@@ -79,7 +79,9 @@ public class Player {
 
 	/**
 	 * This adds the given integer amount of runes to the players current total.
-	 * @param i amount of runes to add (must be greater than zero)
+	 * 
+	 * @param i
+	 *            amount of runes to add (must be greater than zero)
 	 */
 	public void addRunes(int i) {
 		this.setRunes((i + this.getRunes() >= 1) ? this.getRunes() + i : 0);
@@ -87,6 +89,7 @@ public class Player {
 
 	/**
 	 * This returns the amount of runes the player currently has.
+	 * 
 	 * @return the number of runes this player has
 	 */
 	public int getRunes() {
@@ -95,7 +98,9 @@ public class Player {
 
 	/**
 	 * Sets the amount of runs the player has to the given integer value.
-	 * @param runes the value to set the player's number of runes as
+	 * 
+	 * @param runes
+	 *            the value to set the player's number of runes as
 	 */
 	public void setRunes(int runes) {
 		this.runes = runes;
@@ -103,6 +108,7 @@ public class Player {
 
 	/**
 	 * Returns the size of the player's discard pile.
+	 * 
 	 * @return the size of the player's discard pile
 	 */
 	public int getDiscardSize() {
@@ -110,9 +116,11 @@ public class Player {
 	}
 
 	/**
-	 * This puts the given card into the discard pile (does not
-	 * remove the card from the hand).
-	 * @param card the card to be put in the discard pile
+	 * This puts the given card into the discard pile (does not remove the card
+	 * from the hand).
+	 * 
+	 * @param card
+	 *            the card to be put in the discard pile
 	 */
 	public void discard(ACard card) {
 		if (card == null) {
@@ -124,6 +132,7 @@ public class Player {
 
 	/**
 	 * Returns the player's discard pile.
+	 * 
 	 * @return the player's discard pile (as an ArrayList<ACard>)
 	 */
 	public ArrayList<ACard> getDiscardPile() {
@@ -135,11 +144,12 @@ public class Player {
 	 * subtracts the amount of runes the player has available. If you do not
 	 * have enough runes, this returns false, otherwise true.
 	 * 
-	 * @param card the card that the player is attempting to buy
+	 * @param card
+	 *            the card that the player is attempting to buy
 	 * @return true if the card can be bought by the player, false otherwise
 	 */
 	public boolean buyCard(ACard card) {
-		if (card != null){
+		if (card != null) {
 			int cost = card.getCost();
 			if (cost <= this.runes) {
 				this.setRunes(this.runes - cost);
@@ -154,12 +164,14 @@ public class Player {
 	 * Attack card will take a card and the board. If the player has enough
 	 * power it will place the card in the void discard pile
 	 * 
-	 * @param card the card that is being attacked
-	 * @return true if the attack is successful and sent to void and false otherwise
+	 * @param card
+	 *            the card that is being attacked
+	 * @return true if the attack is successful and sent to void and false
+	 *         otherwise
 	 */
 
 	public boolean attackCard(ACard card, Board board) {
-		if (card != null){
+		if (card != null) {
 			int strength = card.getStrength();
 			if (strength <= this.power) {
 				this.addPower(0 - strength);
@@ -173,6 +185,7 @@ public class Player {
 
 	/**
 	 * Returns the size of the player hand
+	 * 
 	 * @return the size of the player's hand
 	 */
 	public int getHandSize() {
@@ -195,7 +208,9 @@ public class Player {
 	/**
 	 * 
 	 * Adds a card to the player's deck
-	 * @param card the card to be added to the player's deck
+	 * 
+	 * @param card
+	 *            the card to be added to the player's deck
 	 */
 	public void addCardToDeck(ACard card) {
 
@@ -209,7 +224,9 @@ public class Player {
 
 	/**
 	 * Adds the given card to the player's hand
-	 * @param card the card to be added to the player's hand
+	 * 
+	 * @param card
+	 *            the card to be added to the player's hand
 	 */
 	public void addCardToHand(ACard card) {
 
@@ -222,6 +239,7 @@ public class Player {
 
 	/**
 	 * Gets the current player hand
+	 * 
 	 * @return the player's hand (as an ArrayList<ACard>)
 	 */
 	public ArrayList<ACard> getHand() {
@@ -230,7 +248,9 @@ public class Player {
 
 	/**
 	 * Input check card in hand
-	 * @param card the card to be played (by the player)
+	 * 
+	 * @param card
+	 *            the card to be played (by the player)
 	 */
 	public void playCard(ACard card) {
 
@@ -246,15 +266,17 @@ public class Player {
 		this.applyEffects(card);
 		this.discard(card);
 	}
-	
+
 	public void addConstruct(ACard card) {
 		this.constructs.add(card);
 	}
 
 	/**
-	 * Adds the designated number of cards (from the player's deck)
-	 * to the player's hand.
-	 * @param integer the number of cards to draw
+	 * Adds the designated number of cards (from the player's deck) to the
+	 * player's hand.
+	 * 
+	 * @param integer
+	 *            the number of cards to draw
 	 */
 	public void drawCard(int cards) {
 		for (int i = 0; i < cards; i++) {
@@ -297,22 +319,24 @@ public class Player {
 	/**
 	 * Applies the effects of the given card to the player.
 	 * 
-	 * @param card the card whose effect(s) are being used
+	 * @param card
+	 *            the card whose effect(s) are being used
 	 * 
-	 * A false return means that a part of the card's abilities were not implemented yet.
+	 *            A false return means that a part of the card's abilities were
+	 *            not implemented yet.
 	 */
 	@SuppressWarnings("boxing")
 	public boolean applyEffects(ACard card) {
 		boolean result = true;
 		HashMap<String, Integer> map = card.getEffects();
-		if (card.getType() == "Construct"){
+		if (card.getType() == "Construct") {
 			if (card.getTimesActivated() == 0)
 				card.setTimesActivated(1);
-			else{
+			else {
 				return false;
 			}
 		}
-		if (map.isEmpty()){
+		if (map.isEmpty()) {
 			return result;
 		}
 		for (String k : map.keySet()) {
@@ -339,9 +363,13 @@ public class Player {
 		}
 		return result;
 	}
-	
-	public void banishCard(ACard toBanish, Board board){
-		if (toBanish != null && board != null){
+
+	/**
+	 * @param toBanish
+	 * @param board
+	 */
+	public void banishCard(ACard toBanish, Board board) {
+		if (toBanish != null && board != null) {
 			board.sendToVoid(toBanish);
 			if (this.banishLocation == 1 || this.banishLocation == 5) {
 				this.playerHand.remove(toBanish);
@@ -363,17 +391,19 @@ public class Player {
 	 * This method adds the amount given to the total amount of honor that the
 	 * player has.
 	 * 
-	 * @param i the amount of honor to add
+	 * @param i
+	 *            the amount of honor to add
 	 */
 	public void addHonor(int i) {
 		this.honor += i;
 	}
-	
+
 	/**
 	 * This function takes a card and decides how to handle the card.
-	 * @param card 
-	 * @param board 
-	 * @return 
+	 * 
+	 * @param card
+	 * @param board
+	 * @return
 	 */
 	public boolean doCard(ACard card, Board board) {
 		String type = card.getType();
@@ -382,24 +412,29 @@ public class Player {
 		}
 		return this.attackCard(card, board); // There is a problem here........
 	}
-	
+
 	public int getBanishLocation() {
 		return this.banishLocation;
 	}
 
 	/**
-	 * This method returns the ArrayList (of type ACard) which contains all of the Construct 
-	 * cards that the player currently has in play.
-	 * @return constructs, an array list containing all of the Constructs played by the player
+	 * This method returns the ArrayList (of type ACard) which contains all of
+	 * the Construct cards that the player currently has in play.
+	 * 
+	 * @return constructs, an array list containing all of the Constructs played
+	 *         by the player
 	 */
 	public ArrayList<ACard> getConstructs() {
 		return this.constructs;
 	}
 
 	/**
-	 * This method "discards" the Construct by first removing it from the player's 
-	 * list of constructs in play, and then calling the discard method on the card.
-	 * @param card, the Construct card that is being "destroyed"
+	 * This method "discards" the Construct by first removing it from the
+	 * player's list of constructs in play, and then calling the discard method
+	 * on the card.
+	 * 
+	 * @param card
+	 *            , the Construct card that is being "destroyed"
 	 */
 	public void discardConstruct(ACard card) {
 		this.constructs.remove(card);
