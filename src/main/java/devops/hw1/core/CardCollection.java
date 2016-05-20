@@ -17,6 +17,9 @@ public class CardCollection {
 
 	public static ACard apprentice;
 	public static ACard militia;
+	public static ACard cultist;
+	public static ACard heavyinfantry;
+	public static ACard mystic;
 	public static ACard arhaInitiate;
 	public static ACard demonSlayer;
 	public static ACard wolfShaman;
@@ -133,6 +136,9 @@ public class CardCollection {
 		HashMap<String, Integer> map47 = new HashMap<String, Integer>();
 		HashMap<String, Integer> map48 = new HashMap<String, Integer>();
 		HashMap<String, Integer> map49 = new HashMap<String, Integer>();
+		HashMap<String, Integer> mapSpec1 = new HashMap<String, Integer>();
+		HashMap<String, Integer> mapSpec2 = new HashMap<String, Integer>();
+		HashMap<String, Integer> mapSpec3 = new HashMap<String, Integer>();
 
 		BufferedImage image = null;
 
@@ -147,6 +153,21 @@ public class CardCollection {
 		map1.put(POWER, 1);
 		militia = ACard.makeCard(image, "Militia", "none", "Hero", 0, 0, -1,
 				map1);
+		
+		image = ImageIO.read(new File("cardImages/Standard/Cultist.png"));
+		
+		mapSpec1.put(HONOR, 1);
+		cultist = ACard.makeCard(image, "Cultist", "none", "Monster", 2, 0, 1000, mapSpec1);
+		
+		image = ImageIO.read(new File("cardImages/Standard/HeavyInfantry.png"));
+		
+		mapSpec2.put(POWER, 2);
+		heavyinfantry = ACard.makeCard(image, "Heavy Infantry", "none", "Hero", 2, 0, 1000, mapSpec2);
+		
+		image = ImageIO.read(new File("cardImages/Standard/Mystic.png"));
+		
+		mapSpec3.put(RUNES, 2);
+		mystic = ACard.makeCard(image, "Mystic", "none", "Hero", 3, 0, 1000, mapSpec3);
 
 		image = ImageIO.read(new File("cardImages/Heroes/Arha-Initiate.png"));
 

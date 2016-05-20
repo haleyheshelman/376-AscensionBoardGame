@@ -70,7 +70,7 @@ public class GameBoard extends JPanel {
 	public int voidY = HEIGHT - 500;
 	
 	// sets positions for the standard cards (Mystic, Heavy Infantry, & Cultist)
-	public int standardY = HEIGHT - 300;
+	public int standardY = HEIGHT - 690;
 	public int standard1X = 150;
 	
 	// for i18n (translation)
@@ -204,11 +204,15 @@ public class GameBoard extends JPanel {
 			g2.drawImage(theVoid.get(theVoid.size() - 1).getImage(), voidX, voidY, null);
 		}
 		
-		//TODO: setting up the standard cards (only images so far)
-//		for (int i = 0; i < 3; i++) {
-//			BufferedImage card = board.getStandardField()[i].getImage();
-//			g2.drawImage(card, card1X + (50 * i), standardY, null);
-//		}
+//		//TODO: setting up the standard cards (only images so far)
+//		BufferedImage card1 = CardCollection.mystic.image;
+//		g2.drawImage(card1, card1X - 300, standardY, null);
+//		
+//		BufferedImage card2 = CardCollection.heavyinfantry.image;
+//		g2.drawImage(card2, card1X - 200, standardY, null);
+//		
+//		BufferedImage card3 = CardCollection.cultist.image;
+//		g2.drawImage(card3, card1X - 100, standardY, null);
 
 	}
 

@@ -47,10 +47,13 @@ public class CardListener implements MouseListener {
 
 	/**
 	 * Determines if a card has been clicked and takes the appropriate action.
+	 * @param e, the MouseEvent that is taking place (in the GameBoard)
+	 * @throws NullPointerException, when the mouse position is null (should not happen)
 	 */
 	public void mouseClicked(MouseEvent e) {
 		gameboard = (GameBoard) e.getSource();
 		Point currentPos = gameboard.getMousePosition();
+		if (currentPos == null) throw new NullPointerException("Error: Clicked on an invalid position");
 		int upperBound = 695;
 		int lowerBound = 850;
 		System.out.println(player.getBanishLocation());

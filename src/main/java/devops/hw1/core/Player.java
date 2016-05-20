@@ -267,8 +267,11 @@ public class Player {
 		this.discard(card);
 	}
 
+	/**
+	 * @param card the Construct to add to the list of constructs
+	 */
 	public void addConstruct(ACard card) {
-		this.constructs.add(card);
+		if (card.type.equals("Construct")) this.constructs.add(card);
 	}
 
 	/**
