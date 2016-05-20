@@ -54,10 +54,12 @@ Milestone: Banishing and Complex Effects
 Netta - Test Engineer: Added image of opponents cards (can only see the back of the cards, since you aren't supposed to know what cards your opponent has).
 
 Milestone: Constructs
-Charlie - Software Engineer: Assissted Netta in implementing constructs through Behavior Driven Development
+Charlie - Software Engineer: Assisted Netta in implementing constructs through Behavior Driven Development
 Netta - Software Engineer: Implemented Constructs through Behavior Driven Development (use of cucumber).
 
 
+Final Milestone: THE END
+Netta - Software Engineer: Worked with Chase to get the i18n code to work.
 
 -----------------------------------
 Final Feature List:
