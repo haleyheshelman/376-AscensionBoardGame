@@ -29,7 +29,6 @@ public class MainGUI {
 
 		frame.add(ascension, BorderLayout.CENTER);
 		
-
 		ascension.repaint();
 
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

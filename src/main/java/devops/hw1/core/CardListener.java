@@ -5,6 +5,8 @@ import java.awt.Shape;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
+import java.util.Locale;
+import java.util.ResourceBundle;
 import java.util.Scanner;
 
 /**
@@ -21,6 +23,8 @@ public class CardListener implements MouseListener {
 	private GameBoard gameboard;
 	private Player player;
 	private Board board;
+	private Locale locale;
+	private ResourceBundle messages;
 
 	public CardListener(Player player, ArrayList<Shape> playerHandImages, ArrayList<Shape> centerHandImages,
 			Board board) {
@@ -31,6 +35,8 @@ public class CardListener implements MouseListener {
 		this.centerHandImages = centerHandImages;
 		this.player = player;
 		this.board = board;
+		this.locale = new Locale("la");
+		this.messages = ResourceBundle.getBundle("messages", this.locale);
 	}
 
 	/**
@@ -137,10 +143,10 @@ public class CardListener implements MouseListener {
 	 * Updates the labels on the GUI and repaints
 	 */
 	public void updateGUI() {
-		gameboard.runesLabel.setText("Runes: " + player.getRunes());
-		gameboard.powerLabel.setText("Power: " + player.getPower());
-		gameboard.discard_pileLabel.setText("Discard: " + player.getDiscardSize());
-		gameboard.deckLabel.setText("Left in Deck: " + player.getDeckSize());
+		gameboard.runesLabel.setText(messages.getString("VOID") + player.getRunes());
+		gameboard.powerLabel.setText(messages.getString("POWER") + player.getPower());
+		gameboard.discard_pileLabel.setText(messages.getString("DISCARD") + player.getDiscardSize());
+		gameboard.deckLabel.setText(messages.getString("LEFTINDECK") + player.getDeckSize());
 		gameboard.repaint();
 
 	}
