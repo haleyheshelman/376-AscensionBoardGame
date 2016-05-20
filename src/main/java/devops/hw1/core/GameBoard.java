@@ -10,6 +10,8 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Locale;
+import java.util.ResourceBundle;
 
 import javax.imageio.ImageIO;
 import javax.swing.JButton;
@@ -70,6 +72,10 @@ public class GameBoard extends JPanel {
 	// sets positions for the standard cards (Mystic, Heavy Infantry, & Cultist)
 	public int standardY = HEIGHT - 300;
 	public int standard1X = 150;
+	
+	// for i18n (translation)
+	private Locale locale;
+	private ResourceBundle messages;
 
 	/**
 	 * The default constructor for the Game Board.
@@ -77,11 +83,21 @@ public class GameBoard extends JPanel {
 	public GameBoard() {
 		// first call constructor of superclass
 		super();
-
+		
+		// initialize variables
 		this.centerList = new ArrayList<Shape>();
 		this.playerList = new ArrayList<Shape>();
 		this.opponentList = new ArrayList<Shape>();
 		this.standardList = new ArrayList<Shape>();
+		
+		// initializing i18n variables and doing translation for labels
+		this.locale = new Locale("la", "LA");
+		this.messages = ResourceBundle.getBundle("messages", this.locale);
+		this.runesLabel.setText(messages.getString("RUNES") + ": 0");
+		this.powerLabel.setText(messages.getString("POWER") + ": 0");
+		this.discard_pileLabel.setText(messages.getString("DISCARD") + ": 0");
+		this.deckLabel.setText(messages.getString("LEFTINDECK") + ": 5");
+		this.repaint();
 
 		// Setting the fonts of the labels
 		this.runesLabel.setFont(LABEL_FONT);
@@ -180,7 +196,7 @@ public class GameBoard extends JPanel {
 		}
 		
 		g2.setFont(LABEL_FONT);
-		g2.drawString("THE VOID", voidX, voidY - 9);	// the label for the Void
+		g2.drawString(messages.getString("VOID"), voidX, voidY - 9);	// the label for the Void
 		// painting banished cards onto the Void
 		if (board.getVoid().size() != 0) {
 			ArrayList<ACard> theVoid = board.getVoid();
