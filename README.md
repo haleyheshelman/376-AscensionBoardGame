@@ -56,3 +56,43 @@ Netta - Test Engineer: Added image of opponents cards (can only see the back of 
 Milestone: Constructs
 Charlie - Software Engineer: Assissted Netta in implementing constructs through Behavior Driven Development
 Netta - Software Engineer: Implemented Constructs through Behavior Driven Development (use of cucumber).
+
+
+
+-----------------------------------
+Final Feature List:
+
+Implemented features:
+
+Basic functioning game board (cards in proper places deck, hand, turns that end, etc)
+Hero cards
+Monster Cards
+Constructs w/o effect
+Banishing cards (from hand and center row)
+Functioning void
+Can be in English or Latin
+
+
+Unimplemented features:
+Construct effects
+No instant death or aquire effects
+Choice effects
+single player
+
+
+
+Bugs:
+
+None that we know of
+
+
+
+
+
+
+
+
+
+
+
+
